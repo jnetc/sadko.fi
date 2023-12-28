@@ -1,0 +1,53 @@
+---
+// import { getCollection } from 'astro:content';
+import {getRelativeLocaleUrl} from 'astro:i18n'
+// Localization
+import {headerLinks} from '@Content/i18n/_header';
+// Get language from Astro Runtime API
+const lang = Astro.url.pathname.substring(1, 3) as 'ru' | 'fi'
+
+---
+<header class="header">
+  <a href=`/${lang}` class="header__logo">
+    <img src="/webp/logo.webp" alt="sadko logo">
+  </a>
+  <nav class="header__nav">
+    <div>
+      <a href={getRelativeLocaleUrl(lang, "/")}>{headerLinks[lang].home}</a>
+      <a href={getRelativeLocaleUrl(lang, "/activities")}>{headerLinks[lang].activities}</a>
+      <a href={getRelativeLocaleUrl(lang, "/info")}>{headerLinks[lang].info}</a>
+      <a href={getRelativeLocaleUrl(lang, "/teachers")}>{headerLinks[lang].teachers}</a>
+      <a href={getRelativeLocaleUrl(lang, "/articles")}>{headerLinks[lang].articles}</a>
+      <a href={getRelativeLocaleUrl(lang, "/galleria")}>{headerLinks[lang].galleria}</a>
+      <a href={getRelativeLocaleUrl(lang, "/about")}>{headerLinks[lang].about}</a>
+    </div>
+    <div class="header__lang">
+      <a href="/fi">fi</a>
+      <a href="/ru">ru</a>
+    </div>
+  </nav>
+</header>
+
+
+<style>
+  .header {
+    display: grid;
+    grid-column: 2 / -2;
+    grid-template-columns: subgrid;
+    align-items: center;
+    padding-block: var(--gap-18);
+  }
+  .header__logo {
+    grid-column: 1;
+  }
+
+  .header__nav {
+    grid-column: 2 / -1;
+    display: flex;
+    margin-inline-start: auto;
+  }
+
+  .header__lang {
+    display: flex;
+  }
+</style>
