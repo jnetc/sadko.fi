@@ -8,8 +8,8 @@ const { lang } = Astro.props;
 ---
 
 <div class="header__lang">
-  <a href="/ru" data-active={lang.includes("ru")}>RU</a>
-  <a href="/fi" data-active={lang.includes("fi")}>FI</a>
+  <a href="/ru" data-astro-reload data-active={lang.includes("ru")}>RU</a>
+  <a href="/fi" data-astro-reload data-active={lang.includes("fi")}>FI</a>
 </div>
 
 <style>
