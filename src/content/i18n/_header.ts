@@ -24,8 +24,8 @@ export const headerLinks = {
 const classes: Array<ISubMenu> = [
   {
     iconBorder: "cookie",
-    icon: "about",
-    slug: "about",
+    icon: "clubs",
+    slug: "clubs",
     hrefName: "Кружки",
     hrefDesc: "27 различных кружков",
   },
@@ -188,8 +188,8 @@ const galleria: Array<ISubMenu> = [
   },
   {
     iconBorder: "cookie",
-    icon: "camps",
-    slug: "camps",
+    icon: "info",
+    slug: "info",
     hrefName: "О лагерях",
     hrefDesc: "Подробно обо всём",
   },

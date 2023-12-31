@@ -7,10 +7,18 @@ interface Props {
 // Get language from Astro Runtime API
 const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
 
+const par = Astro.url;
+
 const { icon, hrefDesc, hrefName, iconBorder, slug } = Astro.props.link;
+console.log(`${par.hostname}/${lang}/${slug}`);
 ---
 
-<a href=`${lang}/${slug}` class="subnav__link" role="menuitem">
+<a
+  href=`/${lang}/${slug}`
+  class="subnav__link"
+  data-astro-reload
+  role="menuitem"
+>
   <div>
     <svg class="icon">
       <use xlink:href=`/svg/ui_icons.svg#${icon}`></use>

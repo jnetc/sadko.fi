@@ -198,12 +198,12 @@ const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
         <SubMenu subMenu={routes.signup} index={2} />
       </li>
       <li class="nav__link" role="menuitem">
-        <a href={getRelativeLocaleUrl(lang, "/teachers")}
+        <a href={getRelativeLocaleUrl(lang, "/teachers")} data-astro-reload
           >{headerLinks[lang].schedule}</a
         >
       </li>
       <li class="nav__link" role="menuitem">
-        <a href={getRelativeLocaleUrl(lang, "/articles")}
+        <a href={getRelativeLocaleUrl(lang, "/articles")} data-astro-reload
           >{headerLinks[lang].articles}</a
         >
       </li>

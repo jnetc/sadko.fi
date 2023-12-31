@@ -1,6 +1,6 @@
 export type TypeLanguages = 'fi' | 'ru';
 export type TypeUIicons =
-  | "clubs"
+  "clubs"
   | "camps"
   | "masters"
   | "courses"
@@ -15,7 +15,8 @@ export type TypeUIicons =
   | "about"
   | "teachers"
   | "membership"
-  | "galleria";
+  | "galleria"
+  | "info";
 
 type TypeBlanks = "blank-hobby"  | "blank-camp"  | "blank-membership";
 
