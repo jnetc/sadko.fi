@@ -1,0 +1,34 @@
+---
+import type { ISubMenu } from "@Types";
+import SubLink from "./SubLink.astro";
+
+interface Props {
+  columnName: string;
+  columns: Array<ISubMenu>;
+}
+
+const { columnName, columns } = Astro.props;
+---
+
+<div class="subnav__column">
+  <h3 class="subnav__column-title">{columnName}</h3>
+  {columns.map((link) => <SubLink link={link} />)}
+</div>
+
+<style>
+  .subnav__column {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--gap-12);
+    padding-inline: var(--gap-14);
+  }
+  .subnav__column:not(:last-of-type) {
+    border-right: 1px solid var(--opacity-30);
+  }
+
+  .subnav__column-title {
+    font-size: var(--font-18);
+    padding-block-end: var(--gap-12);
+    padding-inline-start: var(--gap-16);
+  }
+</style>

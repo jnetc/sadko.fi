@@ -1,20 +1,18 @@
 export const headerLinks = {
   ru: {
-    home: 'Главная',
+    // home: 'Главная',
     activities: 'Активности',
-    info: 'Инфо',
-    teachers: 'Учителя',
+    signup: 'Записаться',
+    schedule: 'Расписание',
     articles: 'Статьи',
-    galleria: 'Галерея',
-    about: 'О нас',
+    about: 'О Sadko',
   },
   fi: {
-    home: 'Etusivu',
+    // home: 'Etusivu',
     activities: 'Toiminnot',
-    info: 'Info',
-    teachers: 'Opettajat',
+    signup: 'Ilmoittautua',
+    schedule: 'Aikataulu',
     articles: 'Artikkelit',
-    galleria: 'Galleria',
-    about: 'Meistä"',
+    about: 'Sadko:sta',
   },
 };

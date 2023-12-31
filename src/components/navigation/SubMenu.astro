@@ -1,0 +1,61 @@
+---
+import type { ISubMenu } from "@Types";
+import SubColumn from "./SubColumn.astro";
+
+interface Props {
+  subMenu: Array<{ columnName: string; columns: Array<ISubMenu> }>;
+  index: number;
+}
+
+const { subMenu, index } = Astro.props;
+---
+
+<div class=`subnav subnav-${index}` role="menu">
+  {
+    subMenu.map((sub) => (
+      <SubColumn columnName={sub.columnName} columns={sub.columns} />
+    ))
+  }
+</div>
+
+<style is:global>
+  .subnav {
+    opacity: 0;
+    /* width: max-content; */
+    /* width: 100%; */
+    display: flex;
+    padding-inline: var(--gap-20);
+    padding-block: var(--gap-32) var(--gap-56);
+    position: absolute;
+    /* inset-inline: 10% 100%; */
+    top: var(--gap-96);
+    background-color: var(--white);
+    border-radius: var(--border-corner-24);
+    transition: all 0.3s cubic-bezier(0, 0.71, 0.6, 1.03);
+    translate: 0 -3rem;
+    box-shadow:
+      0 30px 25px var(--opacity-3),
+      0 10px 10px var(--opacity-3);
+    pointer-events: none;
+    z-index: -2;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      translate: 0 -100px;
+      background-color: transparent;
+      z-index: -3;
+    }
+  }
+
+  .subnav-1 {
+    inset-inline: 0% 0%;
+  }
+  .subnav-2 {
+    inset-inline: 0 0%;
+  }
+  .subnav-3 {
+    inset-inline: 0 0;
+  }
+</style>

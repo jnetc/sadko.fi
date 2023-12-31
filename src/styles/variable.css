@@ -1,16 +1,24 @@
 :root {
-  --color-violet: #704fe6;
-  --color-violet-light: #dec8fe;
-  --color-pink: #ffc8ff;
-  --color-yellow: #feef79;
-  --color-green: #daf;
+  --violet: #704fe6;
+  --violet-light: #dec8fe;
+  --pink: #ffc8ff;
+  --yellow: #feef79;
+  --green: #daff7c;
   --background: #f9f7f8;
   --black: #373737;
   --grey-300: #626262;
   --grey-200: #888888;
   --grey-100: #b7b7b7;
-  --grey-50: #f8f8f8;
+  --grey-50: #DDDDDD;
+  --grey-25: #f8f8f8;
   --white: #ffffff;
+
+  --opacity-3: hsl(253 75% 61% / .03);
+  --opacity-5: hsl(253 75% 61% / .05);
+  --opacity-8: hsl(253 75% 61% / .08);
+  --opacity-10: hsl(253 75% 61% / .1);
+  --opacity-20: hsl(253 75% 61% / .2);
+  --opacity-30: hsl(253 75% 61% / .3);
 
   /* Transition duration */
   --transition-01: 0.1s; /* when you click the button */
@@ -38,6 +46,7 @@
   --gap-14: 0.875rem;
   --gap-16: 1rem;
   --gap-18: 1.125rem;
+  --gap-20: 1.25rem;
   --gap-24: 1.5rem;
   --gap-32: 2rem;
   --gap-36: 2.25rem;
@@ -47,6 +56,7 @@
   --gap-64: 4rem;
   --gap-72: 4.5rem;
   --gap-80: 5rem;
+  --gap-88: 5.5rem;
   --gap-96: 6rem;
   --gap-128: 8rem;
   --gap-152: 9.5rem;

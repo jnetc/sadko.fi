@@ -21,6 +21,8 @@ html {
 
 body {
   margin-inline: auto;
+  font-family: 'Comfortaa', sans-serif;
+  -webkit-font-smoothing: antialiased; /* for MacOs */
 }
 /* prevent scroll */
 .body {
@@ -31,7 +33,8 @@ body {
 img,
 picture,
 svg,
-video {
+video,
+canvas {
   display: block;
   max-width: 100%;
   user-select: none;
@@ -46,7 +49,9 @@ svg {
 
 a {
   text-decoration: none;
-  line-height: 1;
+}
+a:active {
+  color: var(--black);
 }
 
 ul {
@@ -58,31 +63,14 @@ input,
 textarea {
   font-weight: 400;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-a,
-button,
-strong,
-span,
-label,
-input,
-textarea {
-  font-family: 'Comfortaa', sans-serif;
-}
 
-main {
-  display: grid;
-  /* row-gap: var(--gap-208); */
-}
 button {
   background-color: transparent;
   border: none;
   cursor: pointer;
+  font-family: 'Comfortaa', sans-serif;
+  -webkit-font-smoothing: antialiased;
+      /* for MacOs */
 }
 
 /* CLASSES */
@@ -93,65 +81,46 @@ button {
   position: relative;
 }
 
-.color-white {
-  color: var(--text-white);
+h1, h2, h3,h4, h5, h6 {
+  color: var(--black);
 }
-.color-light-grey {
-  color: var(--text-light-grey);
+
+.bg-violet {
+  background-color: var(--violet);
 }
-.color-grey {
-  color: var(--text-grey);
+.bg-violet-light {
+  background-color: var(--violet-light);
 }
-.color-purpul {
-  color: var(--color-purpul);
+.bg-green {
+  background-color: var(--green);
 }
-.color-blue {
-  color: var(--color-blue);
+.bg-black {
+  background-color: var(--black);
 }
-.color-pink {
-  color: var(--color-pink);
+.bg-pink {
+  background-color: var(--pink);
 }
-.color-yellow {
-  color: var(--color-yellow);
+.bg-yellow {
+  background-color: var(--yellow);
 }
-.color-ocean {
-  color: var(--color-ocean);
+.surface {
+  background-color: var(--white);
 }
-.fill-purpul {
-  fill: var(--color-purpul);
+
+.fill-violet {
+  fill: var(--violet);
 }
-.fill-blue {
-  fill: var(--color-blue);
+.fill-violet-light {
+  fill: var(--violet-light);
 }
 .fill-pink {
-  fill: var(--color-pink);
+  fill: var(--pink);
 }
 .fill-yellow {
-  fill: var(--color-yellow);
+  fill: var(--yellow);
 }
-.fill-ocean {
-  fill: var(--color-ocean);
-}
-
-.stroke-purpul {
-  stroke: var(--color-purpul);
-}
-.stroke-blue {
-  stroke: var(--color-blue);
-}
-.stroke-pink {
-  stroke: var(--color-pink);
-}
-.stroke-yellow {
-  stroke: var(--color-yellow);
-}
-.stroke-ocean {
-  stroke: var(--color-ocean);
-}
-
-.overflow {
-  overflow: hidden;
-  padding-block: 208px 3rem;
+.fill-green {
+  fill: var(--green);
 }
 
 /* MEDIA QUERIES */

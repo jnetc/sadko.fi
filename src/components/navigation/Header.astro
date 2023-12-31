@@ -1,0 +1,517 @@
+---
+// import { getCollection } from 'astro:content';
+import { getRelativeLocaleUrl } from "astro:i18n";
+// Localization
+import { headerLinks } from "@Content/i18n/_header";
+import SubMenu from "./SubMenu.astro";
+import Languages from "./Languages.astro";
+// Get language from Astro Runtime API
+const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
+
+import type { ISubMenu } from "@Types";
+
+const classes: Array<ISubMenu> = [
+  {
+    iconBorder: "cookie",
+    icon: "clubs",
+    slug: "clubs",
+    hrefName: "Кружки",
+    hrefDesc: "27 различных кружков",
+  },
+  {
+    iconBorder: "cookie",
+    icon: "camps",
+    slug: "camps",
+    hrefName: "Лагеря",
+    hrefDesc: "Походы и отдых на природе",
+  },
+  {
+    iconBorder: "cookie",
+    icon: "masters",
+    slug: "masters",
+    hrefName: "Мастер класс",
+    hrefDesc: "Перенимаем опыт мастеров",
+  },
+  {
+    iconBorder: "cookie",
+    icon: "courses",
+    slug: "courses",
+    hrefName: "Курсы",
+    hrefDesc: "Для разных возрастов",
+  },
+];
+const events: Array<ISubMenu> = [
+  {
+    iconBorder: "cookie",
+    icon: "festivals",
+    slug: "festivals",
+    hrefName: "Фестивали",
+    hrefDesc: "Проводим ежегодно",
+  },
+  {
+    iconBorder: "cookie",
+    icon: "celebrations",
+    slug: "celebrations",
+    hrefName: "Праздники",
+    hrefDesc: "А так же утренники",
+  },
+  {
+    iconBorder: "cookie",
+    icon: "concerts",
+    slug: "concerts",
+    hrefName: "Концерты",
+    hrefDesc: "Посещаем и сами ставим",
+  },
+];
+const anothers: Array<ISubMenu> = [
+  {
+    iconBorder: "cookie",
+    icon: "travels",
+    slug: "travels",
+    hrefName: "Поездки",
+    hrefDesc: "Путишествуем вместе",
+  },
+  {
+    iconBorder: "cookie",
+    icon: "projects",
+    slug: "projects",
+    hrefName: "Проекты",
+    hrefDesc: "Текущие и будущие",
+  },
+  {
+    iconBorder: "cookie",
+    icon: "useful",
+    slug: "useful",
+    hrefName: "Полезное",
+    hrefDesc: "Советы и лайфхаки",
+  },
+  {
+    iconBorder: "cookie",
+    icon: "parents",
+    slug: "parents",
+    hrefName: "Для взрослых",
+    hrefDesc: "Тут только 18+",
+  },
+];
+
+const activities = [
+  {
+    columnName: "Занятия",
+    columns: classes,
+  },
+  {
+    columnName: "События",
+    columns: events,
+  },
+  {
+    columnName: "Разное",
+    columns: anothers,
+  },
+];
+
+const blanks: Array<ISubMenu> = [
+  {
+    iconBorder: "list",
+    icon: "pen",
+    slug: "blank-hobby",
+    hrefName: "Кружки",
+    hrefDesc: "Выбири и запишись к нам",
+  },
+  {
+    iconBorder: "list",
+    icon: "pen",
+    slug: "blank-camp",
+    hrefName: "Лагеря",
+    hrefDesc: "Зписывайся заранее",
+  },
+  {
+    iconBorder: "list",
+    icon: "pen",
+    slug: "blank-membership",
+    hrefName: "Членство",
+    hrefDesc: "Стань одним из нас",
+  },
+];
+
+const payments: Array<ISubMenu> = [
+  {
+    iconBorder: "list",
+    icon: "payments",
+    slug: "payments",
+    hrefName: "",
+    hrefDesc: "Правила записи и платы",
+  },
+];
+
+const signup = [
+  {
+    columnName: "Анкеты",
+    columns: blanks,
+  },
+  {
+    columnName: "Оплата",
+    columns: payments,
+  },
+];
+
+const menu = {
+  activities,
+  signup,
+};
+---
+
+<header class="header">
+  <a
+    href=`/${lang}`
+    class="header__logo"
+    title="sadko logo"
+    aria-label="sadko logo"
+  >
+    <img src="/webp/logo.webp" alt="sadko logo" />
+  </a>
+  <nav class="header__nav" role="menu">
+    <ul class="nav__links" role="menubar">
+      <li class="nav__link" role="menuitem">
+        <button
+          type="button"
+          class="nav__link-name"
+          aria-haspopup="menu"
+          aria-expanded="false">{headerLinks[lang].activities}</button
+        >
+
+        <SubMenu subMenu={menu.activities} index={1} />
+        <!-- <div class="subnav" role="menu">
+          <div class="subnav__column">
+            <h3 class="subnav__column-title">Занятия</h3>
+            <a href="" class="subnav__link" role="menuitem">
+              <div>
+                <svg class="icon">
+                  <use xlink:href="/svg/ui_icons.svg#clubs"></use>
+                </svg>
+                <svg class="cookie">
+                  <use xlink:href="/svg/ui_icons.svg#cookie"></use>
+                </svg>
+              </div>
+              <h4>Кружки</h4>
+              <p>В разных уголках Хельсинки</p>
+            </a>
+            <a href="" class="subnav__link" role="menuitem">
+              <svg class="icon">
+                <use xlink:href="/svg/ui_icons.svg#camps"></use>
+              </svg>
+              <svg class="cookie">
+                <use xlink:href="/svg/ui_icons.svg#cookie"></use>
+              </svg>
+              <h4>Лагеря</h4>
+              <p>И зимой и летом</p>
+            </a>
+            <a href="" class="subnav__link" role="menuitem">
+              <div>
+                <svg class="icon">
+                  <use xlink:href="/svg/ui_icons.svg#masterclass"></use>
+                </svg>
+                <svg class="cookie">
+                  <use xlink:href="/svg/ui_icons.svg#cookie"></use>
+                </svg>
+              </div>
+              <h4>Мастер класс</h4>
+              <p>Перенимаем опыт мастеров</p>
+            </a>
+            <a href="" class="subnav__link" role="menuitem">
+              <svg class="icon">
+                <use xlink:href="/svg/ui_icons.svg#courses"></use>
+              </svg>
+              <svg class="cookie">
+                <use xlink:href="/svg/ui_icons.svg#cookie"></use>
+              </svg>
+              <h4>Курсы</h4>
+              <p>Для разных возрастов</p>
+            </a>
+          </div>
+          <div class="subnav__column">
+            <h3 class="subnav__column-title">События</h3>
+            <a href="" class="subnav__link" role="menuitem">
+              <svg class="icon">
+                <use xlink:href="/svg/ui_icons.svg#festivals"></use>
+              </svg>
+              <svg class="cookie">
+                <use xlink:href="/svg/ui_icons.svg#cookie"></use>
+              </svg>
+              <h4>Фестивали</h4>
+              <p>В разных уголках Хельсинки</p>
+            </a>
+            <a href="" class="subnav__link" role="menuitem">
+              <svg class="icon">
+                <use xlink:href="/svg/ui_icons.svg#celebrations"></use>
+              </svg>
+              <svg class="cookie">
+                <use xlink:href="/svg/ui_icons.svg#cookie"></use>
+              </svg>
+              <h4>Праздники</h4>
+              <p>В разных уголках Хельсинки</p>
+            </a>
+            <a href="" class="subnav__link" role="menuitem">
+              <svg class="icon">
+                <use xlink:href="/svg/ui_icons.svg#concerts"></use>
+              </svg>
+              <svg class="cookie">
+                <use xlink:href="/svg/ui_icons.svg#cookie"></use>
+              </svg>
+              <h4>Концерты</h4>
+              <p>В разных уголках Хельсинки</p>
+            </a>
+          </div>
+          <div class="subnav__column">
+            <h3 class="subnav__column-title">Разное</h3>
+            <a href="" class="subnav__link" role="menuitem">
+              <svg class="icon">
+                <use xlink:href="/svg/ui_icons.svg#travels"></use>
+              </svg>
+              <svg class="cookie">
+                <use xlink:href="/svg/ui_icons.svg#cookie"></use>
+              </svg>
+              <h4>Поездки</h4>
+              <p>Путишествуем вместе</p>
+            </a>
+            <a href="" class="subnav__link" role="menuitem">
+              <svg class="icon">
+                <use xlink:href="/svg/ui_icons.svg#projects"></use>
+              </svg>
+              <svg class="cookie">
+                <use xlink:href="/svg/ui_icons.svg#cookie"></use>
+              </svg>
+              <h4>Проекты</h4>
+              <p>В разных уголках Хельсинки</p>
+            </a>
+            <a href="" class="subnav__link" role="menuitem">
+              <svg class="icon">
+                <use xlink:href="/svg/ui_icons.svg#parents"></use>
+              </svg>
+              <svg class="cookie">
+                <use xlink:href="/svg/ui_icons.svg#cookie"></use>
+              </svg>
+              <h4>Для взрослых</h4>
+              <p>Тут только 18+</p>
+            </a>
+            <a href="" class="subnav__link" role="menuitem">
+              <svg class="icon">
+                <use xlink:href="/svg/ui_icons.svg#useful"></use>
+              </svg>
+              <svg class="cookie">
+                <use xlink:href="/svg/ui_icons.svg#cookie"></use>
+              </svg>
+              <h4>Полезное</h4>
+              <p>Советы и фишки</p>
+            </a>
+          </div>
+        </div> -->
+      </li>
+      <li class="nav__link" role="menuitem">
+        <button
+          type="button"
+          class="nav__link-name"
+          aria-haspopup="menu"
+          aria-expanded="false"
+          >{headerLinks[lang].signup}
+        </button>
+
+        <SubMenu subMenu={menu.signup} index={2} />
+        <!-- <div class="subnav" role="menu">
+          <div class="subnav__column">
+            <p>Занятия</p>
+            <a href="" class="subnav__link">
+              <p>Кружки</p>
+              <p>В разных уголках Хельсинки</p>
+            </a>
+            <a href="" class="subnav__link">
+              <p>Лагеря</p>
+              <p>И зимой и летом</p>
+            </a>
+            <a href="" class="subnav__link">
+              <p>Мастер класс</p>
+              <p>Перенимаем опыт мастеров</p>
+            </a>
+            <a href="" class="subnav__link">
+              <p>Курсы</p>
+              <p>Для разных возрастов</p>
+            </a>
+          </div>
+          <div class="subnav__column">
+            <p>События</p>
+            <a href="" class="subnav__link">
+              <p>Фестивали</p>
+              <p>В разных уголках Хельсинки</p>
+            </a>
+            <a href="" class="subnav__link">
+              <p>Праздники</p>
+              <p>В разных уголках Хельсинки</p>
+            </a>
+            <a href="" class="subnav__link">
+              <p>Концерты</p>
+              <p>В разных уголках Хельсинки</p>
+            </a>
+          </div>
+          <div class="subnav__column">
+            <p>Разное</p>
+            <a href="" class="subnav__link">
+              <p>Поездки</p>
+              <p>Путишествуем вместе</p>
+            </a>
+            <a href="" class="subnav__link">
+              <p>Проекты</p>
+              <p>В разных уголках Хельсинки</p>
+            </a>
+            <a href="" class="subnav__link">
+              <p>Для взрослых</p>
+              <p>Тут только 18+</p>
+            </a>
+            <a href="" class="subnav__link">
+              <p>Полезное</p>
+              <p>Советы и фишки</p>
+            </a>
+          </div>
+        </div> -->
+      </li>
+      <li class="nav__link" role="menuitem">
+        <a href={getRelativeLocaleUrl(lang, "/teachers")}
+          >{headerLinks[lang].schedule}</a
+        >
+      </li>
+      <li class="nav__link" role="menuitem">
+        <a href={getRelativeLocaleUrl(lang, "/articles")}
+          >{headerLinks[lang].articles}</a
+        >
+      </li>
+      <li class="nav__link" role="menuitem">
+        <button
+          type="button"
+          class="nav__link-name"
+          aria-haspopup="menu"
+          aria-expanded="false"
+          >{headerLinks[lang].about}
+        </button>
+        <SubMenu subMenu={menu.signup} index={3} />
+      </li>
+    </ul>
+  </nav>
+  <Languages lang={lang} />
+</header>
+
+<script>
+  const links = [...document.querySelectorAll<HTMLLIElement>(".nav__link")];
+  const buttons = [
+    ...document.querySelectorAll<HTMLButtonElement>('[aria-haspopup="menu"]'),
+  ];
+
+  function listLeaveHandler(ev: MouseEvent) {
+    const target = ev.target as HTMLDivElement;
+
+    if (!target.firstElementChild) return;
+
+    target.firstElementChild.ariaExpanded = "false";
+  }
+
+  function buttonHandler(ev: MouseEvent) {
+    const target = ev.target as HTMLButtonElement;
+    if (target.ariaExpanded === "true") {
+      target.ariaExpanded = "false";
+      return;
+    }
+    target.ariaExpanded = "true";
+  }
+
+  buttons.some((btn) => {
+    btn.addEventListener("pointerdown", buttonHandler);
+  });
+
+  links.some((link) => {
+    link.addEventListener("pointerleave", listLeaveHandler);
+  });
+</script>
+
+<style is:global>
+  .header {
+    grid-column: 2 / -2;
+    display: flex;
+    align-items: center;
+    gap: var(--gap-36);
+    position: sticky;
+    padding-inline: var(--gap-32);
+    margin-block-start: var(--gap-12);
+    border-radius: var(--gap-18);
+    box-shadow:
+      0 30px 25px var(--opacity-3),
+      0 10px 10px var(--opacity-3);
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: var(--white);
+      border-radius: inherit;
+      z-index: -1;
+    }
+  }
+  .header__logo img {
+    height: var(--size-48);
+  }
+
+  .header__nav {
+    grid-column: 2 / -2;
+    height: 100%;
+  }
+
+  .header__nav {
+    display: flex;
+    /* position: relative; */
+  }
+
+  .nav__links {
+    display: flex;
+    gap: var(--gap-36);
+    font-size: var(--font-18);
+  }
+
+  .nav__link {
+    display: grid;
+    place-content: center;
+  }
+  .nav__link:hover .nav__link-name::after,
+  .nav__link:focus-visible .nav__link-name::after {
+    opacity: 1;
+    translate: 0 0;
+  }
+  [aria-expanded="true"] ~ .subnav {
+    opacity: 1;
+    translate: 0 0;
+    pointer-events: all;
+  }
+  /* .nav__link:has(.nav__link-name):hover.nav__link:has(.subnav),
+  .nav__link:has(.nav__link-name):focus-visible.nav__link:has(.subnav) {
+    .subnav {
+      opacity: 1;
+      translate: 0 0;
+      pointer-events: all;
+    }
+  } */
+
+  .nav__link-name {
+    position: relative;
+    font-size: var(--font-18);
+
+    &::after {
+      content: "";
+      height: 2px;
+      position: absolute;
+      inset-block-end: 0;
+      inset-inline: 0;
+      opacity: 0;
+      background-color: var(--black);
+      transition: all 0.3s ease-in-out;
+      translate: 0 5px;
+    }
+
+    &:hover::after {
+      opacity: 1;
+    }
+  }
+</style>

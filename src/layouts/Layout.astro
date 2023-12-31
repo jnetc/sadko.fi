@@ -1,35 +1,30 @@
 ---
 // import { getCollection } from 'astro:content';
 // import {getRelativeLocaleUrl} from 'astro:i18n'
+import { ViewTransitions } from "astro:transitions";
 // Global Styles
 import "@Styles/variable.css";
 import "@Styles/fonts.css";
 import "@Styles/global.css";
 // Components
-import Header from '@Components/Header.astro';
-
-
-
-
+import Header from "@Components/navigation/Header.astro";
 
 // Get language from Astro Runtime API
-const lang = Astro.url.pathname.substring(1);
+const lang = Astro.url.pathname.substring(1, 3);
 
 // console.log(Astro.url);
 // console.log('languages', lang);
 
 // console.log('locale_',getRelativeLocaleUrl(lang, "activities"));
-
 ---
-<!-- import type { GetStaticPaths } from "astro"; -->
 
-<!doctype html>
+<!-- import type { GetStaticPaths } from "astro"; --><!doctype html>
 <html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
 
-    <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <link rel="alternate" href="https://www.sadko.fi/ru" hreflang="ru" />
     <link rel="alternate" href="https://www.sadko.fi/fi/" hreflang="fi" />
@@ -37,16 +32,13 @@ const lang = Astro.url.pathname.substring(1);
 
     <meta name="googlebot" content="index, follow" />
     <meta name="robots" content="index, follow" />
-    <meta
-      name="keywords"
-      content="sadko"
-    />
+    <meta name="keywords" content="sadko" />
 
     <meta name="generator" content={Astro.generator} />
     <meta name="rating" content="General" />
 
     <meta name="geo.region" content="FI" />
-
+    <ViewTransitions />
     <!-- <meta
       name="google-site-verification"
       content="H0uSTqaKvyYCig_6IA0D_Le4q6K8__tuSDHhYWX6htM"
@@ -55,30 +47,8 @@ const lang = Astro.url.pathname.substring(1);
     <!-- <slot name="head" /> -->
   </head>
   <body class="grid">
-    <Header/>
-    <!-- <header class="header">
-      <a href=`/${lang}` class="header__logo">
-        <img src="/webp/logo.webp" alt="sadko logo">
-      </a>
-      <nav class="header__nav">
-        <div>
-          <a href={getRelativeLocaleUrl(lang, "/")}>Главная</a>
-          <a href={getRelativeLocaleUrl(lang, "activities")}>Активности</a>
-          <a href={getRelativeLocaleUrl(lang, "info")}>Инфо</a>
-          <a href={getRelativeLocaleUrl(lang, "galleria")}>Галерея</a>
-          <a href={getRelativeLocaleUrl(lang, "teachers")}>Учителя</a>
-          <a href={getRelativeLocaleUrl(lang, "articles")}>Статьи</a>
-          <a href={getRelativeLocaleUrl(lang, "about")}>О Нас</a>
-        </div>
-        <div class="header__lang">
-          <a href="/fi">fi</a>
-          <a href="/ru">ru</a>
-        </div>
-      </nav>
-    </header> -->
+    <Header />
     <slot />
-    <footer>
-      footer
-    </footer>
+    <footer>footer</footer>
   </body>
 </html>
