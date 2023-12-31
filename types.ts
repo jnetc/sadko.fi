@@ -1,6 +1,6 @@
 export type TypeLanguages = 'fi' | 'ru';
 export type TypeUIicons =
-  "clubs"
+  | "clubs"
   | "camps"
   | "masters"
   | "courses"
@@ -11,22 +11,19 @@ export type TypeUIicons =
   | "projects"
   | "useful"
   | "parents"
-  | "pen"
-  | "payments";
-
-type TypeIconsToSlug = Omit<TypeUIicons, "pen">
-
-export type TypeSlugs =
-  "blank-hobby"
-  | "blank-camp"
-  | "blank-membership"
   | "payments"
-  | TypeIconsToSlug;
+  | "about"
+  | "teachers"
+  | "membership"
+  | "galleria";
+
+type TypeBlanks = "blank-hobby"  | "blank-camp"  | "blank-membership";
+
 
 export interface ISubMenu {
   iconBorder: "cookie" | "list";
-  icon: TypeUIicons;
-  slug: TypeSlugs;
+  icon: TypeUIicons | "pen";
+  slug: TypeUIicons | TypeBlanks;
   hrefName: string;
   hrefDesc: string;
 }
