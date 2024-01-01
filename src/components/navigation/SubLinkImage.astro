@@ -1,0 +1,74 @@
+---
+import type { ISubMenu } from "@Types";
+
+interface Props {
+  link: ISubMenu;
+}
+// Get language from Astro Runtime API
+const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
+
+const { hrefDesc, slug } = Astro.props.link;
+---
+
+<a
+  href=`/${lang}/${slug}`
+  class="subnav__link-image"
+  data-astro-reload
+  role="menuitem"
+>
+  <div>
+    <img src="/webp/payments.webp" alt="payments image" />
+  </div>
+  <p>
+    {hrefDesc[lang]}
+    <svg class="icon">
+      <use xlink:href=`/svg/ui_icons.svg#arrow`></use>
+    </svg>
+  </p>
+</a>
+
+<style>
+  .subnav__link-image {
+    display: grid;
+    max-width: 400px;
+    height: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    row-gap: var(--gap-24);
+    padding: var(--gap-12);
+    border-radius: var(--border-corner-12);
+    transition: all 0.3s ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--opacity-8);
+    }
+
+    div {
+      grid-column: 1;
+      grid-row: 1;
+      display: grid;
+    }
+    p {
+      grid-column: 1;
+      grid-row: 2;
+      display: flex;
+      justify-content: space-between;
+      color: var(--grey-200);
+      font-size: var(--font-14);
+      line-height: 1.4;
+    }
+
+    .icon {
+      width: var(--size-16);
+      aspect-ratio: 1;
+      rotate: z -90deg;
+      transition: translate 0.3s ease-in-out;
+    }
+
+    &:hover .icon,
+    &:focus-visible .icon {
+      translate: -0.5rem 0;
+    }
+  }
+</style>

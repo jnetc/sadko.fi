@@ -22,7 +22,7 @@ const { subMenu, index } = Astro.props;
   .subnav {
     opacity: 0;
     /* width: max-content; */
-    min-width: 50%;
+    /* min-width: 50%; */
     display: flex;
     padding-inline: var(--gap-20);
     padding-block: var(--gap-32) var(--gap-56);
@@ -31,7 +31,7 @@ const { subMenu, index } = Astro.props;
     top: var(--gap-96);
     background-color: var(--white);
     border-radius: var(--border-corner-24);
-    transition: all 0.3s cubic-bezier(0, 0.71, 0.6, 1.03);
+    transition: all 0.1s cubic-bezier(0, 0.71, 0.6, 1.03);
     translate: 0 -3rem;
     box-shadow:
       0 30px 25px var(--opacity-3),
@@ -50,12 +50,12 @@ const { subMenu, index } = Astro.props;
   }
 
   .subnav-1 {
-    inset-inline: 0 auto;
+    inset-inline: auto 0;
   }
   .subnav-2 {
-    inset-inline: 0 auto;
+    inset-inline: auto 0;
   }
   .subnav-3 {
-    inset-inline: 0% 40%;
+    inset-inline: auto 0;
   }
 </style>

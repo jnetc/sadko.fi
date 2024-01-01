@@ -1,6 +1,7 @@
 ---
 import type { ISubMenu } from "@Types";
 import SubLink from "./SubLink.astro";
+import SubLinkImage from "./SubLinkImage.astro";
 
 interface Props {
   columnName: string;
@@ -12,7 +13,14 @@ const { columnName, columns } = Astro.props;
 
 <div class="subnav__column">
   <h3 class="subnav__column-title">{columnName}</h3>
-  {columns.map((link) => <SubLink link={link} />)}
+  {
+    columns.map((link) => {
+      if (link.slug === "payments") {
+        return <SubLinkImage link={link} />;
+      }
+      return <SubLink link={link} />;
+    })
+  }
 </div>
 
 <style>
