@@ -1,0 +1,14 @@
+---
+// Get language from Astro Runtime API
+const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
+---
+
+<a href=`/${lang}` class="header__logo" title="sadko.fi" aria-label="sadko.fi">
+  <img src="/webp/logo.webp" alt="sadko logo" />
+</a>
+
+<style>
+  .header__logo img {
+    height: var(--size-48);
+  }
+</style>

@@ -1,179 +1,21 @@
 ---
 // import { getCollection } from 'astro:content';
-import { getRelativeLocaleUrl } from "astro:i18n";
 // Localization
 import { headerLinks } from "@Content/i18n/_header";
+// Components
 import SubMenu from "./SubMenu.astro";
 import Languages from "./Languages.astro";
+import Logo from "./Logo.astro";
 // Get language from Astro Runtime API
 const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
-
-// import type { ISubMenu } from "@Types";
-
-// const classes: Array<ISubMenu> = [
-//   {
-//     iconBorder: "cookie",
-//     icon: "clubs",
-//     slug: "clubs",
-//     hrefName: "Кружки",
-//     hrefDesc: "27 различных кружков",
-//   },
-//   {
-//     iconBorder: "cookie",
-//     icon: "camps",
-//     slug: "camps",
-//     hrefName: "Лагеря",
-//     hrefDesc: "Походы и отдых на природе",
-//   },
-//   {
-//     iconBorder: "cookie",
-//     icon: "masters",
-//     slug: "masters",
-//     hrefName: "Мастер класс",
-//     hrefDesc: "Перенимаем опыт мастеров",
-//   },
-//   {
-//     iconBorder: "cookie",
-//     icon: "courses",
-//     slug: "courses",
-//     hrefName: "Курсы",
-//     hrefDesc: "Для разных возрастов",
-//   },
-// ];
-// const events: Array<ISubMenu> = [
-//   {
-//     iconBorder: "cookie",
-//     icon: "festivals",
-//     slug: "festivals",
-//     hrefName: "Фестивали",
-//     hrefDesc: "Проводим ежегодно",
-//   },
-//   {
-//     iconBorder: "cookie",
-//     icon: "celebrations",
-//     slug: "celebrations",
-//     hrefName: "Праздники",
-//     hrefDesc: "А так же утренники",
-//   },
-//   {
-//     iconBorder: "cookie",
-//     icon: "concerts",
-//     slug: "concerts",
-//     hrefName: "Концерты",
-//     hrefDesc: "Посещаем и сами ставим",
-//   },
-//   {
-//     iconBorder: "cookie",
-//     icon: "travels",
-//     slug: "travels",
-//     hrefName: "Поездки",
-//     hrefDesc: "Путишествуем вместе",
-//   },
-// ];
-// const anothers: Array<ISubMenu> = [
-//   {
-//     iconBorder: "cookie",
-//     icon: "projects",
-//     slug: "projects",
-//     hrefName: "Проекты",
-//     hrefDesc: "Текущие и будущие",
-//   },
-//   {
-//     iconBorder: "cookie",
-//     icon: "useful",
-//     slug: "useful",
-//     hrefName: "Полезное",
-//     hrefDesc: "Советы и лайфхаки",
-//   },
-//   {
-//     iconBorder: "cookie",
-//     icon: "parents",
-//     slug: "parents",
-//     hrefName: "Для взрослых",
-//     hrefDesc: "Тут только 18+",
-//   },
-// ];
-
-// const activities = [
-//   {
-//     columnName: "Занятия",
-//     columns: classes,
-//   },
-//   {
-//     columnName: "События",
-//     columns: events,
-//   },
-//   {
-//     columnName: "Разное",
-//     columns: anothers,
-//   },
-// ];
-
-// const blanks: Array<ISubMenu> = [
-//   {
-//     iconBorder: "list",
-//     icon: "pen",
-//     slug: "blank-hobby",
-//     hrefName: "Кружки",
-//     hrefDesc: "Выбири и запишись к нам",
-//   },
-//   {
-//     iconBorder: "list",
-//     icon: "pen",
-//     slug: "blank-camp",
-//     hrefName: "Лагеря",
-//     hrefDesc: "Зписывайся заранее",
-//   },
-//   {
-//     iconBorder: "list",
-//     icon: "pen",
-//     slug: "blank-membership",
-//     hrefName: "Членство",
-//     hrefDesc: "Стань одним из нас",
-//   },
-// ];
-
-// const payments: Array<ISubMenu> = [
-//   {
-//     iconBorder: "list",
-//     icon: "payments",
-//     slug: "payments",
-//     hrefName: "",
-//     hrefDesc: "Правила записи и платы",
-//   },
-// ];
-
-// const signup = [
-//   {
-//     columnName: "Анкеты",
-//     columns: blanks,
-//   },
-//   {
-//     columnName: "Оплата",
-//     columns: payments,
-//   },
-// ];
-
-// const menu = {
-//   activities,
-//   signup,
-// };
 ---
 
 <header class="header">
-  <a
-    href=`/${lang}`
-    class="header__logo"
-    title="sadko logo"
-    aria-label="sadko logo"
-  >
-    <img src="/webp/logo.webp" alt="sadko logo" />
-  </a>
+  <Logo />
   <nav class="header__nav" role="menu">
     <ul class="nav__links" role="menubar">
       <li class="nav__link">
         <button
-          id="1"
           type="button"
           class="nav__link-name"
           role="menuitem"
@@ -189,7 +31,6 @@ const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
       </li>
       <li class="nav__link">
         <button
-          id="2"
           type="button"
           class="nav__link-name"
           role="menuitem"
@@ -204,24 +45,17 @@ const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
         <SubMenu subMenu={headerLinks[lang].signup.submenu} index={2} />
       </li>
       <li class="nav__link" role="menuitem">
-        <a
-          href={getRelativeLocaleUrl(lang, "/teachers")}
-          data-astro-reload
-          class="nav__link-name"
+        <a href={`/${lang}/teachers`} data-astro-reload class="nav__link-name"
           >{headerLinks[lang].schedule}
         </a>
       </li>
       <li class="nav__link" role="menuitem">
-        <a
-          href={getRelativeLocaleUrl(lang, "/articles")}
-          data-astro-reload
-          class="nav__link-name"
+        <a href={`/${lang}/articles`} data-astro-reload class="nav__link-name"
           >{headerLinks[lang].articles}
         </a>
       </li>
       <li class="nav__link">
         <button
-          id="3"
           type="button"
           class="nav__link-name"
           role="menuitem"
@@ -312,9 +146,6 @@ const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
       z-index: -1;
     }
   }
-  .header__logo img {
-    height: var(--size-48);
-  }
 
   .header__nav {
     grid-column: 2 / -2;
@@ -336,16 +167,7 @@ const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
     display: grid;
     place-content: center;
   }
-  /* .nav__link:hover .nav__link-name::after,
-  .nav__link:focus-visible .nav__link-name::after {
-    opacity: 1;
-    translate: 0 0;
-  } */
-  /* .nav__link.expanded .subnav {
-    opacity: 1;
-    translate: 0 0;
-    pointer-events: all;
-  } */
+
   button[data-expanded="true"] ~ .subnav {
     opacity: 1;
     translate: 0 0;
@@ -359,18 +181,7 @@ const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
   button[data-expanded="true"] {
     color: var(--violet);
   }
-  /* .nav__link:has(.nav__link-name):hover.nav__link:has(.subnav),
-  .nav__link:has(.nav__link-name):focus-visible.nav__link:has(.subnav) {
-    .subnav {
-      opacity: 1;
-      translate: 0 0;
-      pointer-events: all;
-    }
-  } */
-  /* .nav__link-name:hover::after,
-  .nav__link-name:focus-visible::after {
-    opacity: 1;
-  } */
+
   .nav__link-name {
     display: flex;
     align-items: center;
