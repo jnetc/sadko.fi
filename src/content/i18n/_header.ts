@@ -1,122 +1,154 @@
 import type { ISubMenu } from "@Types";
 
-export const headerLinks = {
-  ru: {
-    // home: 'Главная',
-    activities: 'Активности',
-    signup: 'Записаться',
-    schedule: 'Расписание',
-    articles: 'Статьи',
-    about: 'О Sadko',
-  },
-  fi: {
-    // home: 'Etusivu',
-    activities: 'Toiminnot',
-    signup: 'Ilmoittautua',
-    schedule: 'Aikataulu',
-    articles: 'Artikkelit',
-    about: 'Sadko:sta',
-  },
-};
-
-
-
 const classes: Array<ISubMenu> = [
   {
     iconBorder: "cookie",
     icon: "clubs",
     slug: "clubs",
-    hrefName: "Кружки",
-    hrefDesc: "27 различных кружков",
+    hrefName: {
+      ru: "Кружки",
+      fi: "Kerhot"
+    },
+    hrefDesc: {
+      ru: "27 различных кружков",
+      fi: "27 erilaista ympyrää"
+    }
   },
   {
     iconBorder: "cookie",
     icon: "camps",
     slug: "camps",
-    hrefName: "Лагеря",
-    hrefDesc: "Походы и отдых на природе",
+    hrefName: {
+      ru: "Лагеря",
+      fi: "Leirit"
+    },
+    hrefDesc: {
+      ru: "Походы и отдых на природе",
+      fi: "Vaellus ja ulkoilu"
+    }
   },
   {
     iconBorder: "cookie",
     icon: "masters",
     slug: "masters",
-    hrefName: "Мастер класс",
-    hrefDesc: "Перенимаем опыт мастеров",
+    hrefName: {
+      ru: "Мастер класс",
+      fi: "Mestariluokka"
+    },
+    hrefDesc: {
+      ru: "Перенимаем опыт мастеров",
+      fi: "Otamme käyttöön mestareiden kokemuksen"
+    }
   },
   {
     iconBorder: "cookie",
     icon: "courses",
     slug: "courses",
-    hrefName: "Курсы",
-    hrefDesc: "Для разных возрастов",
+    hrefName: {
+      ru: "Курсы",
+      fi: "Kurssit"
+    },
+    hrefDesc: {
+      ru: "Для разных возрастов",
+      fi: "Eri ikäisille"
+    }
   },
 ];
+
 const events: Array<ISubMenu> = [
   {
     iconBorder: "cookie",
     icon: "festivals",
     slug: "festivals",
-    hrefName: "Фестивали",
-    hrefDesc: "Проводим ежегодно",
+    hrefName: {
+      ru: "Фестивали",
+      fi: "Festivaalit"
+    },
+    hrefDesc: {
+      ru: "Проводим ежегодно",
+      fi: "Teemme sen joka vuosi"
+    }
   },
   {
     iconBorder: "cookie",
     icon: "celebrations",
     slug: "celebrations",
-    hrefName: "Праздники",
-    hrefDesc: "А так же утренники",
+    hrefName: {
+      ru: "Праздники",
+      fi: "Juhlat"
+    },
+    hrefDesc: {
+      ru: "А так же утренники",
+      fi: "Ja myös matinees"
+    },
   },
   {
     iconBorder: "cookie",
     icon: "concerts",
     slug: "concerts",
-    hrefName: "Концерты",
-    hrefDesc: "Посещаем и сами ставим",
+    hrefName: {
+      ru: "Концерты",
+      fi: "Konsertit"
+    },
+    hrefDesc: {
+      ru: "Посещаем и сами ставим",
+      fi: "Käymme ja asennamme itse"
+    },
   },
   {
     iconBorder: "cookie",
     icon: "travels",
     slug: "travels",
-    hrefName: "Поездки",
-    hrefDesc: "Путишествуем вместе",
+    hrefName: {
+      ru: "Поездки",
+      fi: "Matkat"
+    },
+    hrefDesc: {
+      ru: "Путешествуем вместе",
+      fi: "Matkustetaan yhdessä"
+    },
   },
 ];
+
 const others: Array<ISubMenu> = [
   {
     iconBorder: "cookie",
     icon: "projects",
     slug: "projects",
-    hrefName: "Проекты",
-    hrefDesc: "Текущие и будущие",
+    hrefName: {
+      ru: "Проекты",
+      fi: "Projektit"
+    },
+    hrefDesc: {
+      ru: "Текущие и будущие",
+      fi: "Nykyisyys ja tulevaisuus"
+    },
   },
   {
     iconBorder: "cookie",
     icon: "useful",
     slug: "useful",
-    hrefName: "Полезное",
-    hrefDesc: "Советы и лайфхаки",
+    hrefName: {
+      ru: "Полезное",
+      fi: "Hyödyllinen"
+    },
+    hrefDesc: {
+      ru: "Советы и лайфхаки",
+      fi: "Vinkkejä ja pelastusvinkkejä"
+    },
   },
   {
     iconBorder: "cookie",
     icon: "parents",
     slug: "parents",
-    hrefName: "Для взрослых",
-    hrefDesc: "Тут только 18+",
-  },
-];
-
-const activities = [
-  {
-    columnName: "Занятия",
-    columns: classes,
-  },
-  {
-    columnName: "События",
-    columns: events,
-  },
-  {
-    columnName: "Разное",
-    columns: others,
+    hrefName: {
+      ru: "Для взрослых",
+      fi: "Aikuisille"
+    },
+    hrefDesc: {
+      ru: "Тут только 18+",
+      fi: "Täällä vain 18+"
+    }
   },
 ];
 
@@ -125,32 +157,56 @@ const blanks: Array<ISubMenu> = [
     iconBorder: "list",
     icon: "pen",
     slug: "blank-hobby",
-    hrefName: "Кружки",
-    hrefDesc: "Выбири и запишись к нам",
+    hrefName: {
+      ru: "Кружки",
+      fi: "Kerhot"
+    },
+    hrefDesc: {
+      ru: "Выбери и запишись к нам",
+      fi: "Valitse ja ilmoittaudu meille"
+    }
   },
   {
     iconBorder: "list",
     icon: "pen",
     slug: "blank-camp",
-    hrefName: "Лагеря",
-    hrefDesc: "Зписывайся заранее",
+    hrefName: {
+      ru: "Лагеря",
+      fi: "Leirit"
+    },
+    hrefDesc: {
+      ru: "Записывайся заранее",
+      fi: "Ilmoittaudu etukäteen"
+    }
   },
   {
     iconBorder: "list",
     icon: "pen",
     slug: "blank-membership",
-    hrefName: "Членство",
-    hrefDesc: "Стань одним из нас",
+    hrefName: {
+      ru: "Членство",
+      fi: "Jäsenyys"
+    },
+    hrefDesc: {
+      ru: "Стань одним из нас",
+      fi: "Ryhdy yhdeksi meistä"
+    }
   },
 ];
 
 const payments: Array<ISubMenu> = [
   {
-    iconBorder: "list",
+    iconBorder: "cookie",
     icon: "payments",
     slug: "payments",
-    hrefName: "",
-    hrefDesc: "Правила записи и платы",
+    hrefName: {
+      ru: "Оплата",
+      fi: "Maksu"
+    },
+    hrefDesc: {
+      ru: "Правила записи и платы",
+      fi: "Ilmoittautumis- ja maksusäännöt"
+    }
   },
 ];
 
@@ -159,22 +215,40 @@ const aboutus: Array<ISubMenu> = [
     iconBorder: "cookie",
     icon: "about",
     slug: "about",
-    hrefName: "Клуб",
-    hrefDesc: "Кто мы есть",
+    hrefName: {
+      ru: "Клуб",
+      fi: "Klubi"
+    },
+    hrefDesc: {
+      ru: "Кто мы есть",
+      fi: "Keitä olemme"
+    },
   },
   {
     iconBorder: "cookie",
     icon: "teachers",
     slug: "teachers",
-    hrefName: "Преподаватели",
-    hrefDesc: "Опыт и биография",
+    hrefName: {
+      ru: "Преподаватели",
+      fi: "Opettajat"
+    },
+    hrefDesc: {
+      ru: "Опыт и биография",
+      fi: "Kokemus ja elämäkerta"
+    }
   },
   {
     iconBorder: "cookie",
     icon: "membership",
     slug: "membership",
-    hrefName: "Членство",
-    hrefDesc: "Права и обязаности",
+    hrefName: {
+      ru: "Членство",
+      fi: "Jäsenyys"
+    },
+    hrefDesc: {
+      ru: "Права и обязанности",
+      fi: "oikeudet ja velvollisuudet"
+    }
   },
 ];
 
@@ -183,42 +257,81 @@ const galleria: Array<ISubMenu> = [
     iconBorder: "cookie",
     icon: "galleria",
     slug: "galleria",
-    hrefName: "Галерея",
-    hrefDesc: "История в картинках",
+    hrefName: {
+      ru: "Галерея",
+      fi: "Galleria"
+    },
+    hrefDesc: {
+      ru: "История в картинках",
+      fi: "Historia kuvissa",
+    },
   },
   {
     iconBorder: "cookie",
     icon: "info",
     slug: "info",
-    hrefName: "О лагерях",
-    hrefDesc: "Подробно обо всём",
-  },
-
-];
-
-const signup = [
-  {
-    columnName: "Анкеты",
-    columns: blanks,
-  },
-  {
-    columnName: "Оплата",
-    columns: payments,
-  },
-];
-const about = [
-  {
-    columnName: "О нас",
-    columns: aboutus,
-  },
-  {
-    columnName: "Картинки",
-    columns: galleria,
+    hrefName: {
+      ru: "О лагерях",
+      fi: "Leireistä"
+    },
+    hrefDesc: {
+      ru: "Подробно обо всём",
+      fi: "Yksityiskohdat kaikesta"
+    }
   },
 ];
 
-export const routes = {
-  activities,
-  signup,
-  about
+export const headerLinks = {
+  ru: {
+    activities: {
+      name: 'Активности',
+      submenu: [
+        { columnName: "Занятия", columns: classes },
+        { columnName: "События", columns: events },
+        { columnName: "Разное", columns: others },
+      ],
+    },
+    signup: {
+      name: 'Записаться',
+      submenu: [
+        { columnName: "Анкеты", columns: blanks },
+        { columnName: "Оплата", columns: payments },
+      ],
+    },
+    schedule: 'Расписание',
+    articles: 'Статьи',
+    about: {
+      name: 'О Sadko',
+      submenu: [
+        { columnName: "О нас", columns: aboutus },
+        { columnName: "Картинки", columns: galleria },
+      ],
+    },
+  },
+  fi: {
+    activities: {
+      name: 'Toiminnot',
+      submenu: [
+        { columnName: "Toiminnot", columns: classes },
+        { columnName: "Tapahtumat", columns: events },
+        { columnName: "Sekalaista", columns: others },
+      ],
+    },
+    signup: {
+      name: 'Ilmoittautua',
+      submenu: [
+        { columnName: "Lomakeet", columns: blanks },
+        { columnName: "Maksu", columns: payments },
+      ],
+    },
+    schedule: 'Aikataulu',
+    articles: 'Artikkelit',
+    about: {
+      name: 'Sadko:sta',
+      submenu: [
+        { columnName: "Meistä", columns: aboutus },
+        { columnName: "Kuvat", columns: galleria },
+      ],
+    },
+  },
 };

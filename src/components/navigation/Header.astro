@@ -2,7 +2,7 @@
 // import { getCollection } from 'astro:content';
 import { getRelativeLocaleUrl } from "astro:i18n";
 // Localization
-import { headerLinks, routes } from "@Content/i18n/_header";
+import { headerLinks } from "@Content/i18n/_header";
 import SubMenu from "./SubMenu.astro";
 import Languages from "./Languages.astro";
 // Get language from Astro Runtime API
@@ -180,9 +180,12 @@ const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
           aria-haspopup="menu"
           aria-expanded="false"
           data-expanded="false"
-          >{headerLinks[lang].activities}
+          >{headerLinks[lang].activities.name}
+          <svg class="icon">
+            <use xlink:href=`/svg/ui_icons.svg#arrow`></use>
+          </svg>
         </button>
-        <SubMenu subMenu={routes.activities} index={1} />
+        <SubMenu subMenu={headerLinks[lang].activities.submenu} index={1} />
       </li>
       <li class="nav__link">
         <button
@@ -193,19 +196,28 @@ const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
           aria-haspopup="menu"
           aria-expanded="false"
           data-expanded="false"
-          >{headerLinks[lang].signup}
+          >{headerLinks[lang].signup.name}
+          <svg class="icon">
+            <use xlink:href=`/svg/ui_icons.svg#arrow`></use>
+          </svg>
         </button>
-        <SubMenu subMenu={routes.signup} index={2} />
+        <SubMenu subMenu={headerLinks[lang].signup.submenu} index={2} />
       </li>
       <li class="nav__link" role="menuitem">
-        <a href={getRelativeLocaleUrl(lang, "/teachers")} data-astro-reload
-          >{headerLinks[lang].schedule}</a
-        >
+        <a
+          href={getRelativeLocaleUrl(lang, "/teachers")}
+          data-astro-reload
+          class="nav__link-name"
+          >{headerLinks[lang].schedule}
+        </a>
       </li>
       <li class="nav__link" role="menuitem">
-        <a href={getRelativeLocaleUrl(lang, "/articles")} data-astro-reload
-          >{headerLinks[lang].articles}</a
-        >
+        <a
+          href={getRelativeLocaleUrl(lang, "/articles")}
+          data-astro-reload
+          class="nav__link-name"
+          >{headerLinks[lang].articles}
+        </a>
       </li>
       <li class="nav__link">
         <button
@@ -216,9 +228,12 @@ const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
           aria-haspopup="menu"
           aria-expanded="false"
           data-expanded="false"
-          >{headerLinks[lang].about}
+          >{headerLinks[lang].about.name}
+          <svg class="icon">
+            <use xlink:href=`/svg/ui_icons.svg#arrow`></use>
+          </svg>
         </button>
-        <SubMenu subMenu={routes.about} index={3} />
+        <SubMenu subMenu={headerLinks[lang].about.submenu} index={3} />
       </li>
     </ul>
   </nav>
@@ -253,8 +268,6 @@ const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
 
   function switchStateHandler(ev: MouseEvent) {
     const currTarget = ev.currentTarget as HTMLButtonElement;
-
-    console.log("log");
 
     if (currTarget.dataset.expanded === "false") {
       resetToDefault();
@@ -323,20 +336,28 @@ const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
     display: grid;
     place-content: center;
   }
-  .nav__link:hover .nav__link-name::after,
+  /* .nav__link:hover .nav__link-name::after,
   .nav__link:focus-visible .nav__link-name::after {
     opacity: 1;
     translate: 0 0;
-  }
+  } */
   /* .nav__link.expanded .subnav {
     opacity: 1;
     translate: 0 0;
     pointer-events: all;
   } */
-  [data-expanded="true"] ~ .subnav {
+  button[data-expanded="true"] ~ .subnav {
     opacity: 1;
     translate: 0 0;
     pointer-events: all;
+  }
+
+  button[data-expanded="true"] .icon {
+    rotate: z 180deg;
+    fill: var(--violet);
+  }
+  button[data-expanded="true"] {
+    color: var(--violet);
   }
   /* .nav__link:has(.nav__link-name):hover.nav__link:has(.subnav),
   .nav__link:has(.nav__link-name):focus-visible.nav__link:has(.subnav) {
@@ -346,25 +367,30 @@ const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
       pointer-events: all;
     }
   } */
-
+  /* .nav__link-name:hover::after,
+  .nav__link-name:focus-visible::after {
+    opacity: 1;
+  } */
   .nav__link-name {
+    display: flex;
+    align-items: center;
+    column-gap: var(--gap-6);
+    padding-block: var(--gap-12);
     position: relative;
     font-size: var(--font-18);
+    color: var(--black);
 
-    &::after {
-      content: "";
-      height: 2px;
-      position: absolute;
-      inset-block-end: 0;
-      inset-inline: 0;
-      opacity: 0;
-      background-color: var(--black);
-      transition: all 0.3s ease-in-out;
-      translate: 0 5px;
+    &:hover,
+    &:focus-visible {
+      color: var(--violet);
     }
 
-    &:hover::after {
-      opacity: 1;
+    > .icon {
+      width: var(--size-18);
+      aspect-ratio: 1;
+      fill: var(--black);
+      transition: all 0.3s ease-in-out;
+      rotate: z 0;
     }
   }
 </style>

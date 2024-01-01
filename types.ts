@@ -20,11 +20,15 @@ export type TypeUIicons =
 
 type TypeBlanks = "blank-hobby"  | "blank-camp"  | "blank-membership";
 
+interface LangRouteName {
+  ru: string;
+  fi: string;
+}
 
 export interface ISubMenu {
   iconBorder: "cookie" | "list";
   icon: TypeUIicons | "pen";
   slug: TypeUIicons | TypeBlanks;
-  hrefName: string;
-  hrefDesc: string;
+  hrefName: LangRouteName;
+  hrefDesc: LangRouteName;
 }
