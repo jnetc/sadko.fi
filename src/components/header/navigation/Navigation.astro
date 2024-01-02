@@ -1,0 +1,232 @@
+---
+// Localization
+import { headerLinks } from "@Content/i18n/_header";
+// Components
+import SubMenu from "./SubMenu.astro";
+// Get language from Astro Runtime API
+const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
+---
+
+<script>
+  const links = [...document.querySelectorAll<HTMLLIElement>(".nav__link")];
+  const buttons = [
+    ...document.querySelectorAll<HTMLButtonElement>('[aria-haspopup="menu"]'),
+  ];
+
+  function resetToDefault() {
+    links.some((li) => {
+      if (!li.firstElementChild) return;
+      li.firstElementChild.setAttribute("data-expanded", "false");
+      li.firstElementChild.setAttribute("aria-expanded", "false");
+    });
+  }
+
+  function handleOutsideClick() {
+    function bodyElementHandler(event: MouseEvent) {
+      const el = event.target as HTMLElement;
+
+      if (!el.closest(".nav__link")) {
+        resetToDefault();
+      }
+    }
+
+    document.addEventListener("mousedown", bodyElementHandler, { once: true });
+  }
+
+  function switchStateHandler(ev: MouseEvent) {
+    const currTarget = ev.currentTarget as HTMLButtonElement;
+
+    if (currTarget.dataset.expanded === "false") {
+      resetToDefault();
+
+      currTarget.setAttribute("data-expanded", "true");
+      currTarget.setAttribute("aria-expanded", "true");
+      return;
+    }
+
+    currTarget.setAttribute("data-expanded", "false");
+    currTarget.setAttribute("aria-expanded", "false");
+  }
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("mousedown", switchStateHandler);
+  });
+
+  links.forEach((link) => {
+    link.addEventListener("click", handleOutsideClick);
+  });
+</script>
+
+<nav class="header__nav" role="menu">
+  <ul class="nav__links" role="menubar">
+    <li class="nav__link">
+      <button
+        type="button"
+        class="nav__link-name"
+        role="menuitem"
+        aria-haspopup="menu"
+        aria-expanded="false"
+        data-expanded="false"
+        >{headerLinks[lang].activities.name}
+        <svg class="icon">
+          <use xlink:href=`/svg/ui_icons.svg#arrow`></use>
+        </svg>
+      </button>
+      <SubMenu subMenu={headerLinks[lang].activities.submenu} index={1} />
+    </li>
+    <li class="nav__link">
+      <button
+        type="button"
+        class="nav__link-name"
+        role="menuitem"
+        aria-haspopup="menu"
+        aria-expanded="false"
+        data-expanded="false"
+        >{headerLinks[lang].signup.name}
+        <svg class="icon">
+          <use xlink:href=`/svg/ui_icons.svg#arrow`></use>
+        </svg>
+      </button>
+      <SubMenu subMenu={headerLinks[lang].signup.submenu} index={2} />
+    </li>
+    <li class="nav__link" role="menuitem">
+      <a href={`/${lang}/teachers`} data-astro-reload class="nav__link-name"
+        >{headerLinks[lang].schedule}
+      </a>
+    </li>
+    <li class="nav__link" role="menuitem">
+      <a href={`/${lang}/articles`} data-astro-reload class="nav__link-name"
+        >{headerLinks[lang].articles}
+      </a>
+    </li>
+    <li class="nav__link">
+      <button
+        type="button"
+        class="nav__link-name"
+        role="menuitem"
+        aria-haspopup="menu"
+        aria-expanded="false"
+        data-expanded="false"
+        >{headerLinks[lang].about.name}
+        <svg class="icon">
+          <use xlink:href=`/svg/ui_icons.svg#arrow`></use>
+        </svg>
+      </button>
+      <SubMenu subMenu={headerLinks[lang].about.submenu} index={3} />
+    </li>
+  </ul>
+</nav>
+
+<style>
+  .header__nav {
+    height: 100%;
+    display: flex;
+    gap: var(--gap-36);
+    margin-inline: auto;
+    &.open-menu {
+      display: flex;
+    }
+    /* position: relative; */
+  }
+
+  .nav__links {
+    display: flex;
+    gap: var(--gap-36);
+    font-size: var(--font-18);
+  }
+
+  /* .nav__link {
+    display: grid;
+    place-content: center;
+  } */
+
+  button[data-expanded="true"] ~ :global(.subnav) {
+    opacity: 1;
+    translate: 0 0;
+    pointer-events: all;
+    transition: all 0.3s ease-in-out;
+  }
+
+  button[data-expanded="true"] .icon {
+    rotate: z 180deg;
+    fill: var(--violet);
+  }
+  button[data-expanded="true"] {
+    color: var(--violet);
+  }
+
+  .nav__link-name {
+    display: flex;
+    align-items: center;
+    column-gap: var(--gap-6);
+    padding-block: var(--gap-12);
+    position: relative;
+    font-size: var(--font-18);
+    color: var(--black);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--violet);
+    }
+
+    > .icon {
+      width: var(--size-18);
+      aspect-ratio: 1;
+      fill: var(--black);
+      transition: all 0.3s ease-in-out;
+      rotate: z 0;
+    }
+  }
+
+  @media screen and (max-width: 1199px) {
+    .header__nav {
+      min-width: 100vw;
+      display: none;
+      position: fixed;
+      /* calc button size + top / botton paddings */
+      /*TODO позже подогнать под сайт*/
+      top: calc(var(--gap-18) * 2 + var(--size-36) + 14px);
+      background-color: var(--white);
+      overflow: hidden;
+    }
+    .nav__links {
+      width: 100vw;
+      flex-direction: column;
+      gap: var(--gap-8);
+      overflow: scroll;
+    }
+    .nav__link {
+      display: grid;
+      grid-template-rows: auto 0fr;
+      padding-inline: var(--gap-16);
+      padding-block: var(--gap-18);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .nav__link:nth-of-type(odd) {
+      background-color: var(--opacity-3);
+    }
+
+    .nav__link:has(button[data-expanded="true"]) {
+      grid-template-rows: auto 1fr;
+    }
+
+    button[data-expanded="true"] ~ :global(.subnav) {
+      opacity: 1;
+      padding-block-end: var(--gap-18);
+      /* translate: 0 0; */
+      pointer-events: all;
+      transition: all 0.3s ease-in-out;
+    }
+    .nav__link-name {
+      display: flex;
+      justify-content: center;
+      /* align-items: flex-start; */
+      column-gap: var(--gap-6);
+      padding-block: var(--gap-12);
+      position: relative;
+    }
+  }
+  @media screen and (max-width: 767px) {
+  }
+</style>

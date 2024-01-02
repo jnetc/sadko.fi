@@ -1,16 +1,16 @@
 ---
-import { getCollection } from 'astro:content'
+import { getCollection } from "astro:content";
 // Layouts
 import Layout from "@Layouts/Layout.astro";
 // Export data from Markdown collections
-export async function getStaticPaths () {
-	const collection = await getCollection('info');
+export async function getStaticPaths() {
+  const collection = await getCollection("info");
 
-  return collection.map(conent => {
-     return { params: { locale: conent.slug }, props: conent.data}
-  })
+  return collection.map((conent) => {
+    return { params: { locale: conent.slug }, props: conent.data };
+  });
 }
-
+export const prerender = true;
 
 const props = Astro.props;
 // const { locale, slug } = Astro.params;
@@ -20,5 +20,5 @@ const props = Astro.props;
 ---
 
 <Layout>
-	<main>{props.title}</main>
+  <main>{props.title}</main>
 </Layout>

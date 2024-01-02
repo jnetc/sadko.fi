@@ -10,24 +10,22 @@ interface Props {
 const { subMenu, index } = Astro.props;
 ---
 
-<div class=`subnav subnav-${index}` role="menu">
+<ul class=`subnav subnav-${index}` role="menu">
   {
     subMenu.map((sub) => (
       <SubColumn columnName={sub.columnName} columns={sub.columns} />
     ))
   }
-</div>
+</ul>
 
 <style is:global>
   .subnav {
     opacity: 0;
-    /* width: max-content; */
-    /* min-width: 50%; */
     display: flex;
-    padding-inline: var(--gap-20);
-    padding-block: var(--gap-32) var(--gap-56);
+    justify-content: center;
+    padding-block: var(--gap-32);
     position: absolute;
-    /* inset-inline: 10% 100%; */
+    inset-inline: 0 0;
     top: var(--gap-96);
     background-color: var(--white);
     border-radius: var(--border-corner-24);
@@ -49,13 +47,20 @@ const { subMenu, index } = Astro.props;
     }
   }
 
-  .subnav-1 {
-    inset-inline: auto 0;
+  @media screen and (max-width: 1199px) {
+    .subnav {
+      position: relative;
+      top: 0;
+      padding-inline: 0;
+      padding-block: 0;
+      overflow: hidden;
+      translate: 0 0;
+      z-index: 99;
+    }
   }
-  .subnav-2 {
-    inset-inline: auto 0;
-  }
-  .subnav-3 {
-    inset-inline: auto 0;
+  @media screen and (max-width: 767px) {
+    .subnav {
+      flex-direction: column;
+    }
   }
 </style>

@@ -1,0 +1,48 @@
+---
+// Components
+import Languages from "@Components/header/Languages.astro";
+import Logo from "@Components/header/Logo.astro";
+import Navigation from "@Components/header/navigation/Navigation.astro";
+import MobMenuButton from "@Components/header/navigation/MobMenuButton.astro";
+---
+
+<header class="header">
+  <Logo />
+  <Navigation />
+  <MobMenuButton />
+  <Languages />
+</header>
+
+<style>
+  .header {
+    grid-column: 2 / -2;
+    height: min-content;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    gap: var(--gap-36);
+    position: sticky;
+    /* padding-inline: var(--gap-32); */
+    padding-block: var(--gap-18);
+    /* margin-block-start: var(--gap-12); */
+    /* border-radius: var(--gap-18); */
+    border: 1px solid red;
+    box-shadow:
+      0 30px 25px var(--opacity-3),
+      0 10px 10px var(--opacity-3);
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: var(--white);
+      border-radius: inherit;
+      z-index: -1;
+    }
+  }
+  @media (max-width: 1199px) {
+    .header {
+      grid-column: 1 / -1;
+      gap: var(--gap-16);
+    }
+  }
+</style>

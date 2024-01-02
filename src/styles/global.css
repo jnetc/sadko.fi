@@ -20,14 +20,19 @@ html {
 }
 
 body {
+  block-size: 100svh;
+  /* max-inline-size: 1920px; */
   margin-inline: auto;
   font-family: 'Comfortaa', sans-serif;
   -webkit-font-smoothing: antialiased; /* for MacOs */
 }
 /* prevent scroll */
 .body {
-  block-size: 100svh;
   overflow: hidden;
+}
+
+main {
+  grid-column: 1 / -1;
 }
 
 img,
@@ -74,6 +79,7 @@ button {
 }
 
 /* CLASSES */
+/* 1920 > */
 .grid {
   display: grid;
   grid-template-columns: 1fr repeat(12, minmax(0, 6rem)) 1fr;
@@ -124,6 +130,14 @@ h1, h2, h3,h4, h5, h6 {
 }
 
 /* MEDIA QUERIES */
+@media (max-width: 1200px) {
+  .grid {
+      display: grid;
+      grid-template-columns: 1fr repeat(12, minmax(0, 6rem)) 1fr;
+      column-gap: var(--gap-16);
+      position: relative;
+    }
+}
 @media (max-width: 960px) {
   :root {
     --body-padding: 1rem;

@@ -1,0 +1,49 @@
+---
+
+---
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>(
+    ".header__menu-button",
+  );
+  const navigation = document.querySelector<HTMLElement>(".header__nav");
+  function openSubMenu() {
+    if (navigation?.classList.contains("open-menu")) {
+      navigation?.classList.remove("open-menu");
+      return;
+    }
+    navigation?.classList.add("open-menu");
+  }
+  button?.addEventListener("mousedown", openSubMenu);
+</script>
+
+<button
+  type="button"
+  class="header__menu-button"
+  aria-label="mobile menu button"
+>
+  <svg class="icon">
+    <use xlink:href=`/svg/ui_icons.svg#menu`></use>
+  </svg>
+</button>
+
+<style>
+  .header__menu-button {
+    display: grid;
+    place-content: center;
+    width: var(--size-36);
+    aspect-ratio: 1;
+    margin-inline-start: auto;
+    border-radius: 50%;
+    background-color: var(--violet-light);
+    .icon {
+      width: var(--size-24);
+      aspect-ratio: 1;
+    }
+  }
+  @media screen and (min-width: 1199px) {
+    .header__menu-button {
+      display: none;
+    }
+  }
+</style>

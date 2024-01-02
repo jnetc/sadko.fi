@@ -7,7 +7,8 @@ import "@Styles/variable.css";
 import "@Styles/fonts.css";
 import "@Styles/global.css";
 // Components
-import Header from "@Components/navigation/Header.astro";
+import Header from "@Components/header/Header.astro";
+import Footer from "@Components/footer/Footer.astro";
 
 // Get language from Astro Runtime API
 const lang = Astro.url.pathname.substring(1, 3);
@@ -49,6 +50,6 @@ const lang = Astro.url.pathname.substring(1, 3);
   <body class="grid">
     <Header />
     <slot />
-    <footer>footer</footer>
+    <Footer />
   </body>
 </html>

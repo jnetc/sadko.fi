@@ -1,10 +1,6 @@
 ---
-import type { TypeLanguages } from "@Types";
-interface Props {
-  lang: TypeLanguages;
-}
-
-const { lang } = Astro.props;
+// Get language from Astro Runtime API
+const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
 ---
 
 <div class="header__lang">
@@ -16,11 +12,10 @@ const { lang } = Astro.props;
   .header__lang {
     display: flex;
     gap: var(--gap-12);
-    padding-block: var(--gap-18);
-    font-size: var(--font-16);
+    font-size: var(--font-14);
     font-weight: bold;
     a {
-      width: var(--size-48);
+      width: var(--size-36);
       aspect-ratio: 1;
       display: grid;
       place-content: center;
@@ -32,6 +27,11 @@ const { lang } = Astro.props;
       border: 2px solid transparent;
       background-color: var(--black);
       color: var(--white);
+    }
+  }
+  @media screen and (max-width: 1199px) {
+    .header__lang {
+      margin-inline-end: var(--gap-16);
     }
   }
 </style>

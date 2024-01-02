@@ -8,10 +8,12 @@ const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
 </a>
 
 <style>
-  .header__logo {
-    margin-inline-end: auto;
-  }
   .header__logo img {
     height: var(--size-48);
+  }
+  @media screen and (max-width: 1199px) {
+    .header__logo {
+      margin-inline-start: var(--gap-16);
+    }
   }
 </style>

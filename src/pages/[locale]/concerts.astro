@@ -10,6 +10,7 @@ export async function getStaticPaths() {
     return { params: { locale: conent.slug }, props: conent.data };
   });
 }
+export const prerender = true;
 
 const props = Astro.props;
 // const { locale, slug } = Astro.params;

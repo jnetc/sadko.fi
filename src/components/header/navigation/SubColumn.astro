@@ -1,7 +1,7 @@
 ---
 import type { ISubMenu } from "@Types";
-import SubLink from "./SubLink.astro";
-import SubLinkImage from "./SubLinkImage.astro";
+import SubLink from "../navigation/SubLink.astro";
+import SubLinkImage from "../navigation/SubLinkImage.astro";
 
 interface Props {
   columnName: string;
@@ -9,19 +9,21 @@ interface Props {
 }
 
 const { columnName, columns } = Astro.props;
+
+const exceptions = ["payments", "galleria"];
 ---
 
-<div class="subnav__column">
+<li class="subnav__column">
   <h3 class="subnav__column-title">{columnName}</h3>
   {
     columns.map((link) => {
-      if (link.slug === "payments") {
+      if (exceptions.includes(link.slug)) {
         return <SubLinkImage link={link} />;
       }
       return <SubLink link={link} />;
     })
   }
-</div>
+</li>
 
 <style>
   .subnav__column {
@@ -29,6 +31,7 @@ const { columnName, columns } = Astro.props;
     flex-direction: column;
     row-gap: var(--gap-12);
     padding-inline: var(--gap-14);
+    padding-block: var(--gap-18);
   }
   .subnav__column:not(:last-of-type) {
     border-right: 1px solid var(--opacity-30);
@@ -38,5 +41,13 @@ const { columnName, columns } = Astro.props;
     font-size: var(--font-18);
     padding-block-end: var(--gap-12);
     padding-inline-start: var(--gap-16);
+  }
+
+  @media screen and (max-width: 767px) {
+    .subnav__column:not(:last-of-type) {
+      padding-inline: 0;
+      border-bottom: 1px solid var(--opacity-30);
+      border-right: none;
+    }
   }
 </style>

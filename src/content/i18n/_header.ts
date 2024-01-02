@@ -150,6 +150,19 @@ const others: Array<ISubMenu> = [
       fi: "Täällä vain 18+"
     }
   },
+  {
+    iconBorder: "cookie",
+    icon: "info",
+    slug: "info",
+    hrefName: {
+      ru: "О лагерях",
+      fi: "Leireistä"
+    },
+    hrefDesc: {
+      ru: "Подробно обо всём",
+      fi: "Yksityiskohdat kaikesta"
+    }
+  },
 ];
 
 const blanks: Array<ISubMenu> = [
@@ -265,19 +278,6 @@ const galleria: Array<ISubMenu> = [
       ru: "История в картинках",
       fi: "Historia kuvissa",
     },
-  },
-  {
-    iconBorder: "cookie",
-    icon: "info",
-    slug: "info",
-    hrefName: {
-      ru: "О лагерях",
-      fi: "Leireistä"
-    },
-    hrefDesc: {
-      ru: "Подробно обо всём",
-      fi: "Yksityiskohdat kaikesta"
-    }
   },
 ];
 
