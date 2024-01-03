@@ -16,7 +16,7 @@ const { icon, hrefDesc, hrefName, iconBorder, slug } = Astro.props.link;
   data-astro-reload
   role="menuitem"
 >
-  <div>
+  <div class="subnav__link-content">
     <svg class="icon">
       <use xlink:href=`/svg/ui_icons.svg#${icon}`></use>
     </svg>
@@ -39,53 +39,51 @@ const { icon, hrefDesc, hrefName, iconBorder, slug } = Astro.props.link;
     padding: var(--gap-12);
     border-radius: var(--border-corner-12);
     transition: all 0.3s ease-in-out;
+  }
+  .subnav__link:hover,
+  .subnav__link:focus-visible {
+    background-color: var(--opacity-8);
+  }
 
-    &:hover,
-    &:focus-visible {
-      background-color: var(--opacity-8);
-    }
+  .subnav__link-content {
+    grid-column: 1;
+    grid-row: 1 / 2 span;
+    display: grid;
+  }
+  .subnav__link-content:has(.list) .icon {
+    justify-self: flex-end;
+    align-self: flex-end;
+  }
 
-    div {
-      grid-column: 1;
-      grid-row: 1 / 2 span;
-      display: grid;
-    }
+  h4,
+  p {
+    grid-column: 2;
+  }
+  h4 {
+    grid-row: 1;
+    align-self: flex-end;
+    font-size: var(--font-16);
+  }
+  p {
+    grid-row: 2;
+    color: var(--grey-200);
+    font-size: var(--font-14);
+    line-height: 1.4;
+  }
 
-    h4,
-    p {
-      grid-column: 2;
-    }
-    h4 {
-      grid-row: 1;
-      align-self: flex-end;
-      font-size: var(--font-16);
-    }
-    p {
-      grid-row: 2;
-      color: var(--grey-200);
-      font-size: var(--font-14);
-      line-height: 1.4;
-    }
-
-    .icon,
-    .cookie,
-    .list {
-      grid-column: 1;
-      grid-row: 1 / 2 span;
-      aspect-ratio: 1;
-      justify-self: center;
-      align-self: center;
-    }
-    .icon {
-      width: var(--size-24);
-    }
-    .cookie {
-      width: var(--size-48);
-    }
-
-    div:has(.list) .icon {
-      justify-self: flex-end;
-      align-self: flex-end;
-    }
+  .icon,
+  .cookie,
+  .list {
+    grid-column: 1;
+    grid-row: 1 / 2 span;
+    aspect-ratio: 1;
+    justify-self: center;
+    align-self: center;
+  }
+  .icon {
+    width: var(--size-24);
+  }
+  .cookie {
+    width: var(--size-48);
   }
 </style>

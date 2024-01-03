@@ -16,7 +16,7 @@ const { hrefDesc, slug } = Astro.props.link;
   data-astro-reload
   role="menuitem"
 >
-  <div>
+  <div class="subnav__link-content">
     <img src="/webp/payments.webp" alt="payments image" />
   </div>
   <p>
@@ -38,37 +38,36 @@ const { hrefDesc, slug } = Astro.props.link;
     padding: var(--gap-12);
     border-radius: var(--border-corner-12);
     transition: all 0.3s ease-in-out;
+  }
+  .subnav__link-image:hover,
+  .subnav__link-image:focus-visible {
+    background-color: var(--opacity-8);
+  }
+  .subnav__link-image:hover .icon,
+  .subnav__link-image:focus-visible .icon {
+    translate: -0.5rem 0;
+  }
 
-    &:hover,
-    &:focus-visible {
-      background-color: var(--opacity-8);
-    }
+  .subnav__link-content {
+    grid-column: 1;
+    grid-row: 1;
+    display: grid;
+  }
 
-    div {
-      grid-column: 1;
-      grid-row: 1;
-      display: grid;
-    }
-    p {
-      grid-column: 1;
-      grid-row: 2;
-      display: flex;
-      justify-content: space-between;
-      color: var(--grey-200);
-      font-size: var(--font-14);
-      line-height: 1.4;
-    }
+  p {
+    grid-column: 1;
+    grid-row: 2;
+    display: flex;
+    justify-content: space-between;
+    color: var(--grey-200);
+    font-size: var(--font-14);
+    line-height: 1.4;
+  }
 
-    .icon {
-      width: var(--size-16);
-      aspect-ratio: 1;
-      rotate: z -90deg;
-      transition: translate 0.3s ease-in-out;
-    }
-
-    &:hover .icon,
-    &:focus-visible .icon {
-      translate: -0.5rem 0;
-    }
+  .icon {
+    width: var(--size-16);
+    aspect-ratio: 1;
+    rotate: z -90deg;
+    transition: translate 0.3s ease-in-out;
   }
 </style>

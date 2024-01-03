@@ -164,7 +164,7 @@ const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
     font-size: var(--font-18);
     color: var(--black);
 
-    &:hover,
+    /* &:hover,
     &:focus-visible {
       color: var(--violet);
     }
@@ -175,7 +175,19 @@ const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
       fill: var(--black);
       transition: all 0.3s ease-in-out;
       rotate: z 0;
-    }
+    } */
+  }
+
+  .nav__link-name:hover,
+  .nav__link-name:focus-visible {
+    color: var(--violet);
+  }
+  .nav__link-name .icon {
+    width: var(--size-18);
+    aspect-ratio: 1;
+    fill: var(--black);
+    transition: all 0.3s ease-in-out;
+    rotate: z 0;
   }
 
   @media screen and (max-width: 1199px) {

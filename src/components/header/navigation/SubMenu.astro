@@ -36,15 +36,14 @@ const { subMenu, index } = Astro.props;
       0 10px 10px var(--opacity-3);
     pointer-events: none;
     z-index: -2;
-
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      translate: 0 -100px;
-      background-color: transparent;
-      z-index: -3;
-    }
+  }
+  .subnav::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    translate: 0 -100px;
+    background-color: transparent;
+    z-index: -3;
   }
 
   @media screen and (max-width: 1199px) {
