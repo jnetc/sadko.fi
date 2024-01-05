@@ -1,0 +1,88 @@
+---
+interface Props {
+  text: string;
+}
+
+const props = Astro.props.text;
+const title = props.split(",");
+---
+
+<h1 class="hero__title">
+  <span class="title__lx">{title[0]}</span>
+  <span class="title__mx">{title[1]}</span>
+  <span class="title__sx">
+    {title[2]}
+    <span class="title__ss">
+      {title[3]}
+      <span class="sx__wrapper">
+        <span class="sx__word">{title[4]}</span>
+      </span>
+    </span>
+  </span>
+</h1>
+
+<style is:global>
+  .hero__title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-block: var(--gap-48) var(--gap-152);
+    font-weight: bold;
+    line-height: 1;
+  }
+
+  .title__lx {
+    font-size: clamp(var(--font-48), 7vw, var(--font-96));
+  }
+
+  .title__mx {
+    font-size: clamp(var(--font-40), 6.55vw, var(--font-88));
+  }
+
+  .title__sx {
+    display: flex;
+    gap: var(--gap-18);
+    font-size: clamp(var(--font-36), 6.25vw, var(--font-80));
+  }
+
+  .title__ss {
+    position: relative;
+  }
+
+  .sx__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    inset-inline: -240%;
+    background-color: var(--yellow);
+    border-radius: 50px;
+    color: var(--violet);
+    translate: 15px -10px; /* 15px 0 / 8px 0*/
+    translate: clamp(5px, 0.75vw, 15px) calc(-1 * clamp(6px, 0.75vw, 10px));
+    rotate: z -15deg;
+    transform-origin: top center;
+    animation: swing 5s ease-in-out infinite;
+    z-index: -1;
+  }
+  .sx__wrapper::after {
+    content: "";
+    position: absolute;
+    width: clamp(var(--size-24), 3.75vw, var(--size-48));
+    aspect-ratio: 1;
+    background-color: var(--background);
+    border-radius: 50%;
+    border: clamp(2px, 0.5vw, 6px) solid var(--black);
+    top: calc(-1 * (clamp(var(--size-24), 3.75vw, var(--size-48)) / 2));
+  }
+  .sx__word {
+    font-size: clamp(var(--font-24), 3.75vw, var(--font-48));
+    padding: var(--gap-16) var(--gap-48);
+  }
+
+  @keyframes swing {
+    50% {
+      rotate: z 10deg;
+    }
+  }
+</style>

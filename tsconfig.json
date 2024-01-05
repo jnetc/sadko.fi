@@ -42,6 +42,9 @@
       "@Styles/*": [
         "./src/styles/*"
       ],
+      "@Schemas/*": [
+        "./src/schemas/*"
+      ],
       "@Types": [
         "./types.ts"
       ],

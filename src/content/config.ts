@@ -1,12 +1,23 @@
 import { defineCollection, z } from 'astro:content';
 
-import { hero } from '../schemas/home';
+import { home } from '../schemas/home';
 const homeCollection = defineCollection({
   type: 'content',
-  schema: z.object({...hero})
+  schema: z.object({...home})
 });
+// const heroCollection = defineCollection({
+//   type: 'content',
+//   schema: z.object({...hero})
+// });
 
-// const homeCollection = defineCollection({
+
+// // const seoCollection = defineCollection({
+// //   type: 'content',
+// //   schema: z.object({...seo})
+// // });
+
+// const heroCollection = defineCollection({
+//   type: "content",
 //   schema: z.object({
 //     title: z.string(),
 //     description: z.string(),
@@ -14,7 +25,8 @@ const homeCollection = defineCollection({
 //   }),
 // });
 
+
 export const collections = {
-  // hero: heroCollection,
+  // seo: seoCollection,
   home: homeCollection,
 };

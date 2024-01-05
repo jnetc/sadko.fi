@@ -1,0 +1,60 @@
+---
+import HeroTitle from "@Components/home-page/section-hero/HeroTitle.astro";
+
+import type { Hero } from "@Pages/[locale]/index.astro";
+
+interface Props {
+  data: Hero;
+}
+
+// const collection = await getCollection("home");
+// export const prerender = true;
+
+// const props = collection.map((data) => data.data)[0];
+const props = Astro.props.data;
+---
+
+<section class="grid hero">
+  <p class="hero__label">{props.hero_label}</p>
+  <HeroTitle text={props.hero_title} />
+  <p class="hero__desc">
+    {props.hero_description}
+  </p>
+  <div class="hero__action-btns">
+    <a href={props.hero_primary_btn_url}>
+      {props.hero_primary_btn_name}
+    </a>
+    <a href={props.hero_secondary_btn_url}>{props.hero_secondary_btn_name}</a>
+  </div>
+</section>
+
+<style is:global>
+  .hero {
+    padding-block-start: var(--gap-72);
+  }
+
+  .hero__label,
+  .hero__title,
+  .hero__desc,
+  .hero__action-btns {
+    grid-column: 2 / -2;
+    justify-self: center;
+  }
+
+  .hero__label,
+  .hero__desc {
+    color: var(--grey-300);
+  }
+
+  .hero__label {
+    font-size: var(--font-20);
+  }
+
+  .hero__desc {
+    max-width: 660px;
+    color: var(--grey-300);
+    font-size: var(--font-24);
+    text-align: center;
+    line-height: 1.4;
+  }
+</style>
