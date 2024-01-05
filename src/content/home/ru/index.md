@@ -119,8 +119,8 @@ galleria_images: [
   "/webp/galleria-003.webp",
   "/webp/galleria-004.webp",
 ]
-galleria_btn_name: "Kuvan Galleria"
-galleria_btn_url: "https://sadko.fi/fi/galleria"
+galleria_btn_name: "Фотогалерея"
+galleria_btn_url: "https://sadko.fi/ru/galleria"
 
 # Шестой блок домашней страницы "Преподаватели"
 
