@@ -71,17 +71,17 @@ const title = props.hero_title.split(",");
   }
 
   .title__lx {
-    font-size: var(--font-96);
+    font-size: clamp(var(--font-48), 7vw, var(--font-96));
   }
 
   .title__mx {
-    font-size: var(--font-88);
+    font-size: clamp(var(--font-40), 6.55vw, var(--font-88));
   }
 
   .title__sx {
     display: flex;
     gap: var(--gap-18);
-    font-size: var(--font-80);
+    font-size: clamp(var(--font-36), 6.25vw, var(--font-80));
   }
 
   .title__ss {
@@ -93,12 +93,12 @@ const title = props.hero_title.split(",");
     justify-content: center;
     align-items: center;
     position: absolute;
-    inset-block-end: -64px;
     inset-inline: -240%;
     background-color: var(--yellow);
     border-radius: 50px;
     color: var(--violet);
-    translate: 15px 0;
+    translate: 15px -10px; /* 15px 0 / 8px 0*/
+    translate: clamp(5px, 0.75vw, 15px) calc(-1 * clamp(6px, 0.75vw, 10px));
     rotate: z -15deg;
     transform-origin: top center;
     animation: swing 5s ease-in-out infinite;
@@ -107,15 +107,15 @@ const title = props.hero_title.split(",");
   .sx__wrapper::after {
     content: "";
     position: absolute;
-    width: var(--size-48);
+    width: clamp(var(--size-24), 3.75vw, var(--size-48));
     aspect-ratio: 1;
     background-color: var(--background);
     border-radius: 50%;
-    border: 6px solid var(--black);
-    top: calc(-1 * (var(--size-48) / 2));
+    border: clamp(2px, 0.5vw, 6px) solid var(--black);
+    top: calc(-1 * (clamp(var(--size-24), 3.75vw, var(--size-48)) / 2));
   }
   .sx__word {
-    font-size: var(--gap-48);
+    font-size: clamp(var(--font-24), 3.75vw, var(--font-48));
     padding: var(--gap-16) var(--gap-48);
   }
 
