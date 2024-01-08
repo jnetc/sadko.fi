@@ -1,0 +1,79 @@
+---
+import type { TypeUIIcons } from "@Types";
+interface Props {
+  isPrimary?: boolean;
+  href: string;
+  extraClass?: string;
+  icon: TypeUIIcons;
+}
+
+const { extraClass, isPrimary, href, icon } = Astro.props;
+---
+
+<a
+  href=`${href}`
+  class=`btn ${isPrimary ? "btn-primary" : "btn-secondary"} ${extraClass}`
+>
+  <slot />
+  <span class="btn__icon">
+    <svg>
+      <use xlink:href=`/svg/ui_icons.svg#${icon}`></use>
+    </svg>
+  </span>
+</a>
+
+<style is:global>
+  .btn {
+    display: flex;
+    align-items: center;
+    padding-block: var(--gap-12);
+    padding-inline: var(--gap-32) var(--gap-16);
+    border-radius: 4rem;
+    border: 1px solid transparent;
+    font-size: var(--font-20);
+    font-weight: bold;
+  }
+
+  .btn-primary {
+    background-color: var(--violet);
+    color: var(--grey-25);
+    box-shadow:
+      0 25px 20px var(--opacity-5),
+      0 15px 10px var(--opacity-8);
+  }
+
+  .btn-secondary {
+    background-color: var(--white);
+    color: var(----black);
+    border-color: var(--violet-light);
+    box-shadow:
+      0 25px 20px var(--opacity-3),
+      0 15px 10px var(--opacity-3);
+  }
+
+  .btn__icon {
+    display: grid;
+    place-content: center;
+    width: var(--size-36);
+    aspect-ratio: 1;
+    margin-left: var(--gap-16);
+    border-radius: 4rem;
+  }
+  .btn__icon svg {
+    width: var(--size-24);
+    aspect-ratio: 1;
+  }
+
+  .btn-primary .btn__icon {
+    background-color: var(--white);
+  }
+  .btn-secondary .btn__icon {
+    background-color: var(--violet);
+  }
+  .btn-primary .btn__icon svg {
+    fill: var(--violet);
+  }
+  .btn-secondary .btn__icon svg {
+    fill: var(--white);
+  }
+</style>

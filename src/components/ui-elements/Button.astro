@@ -1,0 +1,22 @@
+---
+interface Props {
+  id: string;
+  type: "submit" | "button";
+  isPrimary?: boolean;
+  extraClass?: string;
+}
+
+const { id, type, extraClass, isPrimary } = Astro.props;
+---
+
+<button
+  id={id}
+  type={type}
+  class=`btn ${isPrimary ? "btn-primary" : "btn-secondary"} ${extraClass}`
+>
+  <slot />
+</button>
+
+<style>
+  /* all styles in Link component */
+</style>

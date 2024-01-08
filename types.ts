@@ -1,5 +1,30 @@
 export type TypeLanguages = 'fi' | 'ru';
-export type TypeUIicons =
+
+export type TypeUIIcons =
+  "email"
+  | "phone"
+  | "facebook"
+  | "instagram"
+  | "whatsapp"
+  | "location"
+  | "send"
+  | "circle_add"
+  | "circle_subtract"
+  | "circle_cancel"
+  | "circle_help"
+  | "check"
+  | "arrow"
+  | "arrow_outward"
+  | "arrow_forward"
+  | "arrow_drop_down"
+  | "info_i"
+  | "download"
+  | "add"
+  | "close"
+  | "close_small"
+  | "menu";
+
+export type TypeUIActivityIcons =
   "clubs"
   | "camps"
   | "masters"
@@ -27,8 +52,8 @@ interface LangRouteName {
 
 export interface ISubMenu {
   iconBorder: "cookie" | "list";
-  icon: TypeUIicons | "pen";
-  slug: TypeUIicons | TypeBlanks;
+  icon: TypeUIActivityIcons | "pen";
+  slug: TypeUIActivityIcons | TypeBlanks;
   hrefName: LangRouteName;
   hrefDesc: LangRouteName;
 }

@@ -8,8 +8,9 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  html {
+  :has(:target) {
     scroll-behavior: smooth !important;
+    scroll-padding-top: 2rem;
   }
 }
 
@@ -17,10 +18,11 @@ html {
   background-color: #f9f7f8;
   scrollbar-gutter: stable;
   overflow-x: hidden;
+  hanging-punctuation: first last;
 }
 
 body {
-  block-size: 100svh;
+  max-block-size: 100svh;
   /* max-inline-size: 1920px; */
   /* margin-inline: auto; */
   font-family: 'Comfortaa', sans-serif;
@@ -97,6 +99,10 @@ main {
 
 h1, h2, h3,h4, h5, h6 {
   color: var(--black);
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
 }
 
 .bg-violet {

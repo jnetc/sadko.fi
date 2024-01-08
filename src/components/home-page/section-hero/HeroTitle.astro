@@ -23,10 +23,11 @@ const title = props.split(",");
 
 <style is:global>
   .hero__title {
+    grid-row: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-block: var(--gap-48) var(--gap-152);
+    padding-block: var(--gap-48) clamp(var(--gap-96), 10vw, var(--gap-152));
     font-weight: bold;
     line-height: 1;
   }
