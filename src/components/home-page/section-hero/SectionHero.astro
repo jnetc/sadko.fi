@@ -55,7 +55,7 @@ const props = Astro.props.data;
 
   .hero__label {
     grid-row: 1;
-    font-size: var(--font-20);
+    font-size: clamp(var(--font-16), 2.5vw, var(--font-20));
   }
 
   .hero__desc {
@@ -68,7 +68,9 @@ const props = Astro.props.data;
     grid-row: 4;
     height: min-content;
     display: flex;
-    gap: var(--gap-40);
+    flex-wrap: wrap;
+    gap: var(--gap-20) var(--gap-40);
+    justify-content: center;
     padding-block-start: var(--gap-48);
   }
 
@@ -92,6 +94,12 @@ const props = Astro.props.data;
     .hero__boy,
     .hero__girl {
       display: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero__action-btns a {
+      width: min-content;
     }
   }
 </style>

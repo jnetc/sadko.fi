@@ -24,6 +24,7 @@ const { extraClass, isPrimary, href, icon } = Astro.props;
 
 <style is:global>
   .btn {
+    /* min-block-size: var(--size-56); */
     display: flex;
     align-items: center;
     padding-block: var(--gap-12);
@@ -55,13 +56,13 @@ const { extraClass, isPrimary, href, icon } = Astro.props;
   .btn__icon {
     display: grid;
     place-content: center;
-    width: var(--size-36);
+    width: clamp(var(--size-32), 2vw, var(--size-36));
     aspect-ratio: 1;
     margin-left: var(--gap-16);
     border-radius: 4rem;
   }
   .btn__icon svg {
-    width: var(--size-24);
+    width: clamp(var(--size-20), 2vw, var(--size-24));
     aspect-ratio: 1;
   }
 
@@ -76,5 +77,14 @@ const { extraClass, isPrimary, href, icon } = Astro.props;
   }
   .btn-secondary .btn__icon svg {
     fill: var(--white);
+  }
+
+  @media screen and (max-width: 959px) {
+    /* .btn {
+      padding-inline: var(--gap-32) var(--gap-32);
+    }
+    .btn__icon {
+      display: none;
+    } */
   }
 </style>
