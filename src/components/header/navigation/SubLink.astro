@@ -17,10 +17,10 @@ const { icon, hrefDesc, hrefName, iconBorder, slug } = Astro.props.link;
   role="menuitem"
 >
   <div class="subnav__link-content">
-    <svg class="icon">
+    <svg class="icon" aria-hidden="true">
       <use xlink:href=`/svg/ui_icons.svg#${icon}`></use>
     </svg>
-    <svg class=`${iconBorder}`>
+    <svg class=`${iconBorder}` aria-hidden="true">
       <use xlink:href=`/svg/ui_icons.svg#${iconBorder}`></use>
     </svg>
   </div>

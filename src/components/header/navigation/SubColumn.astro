@@ -44,8 +44,10 @@ const exceptions = ["payments", "galleria"];
   }
 
   @media screen and (max-width: 767px) {
-    .subnav__column:not(:last-of-type) {
+    .subnav__column {
       padding-inline: 0;
+    }
+    .subnav__column:not(:last-of-type) {
       border-bottom: 1px solid var(--opacity-30);
       border-right: none;
     }

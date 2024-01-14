@@ -15,7 +15,7 @@ const { extraClass, isPrimary, href, icon } = Astro.props;
   class=`btn ${isPrimary ? "btn-primary" : "btn-secondary"} ${extraClass}`
 >
   <slot />
-  <span class="btn__icon">
+  <span class="btn__icon" aria-hidden="true">
     <svg>
       <use xlink:href=`/svg/ui_icons.svg#${icon}`></use>
     </svg>
@@ -32,6 +32,7 @@ const { extraClass, isPrimary, href, icon } = Astro.props;
     border: 1px solid transparent;
     font-size: var(--font-20);
     font-weight: bold;
+    white-space: nowrap;
   }
 
   .btn-primary {
