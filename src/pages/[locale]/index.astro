@@ -3,6 +3,8 @@ import { getCollection, getEntryBySlug } from "astro:content";
 // Layouts
 import Layout from "@Layouts/Layout.astro";
 import SectionHero from "@Components/home-page/section-hero/SectionHero.astro";
+import SectionActivities from "@Components/home-page/section-activities/SectionActivities.astro";
+
 // import { SectionHero } from '@Components/home-page/section-hero'
 // Export data from Markdown collections
 export async function getStaticPaths() {
@@ -24,12 +26,21 @@ collection = await getEntryBySlug("home", lang);
 //   collection = await getEntryBySlug("home", lang);
 // }
 
+// import FetchFromDatoCMS from "@Lib/datocms.ts";
+// const data = await FetchFromDatoCMS(lang);
+
+// LOCAL DATA!!!
+// Remove CACHE folder to get updated data!!!
+// import LocaleData from "@Lib/localdata";
+// const data = await LocaleData(lang);
+
 console.log(collection, lang);
 ---
 
 <Layout>
   <main>
     <SectionHero data={props} />
+    <SectionActivities />
     <!-- <section class="grid hero">
       <p class="hero__label">{props.hero_label}</p>
       <HeroTitle text={props.hero_title} />

@@ -1,0 +1,379 @@
+---
+// Get language from Astro Runtime API
+// const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
+---
+
+<div class="carousel">
+  <button
+    type="button"
+    class="button"
+    data-duration="left"
+    aria-label="prev button">prev</button
+  >
+  <button
+    type="button"
+    class="button"
+    data-duration="right"
+    aria-label="next button">next</button
+  >
+  <div class="scroll-area">
+    <ul class="cards">
+      <li class="card">
+        <div class="card__icon" aria-hidden="true">
+          <svg class="icon">
+            <use xlink:href=`/svg/ui_icons.svg#masters`></use>
+          </svg>
+          <svg class="cookie">
+            <use xlink:href=`/svg/ui_icons.svg#cookie`></use>
+          </svg>
+        </div>
+        <svg class="card__shape" aria-hidden="true">
+          <use xlink:href=`/svg/shapes.svg#shape11`></use>
+        </svg>
+        <h3>Мастер класс</h3>
+        <p>Добро пожаловать на мастер класс к нам в кружок</p>
+      </li>
+      <li class="card">
+        <div class="card__icon" aria-hidden="true">
+          <svg class="icon">
+            <use xlink:href=`/svg/ui_icons.svg#masters`></use>
+          </svg>
+          <svg class="cookie">
+            <use xlink:href=`/svg/ui_icons.svg#cookie`></use>
+          </svg>
+        </div>
+        <svg class="card__shape">
+          <use xlink:href=`/svg/shapes.svg#shape11`></use>
+        </svg>
+        <h3>Мастер класс</h3>
+        <p>Добро пожаловать на мастер класс к нам в кружок</p>
+      </li>
+      <li class="card">
+        <div class="card__icon" aria-hidden="true">
+          <svg class="icon">
+            <use xlink:href=`/svg/ui_icons.svg#masters`></use>
+          </svg>
+          <svg class="cookie">
+            <use xlink:href=`/svg/ui_icons.svg#cookie`></use>
+          </svg>
+        </div>
+        <svg class="card__shape">
+          <use xlink:href=`/svg/shapes.svg#shape11`></use>
+        </svg>
+        <h3>Мастер класс</h3>
+        <p>Добро пожаловать на мастер класс к нам в кружок</p>
+      </li>
+      <li class="card">
+        <div class="card__icon revers" aria-hidden="true">
+          <svg class="icon">
+            <use xlink:href=`/svg/ui_icons.svg#masters`></use>
+          </svg>
+          <svg class="cookie">
+            <use xlink:href=`/svg/ui_icons.svg#cookie`></use>
+          </svg>
+        </div>
+        <svg class="card__shape">
+          <use xlink:href=`/svg/shapes.svg#shape11`></use>
+        </svg>
+        <h3>Мастер класс</h3>
+        <p>
+          Добро пожаловать на мастер класс к нам в кружок. Добро пожаловать на
+          мастер класс к нам в кружок. Добро пожаловать на мастер класс к нам в
+          кружок.
+        </p>
+      </li>
+      <li class="card">
+        <div class="card__icon revers" aria-hidden="true">
+          <svg class="icon">
+            <use xlink:href=`/svg/ui_icons.svg#masters`></use>
+          </svg>
+          <svg class="cookie">
+            <use xlink:href=`/svg/ui_icons.svg#cookie`></use>
+          </svg>
+        </div>
+        <svg class="card__shape">
+          <use xlink:href=`/svg/shapes.svg#shape11`></use>
+        </svg>
+        <h3>Мастер класс</h3>
+        <p>Добро пожаловать на мастер класс к нам в кружок</p>
+      </li>
+      <li class="card">
+        <div class="card__icon" aria-hidden="true">
+          <svg class="icon">
+            <use xlink:href=`/svg/ui_icons.svg#masters`></use>
+          </svg>
+          <svg class="cookie">
+            <use xlink:href=`/svg/ui_icons.svg#cookie`></use>
+          </svg>
+        </div>
+        <svg class="card__shape">
+          <use xlink:href=`/svg/shapes.svg#shape11`></use>
+        </svg>
+        <h3>Мастер класс</h3>
+        <p>Добро пожаловать на мастер класс к нам в кружок</p>
+      </li>
+      <li class="card">
+        <div class="card__icon" aria-hidden="true">
+          <svg class="icon">
+            <use xlink:href=`/svg/ui_icons.svg#masters`></use>
+          </svg>
+          <svg class="cookie">
+            <use xlink:href=`/svg/ui_icons.svg#cookie`></use>
+          </svg>
+        </div>
+        <svg class="card__shape">
+          <use xlink:href=`/svg/shapes.svg#shape11`></use>
+        </svg>
+        <h3>Мастер класс</h3>
+        <p>Добро пожаловать на мастер класс к нам в кружок</p>
+      </li>
+      <li class="card">
+        <div class="card__icon" aria-hidden="true">
+          <svg class="icon">
+            <use xlink:href=`/svg/ui_icons.svg#masters`></use>
+          </svg>
+          <svg class="cookie">
+            <use xlink:href=`/svg/ui_icons.svg#cookie`></use>
+          </svg>
+        </div>
+        <svg class="card__shape">
+          <use xlink:href=`/svg/shapes.svg#shape11`></use>
+        </svg>
+        <h3>Мастер класс</h3>
+        <p>Добро пожаловать на мастер класс к нам в кружок</p>
+      </li>
+      <li class="card">
+        <div class="card__icon" aria-hidden="true">
+          <svg class="icon">
+            <use xlink:href=`/svg/ui_icons.svg#masters`></use>
+          </svg>
+          <svg class="cookie">
+            <use xlink:href=`/svg/ui_icons.svg#cookie`></use>
+          </svg>
+        </div>
+        <svg class="card__shape">
+          <use xlink:href=`/svg/shapes.svg#shape11`></use>
+        </svg>
+        <h3>Мастер класс</h3>
+        <p>Добро пожаловать на мастер класс к нам в кружок</p>
+      </li>
+    </ul>
+    <div class="caroucel-scrollbar">
+      <div class="scrollbar-track">
+        <div class="scrollbar-thumb"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .caroucel-scrollbar {
+    height: var(--size-24);
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .scrollbar-track {
+    height: var(--size-4);
+    width: 100%;
+    position: relative;
+    background-color: var(--white);
+    border-radius: 100vw;
+  }
+  .caroucel-scrollbar:hover .scrollbar-track {
+    height: var(--size-8);
+  }
+  .scrollbar-thumb {
+    height: var(--size-4);
+    width: 50%;
+    position: absolute;
+    background-color: var(--violet);
+    border-radius: 100vw;
+    cursor: grab;
+  }
+  .caroucel-scrollbar:hover .scrollbar-thumb {
+    height: 100%;
+  }
+  .caroucel-scrollbar .scrollbar-thumb:active {
+    height: calc(100% + var(--size-4));
+    top: calc(-1 * var(--size-4) / 2);
+    cursor: grabbing;
+  }
+
+  .scrollbar-thumb::after {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    scale: 1 1.5;
+  }
+
+  .carousel {
+    max-width: 1504px;
+    width: 100%;
+    position: relative;
+
+    /* padding-inline: var(--gap-32); */
+  }
+
+  .scroll-area {
+    display: grid;
+    row-gap: var(--gap-16);
+    position: relative;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  .cards {
+    /* width: 100%; */
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc(100% / 4 - var(--gap-24));
+    /* grid-auto-columns: fit-content(15rem); */
+    /* grid-template-columns: repeat(10, 360px); */
+    column-gap: var(--gap-32);
+    overflow-x: scroll;
+    /* scrollbar-width: none; */
+    scroll-snap-type: x mandatory;
+    padding-inline: var(--gap-32);
+  }
+  .cards::-webkit-scrollbar {
+    display: none;
+  }
+  @media screen and (max-width: 1199px) {
+    .cards {
+      grid-auto-columns: calc(320px - var(--gap-24));
+    }
+  }
+
+  .card {
+    scroll-padding-inline-start: var(--gap-32);
+    scroll-margin-inline-start: var(--gap-32);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    block-size: 364px;
+    display: flex;
+    flex-direction: column;
+    /* margin-right: var(--gap-32); */
+    padding: var(--gap-24) var(--gap-24) var(--gap-48);
+    position: relative;
+    border-radius: var(--border-corner-32);
+    gap: var(--gap-16);
+    overflow: hidden;
+    /* cursor: grab; */
+  }
+  .card:nth-of-type(5n - 4) {
+    background-color: var(--violet-light);
+  }
+  .card:nth-of-type(5n - 3) {
+    background-color: var(--green);
+  }
+  .card:nth-of-type(5n - 2) {
+    background-color: var(--pink);
+  }
+  .card:nth-of-type(5n - 1) {
+    background-color: var(--violet);
+  }
+  .card:nth-of-type(5n) {
+    background-color: var(--black);
+  }
+
+  .card__icon {
+    display: grid;
+    width: max-content;
+    flex-grow: 1;
+    align-content: flex-start;
+  }
+  .card__shape {
+    --shape: 218px;
+    width: var(--shape);
+    aspect-ratio: 1;
+    position: absolute;
+    top: calc(-1 * var(--shape) / 4);
+    right: calc(-1 * var(--shape) / 4);
+  }
+
+  .card:nth-of-type(5n - 4) .card__shape {
+    fill: var(--violet);
+  }
+  .card:nth-of-type(5n - 3) .card__shape {
+    fill: var(--violet);
+  }
+  .card:nth-of-type(5n - 2) .card__shape {
+    fill: var(--black);
+  }
+  .card:nth-of-type(5n - 1) .card__shape {
+    fill: var(--green);
+  }
+  .card:nth-of-type(5n) .card__shape {
+    fill: var(--violet-light);
+  }
+
+  .icon,
+  .cookie {
+    grid-column: 1;
+    grid-row: 1;
+    aspect-ratio: 1;
+    justify-self: center;
+    align-self: center;
+  }
+
+  .icon {
+    width: var(--size-48);
+    fill: var(--black);
+  }
+  .card:nth-of-type(5n - 1) .icon,
+  .card:nth-of-type(5n) .icon {
+    fill: var(--white);
+  }
+
+  .cookie {
+    width: var(--size-96);
+    stroke: var(--black);
+  }
+  .card:nth-of-type(5n - 1) .cookie,
+  .card:nth-of-type(5n) .cookie {
+    stroke: var(--white);
+  }
+
+  h3,
+  p {
+    color: var(--black);
+  }
+  .card:nth-of-type(5n - 1) :is(h3, p),
+  .card:nth-of-type(5n) :is(h3, p) {
+    color: var(--white);
+  }
+
+  h3 {
+    font-size: var(--font-32);
+  }
+  p {
+    min-block-size: var(--size-56);
+    font-size: var(--font-16);
+    font-weight: bold;
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
+  .button {
+    width: var(--size-56);
+    aspect-ratio: 1;
+    position: absolute;
+    inset-block: 50%;
+    background-color: var(--white);
+    border: 1px solid var(--violet-light);
+    border-radius: 100vh;
+    translate: 0 -50%;
+    z-index: 100;
+  }
+  .button[data-duration="left"] {
+    inset-inline-start: 0;
+  }
+  .button[data-duration="right"] {
+    inset-inline-end: 0;
+  }
+</style>

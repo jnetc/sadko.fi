@@ -86,6 +86,9 @@
   --font-96: 6rem;
 
   /* DOM ELEMENT SIZES */
+  --size-4: .25rem;
+  --size-8: .5rem;
+  --size-12: .75rem;
   --size-16: 1rem;
   --size-18: 1.125rem;
   --size-20: 1.25rem;

@@ -16,11 +16,11 @@ const { icon, hrefDesc, hrefName, iconBorder, slug } = Astro.props.link;
   data-astro-reload
   role="menuitem"
 >
-  <div class="subnav__link-content">
-    <svg class="icon" aria-hidden="true">
+  <div class="subnav__link-content" aria-hidden="true">
+    <svg class="icon">
       <use xlink:href=`/svg/ui_icons.svg#${icon}`></use>
     </svg>
-    <svg class=`${iconBorder}` aria-hidden="true">
+    <svg class=`${iconBorder}`>
       <use xlink:href=`/svg/ui_icons.svg#${iconBorder}`></use>
     </svg>
   </div>
@@ -82,8 +82,10 @@ const { icon, hrefDesc, hrefName, iconBorder, slug } = Astro.props.link;
   }
   .icon {
     width: var(--size-24);
+    fill: var(--black);
   }
   .cookie {
     width: var(--size-48);
+    stroke: var(--black);
   }
 </style>
