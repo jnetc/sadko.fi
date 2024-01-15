@@ -1,7 +1,5 @@
 import { defineConfig } from 'astro/config';
-import vercel from '@astrojs/vercel/serverless';
-
-import netlify from "@astrojs/netlify";
+import netlify from '@astrojs/netlify/static';
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,7 +9,10 @@ export default defineConfig({
   },
   compressHTML: true,
   output: 'server',
-  adapter: netlify(),
+  adapter: netlify({
+    cacheOnDemandPages: true,
+    imageCDN: false
+  }),
   build: {
     inlineStylesheets: `always`
   },
