@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-import netlify from '@astrojs/netlify/static';
+import netlify from '@astrojs/netlify';
 
 // https://astro.build/config
 export default defineConfig({
@@ -7,12 +7,8 @@ export default defineConfig({
   server: {
     host: true
   },
-  compressHTML: true,
   output: 'server',
-  adapter: netlify({
-    cacheOnDemandPages: true,
-    imageCDN: false
-  }),
+  adapter: netlify(),
   build: {
     inlineStylesheets: `always`
   },
