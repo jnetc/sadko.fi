@@ -1,0 +1,18 @@
+---
+import type { TypeUIIcons } from "@Types";
+
+interface Props {
+  icon: TypeUIIcons;
+  href: string;
+  dataValue: string;
+  extraClass?: string;
+}
+
+const { icon, href, dataValue, extraClass } = Astro.props;
+---
+
+<a href={href} class=`circle-button ${extraClass ?? ''}` aria-label={dataValue}>
+  <svg class="icon" aria-hidden="true">
+    <use xlink:href=`/svg/ui_icons.svg#${icon}`></use></svg
+  >
+</a>

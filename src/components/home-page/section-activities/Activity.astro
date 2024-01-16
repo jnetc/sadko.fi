@@ -1,0 +1,143 @@
+---
+import type { TypeUIIcons, TypeUICardShapes } from "@Types";
+
+interface Props {
+  icon: TypeUIIcons;
+  shape: TypeUICardShapes;
+  title: string;
+  description: string;
+}
+
+const { title, description, icon } = Astro.props;
+---
+
+<li class="card">
+  <div class="card__icon" aria-hidden="true">
+    <svg class="icon">
+      <use xlink:href=`/svg/ui_icons.svg#${icon}`></use>
+    </svg>
+    <svg class="cookie">
+      <use xlink:href=`/svg/ui_icons.svg#cookie`></use>
+    </svg>
+  </div>
+  <svg class="card__shape" aria-hidden="true">
+    <use xlink:href=`/svg/shapes.svg#shape11`></use>
+  </svg>
+  <h3>{title}</h3>
+  <p>{description}</p>
+</li>
+
+<style>
+  .card {
+    scroll-padding-inline-start: var(--gap-32);
+    scroll-margin-inline-start: var(--gap-32);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    block-size: 364px;
+    display: flex;
+    flex-direction: column;
+    /* margin-right: var(--gap-32); */
+    padding: var(--gap-24) var(--gap-24) var(--gap-48);
+    position: relative;
+    border-radius: var(--border-corner-32);
+    gap: var(--gap-16);
+    overflow: hidden;
+    /* cursor: grab; */
+  }
+  .card:nth-of-type(5n - 4) {
+    background-color: var(--violet-light);
+  }
+  .card:nth-of-type(5n - 3) {
+    background-color: var(--green);
+  }
+  .card:nth-of-type(5n - 2) {
+    background-color: var(--pink);
+  }
+  .card:nth-of-type(5n - 1) {
+    background-color: var(--violet);
+  }
+  .card:nth-of-type(5n) {
+    background-color: var(--black);
+  }
+
+  .card__icon {
+    display: grid;
+    width: max-content;
+    flex-grow: 1;
+    align-content: flex-start;
+  }
+  .card__shape {
+    --shape: 218px;
+    width: var(--shape);
+    aspect-ratio: 1;
+    position: absolute;
+    top: calc(-1 * var(--shape) / 4);
+    right: calc(-1 * var(--shape) / 4);
+  }
+
+  .card:nth-of-type(5n - 4) .card__shape {
+    fill: var(--violet);
+  }
+  .card:nth-of-type(5n - 3) .card__shape {
+    fill: var(--violet);
+  }
+  .card:nth-of-type(5n - 2) .card__shape {
+    fill: var(--black);
+  }
+  .card:nth-of-type(5n - 1) .card__shape {
+    fill: var(--green);
+  }
+  .card:nth-of-type(5n) .card__shape {
+    fill: var(--violet-light);
+  }
+
+  .icon,
+  .cookie {
+    grid-column: 1;
+    grid-row: 1;
+    aspect-ratio: 1;
+    justify-self: center;
+    align-self: center;
+  }
+
+  .icon {
+    width: var(--size-48);
+    fill: var(--black);
+  }
+  .card:nth-of-type(5n - 1) .icon,
+  .card:nth-of-type(5n) .icon {
+    fill: var(--white);
+  }
+
+  .cookie {
+    width: var(--size-96);
+    stroke: var(--black);
+  }
+  .card:nth-of-type(5n - 1) .cookie,
+  .card:nth-of-type(5n) .cookie {
+    stroke: var(--white);
+  }
+
+  h3,
+  p {
+    color: var(--black);
+  }
+  .card:nth-of-type(5n - 1) :is(h3, p),
+  .card:nth-of-type(5n) :is(h3, p) {
+    color: var(--white);
+  }
+
+  h3 {
+    font-size: var(--font-32);
+  }
+  p {
+    min-block-size: var(--size-56);
+    font-size: var(--font-16);
+    font-weight: bold;
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+</style>

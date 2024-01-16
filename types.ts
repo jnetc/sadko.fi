@@ -43,7 +43,28 @@ export type TypeUIActivityIcons =
   | "galleria"
   | "info";
 
-type TypeBlanks = "blank-hobby"  | "blank-camp"  | "blank-membership";
+type TypeBlanks = "blank-hobby" | "blank-camp" | "blank-membership";
+
+export type TypeUICardShapes =
+  "shape01"
+  | "shape02"
+  | "shape03"
+  | "shape04"
+  | "shape05"
+  | "shape06"
+  | "shape07"
+  | "shape08"
+  | "shape09"
+  | "shape10"
+  | "shape11"
+  | "shape12"
+  | "shape13"
+
+export type TypeUIPageShapes =
+  "page_stroke_01"
+  | "page_stroke_02"
+  | "page_arrow_shot"
+  | "page_arrow_long"
 
 interface LangRouteName {
   ru: string;

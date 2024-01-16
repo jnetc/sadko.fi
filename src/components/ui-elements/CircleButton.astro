@@ -1,0 +1,60 @@
+---
+import type { TypeUIIcons } from "@Types";
+
+interface Props {
+  icon: TypeUIIcons;
+  dataValue: string;
+  extraClass?: string;
+}
+
+const { icon, dataValue, extraClass } = Astro.props;
+---
+
+<button
+  type="button"
+  class=`circle-button ${extraClass ?? ''}`
+  aria-label={dataValue}
+  data-dir=`${dataValue}`
+>
+  <svg class="icon" aria-hidden="true">
+    <use xlink:href=`/svg/ui_icons.svg#${icon}`></use></svg
+  >
+</button>
+
+<style>
+  [data-dir] {
+    position: absolute;
+    inset-block: 50%;
+    translate: 0 calc(-50% - var(--gap-32));
+    transition:
+      scale 0.3s ease-in-out,
+      opacity 0.3s ease-in-out;
+    z-index: 100;
+  }
+  [data-dir].hide {
+    opacity: 0;
+    scale: 0.5;
+    pointer-events: none;
+  }
+
+  [data-dir="prev"] {
+    inset-inline-start: 0.25rem;
+  }
+  [data-dir="prev"] .icon {
+    rotate: z 90deg;
+  }
+
+  [data-dir="next"] {
+    inset-inline-end: 0.25rem;
+  }
+  [data-dir="next"] .icon {
+    rotate: z -90deg;
+  }
+
+  @media screen and (max-width: 479px) {
+    [data-dir="prev"],
+    [data-dir="next"] {
+      display: none;
+    }
+  }
+</style>

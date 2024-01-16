@@ -1,0 +1,21 @@
+---
+interface Props {
+  extraClass?: string;
+}
+
+const { extraClass } = Astro.props;
+---
+
+<p class=`p-heading ${extraClass ?? ''}`>
+  <slot />
+</p>
+
+<style>
+  .p-heading {
+    grid-column: 1 / -1;
+    font-size: clamp(var(--font-18), 3.3vw, var(--font-32));
+    text-align: center;
+    line-height: 1.4;
+    padding-block: var(--gap-16) var(--gap-64);
+  }
+</style>

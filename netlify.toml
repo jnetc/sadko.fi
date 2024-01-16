@@ -2,6 +2,7 @@
 [build]
   command = "pnpm run build"
   publish = "dist"
+  functions = "functions"
 
 [dev]
   command = "pnpm dev"
