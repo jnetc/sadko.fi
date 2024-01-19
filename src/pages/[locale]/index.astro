@@ -1,9 +1,13 @@
 ---
-import { getCollection, getEntryBySlug } from "astro:content";
+// import * as prismic from "@prismicio/client";
+import { getCollection } from "astro:content";
+import { CMS } from "@Lib/prismiccms";
 // Layouts
 import Layout from "@Layouts/Layout.astro";
 import SectionHero from "@Components/home-page/section-hero/SectionHero.astro";
 import SectionActivities from "@Components/home-page/section-activities/SectionActivities.astro";
+import SectionTeachers from "@Components/home-page/section-teachers/SectionTeachers.astro";
+import SectionFeedbacks from "@Components/home-page/section-feedbacks/SectionFeedbacks.astro";
 
 // import { SectionHero } from '@Components/home-page/section-hero'
 // Export data from Markdown collections
@@ -18,10 +22,10 @@ export const prerender = true;
 export type Hero = typeof Astro.props;
 const props = Astro.props;
 
-const lang = Astro.params.locale;
-let collection;
+// const lang = Astro.params.locale;
+// let collection;
 // if (lang === "ru") {
-collection = await getEntryBySlug("home", lang);
+// collection = await getEntryBySlug("home", lang);
 // } else {
 //   collection = await getEntryBySlug("home", lang);
 // }
@@ -34,13 +38,61 @@ collection = await getEntryBySlug("home", lang);
 // import LocaleData from "@Lib/localdata";
 // const data = await LocaleData(lang);
 
-console.log(collection, lang);
+const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
+
+// const repositoryName = import.meta.env.PRISMIC_REPOSITORY_NAME;
+// const accessToken = import.meta.env.PRISMIC_ACCESS_TOKEN;
+
+// const client = prismic.createClient(repositoryName, {
+//   accessToken,
+//   // fetchOptions: { cache: "force-cache" },
+//   defaultParams: { lang },
+// });
+
+// async function init() {
+//   const response = await client.getAllByType("clubs", {
+//     graphQuery: `{
+//       allClubss {
+//         edges {
+//           node {
+//             title
+//             address
+//             description
+//           }
+//         }
+//       }
+//     }`,
+//   });
+
+//   return response;
+// }
+
+// export const query = gql`
+//   query MyQuery {
+//     allClubss(lang: "ru") {
+//       edges {
+//         node {
+//           title
+//           address
+//           description
+//         }
+//       }
+//     }
+//   }
+// `;
+
+const data = await CMS(lang);
+// const data = await request({ query, variables: { locale: "ru" } });
+
+console.log(data);
 ---
 
 <Layout>
   <main>
     <SectionHero data={props} />
     <SectionActivities />
+    <SectionTeachers />
+    <SectionFeedbacks />
   </main>
 </Layout>
 

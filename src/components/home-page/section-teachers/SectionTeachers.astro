@@ -1,0 +1,221 @@
+---
+import { Image } from "astro:assets";
+// Components
+import H2Title from "@Components/ui-elements/H2Title.astro";
+import H2Description from "@Components/ui-elements/H2Description.astro";
+import Carousel from "@Components/ui-elements/Carousel.astro";
+---
+
+<section class="grid teachers">
+  <H2Title>Наши преподаватели</H2Title>
+  <H2Description>С нашими преподавателями вы в надежных руках</H2Description>
+  <Carousel>
+    <li class="card">
+      <Image
+        src="/webp/teachers/teacher05.png"
+        alt="teaches name"
+        width={150}
+        height={150}
+        class="card__image"
+      />
+      <h3>Анна Артеменкова</h3>
+      <p>Преподаватель классического вокала</p>
+      <div class="card__icon" aria-hidden="true">
+        <svg class="icon">
+          <use xlink:href=`/svg/ui_icons.svg#arrow_outward`></use>
+        </svg>
+        <svg class="cookie">
+          <use xlink:href=`/svg/ui_icons.svg#cookie`></use>
+        </svg>
+      </div>
+    </li>
+    <li class="card">
+      <Image
+        src="/webp/teachers/teacher04.png"
+        alt="teaches name"
+        width={150}
+        height={150}
+        class="card__image"
+      />
+      <h3>Валентина Лазаричева</h3>
+      <p>учитель-логопед</p>
+      <div class="card__icon" aria-hidden="true">
+        <svg class="icon">
+          <use xlink:href=`/svg/ui_icons.svg#arrow_outward`></use>
+        </svg>
+        <svg class="cookie">
+          <use xlink:href=`/svg/ui_icons.svg#cookie`></use>
+        </svg>
+      </div>
+    </li>
+    <li class="card">
+      <Image
+        src="/webp/teachers/teacher03.png"
+        alt="teaches name"
+        width={150}
+        height={150}
+        class="card__image"
+      />
+      <h3>Наталья Снур</h3>
+      <p>Педагог по блокфлейте и учитель по музыке</p>
+      <div class="card__icon" aria-hidden="true">
+        <svg class="icon">
+          <use xlink:href=`/svg/ui_icons.svg#arrow_outward`></use>
+        </svg>
+        <svg class="cookie">
+          <use xlink:href=`/svg/ui_icons.svg#cookie`></use>
+        </svg>
+      </div>
+    </li>
+    <li class="card">
+      <Image
+        src="/webp/teachers/teacher02.png"
+        alt="teaches name"
+        width={150}
+        height={150}
+        class="card__image"
+      />
+      <h3>Анна Артеменкова</h3>
+      <p>Преподаватель эстрадного танца</p>
+      <div class="card__icon" aria-hidden="true">
+        <svg class="icon">
+          <use xlink:href=`/svg/ui_icons.svg#arrow_outward`></use>
+        </svg>
+        <svg class="cookie">
+          <use xlink:href=`/svg/ui_icons.svg#cookie`></use>
+        </svg>
+      </div>
+    </li>
+    <li class="card">
+      <Image
+        src="/webp/teachers/teacher01.png"
+        alt="teaches name"
+        width={150}
+        height={150}
+        class="card__image"
+      />
+      <h3>Старикова Наталья</h3>
+      <p>Преподаватель музыки и танца</p>
+      <div class="card__icon" aria-hidden="true">
+        <svg class="icon">
+          <use xlink:href=`/svg/ui_icons.svg#arrow_outward`></use>
+        </svg>
+        <svg class="cookie">
+          <use xlink:href=`/svg/ui_icons.svg#cookie`></use>
+        </svg>
+      </div>
+    </li>
+  </Carousel>
+</section>
+
+<style>
+  .card {
+    scroll-padding-inline-start: var(--gap-32);
+    scroll-margin-inline-start: var(--gap-32);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    /* block-size: 432px; */
+    display: flex;
+    flex-direction: column;
+    padding: var(--gap-48) var(--gap-32) var(--gap-96);
+    position: relative;
+    border-radius: var(--border-corner-32);
+    gap: var(--gap-16);
+    overflow: hidden;
+  }
+  .card:nth-of-type(5n - 4) {
+    background-color: var(--violet-light);
+  }
+  .card:nth-of-type(5n - 3) {
+    background-color: var(--green);
+  }
+  .card:nth-of-type(5n - 2) {
+    background-color: var(--pink);
+  }
+  .card:nth-of-type(5n - 1) {
+    background-color: var(--violet);
+  }
+  .card:nth-of-type(5n) {
+    background-color: var(--black);
+  }
+
+  .card__icon {
+    display: grid;
+    width: max-content;
+    flex-grow: 1;
+    margin-inline-start: auto;
+    position: absolute;
+    bottom: var(--gap-32);
+    right: var(--gap-32);
+  }
+  .card__image {
+    margin-inline: auto;
+    border-radius: 100vw;
+    object-fit: cover;
+  }
+
+  /* .card:nth-of-type(5n - 4) .card__shape {
+    fill: var(--violet);
+  }
+  .card:nth-of-type(5n - 3) .card__shape {
+    fill: var(--violet);
+  }
+  .card:nth-of-type(5n - 2) .card__shape {
+    fill: var(--black);
+  }
+  .card:nth-of-type(5n - 1) .card__shape {
+    fill: var(--green);
+  }
+  .card:nth-of-type(5n) .card__shape {
+    fill: var(--violet-light);
+  } */
+
+  .icon,
+  .cookie {
+    grid-column: 1;
+    grid-row: 1;
+    aspect-ratio: 1;
+    justify-self: center;
+    align-self: center;
+  }
+
+  .icon {
+    width: var(--size-32);
+    fill: var(--black);
+  }
+  .card:nth-of-type(5n - 1) .icon,
+  .card:nth-of-type(5n) .icon {
+    fill: var(--white);
+  }
+
+  .cookie {
+    width: var(--size-64);
+    stroke: var(--black);
+  }
+  .card:nth-of-type(5n - 1) .cookie,
+  .card:nth-of-type(5n) .cookie {
+    stroke: var(--white);
+  }
+
+  h3,
+  p {
+    color: var(--black);
+  }
+  .card:nth-of-type(5n - 1) :is(h3, p),
+  .card:nth-of-type(5n) :is(h3, p) {
+    color: var(--white);
+  }
+
+  h3 {
+    font-size: var(--font-24);
+  }
+  p {
+    min-block-size: var(--size-56);
+    font-size: var(--font-16);
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+</style>

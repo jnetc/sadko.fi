@@ -85,6 +85,5 @@
 .circle-button .icon {
   width: var(--size-24);
   aspect-ratio: 1;
-  user-select: none;
   pointer-events: none;
 }

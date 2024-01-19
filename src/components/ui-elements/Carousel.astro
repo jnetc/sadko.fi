@@ -22,6 +22,7 @@ import CircleButton from "./CircleButton.astro";
   const maxScrollWidth = cards.scrollWidth - cards.clientWidth;
 
   function moveCarousel(event: MouseEvent) {
+    console.log("click");
     const el = event.target as HTMLButtonElement;
     // Creating a direction when a button was clicked
     const direction = el.dataset.dir === "prev" ? -1 : 1;
@@ -69,7 +70,7 @@ import CircleButton from "./CircleButton.astro";
     column-gap: var(--gap-32);
     padding-inline: var(--gap-32);
     padding-block-end: var(--gap-32);
-    overflow-x: scroll;
+    overflow-x: auto;
     scrollbar-width: auto;
     scrollbar-color: var(--violet) var(--white);
     scroll-snap-type: x mandatory;

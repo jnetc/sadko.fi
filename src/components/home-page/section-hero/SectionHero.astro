@@ -32,7 +32,7 @@ const props = Astro.props.data;
   <img class="hero__girl" src="/webp/girl.webp" alt="girl" />
 </section>
 
-<style>
+<style is:global>
   .hero {
     padding-block-start: var(--gap-72);
     grid-template-rows: auto auto auto 260px;

@@ -1,11 +1,13 @@
 import { defineConfig } from 'astro/config';
+import tunnel from "astro-tunnel";
 import netlify from '@astrojs/netlify';
 
-// https://astro.build/config
 // Что предотвратить ошибку с развертыванием через netlify CLI deploy
 // Не подключаем сразу к netlify через GitHUb!!! Если надо заливать через CLI
 // Сначало подключаем, инициализируем и заливаем через сам netlify CLI,
 // а потом уже можно и через GitHub или CLI
+
+// https://astro.build/config
 export default defineConfig({
   site: "https://www.sadko.fi",
   server: {
@@ -20,7 +22,9 @@ export default defineConfig({
     defaultLocale: 'ru',
     locales: ['ru', 'fi'],
     routing: {
-      prefixDefaultLocale: true
+      prefixDefaultLocale: true,
+      redirectToDefaultLocale: false
     }
-  }
+  },
+  integrations: [tunnel()]
 });

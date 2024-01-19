@@ -16,6 +16,7 @@ pnpm-lock.yaml*
 
 # environment variables
 .env
+.env*
 .env.production
 
 # macOS-specific files
