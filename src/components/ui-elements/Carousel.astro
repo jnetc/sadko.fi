@@ -1,5 +1,10 @@
 ---
 import CircleButton from "./CircleButton.astro";
+// interface Props {
+//   carouselID: number;
+// }
+
+// const id = Astro.props.carouselID
 ---
 
 <div class="carousel">
@@ -13,38 +18,43 @@ import CircleButton from "./CircleButton.astro";
 </div>
 
 <script>
-  const prevButton =
-    document.querySelector<HTMLButtonElement>('[data-dir="prev"]')!;
-  const nextButton =
-    document.querySelector<HTMLButtonElement>('[data-dir="next"]')!;
-  const cards = document.querySelector<HTMLUListElement>(".cards")!;
+  const prevButtons =
+    document.querySelectorAll<HTMLButtonElement>('[data-dir="prev"]')!;
+  const nextButtons =
+    document.querySelectorAll<HTMLButtonElement>('[data-dir="next"]')!;
+  const cards = document.querySelectorAll<HTMLUListElement>(".cards")!;
 
-  const maxScrollWidth = cards.scrollWidth - cards.clientWidth;
-
-  function moveCarousel(event: MouseEvent) {
+  function moveCarousel(event: MouseEvent, index: number) {
     console.log("click");
     const el = event.target as HTMLButtonElement;
     // Creating a direction when a button was clicked
     const direction = el.dataset.dir === "prev" ? -1 : 1;
     // Move all cards array in current direction
-    cards.scrollBy({ left: direction, behavior: "smooth" });
+    cards[index].scrollBy({ left: direction, behavior: "smooth" });
   }
 
-  function showControlButton(event: Event) {
+  function showControlButton(event: Event, index: number) {
     const el = event.target as HTMLElement;
 
     el.scrollLeft > 0
-      ? prevButton.classList.remove("hide")
-      : prevButton.classList.add("hide");
+      ? prevButtons[index].classList.remove("hide")
+      : prevButtons[index].classList.add("hide");
 
-    Math.round(el.scrollLeft) >= maxScrollWidth
-      ? nextButton.classList.add("hide")
-      : nextButton.classList.remove("hide");
+    Math.round(el.scrollLeft) >=
+    cards[index].scrollWidth - cards[index].clientWidth
+      ? nextButtons[index].classList.add("hide")
+      : nextButtons[index].classList.remove("hide");
   }
 
-  cards.addEventListener("scroll", showControlButton);
-  prevButton.addEventListener("pointerdown", moveCarousel);
-  nextButton.addEventListener("pointerdown", moveCarousel);
+  cards.forEach((arr, index) => {
+    arr.addEventListener("scroll", (ev) => showControlButton(ev, index));
+  });
+  prevButtons.forEach((btn, index) => {
+    btn.addEventListener("pointerdown", (ev) => moveCarousel(ev, index));
+  });
+  nextButtons.forEach((btn, index) => {
+    btn.addEventListener("pointerdown", (ev) => moveCarousel(ev, index));
+  });
 </script>
 
 <style>
@@ -69,7 +79,7 @@ import CircleButton from "./CircleButton.astro";
     grid-auto-columns: calc(100% / 4 - var(--gap-24));
     column-gap: var(--gap-32);
     padding-inline: var(--gap-32);
-    padding-block-end: var(--gap-32);
+    padding-block: var(--gap-48) var(--gap-32);
     overflow-x: auto;
     scrollbar-width: auto;
     scrollbar-color: var(--violet) var(--white);
