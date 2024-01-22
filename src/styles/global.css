@@ -145,6 +145,10 @@ p {
   fill: var(--green);
 }
 
+.main-section {
+  padding-block-end: var(--gap-224);
+}
+
 /* MEDIA QUERIES */
 @media (max-width: 1200px) {
   .grid {

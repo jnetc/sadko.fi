@@ -78,3 +78,61 @@ export interface ISubMenu {
   hrefName: LangRouteName;
   hrefDesc: LangRouteName;
 }
+
+
+// INDEX.HTML
+export type HrefType = {
+  url: string;
+}
+export type ImageType = {
+  dimensions: {
+    width: number;
+    height: number;
+  }
+  alt: string;
+  url: string;
+}
+export type PrimaryType = {
+  label?: string;
+  heading: string;
+  text: string;
+  primary_button?: string;
+  primary_href: HrefType;
+  secondary_button?: string;
+  secondary_href: HrefType;
+}
+
+export type FieldsType = {
+  heading: string;
+  text: string;
+  icon?: string;
+  image?: ImageType;
+}
+export type FieldsOnlyImageType = {
+  image: ImageType;
+}
+export type FieldsFaqType = {
+  question: string;
+  answer: Array<string>;
+}
+
+// type GenericSliceType<T extends SliceType, Fields extends Array<any>> = {
+//   type: T;
+//   fields: Fields;
+// };
+
+
+export type SliceType = "hero" | "activities" | "welcome" | "offer" | "gallery" | "teachers" | "faq" | "feedbacks"
+
+export interface IBody {
+  primary: PrimaryType;
+  items?: Array<FieldsType> | Array<FieldsFaqType> | Array<FieldsOnlyImageType>;
+  slice_type: SliceType;
+}
+
+export interface IIndex {
+  body: Array<IBody>;
+  title: string;
+  description: string;
+
+}

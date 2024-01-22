@@ -25,7 +25,6 @@ import CircleButton from "./CircleButton.astro";
   const cards = document.querySelectorAll<HTMLUListElement>(".cards")!;
 
   function moveCarousel(event: MouseEvent, index: number) {
-    console.log("click");
     const el = event.target as HTMLButtonElement;
     // Creating a direction when a button was clicked
     const direction = el.dataset.dir === "prev" ? -1 : 1;

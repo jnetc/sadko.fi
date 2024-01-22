@@ -4,7 +4,7 @@ const repositoryName = import.meta.env.PRISMIC_REPOSITORY_NAME;
 const accessToken = import.meta.env.PRISMIC_ACCESS_TOKEN;
 
 
-export async function CMS(lang: "fi" | "ru") {
+export async function CMS(lang: "fi" | "ru", query: string) {
 
   const client = prismic.createClient(repositoryName, {
     accessToken,
@@ -12,19 +12,9 @@ export async function CMS(lang: "fi" | "ru") {
     defaultParams: { lang },
   });
 
-  const response = await client.getAllByType("clubs", {
-    graphQuery: `{
-      allClubss {
-        edges {
-          node {
-            title
-            address
-            description
-          }
-        }
-      }
-    }`,
+  const response = await client.getAllByType("home", {
+    graphQuery: query,
   });
 
-  return response;
+  return response[0].data as const;
 }

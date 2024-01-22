@@ -20,7 +20,7 @@ export async function getStaticPaths() {
 }
 export const prerender = true;
 export type Hero = typeof Astro.props;
-const props = Astro.props;
+// const props = Astro.props;
 
 // const lang = Astro.params.locale;
 // let collection;
@@ -80,16 +80,20 @@ const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
 //     }
 //   }
 // `;
+import type { IIndex, SliceType, IBody } from "@Types";
+import query from "@Queries/index.ts";
 
-const data = await CMS(lang);
+const data = (await CMS(lang, query)) as IIndex;
 // const data = await request({ query, variables: { locale: "ru" } });
-
-console.log(data);
+function getDataForSection(sliceType: SliceType): IBody {
+  return data.body.find((section) => section.slice_type === sliceType) as IBody;
+}
+console.log(data.body[1]);
 ---
 
 <Layout>
   <main>
-    <SectionHero data={props} />
+    <SectionHero data={getDataForSection("hero")} />
     <SectionActivities />
     <SectionTeachers />
     <SectionFeedbacks />

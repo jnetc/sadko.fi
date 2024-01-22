@@ -2,30 +2,31 @@
 import HeroTitle from "@Components/home-page/section-hero/HeroTitle.astro";
 import Link from "@Components/ui-elements/Link.astro";
 // Type
-import type { Hero } from "@Pages/[locale]/index.astro";
+// import type { Hero } from "@Pages/[locale]/index.astro";
+import type { IBody } from "@Types";
 interface Props {
-  data: Hero;
+  data: IBody;
 }
 
 // const collection = await getCollection("home");
 // export const prerender = true;
 
 // const props = collection.map((data) => data.data)[0];
-const props = Astro.props.data;
+const props = Astro.props.data.primary;
 ---
 
-<section class="grid hero">
-  <p class="hero__label">{props.hero_label}</p>
-  <HeroTitle text={props.hero_title} />
+<section class="grid main-section hero">
+  <p class="hero__label">{props.label}</p>
+  <HeroTitle text={props.heading} />
   <p class="hero__desc">
-    {props.hero_description}
+    {props.text}
   </p>
   <div class="hero__action-btns">
-    <Link href={props.hero_primary_btn_url} isPrimary icon="arrow_outward">
-      {props.hero_primary_btn_name}
+    <Link href={props.primary_href.url} isPrimary icon="arrow_outward">
+      {props.primary_button}
     </Link>
-    <Link href={props.hero_secondary_btn_url} icon="location">
-      {props.hero_secondary_btn_name}
+    <Link href={props.secondary_href.url} icon="location">
+      {props.secondary_button}
     </Link>
   </div>
   <img class="hero__boy" src="/webp/boy.webp" alt="boy with skateboard" />

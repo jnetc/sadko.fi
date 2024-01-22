@@ -6,13 +6,13 @@ import H2Description from "@Components/ui-elements/H2Description.astro";
 import Carousel from "@Components/ui-elements/Carousel.astro";
 ---
 
-<section class="grid activities">
+<section class="grid main-section">
   <H2Title>Отзывы</H2Title>
   <H2Description>Обратная связь наших участников</H2Description>
   <Carousel>
     <li class="card">
       <svg class="card__shape" aria-hidden="true">
-        <use xlink:href=`/svg/shapes.svg#shape08`></use>
+        <use xlink:href=`/svg/shapes.svg#shape01`></use>
       </svg>
       <h3>Danil Zubko</h3>
       <p>
@@ -23,35 +23,34 @@ import Carousel from "@Components/ui-elements/Carousel.astro";
     </li>
     <li class="card">
       <svg class="card__shape" aria-hidden="true">
-        <use xlink:href=`/svg/shapes.svg#shape08`></use>
+        <use xlink:href=`/svg/shapes.svg#shape02`></use>
       </svg>
-      <h3>Danil Zubko</h3>
+      <h3>София Вершинина</h3>
       <p>
-        Прекрасный лагерь! Хороший командный дух и очень дружелюбные
-        руководители. Я был во многих лагерях, но никогда не видел такой хорошей
-        группы, которая была в этом лагере. Я предлагаю всем! 🙂
+        В лагере много разных событий и забавных моментов (которые вспоминаешь и
+        смеешься, потому что было весело) Я сама давно езжу в этот лагерь и
+        поеду еще! Я РЕКОМЕНДУЮ
       </p>
     </li>
     <li class="card">
       <svg class="card__shape" aria-hidden="true">
-        <use xlink:href=`/svg/shapes.svg#shape08`></use>
+        <use xlink:href=`/svg/shapes.svg#shape05`></use>
       </svg>
-      <h3>Danil Zubko</h3>
+      <h3>Данил Сурво</h3>
       <p>
-        Прекрасный лагерь! Хороший командный дух и очень дружелюбные
-        руководители. Я был во многих лагерях, но никогда не видел такой хорошей
-        группы, которая была в этом лагере. Я предлагаю всем! 🙂
+        В лагере весело, в лагере также много времени проводят на улице,
+        занимаясь спортом. Рекомендую приехать в лагерь, вожатые веселые!
       </p>
     </li>
     <li class="card">
       <svg class="card__shape" aria-hidden="true">
-        <use xlink:href=`/svg/shapes.svg#shape08`></use>
+        <use xlink:href=`/svg/shapes.svg#shape06`></use>
       </svg>
-      <h3>Danil Zubko</h3>
+      <h3>Тимур Павлов</h3>
       <p>
-        Прекрасный лагерь! Хороший командный дух и очень дружелюбные
-        руководители. Я был во многих лагерях, но никогда не видел такой хорошей
-        группы, которая была в этом лагере. Я предлагаю всем! 🙂
+        Большое спасибо коллективу клуба «Садко» за прекрасно организованный
+        осенний лагерь, сын остался доволен! К сожалению, зимой не получается,
+        ждем летнюю смену!
       </p>
     </li>
     <li class="card">
@@ -84,8 +83,11 @@ import Carousel from "@Components/ui-elements/Carousel.astro";
     gap: var(--gap-36);
     /* overflow: hidden; */
     /* cursor: grab; */
+    box-shadow:
+      0 25px 20px var(--opacity-3),
+      0 15px 10px var(--opacity-3);
   }
-  .card:nth-of-type(5n - 4) {
+  /* .card:nth-of-type(5n - 4) {
     background-color: var(--violet-light);
   }
   .card:nth-of-type(5n - 3) {
@@ -99,7 +101,7 @@ import Carousel from "@Components/ui-elements/Carousel.astro";
   }
   .card:nth-of-type(5n) {
     background-color: var(--black);
-  }
+  } */
 
   .card__icon {
     display: grid;
@@ -108,28 +110,29 @@ import Carousel from "@Components/ui-elements/Carousel.astro";
     align-content: flex-start;
   }
   .card__shape {
-    --shape: 218px;
+    --shape: 175px;
     width: var(--shape);
     aspect-ratio: 1;
     position: absolute;
-    top: calc(-1 * var(--shape) / 4);
-    right: calc(-1 * var(--shape) / 4);
+    top: calc(-1 * var(--shape) / 3);
+    right: 0;
+    /* right: calc(-1 * var(--shape) / 4); */
   }
 
   .card:nth-of-type(5n - 4) .card__shape {
-    fill: var(--violet);
+    fill: var(--violet-light);
   }
   .card:nth-of-type(5n - 3) .card__shape {
-    fill: var(--violet);
-  }
-  .card:nth-of-type(5n - 2) .card__shape {
-    fill: var(--black);
-  }
-  .card:nth-of-type(5n - 1) .card__shape {
     fill: var(--green);
   }
+  .card:nth-of-type(5n - 2) .card__shape {
+    fill: var(--pink);
+  }
+  .card:nth-of-type(5n - 1) .card__shape {
+    fill: var(--violet);
+  }
   .card:nth-of-type(5n) .card__shape {
-    fill: var(--violet-light);
+    fill: var(--black);
   }
 
   /* .icon,
@@ -163,10 +166,10 @@ import Carousel from "@Components/ui-elements/Carousel.astro";
   p {
     color: var(--black);
   }
-  .card:nth-of-type(5n - 1) :is(h3, p),
+  /* .card:nth-of-type(5n - 1) :is(h3, p),
   .card:nth-of-type(5n) :is(h3, p) {
     color: var(--white);
-  }
+  } */
 
   h3 {
     font-size: var(--font-32);
