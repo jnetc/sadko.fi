@@ -16,5 +16,5 @@ export async function CMS(lang: "fi" | "ru", query: string) {
     graphQuery: query,
   });
 
-  return response[0].data as const;
+  return response[0].data;
 }
