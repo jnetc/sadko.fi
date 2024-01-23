@@ -1,0 +1,85 @@
+---
+interface Props {
+  heading: string;
+  text: string;
+  index: number;
+}
+
+const { heading, text, index } = Astro.props;
+---
+
+<li class="card">
+  <svg class="card__shape" aria-hidden="true">
+    <use xlink:href=`/svg/shapes.svg#shape${index + 1}`></use>
+  </svg>
+  <h3>{heading}</h3>
+  <p>{text}</p>
+</li>
+
+<style>
+  .card {
+    scroll-padding-inline-start: var(--gap-32);
+    scroll-margin-inline-start: var(--gap-32);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: flex;
+    flex-direction: column;
+    padding: var(--gap-128) var(--gap-32) var(--gap-48);
+    position: relative;
+    border-radius: var(--border-corner-32);
+    gap: var(--gap-36);
+    box-shadow:
+      0 25px 20px var(--opacity-3),
+      0 15px 10px var(--opacity-3);
+  }
+
+  .card__icon {
+    display: grid;
+    width: max-content;
+    flex-grow: 1;
+    align-content: flex-start;
+  }
+  .card__shape {
+    --shape: 175px;
+    width: var(--shape);
+    aspect-ratio: 1;
+    position: absolute;
+    top: calc(-1 * var(--shape) / 3);
+    right: 0;
+  }
+
+  .card:nth-of-type(5n - 4) .card__shape {
+    fill: var(--violet-light);
+  }
+  .card:nth-of-type(5n - 3) .card__shape {
+    fill: var(--green);
+  }
+  .card:nth-of-type(5n - 2) .card__shape {
+    fill: var(--pink);
+  }
+  .card:nth-of-type(5n - 1) .card__shape {
+    fill: var(--violet);
+  }
+  .card:nth-of-type(5n) .card__shape {
+    fill: var(--black);
+  }
+
+  h3,
+  p {
+    color: var(--black);
+  }
+
+  h3 {
+    font-size: var(--font-32);
+  }
+  p {
+    min-block-size: var(--size-56);
+    font-size: var(--font-16);
+
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 8;
+    overflow: hidden;
+  }
+</style>

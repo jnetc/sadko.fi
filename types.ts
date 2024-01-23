@@ -81,8 +81,16 @@ export interface ISubMenu {
 
 
 // INDEX.HTML
+export type HeadingTextType = {
+  heading: string;
+  text: string;
+}
+
 export type HrefType = {
   url: string;
+}
+export type LabelType = {
+  label: string;
 }
 export type ImageType = {
   dimensions: {
@@ -92,47 +100,72 @@ export type ImageType = {
   alt: string;
   url: string;
 }
-export type PrimaryType = {
+export type PrimaryButtonType = {
+  primary_button: string;
+  primary_href: HrefType;
+}
+export type SecondaryButtonType = {
+  secondary_button: string;
+  secondary_href: HrefType;
+}
+
+
+/* PRIMARY TYPE */
+export interface PrimaryType {
   label?: string;
   heading: string;
   text: string;
   primary_button?: string;
-  primary_href: HrefType;
+  primary_href?: HrefType;
   secondary_button?: string;
-  secondary_href: HrefType;
+  secondary_href?: HrefType;
 }
 
-export type FieldsType = {
-  heading: string;
-  text: string;
-  icon?: string;
-  image?: ImageType;
-}
-export type FieldsOnlyImageType = {
+// export interface PrimaryType extends HeadingTextType, LabelType, PrimaryButtonType, SecondaryButtonType { }
+// export interface PrimaryWithPrimaryBtnType extends HeadingTextType, PrimaryButtonType { }
+// export interface PrimaryWithSecondatyBtnType extends HeadingTextType, SecondaryButtonType { }
+
+
+
+/* FIELDS TYPE */
+
+export interface FieldsOnlyImageType {
   image: ImageType;
 }
-export type FieldsFaqType = {
+
+export interface FieldsWithImageType extends HeadingTextType, FieldsOnlyImageType { }
+
+export interface FieldsWithIconType extends HeadingTextType {
+  icon: TypeUIIcons;
+}
+
+export interface FieldsAmountType {
+  text: string;
+  amount: number
+}
+
+export interface FieldsFaqType {
   question: string;
   answer: Array<string>;
 }
 
-// type GenericSliceType<T extends SliceType, Fields extends Array<any>> = {
-//   type: T;
-//   fields: Fields;
-// };
-
-
+/* SLICES */
 export type SliceType = "hero" | "activities" | "welcome" | "offer" | "gallery" | "teachers" | "faq" | "feedbacks"
 
-export interface IBody {
-  primary: PrimaryType;
-  items?: Array<FieldsType> | Array<FieldsFaqType> | Array<FieldsOnlyImageType>;
+export interface IBodyWithItems {
+  primary: PrimaryType ;
+  items: Array<HeadingTextType | FieldsWithImageType | FieldsOnlyImageType | FieldsWithIconType | FieldsAmountType| FieldsFaqType>;
   slice_type: SliceType;
 }
 
+export interface IBodyWithoutItems {
+  primary: PrimaryType;
+  slice_type: SliceType;
+}
+
+
 export interface IIndex {
-  body: Array<IBody>;
+  body: Array<IBodyWithItems | IBodyWithoutItems>;
   title: string;
   description: string;
-
 }

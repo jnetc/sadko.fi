@@ -1,7 +1,10 @@
 ---
 // import * as prismic from "@prismicio/client";
-import { getCollection } from "astro:content";
-import { CMS } from "@Lib/prismiccms";
+// import { getCollection } from "astro:content";
+// Content
+import query from "@Queries/index.ts";
+// Types
+import type { IIndex, IBodyWithItems, SliceType } from "@Types";
 // Layouts
 import Layout from "@Layouts/Layout.astro";
 import SectionHero from "@Components/home-page/section-hero/SectionHero.astro";
@@ -11,16 +14,18 @@ import SectionFeedbacks from "@Components/home-page/section-feedbacks/SectionFee
 
 // import { SectionHero } from '@Components/home-page/section-hero'
 // Export data from Markdown collections
-export async function getStaticPaths() {
-  const collection = await getCollection("home");
+// export async function getStaticPaths() {
+//   const collection = await getCollection("home");
 
-  return collection.map((coll) => {
-    return { params: { locale: coll.slug }, props: coll.data };
-  });
-}
-export const prerender = true;
+//   return collection.map((coll) => {
+//     return { params: { locale: coll.slug }, props: coll.data };
+//   });
+// }
+// export const prerender = true;
 export type Hero = typeof Astro.props;
 // const props = Astro.props;
+
+const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
 
 // const lang = Astro.params.locale;
 // let collection;
@@ -30,15 +35,13 @@ export type Hero = typeof Astro.props;
 //   collection = await getEntryBySlug("home", lang);
 // }
 
-// import FetchFromDatoCMS from "@Lib/datocms.ts";
-// const data = await FetchFromDatoCMS(lang);
+import { CMS } from "@Lib/prismiccms";
+const data = (await CMS(lang, query)) as IIndex;
 
 // LOCAL DATA!!!
 // Remove CACHE folder to get updated data!!!
 // import LocaleData from "@Lib/localdata";
-// const data = await LocaleData(lang);
-
-const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
+// const data = await LocaleData(lang, query);
 
 // const repositoryName = import.meta.env.PRISMIC_REPOSITORY_NAME;
 // const accessToken = import.meta.env.PRISMIC_ACCESS_TOKEN;
@@ -80,23 +83,34 @@ const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
 //     }
 //   }
 // `;
-import type { IIndex, SliceType, IBody } from "@Types";
-import query from "@Queries/index.ts";
 
-const data = (await CMS(lang, query)) as IIndex;
 // const data = await request({ query, variables: { locale: "ru" } });
-function getDataForSection(sliceType: SliceType): IBody {
-  return data.body.find((section) => section.slice_type === sliceType) as IBody;
+function getDataForSection(slices: SliceType) {
+  const section = data.body.find((section) => {
+    if (!("items" in section)) {
+      return section;
+    }
+    // if ("gallery" === section.slice_type) {
+    //   return section;
+    // }
+    if (slices === section.slice_type) {
+      return section;
+    }
+    // return section;
+  });
+
+  return section as IBodyWithItems;
 }
-console.log(data.body[1]);
+
+console.log();
 ---
 
 <Layout>
   <main>
     <SectionHero data={getDataForSection("hero")} />
-    <SectionActivities />
-    <SectionTeachers />
-    <SectionFeedbacks />
+    <SectionActivities data={getDataForSection("activities")} />
+    <SectionTeachers data={getDataForSection("teachers")} />
+    <SectionFeedbacks data={getDataForSection("feedbacks")} />
   </main>
 </Layout>
 

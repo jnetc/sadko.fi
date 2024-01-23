@@ -1,30 +1,35 @@
 ---
-import type { TypeUIIcons } from "@Types";
+import { Image } from "astro:assets";
+
+import type { ImageType } from "@Types";
 
 interface Props {
-  icon: TypeUIIcons;
-  index: number;
   heading: string;
   text: string;
+  image: ImageType;
 }
 
-const { heading, text, icon, index } = Astro.props;
+const { heading, text, image } = Astro.props;
 ---
 
 <li class="card">
+  <Image
+    src={image.url}
+    alt={image.alt}
+    width={image.dimensions.width}
+    height={image.dimensions.height}
+    class="card__image"
+  />
+  <h3>{heading}</h3>
+  <p>{text}</p>
   <div class="card__icon" aria-hidden="true">
     <svg class="icon">
-      <use xlink:href=`/svg/ui_icons.svg#${icon}`></use>
+      <use xlink:href=`/svg/ui_icons.svg#arrow_outward`></use>
     </svg>
     <svg class="cookie">
       <use xlink:href=`/svg/ui_icons.svg#cookie`></use>
     </svg>
   </div>
-  <svg class="card__shape" aria-hidden="true">
-    <use xlink:href=`/svg/shapes.svg#shape${index + 1}`></use>
-  </svg>
-  <h3>{heading}</h3>
-  <p>{text}</p>
 </li>
 
 <style>
@@ -33,16 +38,14 @@ const { heading, text, icon, index } = Astro.props;
     scroll-margin-inline-start: var(--gap-32);
     scroll-snap-align: start;
     scroll-snap-stop: always;
-    block-size: 364px;
+    /* block-size: 432px; */
     display: flex;
     flex-direction: column;
-    /* margin-right: var(--gap-32); */
-    padding: var(--gap-24) var(--gap-24) var(--gap-48);
+    padding: var(--gap-48) var(--gap-32) var(--gap-96);
     position: relative;
     border-radius: var(--border-corner-32);
     gap: var(--gap-16);
     overflow: hidden;
-    /* cursor: grab; */
   }
   .card:nth-of-type(5n - 4) {
     background-color: var(--violet-light);
@@ -64,31 +67,17 @@ const { heading, text, icon, index } = Astro.props;
     display: grid;
     width: max-content;
     flex-grow: 1;
-    align-content: flex-start;
-  }
-  .card__shape {
-    --shape: 218px;
-    width: var(--shape);
-    aspect-ratio: 1;
+    margin-inline-start: auto;
     position: absolute;
-    top: calc(-1 * var(--shape) / 4);
-    right: calc(-1 * var(--shape) / 4);
+    bottom: var(--gap-32);
+    right: var(--gap-32);
   }
-
-  .card:nth-of-type(5n - 4) .card__shape {
-    fill: var(--violet);
-  }
-  .card:nth-of-type(5n - 3) .card__shape {
-    fill: var(--violet);
-  }
-  .card:nth-of-type(5n - 2) .card__shape {
-    fill: var(--black);
-  }
-  .card:nth-of-type(5n - 1) .card__shape {
-    fill: var(--green);
-  }
-  .card:nth-of-type(5n) .card__shape {
-    fill: var(--violet-light);
+  .card__image {
+    width: 150px;
+    height: 150px;
+    margin-inline: auto;
+    border-radius: 100vw;
+    object-fit: cover;
   }
 
   .icon,
@@ -101,7 +90,7 @@ const { heading, text, icon, index } = Astro.props;
   }
 
   .icon {
-    width: var(--size-48);
+    width: var(--size-32);
     fill: var(--black);
   }
   .card:nth-of-type(5n - 1) .icon,
@@ -110,7 +99,7 @@ const { heading, text, icon, index } = Astro.props;
   }
 
   .cookie {
-    width: var(--size-96);
+    width: var(--size-64);
     stroke: var(--black);
   }
   .card:nth-of-type(5n - 1) .cookie,
@@ -128,12 +117,11 @@ const { heading, text, icon, index } = Astro.props;
   }
 
   h3 {
-    font-size: var(--font-32);
+    font-size: var(--font-24);
   }
   p {
     min-block-size: var(--size-56);
     font-size: var(--font-16);
-    font-weight: bold;
     line-height: 1.4;
     display: -webkit-box;
     -webkit-box-orient: vertical;
