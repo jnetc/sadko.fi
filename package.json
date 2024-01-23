@@ -12,16 +12,15 @@
   "dependencies": {
     "@astrojs/check": "^0.4.1",
     "@astrojs/netlify": "^4.1.1",
-    "@astrojs/sitemap": "^3.0.4",
+    "@astrojs/sitemap": "^3.0.5",
     "@prismicio/client": "^7.3.1",
     "@prismicio/richtext": "^2.1.5",
-    "astro": "^4.2.1",
-    "astro-tunnel": "^0.1.2",
+    "astro": "^4.2.3",
     "nanostores": "^0.9.5",
     "typescript": "^5.3.3"
   },
   "devDependencies": {
-    "prettier": "^3.2.2",
+    "prettier": "^3.2.4",
     "prettier-plugin-astro": "^0.12.3"
   }
 }

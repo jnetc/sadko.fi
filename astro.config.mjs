@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-import tunnel from "astro-tunnel";
+// import tunnel from "astro-tunnel";
 import netlify from '@astrojs/netlify';
 
 // Что предотвратить ошибку с развертыванием через netlify CLI deploy
@@ -18,11 +18,11 @@ export default defineConfig({
   build: {
     inlineStylesheets: `always`
   },
-  // image: {
-  //   service: {
-  //     entrypoint: 'astro/assets/services/noop'
-  //   }
-  // },
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/noop'
+    }
+  },
   i18n: {
     defaultLocale: 'ru',
     locales: ['ru', 'fi'],
@@ -31,5 +31,5 @@ export default defineConfig({
       redirectToDefaultLocale: false
     }
   },
-  integrations: [tunnel()]
+  integrations: []
 });
