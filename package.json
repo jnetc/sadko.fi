@@ -17,6 +17,7 @@
     "@prismicio/richtext": "^2.1.5",
     "astro": "^4.2.3",
     "nanostores": "^0.9.5",
+    "sharp": "^0.33.2",
     "typescript": "^5.3.3"
   },
   "devDependencies": {
