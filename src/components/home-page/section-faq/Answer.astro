@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { heading, markdown } = Astro.props;
-const md = toMarkdown(markdown);
+const md = await toMarkdown(markdown);
 ---
 
 <li class="faq__details">
@@ -16,10 +16,10 @@ const md = toMarkdown(markdown);
     {heading}
     <span class="faq__summary-icon"></span>
   </h3>
+  <div class="faq__p">
+    <Fragment set:html={md} />
+  </div>
 </li>
-<div class="faq__p">
-  <Fragment set:html={md} />
-</div>
 
 <style>
   .faq__details {
@@ -109,6 +109,10 @@ const md = toMarkdown(markdown);
   }
   .faq__summary.open + .faq__p {
     padding-block-end: var(--gap-48);
+  }
+
+  .faq__p :global(a) {
+    text-decoration: underline var(--violet);
   }
 
   @media (max-width: 1200px) {

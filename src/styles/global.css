@@ -51,8 +51,7 @@ svg {
 }
 
 a {
-  color: var(--violet);
-  text-decoration-color: var(--violet);
+  text-decoration: none;
 }
 a:active {
   color: var(--black);
