@@ -10,6 +10,8 @@ import Layout from "@Layouts/Layout.astro";
 import SectionHero from "@Components/home-page/section-hero/SectionHero.astro";
 import SectionActivities from "@Components/home-page/section-activities/SectionActivities.astro";
 import SectionTeachers from "@Components/home-page/section-teachers/SectionTeachers.astro";
+import SectionFaq from "@Components/home-page/section-faq/SectionFaq.astro";
+
 import SectionFeedbacks from "@Components/home-page/section-feedbacks/SectionFeedbacks.astro";
 
 // import { SectionHero } from '@Components/home-page/section-hero'
@@ -90,9 +92,6 @@ function getDataForSection(slices: SliceType) {
     if (!("items" in section)) {
       return section;
     }
-    // if ("gallery" === section.slice_type) {
-    //   return section;
-    // }
     if (slices === section.slice_type) {
       return section;
     }
@@ -101,8 +100,6 @@ function getDataForSection(slices: SliceType) {
 
   return section as IBodyWithItems;
 }
-
-console.log();
 ---
 
 <Layout>
@@ -110,6 +107,7 @@ console.log();
     <SectionHero data={getDataForSection("hero")} />
     <SectionActivities data={getDataForSection("activities")} />
     <SectionTeachers data={getDataForSection("teachers")} />
+    <SectionFaq data={getDataForSection("faq")} />
     <SectionFeedbacks data={getDataForSection("feedbacks")} />
   </main>
 </Layout>

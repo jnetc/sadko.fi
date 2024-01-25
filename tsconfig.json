@@ -37,7 +37,7 @@
         "./src/pages/*"
       ],
       "@Helpers/*": [
-        "src/utils/*"
+        "src/helpers/*"
       ],
       "@Styles/*": [
         "./src/styles/*"

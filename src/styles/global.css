@@ -4,7 +4,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* min-width: 0; */
   /* border: 1px solid red; */
 }
 
@@ -52,7 +51,8 @@ svg {
 }
 
 a {
-  text-decoration: none;
+  color: var(--violet);
+  text-decoration-color: var(--violet);
 }
 a:active {
   color: var(--black);

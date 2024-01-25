@@ -1,0 +1,73 @@
+---
+import H2Title from "@Components/ui-elements/H2Title.astro";
+import H2Description from "@Components/ui-elements/H2Description.astro";
+import Answer from "./Answer.astro";
+
+import type { IBodyWithItems } from "@Types";
+interface Props {
+  data: IBodyWithItems;
+}
+
+const { primary, items } = Astro.props.data;
+---
+
+<script>
+  const summaries = document.querySelectorAll<HTMLElement>(".faq__summary");
+
+  function selectItem(event: PointerEvent | KeyboardEvent) {
+    const list = event.target as HTMLElement;
+
+    // Collapse only target
+    if (list.classList.contains("open")) {
+      list.classList.remove("open");
+      return;
+    }
+
+    // Collapse all summaries without target
+    summaries.forEach((el) => {
+      if (el.classList.contains("open")) {
+        el.classList.remove("open");
+        return;
+      }
+    });
+
+    list.classList.add("open");
+  }
+
+  summaries.forEach((summary) => {
+    summary.addEventListener("pointerup", selectItem);
+  });
+</script>
+
+<section class="grid main-section faq">
+  <H2Title>{primary.heading}</H2Title>
+  <H2Description>{primary.text}</H2Description>
+  <ul class="faq__container">
+    {
+      items.map((i) => {
+        if ("question" in i) {
+          return <Answer heading={i.question} markdown={i.answer} />;
+        }
+        return null;
+      })
+    }
+  </ul>
+</section>
+
+<style>
+  .faq__container {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 150px minmax(320px, 1fr) 150px;
+    row-gap: var(--gap-32);
+  }
+
+  @media (max-width: 1200px) {
+    .faq {
+      padding-inline: var(--gap-16);
+    }
+    .faq__container {
+      grid-template-columns: auto minmax(320px, 1fr) auto;
+    }
+  }
+</style>

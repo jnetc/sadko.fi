@@ -1,3 +1,5 @@
+import type { RichTextField } from "@prismicio/client";
+
 export type TypeLanguages = 'fi' | 'ru';
 
 export type TypeUIIcons =
@@ -146,7 +148,7 @@ export interface FieldsAmountType {
 
 export interface FieldsFaqType {
   question: string;
-  answer: Array<string>;
+  answer: RichTextField;
 }
 
 /* SLICES */
