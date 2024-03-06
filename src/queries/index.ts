@@ -72,6 +72,11 @@ export default `{
             primary {
               heading
               text
+              slug {
+                ...on _ExternalLink {
+                  url
+                }
+              }
               primary_button
             }
           }
