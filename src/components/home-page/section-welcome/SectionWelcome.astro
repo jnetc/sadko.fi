@@ -1,0 +1,126 @@
+---
+import MetricItem from "./MetricItem.astro";
+
+import type { IBodyWithItems } from "@Types";
+interface Props {
+  data: IBodyWithItems;
+}
+
+const { primary, items } = Astro.props.data;
+
+console.log(primary);
+---
+
+<section class="grid main-section">
+  <h2>{primary.heading}</h2>
+  <p>{primary.text}</p>
+  <a href=`${primary.slug.url}` class="btn btn-secondary btn-welcome">
+    {primary.secondary_button}
+    <span class="btn__icon" aria-hidden="true">
+      <svg>
+        <use xlink:href=`/svg/ui_icons.svg#arrow_outward`></use>
+      </svg>
+    </span>
+  </a>
+  <img
+    class="welcome_image"
+    src="/webp/welcome.webp"
+    alt="mother with a child"
+  />
+  <div class="metric">
+    <span class="metric__shape" aria-hidden="true">
+      <svg>
+        <use xlink:href=`/svg/shapes.svg#shape3`></use>
+      </svg>
+    </span>
+    <ul class="metric__list">
+      {
+        items.map((i) => {
+          if ("amount" in i) {
+            return <MetricItem data={i} />;
+          }
+        })
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  h2,
+  p,
+  .btn-welcome {
+    grid-column: 1 / span 6;
+    padding-inline: var(--gap-16);
+  }
+  .welcome_image {
+    grid-column: 7 / span 6;
+    grid-row: 1 / 3 span;
+    place-self: center;
+  }
+
+  .btn-welcome {
+    width: min-content;
+    margin-top: var(--gap-48);
+  }
+  h2 {
+    font-size: clamp(var(--font-24), 6.55vw, var(--font-48));
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  p {
+    padding-top: var(--gap-36);
+    font-size: clamp(var(--font-18), 3.3vw, var(--font-24));
+    line-height: 1.4;
+  }
+
+  .metric {
+    grid-column: 1 / -1;
+    display: grid;
+    padding-block-start: var(--gap-192);
+    padding-inline: var(--gap-16);
+  }
+  .metric__shape,
+  .metric__list {
+    grid-column: 1;
+    grid-row: 1;
+    place-self: center;
+  }
+
+  .metric__shape svg {
+    position: relative;
+    height: 650px;
+    aspect-ratio: 1;
+    fill: var(--violet-light);
+    opacity: 0.3;
+    z-index: -2;
+  }
+
+  .metric__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-48);
+    justify-content: center;
+  }
+
+  @media (max-width: 1200px) {
+    h2,
+    p,
+    .btn-welcome {
+      grid-column: 1 / -1;
+    }
+
+    .btn-welcome {
+      margin-inline: auto;
+    }
+    .welcome_image {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .metric__list {
+      flex-direction: column;
+    }
+  }
+</style>

@@ -9,6 +9,8 @@ import type { IIndex, IBodyWithItems, SliceType } from "@Types";
 import Layout from "@Layouts/Layout.astro";
 import SectionHero from "@Components/home-page/section-hero/SectionHero.astro";
 import SectionActivities from "@Components/home-page/section-activities/SectionActivities.astro";
+import SectionWelcome from "@Components/home-page/section-welcome/SectionWelcome.astro";
+import SectionOffer from "@Components/home-page/section-offer/SectionOffer.astro";
 import SectionTeachers from "@Components/home-page/section-teachers/SectionTeachers.astro";
 import SectionFaq from "@Components/home-page/section-faq/SectionFaq.astro";
 
@@ -95,7 +97,6 @@ function getDataForSection(slices: SliceType) {
     if (slices === section.slice_type) {
       return section;
     }
-    // return section;
   });
 
   return section as IBodyWithItems;
@@ -106,6 +107,8 @@ function getDataForSection(slices: SliceType) {
   <main>
     <SectionHero data={getDataForSection("hero")} />
     <SectionActivities data={getDataForSection("activities")} />
+    <SectionWelcome data={getDataForSection("welcome")} />
+    <SectionOffer data={getDataForSection("offer")} />
     <SectionTeachers data={getDataForSection("teachers")} />
     <SectionFaq data={getDataForSection("faq")} />
     <SectionFeedbacks data={getDataForSection("feedbacks")} />

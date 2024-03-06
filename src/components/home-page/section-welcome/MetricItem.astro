@@ -1,0 +1,51 @@
+---
+import type { FieldsAmountType } from "@Types";
+interface Props {
+  data: FieldsAmountType;
+}
+
+const { amount, text } = Astro.props.data;
+---
+
+<li class="metric__item">
+  <span class="item__num">{amount}</span>
+  <p class="item__txt">{text}</p>
+  <span class="item__shape" aria-hidden="true">
+    <svg>
+      <use xlink:href=`/svg/shapes.svg#shape6`></use>
+    </svg>
+  </span>
+</li>
+
+<style>
+  .metric__item {
+    position: relative;
+  }
+  .item__num {
+    font-size: var(--font-128);
+    font-weight: bold;
+  }
+  .item__txt {
+    font-size: var(--font-24);
+  }
+  .item__shape {
+    position: absolute;
+    top: -1rem;
+    left: -3rem;
+    z-index: -1;
+  }
+  .item__shape svg {
+    width: 9rem;
+    aspect-ratio: 1;
+    fill: var(--yellow);
+  }
+
+  @media screen and (max-width: 480px) {
+    .item__num {
+      font-size: var(--font-96);
+    }
+    .item__txt {
+      font-size: var(--font-18);
+    }
+  }
+</style>

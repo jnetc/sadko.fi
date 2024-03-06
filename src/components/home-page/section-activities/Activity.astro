@@ -1,30 +1,30 @@
 ---
-import type { TypeUIIcons } from "@Types";
+import type { TypeUIIcons, ISlug, HeadingTextType } from "@Types";
 
-interface Props {
+interface Props extends ISlug, HeadingTextType {
   icon: TypeUIIcons;
   index: number;
-  heading: string;
-  text: string;
 }
 
-const { heading, text, icon, index } = Astro.props;
+const { heading, text, icon, index, slug } = Astro.props;
 ---
 
 <li class="card">
-  <div class="card__icon" aria-hidden="true">
-    <svg class="icon">
-      <use xlink:href=`/svg/ui_icons.svg#${icon}`></use>
+  <a class="card__href" href=`${slug.url}`>
+    <div class="card__icon" aria-hidden="true">
+      <svg class="icon">
+        <use xlink:href=`/svg/ui_icons.svg#${icon}`></use>
+      </svg>
+      <svg class="cookie">
+        <use xlink:href=`/svg/ui_icons.svg#cookie`></use>
+      </svg>
+    </div>
+    <svg class="card__shape" aria-hidden="true">
+      <use xlink:href=`/svg/shapes.svg#shape${index + 1}`></use>
     </svg>
-    <svg class="cookie">
-      <use xlink:href=`/svg/ui_icons.svg#cookie`></use>
-    </svg>
-  </div>
-  <svg class="card__shape" aria-hidden="true">
-    <use xlink:href=`/svg/shapes.svg#shape${index + 1}`></use>
-  </svg>
-  <h3>{heading}</h3>
-  <p>{text}</p>
+    <h3>{heading}</h3>
+    <p>{text}</p>
+  </a>
 </li>
 
 <style>
@@ -34,15 +34,18 @@ const { heading, text, icon, index } = Astro.props;
     scroll-snap-align: start;
     scroll-snap-stop: always;
     block-size: 364px;
-    display: flex;
-    flex-direction: column;
     /* margin-right: var(--gap-32); */
-    padding: var(--gap-24) var(--gap-24) var(--gap-48);
     position: relative;
     border-radius: var(--border-corner-32);
-    gap: var(--gap-16);
     overflow: hidden;
     /* cursor: grab; */
+  }
+  .card__href {
+    height: 100%;
+    display: grid;
+    gap: var(--gap-16);
+    /* flex-direction: column; */
+    padding: var(--gap-24) var(--gap-24) var(--gap-48);
   }
   .card:nth-of-type(5n - 4) {
     background-color: var(--violet-light);
@@ -128,6 +131,7 @@ const { heading, text, icon, index } = Astro.props;
   }
 
   h3 {
+    align-self: flex-end;
     font-size: var(--font-32);
   }
   p {

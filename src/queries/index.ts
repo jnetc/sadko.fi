@@ -40,6 +40,11 @@ export default `{
               text
             }
             fields {
+              slug {
+                ...on _ExternalLink {
+                  url
+                }
+              }
               heading
               text
               icon
@@ -50,6 +55,11 @@ export default `{
             primary {
               heading
               text
+              slug {
+                ...on _ExternalLink {
+                  url
+                }
+              }
               secondary_button
             }
             fields {
@@ -81,6 +91,11 @@ export default `{
               text
             }
             fields {
+             slug {
+                ...on _ExternalLink {
+                  url
+                }
+              }
               heading
               text
               image

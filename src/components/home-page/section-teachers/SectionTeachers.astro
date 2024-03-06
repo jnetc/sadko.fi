@@ -21,7 +21,14 @@ const { primary, items } = Astro.props.data;
     {
       items.map((i) => {
         if ("image" in i && "heading" in i) {
-          return <Teacher heading={i.heading} text={i.text} image={i.image} />;
+          return (
+            <Teacher
+              heading={i.heading}
+              text={i.text}
+              image={i.image}
+              slug={i.slug}
+            />
+          );
         }
         return null;
       })

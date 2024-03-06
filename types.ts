@@ -91,9 +91,15 @@ export type HeadingTextType = {
 export type HrefType = {
   url: string;
 }
+
+export interface ISlug {
+  slug: HrefType
+}
+
 export type LabelType = {
   label: string;
 }
+
 export type ImageType = {
   dimensions: {
     width: number;
@@ -102,10 +108,12 @@ export type ImageType = {
   alt: string;
   url: string;
 }
+
 export type PrimaryButtonType = {
   primary_button: string;
   primary_href: HrefType;
 }
+
 export type SecondaryButtonType = {
   secondary_button: string;
   secondary_href: HrefType;
@@ -113,10 +121,8 @@ export type SecondaryButtonType = {
 
 
 /* PRIMARY TYPE */
-export interface PrimaryType {
+export interface PrimaryType extends HeadingTextType, ISlug {
   label?: string;
-  heading: string;
-  text: string;
   primary_button?: string;
   primary_href?: HrefType;
   secondary_button?: string;
@@ -131,13 +137,13 @@ export interface PrimaryType {
 
 /* FIELDS TYPE */
 
-export interface FieldsOnlyImageType {
+export interface FieldsOnlyImageType extends ISlug {
   image: ImageType;
 }
 
 export interface FieldsWithImageType extends HeadingTextType, FieldsOnlyImageType { }
 
-export interface FieldsWithIconType extends HeadingTextType {
+export interface FieldsWithIconType extends HeadingTextType, ISlug {
   icon: TypeUIIcons;
 }
 

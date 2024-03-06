@@ -1,0 +1,16 @@
+---
+import H2Title from "@Components/ui-elements/H2Title.astro";
+import H2Description from "@Components/ui-elements/H2Description.astro";
+
+import type { IBodyWithoutItems } from "@Types";
+interface Props {
+  data: IBodyWithoutItems;
+}
+
+const { primary } = Astro.props.data;
+---
+
+<section class="grid main-section">
+  <H2Title>{primary.heading}</H2Title>
+  <H2Description>{primary.text}</H2Description>
+</section>

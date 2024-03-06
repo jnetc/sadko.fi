@@ -1,35 +1,35 @@
 ---
 // import { Image } from "astro:assets";
 
-import type { ImageType } from "@Types";
+import type { ImageType, ISlug, HeadingTextType } from "@Types";
 
-interface Props {
-  heading: string;
-  text: string;
+interface Props extends ISlug, HeadingTextType {
   image: ImageType;
 }
 
-const { heading, text, image } = Astro.props;
+const { heading, text, image, slug } = Astro.props;
 ---
 
 <li class="card">
-  <img
-    src={image.url}
-    alt={image.alt}
-    width={image.dimensions.width}
-    height={image.dimensions.height}
-    class="card__image"
-  />
-  <h3>{heading}</h3>
-  <p>{text}</p>
-  <div class="card__icon" aria-hidden="true">
-    <svg class="icon">
-      <use xlink:href=`/svg/ui_icons.svg#arrow_outward`></use>
-    </svg>
-    <svg class="cookie">
-      <use xlink:href=`/svg/ui_icons.svg#cookie`></use>
-    </svg>
-  </div>
+  <a class="card__href" href=`${slug.url}`>
+    <img
+      src={image.url}
+      alt={image.alt}
+      width={image.dimensions.width}
+      height={image.dimensions.height}
+      class="card__image"
+    />
+    <h3>{heading}</h3>
+    <p>{text}</p>
+    <div class="card__icon" aria-hidden="true">
+      <svg class="icon">
+        <use xlink:href=`/svg/ui_icons.svg#arrow_outward`></use>
+      </svg>
+      <svg class="cookie">
+        <use xlink:href=`/svg/ui_icons.svg#cookie`></use>
+      </svg>
+    </div>
+  </a>
 </li>
 
 <style>
@@ -39,13 +39,22 @@ const { heading, text, image } = Astro.props;
     scroll-snap-align: start;
     scroll-snap-stop: always;
     /* block-size: 432px; */
-    display: flex;
-    flex-direction: column;
-    padding: var(--gap-48) var(--gap-32) var(--gap-96);
-    position: relative;
+    /* display: flex; */
+    /* flex-direction: column; */
     border-radius: var(--border-corner-32);
-    gap: var(--gap-16);
+    /* gap: var(--gap-16); */
     overflow: hidden;
+    position: relative;
+  }
+  .card__href {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 3rem auto;
+    gap: var(--gap-16);
+
+    /* flex-direction: column; */
+    padding: var(--gap-48) var(--gap-32) var(--gap-96);
+    /* padding: var(--gap-24) var(--gap-24) var(--gap-48); */
   }
   .card:nth-of-type(5n - 4) {
     background-color: var(--violet-light);
@@ -117,6 +126,8 @@ const { heading, text, image } = Astro.props;
   }
 
   h3 {
+    /* min-height: 3rem; */
+    align-self: flex-end;
     font-size: var(--font-24);
   }
   p {

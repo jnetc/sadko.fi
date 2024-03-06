@@ -2,6 +2,7 @@
 import H2Title from "@Components/ui-elements/H2Title.astro";
 import H2Description from "@Components/ui-elements/H2Description.astro";
 import Answer from "./Answer.astro";
+import QuestuonMark from "./QuestionMark.astro";
 
 import type { IBodyWithItems } from "@Types";
 interface Props {
@@ -51,6 +52,9 @@ const { primary, items } = Astro.props.data;
         return null;
       })
     }
+    <QuestuonMark extraClass="violet" />
+    <QuestuonMark extraClass="yellow" />
+    <QuestuonMark extraClass="green" />
   </ul>
 </section>
 
@@ -60,6 +64,7 @@ const { primary, items } = Astro.props.data;
     display: grid;
     grid-template-columns: 150px minmax(320px, 1fr) 150px;
     row-gap: var(--gap-32);
+    position: relative;
   }
 
   @media (max-width: 1200px) {
@@ -67,7 +72,7 @@ const { primary, items } = Astro.props.data;
       padding-inline: var(--gap-16);
     }
     .faq__container {
-      grid-template-columns: auto minmax(320px, 1fr) auto;
+      grid-template-columns: auto minmax(280px, 1fr) auto;
     }
   }
 </style>

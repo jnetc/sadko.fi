@@ -49,10 +49,10 @@ import CircleButton from "./CircleButton.astro";
     arr.addEventListener("scroll", (ev) => showControlButton(ev, index));
   });
   prevButtons.forEach((btn, index) => {
-    btn.addEventListener("pointerdown", (ev) => moveCarousel(ev, index));
+    btn.addEventListener("click", (ev) => moveCarousel(ev, index));
   });
   nextButtons.forEach((btn, index) => {
-    btn.addEventListener("pointerdown", (ev) => moveCarousel(ev, index));
+    btn.addEventListener("click", (ev) => moveCarousel(ev, index));
   });
 </script>
 
