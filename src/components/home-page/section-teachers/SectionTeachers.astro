@@ -12,7 +12,7 @@ interface Props {
 const { primary, items } = Astro.props.data;
 ---
 
-<section class="grid main-section">
+<section class="grid main-section teachers">
   <H2Title>{primary.heading}</H2Title>
   <H2Description>{primary.text}</H2Description>
   <Carousel>
@@ -29,4 +29,19 @@ const { primary, items } = Astro.props.data;
       })
     }
   </Carousel>
+  <svg class="teachers__page-arrow-long">
+    <use xlink:href="/svg/shapes.svg#page_arrow_long"></use>
+  </svg>
 </section>
+
+<style>
+  .teachers__page-arrow-long {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 180px;
+    aspect-ratio: 1;
+    margin-top: var(--gap-96);
+    fill: var(--violet);
+    rotate: z 180deg;
+  }
+</style>

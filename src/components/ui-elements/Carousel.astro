@@ -8,6 +8,9 @@ import CircleButton from "./CircleButton.astro";
 ---
 
 <div class="carousel">
+  <svg class="carousel-arrow-top">
+    <use xlink:href="/svg/shapes.svg#page_arrow_shot"></use>
+  </svg>
   <CircleButton icon="arrow" dataValue="prev" extraClass="hide" />
   <div class="scroll-area">
     <ul class="cards">
@@ -15,6 +18,9 @@ import CircleButton from "./CircleButton.astro";
     </ul>
   </div>
   <CircleButton icon="arrow" dataValue="next" />
+  <svg class="carousel-arrow-bottom">
+    <use xlink:href="/svg/shapes.svg#page_arrow_shot"></use>
+  </svg>
 </div>
 
 <script>
@@ -57,10 +63,26 @@ import CircleButton from "./CircleButton.astro";
 </script>
 
 <style>
+  .carousel-arrow-top,
+  .carousel-arrow-bottom {
+    grid-column: 2 / -2;
+    height: 1.5rem;
+    aspect-ratio: 2 / 1;
+    fill: var(--violet-light);
+  }
+  .carousel-arrow-top {
+    margin-inline: auto 1rem;
+  }
+  .carousel-arrow-bottom {
+    margin-top: 2rem;
+    margin-inline: auto;
+  }
   .carousel {
     grid-column: 1 / -1;
     max-width: 1504px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
     position: relative;
   }
 
