@@ -55,7 +55,7 @@ export default `{
             primary {
               heading
               text
-              slug {
+              secondary_href {
                 ...on _ExternalLink {
                   url
                 }
@@ -72,7 +72,7 @@ export default `{
             primary {
               heading
               text
-              slug {
+              primary_href {
                 ...on _ExternalLink {
                   url
                 }
@@ -83,10 +83,14 @@ export default `{
           ... on HomeBodyGallery {
             type
             primary {
+              secondary_href {
+                ... on _ExternalLink {
+                  url
+                }
+              }
               secondary_button
-            }
-            fields {
-              image
+              image_pc
+              image_mob
             }
           }
           ... on HomeBodyTeachers {

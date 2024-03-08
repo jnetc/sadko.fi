@@ -2,16 +2,15 @@
 import HeroTitle from "@Components/home-page/section-hero/HeroTitle.astro";
 import Link from "@Components/ui-elements/Link.astro";
 // Type
-// import type { Hero } from "@Pages/[locale]/index.astro";
-import type { IBodyWithoutItems } from "@Types";
+
+import type { HomeBodyHero } from "@Types";
 interface Props {
-  data: IBodyWithoutItems;
+  data: HomeBodyHero;
 }
 
 // const collection = await getCollection("home");
 // export const prerender = true;
 
-// const props = collection.map((data) => data.data)[0];
 const { primary } = Astro.props.data;
 ---
 
@@ -24,10 +23,10 @@ const { primary } = Astro.props.data;
   {
     primary.primary_button ? (
       <div class="hero__action-btns">
-        <Link href={primary.primary_href!.url} isPrimary icon="arrow_outward">
+        <Link href={primary.primary_href.url} isPrimary icon="arrow_outward">
           {primary.primary_button}
         </Link>
-        <Link href={primary.secondary_href!.url} icon="location">
+        <Link href={primary.secondary_href.url} icon="location">
           {primary.secondary_button}
         </Link>
       </div>

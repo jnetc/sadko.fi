@@ -121,13 +121,18 @@ export type SecondaryButtonType = {
 
 
 /* PRIMARY TYPE */
-export interface PrimaryType extends HeadingTextType, ISlug {
-  label?: string;
-  primary_button?: string;
-  primary_href?: HrefType;
-  secondary_button?: string;
-  secondary_href?: HrefType;
-}
+// export interface PrimaryType extends HeadingTextType, ISlug, PrimaryButtonType, SecondaryButtonType {
+//   label?: string;
+//   // primary_button?: string;
+//   // primary_href?: HrefType;
+//   // secondary_button?: string;
+//   // secondary_href?: HrefType;
+// }
+
+// export interface PrimaryGalleryType extends HeadingTextType, SecondaryButtonType {
+//   image_pc: ImageType;
+//   image_mob: ImageType;
+// }
 
 // export interface PrimaryType extends HeadingTextType, LabelType, PrimaryButtonType, SecondaryButtonType { }
 // export interface PrimaryWithPrimaryBtnType extends HeadingTextType, PrimaryButtonType { }
@@ -137,43 +142,93 @@ export interface PrimaryType extends HeadingTextType, ISlug {
 
 /* FIELDS TYPE */
 
-export interface FieldsOnlyImageType extends ISlug {
-  image: ImageType;
-}
+// export interface FieldsOnlyImageType extends ISlug {
+//   image: ImageType;
+// }
 
-export interface FieldsWithImageType extends HeadingTextType, FieldsOnlyImageType { }
+// export interface FieldsWithImageType extends HeadingTextType, FieldsOnlyImageType { }
 
-export interface FieldsWithIconType extends HeadingTextType, ISlug {
-  icon: TypeUIIcons;
-}
+// export interface FieldsWithIconType extends HeadingTextType, ISlug {
+//   icon: TypeUIIcons;
+// }
 
-export interface FieldsAmountType {
-  text: string;
-  amount: number
-}
 
-export interface FieldsFaqType {
-  question: string;
-  answer: RichTextField;
-}
+// export interface FieldsAmountType {
+//   text: string;
+//   amount: number
+// }
+
+// export interface FieldsFaqType {
+//   question: string;
+//   answer: RichTextField;
+// }
 
 /* SLICES */
 export type SliceType = "hero" | "activities" | "welcome" | "offer" | "gallery" | "teachers" | "faq" | "feedbacks"
 
-export interface IBodyWithItems {
-  primary: PrimaryType ;
-  items: Array<HeadingTextType | FieldsWithImageType | FieldsOnlyImageType | FieldsWithIconType | FieldsAmountType| FieldsFaqType>;
-  slice_type: SliceType;
-}
+// export interface IBodyWithItems {
+//   primary: PrimaryType | PrimaryGalleryType;
+//   items: Array<HeadingTextType | FieldsWithImageType | FieldsOnlyImageType | FieldsWithIconType | FieldsAmountType| FieldsFaqType>;
+//   slice_type: SliceType;
+// }
 
-export interface IBodyWithoutItems {
-  primary: PrimaryType;
-  slice_type: SliceType;
-}
+// export interface IBodyWithoutItems {
+//   primary: PrimaryType;
+//   slice_type: SliceType;
+// }
 
+
+// export interface IIndex {
+//   body: Array<IBodyWithItems | IBodyWithoutItems>;
+//   title: string;
+//   description: string;
+// }
 
 export interface IIndex {
-  body: Array<IBodyWithItems | IBodyWithoutItems>;
+  body: Array<HomeBodyHero | HomeBodyActivities | HomeBodyWelcome | HomeBodyOffer | HomeBodyGallery | HomeBodyTeachers | HomeBodyFaq | HomeBodyFeedbacks>;
   title: string;
   description: string;
+}
+
+export interface HomeBodyHero {
+  slice_type: 'hero';
+  primary: PrimaryButtonType & SecondaryButtonType & HeadingTextType & LabelType;
+}
+
+export interface HomeBodyActivities {
+  slice_type: 'activities';
+  primary: HeadingTextType;
+  items: Array<HeadingTextType & ISlug & {icon: TypeUIIcons}>;
+}
+
+export interface HomeBodyWelcome {
+  slice_type:  'welcome';
+  primary: SecondaryButtonType & HeadingTextType;
+  items: Array<{text: string;  amount: number}>;
+}
+
+export interface HomeBodyOffer {
+  slice_type: 'offer';
+  primary: PrimaryButtonType & HeadingTextType;
+}
+
+export interface HomeBodyGallery {
+  slice_type: 'gallery';
+  primary: SecondaryButtonType & {image_pc: ImageType; image_mob: ImageType};
+}
+
+export interface HomeBodyTeachers {
+  slice_type:  'teachers';
+  primary: HeadingTextType;
+  items: Array<HeadingTextType & ISlug & {image: ImageType}>;
+}
+export interface HomeBodyFaq {
+  slice_type: 'faq';
+  primary: HeadingTextType;
+  items: Array<{question: string;  answer: RichTextField}>;
+}
+export interface HomeBodyFeedbacks {
+  slice_type: 'feedbacks';
+  primary: HeadingTextType;
+  items: Array<HeadingTextType>;
 }

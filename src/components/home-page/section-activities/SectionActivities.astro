@@ -5,9 +5,9 @@ import H2Description from "@Components/ui-elements/H2Description.astro";
 import Carousel from "@Components/ui-elements/Carousel.astro";
 import Activity from "./Activity.astro";
 
-import type { IBodyWithItems } from "@Types";
+import type { HomeBodyActivities } from "@Types";
 interface Props {
-  data: IBodyWithItems;
+  data: HomeBodyActivities;
 }
 // Get language from Astro Runtime API
 // const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
@@ -20,18 +20,15 @@ const { primary, items } = Astro.props.data;
   <Carousel>
     {
       items.map((i, index) => {
-        if ("icon" in i) {
-          return (
-            <Activity
-              heading={i.heading}
-              text={i.text}
-              icon={i.icon}
-              index={index}
-              slug={i.slug}
-            />
-          );
-        }
-        return null;
+        return (
+          <Activity
+            heading={i.heading}
+            text={i.text}
+            icon={i.icon}
+            index={index}
+            slug={i.slug}
+          />
+        );
       })
     }
   </Carousel>

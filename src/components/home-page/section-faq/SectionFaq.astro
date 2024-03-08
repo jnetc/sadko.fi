@@ -4,9 +4,9 @@ import H2Description from "@Components/ui-elements/H2Description.astro";
 import Answer from "./Answer.astro";
 import QuestuonMark from "./QuestionMark.astro";
 
-import type { IBodyWithItems } from "@Types";
+import type { HomeBodyFaq } from "@Types";
 interface Props {
-  data: IBodyWithItems;
+  data: HomeBodyFaq;
 }
 
 const { primary, items } = Astro.props.data;

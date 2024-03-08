@@ -4,13 +4,14 @@
 // Content
 import query from "@Queries/index.ts";
 // Types
-import type { IIndex, IBodyWithItems, SliceType } from "@Types";
+import type { IIndex } from "@Types";
 // Layouts
 import Layout from "@Layouts/Layout.astro";
 import SectionHero from "@Components/home-page/section-hero/SectionHero.astro";
 import SectionActivities from "@Components/home-page/section-activities/SectionActivities.astro";
 import SectionWelcome from "@Components/home-page/section-welcome/SectionWelcome.astro";
 import SectionOffer from "@Components/home-page/section-offer/SectionOffer.astro";
+import SectionGallery from "@Components/home-page/section-gallery/SectionGallery.astro";
 import SectionTeachers from "@Components/home-page/section-teachers/SectionTeachers.astro";
 import SectionFaq from "@Components/home-page/section-faq/SectionFaq.astro";
 
@@ -89,29 +90,89 @@ const data = (await CMS(lang, query)) as IIndex;
 // `;
 
 // const data = await request({ query, variables: { locale: "ru" } });
-function getDataForSection(slices: SliceType) {
-  const section = data.body.find((section) => {
-    if (!("items" in section)) {
-      return section;
-    }
-    if (slices === section.slice_type) {
-      return section;
-    }
-  });
+// function getDataForSection(slices: SliceType) {
+//   // console.log(slices);
 
-  return section as IBodyWithItems;
-}
+//   let section;
+
+//   data.body.filter((i) => {
+//     if (i.slice_type === "hero") {
+//       section = i
+//       console.log(section);
+//     }
+//     // switch (i.slice_type) {
+//     //   case "hero":
+//     //     return i;
+//     //   case "activities":
+//     //     return i;
+//     //   case "welcome":
+//     //     return i;
+//     //   case "offer":
+//     //     return i;
+//     //   case "gallery":
+//     //     return i;
+//     //   case "teachers":
+//     //     return i;
+//     //   case "feedbacks":
+//     //     return i;
+//     //   default:
+//     //     return i;
+//     // }
+//     // if (!("items" in i)) {
+//     //   return i;
+//     // }
+//     // if ("items" in i) {
+//     //   return i;
+//     // }
+//   });
+
+//   console.log(section);
+
+//   // return section[0] as const;
+// }
 ---
 
 <Layout>
   <main>
-    <SectionHero data={getDataForSection("hero")} />
-    <SectionActivities data={getDataForSection("activities")} />
+    {data.body[0].slice_type === "hero" && <SectionHero data={data.body[0]} />}
+    {
+      data.body[1].slice_type === "activities" && (
+        <SectionActivities data={data.body[1]} />
+      )
+    }
+    {
+      data.body[2].slice_type === "welcome" && (
+        <SectionWelcome data={data.body[2]} />
+      )
+    }
+    {
+      data.body[3].slice_type === "offer" && (
+        <SectionOffer data={data.body[3]} />
+      )
+    }
+    {
+      data.body[4].slice_type === "gallery" && (
+        <SectionGallery data={data.body[4]} />
+      )
+    }
+    {
+      data.body[5].slice_type === "teachers" && (
+        <SectionTeachers data={data.body[5]} />
+      )
+    }
+    {data.body[6].slice_type === "faq" && <SectionFaq data={data.body[6]} />}
+    {
+      data.body[7].slice_type === "feedbacks" && (
+        <SectionFeedbacks data={data.body[7]} />
+      )
+    }
+    <!-- <SectionActivities data={getDataForSection("activities")} />
     <SectionWelcome data={getDataForSection("welcome")} />
     <SectionOffer data={getDataForSection("offer")} />
+    <SectionGallery data={getDataForSection("gallery")} />
     <SectionTeachers data={getDataForSection("teachers")} />
     <SectionFaq data={getDataForSection("faq")} />
-    <SectionFeedbacks data={getDataForSection("feedbacks")} />
+    <SectionFeedbacks data={getDataForSection("feedbacks")} /> -->
   </main>
 </Layout>
 

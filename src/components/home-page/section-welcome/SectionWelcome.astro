@@ -1,9 +1,9 @@
 ---
 import MetricItem from "./MetricItem.astro";
 
-import type { IBodyWithItems } from "@Types";
+import type { HomeBodyWelcome } from "@Types";
 interface Props {
-  data: IBodyWithItems;
+  data: HomeBodyWelcome;
 }
 
 const { primary, items } = Astro.props.data;
@@ -12,7 +12,7 @@ const { primary, items } = Astro.props.data;
 <section class="grid main-section">
   <h2>{primary.heading}</h2>
   <p>{primary.text}</p>
-  <a href=`${primary.slug.url}` class="btn btn-secondary btn-welcome">
+  <a href=`${primary.secondary_href.url}` class="btn btn-secondary btn-welcome">
     {primary.secondary_button}
     <span class="btn__icon" aria-hidden="true">
       <svg>

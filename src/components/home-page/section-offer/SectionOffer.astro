@@ -1,7 +1,7 @@
 ---
-import type { IBodyWithoutItems } from "@Types";
+import type { HomeBodyOffer } from "@Types";
 interface Props {
-  data: IBodyWithoutItems;
+  data: HomeBodyOffer;
 }
 
 const { primary } = Astro.props.data;
@@ -11,7 +11,7 @@ const { primary } = Astro.props.data;
   <div class="offer__box">
     <h2>{primary.heading}</h2>
     <p>{primary.text}</p>
-    <a href=`${primary.slug.url}` class="btn btn-primary btn-offer">
+    <a href=`${primary.primary_href.url}` class="btn btn-primary btn-offer">
       {primary.primary_button}
       <span class="btn__icon" aria-hidden="true">
         <svg>

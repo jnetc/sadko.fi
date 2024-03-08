@@ -1,0 +1,62 @@
+---
+import type { HomeBodyGallery } from "@Types";
+interface Props {
+  data: HomeBodyGallery;
+}
+
+const { primary } = Astro.props.data;
+---
+
+<section class="grid main-section gallery">
+  <img
+    class="gallery__image-pc"
+    src={primary.image_pc.url}
+    alt="photo gallery"
+  />
+  <img
+    class="gallery__image-mob"
+    src={primary.image_mob.url}
+    alt="photo gallery"
+  />
+  <a href={primary.secondary_href.url} class="btn btn-secondary btn-gallery">
+    {primary.secondary_button}
+    <span class="btn__icon" aria-hidden="true">
+      <svg>
+        <use xlink:href=`/svg/ui_icons.svg#arrow_outward`></use>
+      </svg>
+    </span>
+  </a>
+</section>
+
+<style>
+  .gallery {
+    row-gap: var(--gap-36);
+  }
+  .gallery__image-pc,
+  .gallery__image-mob,
+  .btn-gallery {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+  .gallery__image-pc {
+  }
+  .gallery__image-mob {
+    display: none;
+  }
+
+  @media (max-width: 1200px) {
+    .hero__boy,
+    .hero__girl {
+      display: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .gallery__image-pc {
+      display: none;
+    }
+    .gallery__image-mob {
+      display: block;
+    }
+  }
+</style>

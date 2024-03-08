@@ -1,7 +1,6 @@
 ---
-import type { FieldsAmountType } from "@Types";
 interface Props {
-  data: FieldsAmountType;
+  data: { text: string; amount: number };
 }
 
 const { amount, text } = Astro.props.data;

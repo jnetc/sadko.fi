@@ -1,14 +1,12 @@
 ---
-// import { Image } from "astro:assets";
-// Components
 import H2Title from "@Components/ui-elements/H2Title.astro";
 import H2Description from "@Components/ui-elements/H2Description.astro";
 import Carousel from "@Components/ui-elements/Carousel.astro";
-
-import type { IBodyWithItems } from "@Types";
 import Teacher from "./Teacher.astro";
+
+import type { HomeBodyTeachers } from "@Types";
 interface Props {
-  data: IBodyWithItems;
+  data: HomeBodyTeachers;
 }
 
 const { primary, items } = Astro.props.data;
@@ -20,17 +18,14 @@ const { primary, items } = Astro.props.data;
   <Carousel>
     {
       items.map((i) => {
-        if ("image" in i && "heading" in i) {
-          return (
-            <Teacher
-              heading={i.heading}
-              text={i.text}
-              image={i.image}
-              slug={i.slug}
-            />
-          );
-        }
-        return null;
+        return (
+          <Teacher
+            heading={i.heading}
+            text={i.text}
+            image={i.image}
+            slug={i.slug}
+          />
+        );
       })
     }
   </Carousel>

@@ -4,9 +4,9 @@ import H2Description from "@Components/ui-elements/H2Description.astro";
 import Carousel from "@Components/ui-elements/Carousel.astro";
 import Feedback from "./Feedback.astro";
 
-import type { IBodyWithItems } from "@Types";
+import type { HomeBodyFeedbacks } from "@Types";
 interface Props {
-  data: IBodyWithItems;
+  data: HomeBodyFeedbacks;
 }
 
 const { primary, items } = Astro.props.data;
@@ -18,10 +18,7 @@ const { primary, items } = Astro.props.data;
   <Carousel>
     {
       items.map((i, index) => {
-        if ("heading" in i) {
-          return <Feedback heading={i.heading} text={i.text} index={index} />;
-        }
-        return null;
+        return <Feedback heading={i.heading} text={i.text} index={index} />;
       })
     }
   </Carousel>
