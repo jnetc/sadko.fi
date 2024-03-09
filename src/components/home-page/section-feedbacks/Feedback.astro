@@ -22,12 +22,12 @@ const { heading, text, index } = Astro.props;
     scroll-margin-inline-start: var(--gap-32);
     scroll-snap-align: start;
     scroll-snap-stop: always;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 3.5rem 1fr;
     padding: var(--gap-128) var(--gap-32) var(--gap-48);
     position: relative;
     border-radius: var(--border-corner-32);
-    gap: var(--gap-36);
+    gap: var(--gap-24);
     box-shadow:
       0 25px 20px var(--opacity-3),
       0 15px 10px var(--opacity-3);
@@ -70,6 +70,7 @@ const { heading, text, index } = Astro.props;
   }
 
   h3 {
+    align-self: flex-end;
     font-size: var(--font-32);
   }
   p {

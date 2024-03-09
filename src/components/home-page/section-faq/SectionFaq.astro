@@ -56,9 +56,33 @@ const { primary, items } = Astro.props.data;
     <QuestuonMark extraClass="yellow" />
     <QuestuonMark extraClass="green" />
   </ul>
+  <img
+    class="faq__image"
+    src="/webp/father_and_boy.webp"
+    alt="mother with a child"
+  />
+  <svg class="faq__svg">
+    <use xlink:href="/svg/shapes.svg#page_stroke_02"></use>
+  </svg>
 </section>
 
 <style>
+  .faq__svg,
+  .faq__image {
+    place-self: center;
+    margin-top: var(--gap-192);
+  }
+
+  .faq__svg {
+    grid-column: 8 / span 6;
+    max-height: 366px;
+    aspect-ratio: 1 / 1.5;
+    stroke: var(--violet);
+    stroke-width: 30;
+  }
+  .faq__image {
+    grid-column: 1 / span 7;
+  }
   .faq__container {
     grid-column: 1 / -1;
     display: grid;
@@ -73,6 +97,14 @@ const { primary, items } = Astro.props.data;
     }
     .faq__container {
       grid-template-columns: auto minmax(280px, 1fr) auto;
+    }
+  }
+  @media (max-width: 959px) {
+    .faq__svg {
+      grid-column: 1 / -1;
+    }
+    .faq__image {
+      display: none;
     }
   }
 </style>
