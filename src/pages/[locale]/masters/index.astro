@@ -1,0 +1,38 @@
+---
+// Content
+import query from "@Queries/masters";
+// Types
+import type { IActivity } from "@Types";
+// Layouts
+import Layout from "@Layouts/Layout.astro";
+
+const lang = Astro.currentLocale as "ru" | "fi";
+
+import { repeatable } from "@Lib/prismiccms";
+const response = await repeatable(query, "masters", lang);
+// LOCAL DATA!!!
+// Remove CACHE folder to get updated data!!!
+// import { RepeatableLocaleData } from "@Lib/localdata";
+// const response = await RepeatableLocaleData(query, "masters", lang);
+// console.log(response);
+---
+
+<Layout>
+  <!-- <main>{props.title}</main> -->
+  <h1>{lang === "ru" ? "Мастер Класс" : "Master Class"}</h1>
+  {
+    response.map((master) => {
+      const data = master.data as IActivity;
+      return (
+        <section>
+          <span>{master.last_publication_date}</span>
+          <h2>{data.title}</h2>
+          <p>{data.description}</p>
+          <a href={`masters/${data.slug.url}`} class="btn btn-primary">
+            {lang === "ru" ? "Далее" : "Lisaa"}
+          </a>
+        </section>
+      );
+    })
+  }
+</Layout>

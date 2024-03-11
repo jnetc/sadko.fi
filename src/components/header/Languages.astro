@@ -1,6 +1,6 @@
 ---
 // Get language from Astro Runtime API
-const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
+const lang = Astro.currentLocale as "ru" | "fi";
 ---
 
 <div class="header__lang">

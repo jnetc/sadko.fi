@@ -47,6 +47,8 @@ export type TypeUIActivityIcons =
 
 type TypeBlanks = "blank-hobby" | "blank-camp" | "blank-membership";
 
+export type Pages = "home" | TypeBlanks | TypeUIActivityIcons;
+
 export type TypeUICardShapes =
   "shape01"
   | "shape02"
@@ -92,7 +94,7 @@ export type HrefType = {
   url: string;
 }
 
-export interface ISlug {
+export type SlugType = {
   slug: HrefType
 }
 
@@ -121,7 +123,7 @@ export type SecondaryButtonType = {
 
 
 /* PRIMARY TYPE */
-// export interface PrimaryType extends HeadingTextType, ISlug, PrimaryButtonType, SecondaryButtonType {
+// export interface PrimaryType extends HeadingTextType, SlugType, PrimaryButtonType, SecondaryButtonType {
 //   label?: string;
 //   // primary_button?: string;
 //   // primary_href?: HrefType;
@@ -142,13 +144,13 @@ export type SecondaryButtonType = {
 
 /* FIELDS TYPE */
 
-// export interface FieldsOnlyImageType extends ISlug {
+// export interface FieldsOnlyImageType extends SlugType {
 //   image: ImageType;
 // }
 
 // export interface FieldsWithImageType extends HeadingTextType, FieldsOnlyImageType { }
 
-// export interface FieldsWithIconType extends HeadingTextType, ISlug {
+// export interface FieldsWithIconType extends HeadingTextType, SlugType {
 //   icon: TypeUIIcons;
 // }
 
@@ -198,7 +200,7 @@ export interface HomeBodyHero {
 export interface HomeBodyActivities {
   slice_type: 'activities';
   primary: HeadingTextType;
-  items: Array<HeadingTextType & ISlug & {icon: TypeUIIcons}>;
+  items: Array<HeadingTextType & SlugType & {icon: TypeUIIcons}>;
 }
 
 export interface HomeBodyWelcome {
@@ -220,7 +222,7 @@ export interface HomeBodyGallery {
 export interface HomeBodyTeachers {
   slice_type:  'teachers';
   primary: HeadingTextType;
-  items: Array<HeadingTextType & ISlug & {image: ImageType}>;
+  items: Array<HeadingTextType & SlugType & {image: ImageType}>;
 }
 export interface HomeBodyFaq {
   slice_type: 'faq';
@@ -231,4 +233,22 @@ export interface HomeBodyFeedbacks {
   slice_type: 'feedbacks';
   primary: HeadingTextType;
   items: Array<HeadingTextType>;
+}
+
+
+export interface IActivity extends SlugType, PrimaryButtonType {
+  image: ImageType;
+  title: string;
+  description: string;
+  teacher: string;
+  date: string;
+  time: string;
+  age: string;
+  price: number;
+  address: string;
+  phone: string;
+  email: string;
+  facebook: HrefType;
+  instagram: HrefType;
+  text: RichTextField;
 }

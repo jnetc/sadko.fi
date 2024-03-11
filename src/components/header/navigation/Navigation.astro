@@ -4,7 +4,7 @@ import { headerLinks } from "@Content/i18n/_header";
 // Components
 import SubMenu from "./SubMenu.astro";
 // Get language from Astro Runtime API
-const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
+const lang = Astro.currentLocale as "ru" | "fi";
 ---
 
 <script>
@@ -90,7 +90,7 @@ const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
       <SubMenu subMenu={headerLinks[lang].signup.submenu} index={2} />
     </li>
     <li class="nav__link" role="menuitem">
-      <a href={`/${lang}/teachers`} data-astro-reload class="nav__link-name"
+      <a href={`/${lang}/schedule`} data-astro-reload class="nav__link-name"
         >{headerLinks[lang].schedule}
       </a>
     </li>

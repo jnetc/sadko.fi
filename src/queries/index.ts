@@ -1,14 +1,3 @@
-// export default `{
-//       allClubss {
-//         edges {
-//           node {
-//             title
-//             address
-//             description
-//           }
-//         }
-//       }
-//     }`;
 export default `{
   allHomes {
     edges {

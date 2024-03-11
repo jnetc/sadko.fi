@@ -1,6 +1,4 @@
 ---
-// import * as prismic from "@prismicio/client";
-// import { getCollection } from "astro:content";
 // Content
 import query from "@Queries/index.ts";
 // Types
@@ -14,195 +12,59 @@ import SectionOffer from "@Components/home-page/section-offer/SectionOffer.astro
 import SectionGallery from "@Components/home-page/section-gallery/SectionGallery.astro";
 import SectionTeachers from "@Components/home-page/section-teachers/SectionTeachers.astro";
 import SectionFaq from "@Components/home-page/section-faq/SectionFaq.astro";
-
 import SectionFeedbacks from "@Components/home-page/section-feedbacks/SectionFeedbacks.astro";
 
-// import { SectionHero } from '@Components/home-page/section-hero'
-// Export data from Markdown collections
-// export async function getStaticPaths() {
-//   const collection = await getCollection("home");
+const lang = Astro.currentLocale as "ru" | "fi";
 
-//   return collection.map((coll) => {
-//     return { params: { locale: coll.slug }, props: coll.data };
-//   });
-// }
-// export const prerender = true;
-export type Hero = typeof Astro.props;
-// const props = Astro.props;
-
-const lang = Astro.url.pathname.substring(1, 3) as "ru" | "fi";
-
-// const lang = Astro.params.locale;
-// let collection;
-// if (lang === "ru") {
-// collection = await getEntryBySlug("home", lang);
-// } else {
-//   collection = await getEntryBySlug("home", lang);
-// }
-
-import { CMS } from "@Lib/prismiccms";
-const data = (await CMS(lang, query)) as IIndex;
-
+import { single } from "@Lib/prismiccms";
+const response = (await single(query, "home", lang)) as IIndex;
 // LOCAL DATA!!!
 // Remove CACHE folder to get updated data!!!
 // import LocaleData from "@Lib/localdata";
-// const data = await LocaleData(lang, query);
-
-// const repositoryName = import.meta.env.PRISMIC_REPOSITORY_NAME;
-// const accessToken = import.meta.env.PRISMIC_ACCESS_TOKEN;
-
-// const client = prismic.createClient(repositoryName, {
-//   accessToken,
-//   // fetchOptions: { cache: "force-cache" },
-//   defaultParams: { lang },
-// });
-
-// async function init() {
-//   const response = await client.getAllByType("clubs", {
-//     graphQuery: `{
-//       allClubss {
-//         edges {
-//           node {
-//             title
-//             address
-//             description
-//           }
-//         }
-//       }
-//     }`,
-//   });
-
-//   return response;
-// }
-
-// export const query = gql`
-//   query MyQuery {
-//     allClubss(lang: "ru") {
-//       edges {
-//         node {
-//           title
-//           address
-//           description
-//         }
-//       }
-//     }
-//   }
-// `;
-
-// const data = await request({ query, variables: { locale: "ru" } });
-// function getDataForSection(slices: SliceType) {
-//   // console.log(slices);
-
-//   let section;
-
-//   data.body.filter((i) => {
-//     if (i.slice_type === "hero") {
-//       section = i
-//       console.log(section);
-//     }
-//     // switch (i.slice_type) {
-//     //   case "hero":
-//     //     return i;
-//     //   case "activities":
-//     //     return i;
-//     //   case "welcome":
-//     //     return i;
-//     //   case "offer":
-//     //     return i;
-//     //   case "gallery":
-//     //     return i;
-//     //   case "teachers":
-//     //     return i;
-//     //   case "feedbacks":
-//     //     return i;
-//     //   default:
-//     //     return i;
-//     // }
-//     // if (!("items" in i)) {
-//     //   return i;
-//     // }
-//     // if ("items" in i) {
-//     //   return i;
-//     // }
-//   });
-
-//   console.log(section);
-
-//   // return section[0] as const;
-// }
+// const response = await LocaleData(query, "home", lang);
 ---
 
 <Layout>
   <main>
-    {data.body[0].slice_type === "hero" && <SectionHero data={data.body[0]} />}
     {
-      data.body[1].slice_type === "activities" && (
-        <SectionActivities data={data.body[1]} />
+      response.body[0].slice_type === "hero" && (
+        <SectionHero data={response.body[0]} />
       )
     }
     {
-      data.body[2].slice_type === "welcome" && (
-        <SectionWelcome data={data.body[2]} />
+      response.body[1].slice_type === "activities" && (
+        <SectionActivities data={response.body[1]} />
       )
     }
     {
-      data.body[3].slice_type === "offer" && (
-        <SectionOffer data={data.body[3]} />
+      response.body[2].slice_type === "welcome" && (
+        <SectionWelcome data={response.body[2]} />
       )
     }
     {
-      data.body[4].slice_type === "gallery" && (
-        <SectionGallery data={data.body[4]} />
+      response.body[3].slice_type === "offer" && (
+        <SectionOffer data={response.body[3]} />
       )
     }
     {
-      data.body[5].slice_type === "teachers" && (
-        <SectionTeachers data={data.body[5]} />
+      response.body[4].slice_type === "gallery" && (
+        <SectionGallery data={response.body[4]} />
       )
     }
-    {data.body[6].slice_type === "faq" && <SectionFaq data={data.body[6]} />}
     {
-      data.body[7].slice_type === "feedbacks" && (
-        <SectionFeedbacks data={data.body[7]} />
+      response.body[5].slice_type === "teachers" && (
+        <SectionTeachers data={response.body[5]} />
       )
     }
-    <!-- <SectionActivities data={getDataForSection("activities")} />
-    <SectionWelcome data={getDataForSection("welcome")} />
-    <SectionOffer data={getDataForSection("offer")} />
-    <SectionGallery data={getDataForSection("gallery")} />
-    <SectionTeachers data={getDataForSection("teachers")} />
-    <SectionFaq data={getDataForSection("faq")} />
-    <SectionFeedbacks data={getDataForSection("feedbacks")} /> -->
+    {
+      response.body[6].slice_type === "faq" && (
+        <SectionFaq data={response.body[6]} />
+      )
+    }
+    {
+      response.body[7].slice_type === "feedbacks" && (
+        <SectionFeedbacks data={response.body[7]} />
+      )
+    }
   </main>
 </Layout>
-
-<style is:global>
-  /* .hero {
-    padding-block-start: var(--gap-72);
-  }
-
-  .hero__label,
-  .hero__title,
-  .hero__desc,
-  .hero__action-btns {
-    grid-column: 2 / -2;
-    justify-self: center;
-  }
-
-  .hero__label,
-  .hero__desc {
-    color: var(--grey-300);
-  }
-
-  .hero__label {
-    font-size: var(--font-20);
-  }
-
-  .hero__desc {
-    max-width: 660px;
-    color: var(--grey-300);
-    font-size: var(--font-24);
-    text-align: center;
-    line-height: 1.4;
-  } */
-</style>

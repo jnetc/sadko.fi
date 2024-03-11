@@ -1,0 +1,85 @@
+---
+export const prerender = true;
+// Content
+import query from "@Queries/masters";
+// Types
+import type { IActivity } from "@Types";
+// Layouts
+import Layout from "@Layouts/Layout.astro";
+// Export data from Markdown collections
+// export async function getStaticPaths() {
+//   const collection = await getCollection("masters");
+
+//   return collection.map((conent) => {
+//     return { params: { locale: conent.slug }, props: conent.data };
+//   });
+// }
+// export const prerender = true;
+const lang = Astro.currentLocale as "ru" | "fi";
+import { staticPath, repeatable } from "@Lib/prismiccms";
+// LOCAL DATA!!!
+// Remove CACHE folder to get updated data!!!
+// import { RepeatableLocaleData } from "@Lib/localdata";
+// console.log(response);
+
+// const props = Astro.props;
+// const { locale } = Astro.params;
+// const formattedDate = page.data.date.toLocaleString(lang);
+// const { locale } = Astro.params;
+// const x = Astro.preferredLocale;
+// console.log("xrenovina", x);
+
+// const { Content } = await page.render();
+export async function getStaticPaths() {
+  const response = await staticPath(query, "masters");
+  // LOCAL DATA!!!
+  // Remove CACHE folder to get updated data!!!
+  // const response = await RepeatableLocaleData(query, "masters");
+  return response.flatMap((master) => {
+    const data = master.data as IActivity;
+    return [
+      {
+        params: { locale: "ru", slug: data.slug.url },
+        props: { slug: data.slug.url },
+      },
+      {
+        params: { locale: "fi", slug: data.slug.url },
+        props: { slug: data.slug.url },
+      },
+    ];
+  });
+}
+
+const response = await repeatable(query, "masters", lang);
+// const response = await RepeatableLocaleData(query, "masters", lang);
+const { slug } = Astro.props;
+// const { slug } = Astro.params;
+// const page = response.find((master) => {
+//   const data = master.data as IActivity;
+
+//   if (data.slug.url !== slug) return;
+//   return data;
+// });
+// console.log(page, slug);
+---
+
+<Layout>
+  {
+    response.map((master) => {
+      const data = master.data as IActivity;
+      if (data.slug.url !== slug) return;
+      return (
+        <section>
+          <span>{master.last_publication_date}</span>
+          <h2>{data.title}</h2>
+          <p>{data.description}</p>
+        </section>
+      );
+    })
+  }
+  <!-- <h1>{lang === "ru" ? "Мастер Класс" : "Master Class"}</h1> -->
+  <!-- <main>{props.title}</main> -->
+  <!-- <span>{public_date}</span>
+  <h1>{page?.data}</h1> -->
+  <!-- <address>{data.address}</address> -->
+</Layout>
