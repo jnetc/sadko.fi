@@ -1,21 +1,26 @@
 ---
-// Get language from Astro Runtime API
-const lang = Astro.currentLocale as "ru" | "fi";
+import MobMenuButton from '@Components/header/navigation/MobMenuButton.astro';
+
+const lang = Astro.currentLocale as 'ru' | 'fi';
 ---
 
-<div class="header__lang">
-  <a href="/ru" data-astro-reload data-active={lang.includes("ru")}>RU</a>
-  <a href="/fi" data-astro-reload data-active={lang.includes("fi")}>FI</a>
+<div class="header__btns">
+  <MobMenuButton />
+  <a href="/ru" data-astro-reload data-active={lang.includes('ru')}>RU</a>
+  <a href="/fi" data-astro-reload data-active={lang.includes('fi')}>FI</a>
 </div>
 
 <style>
-  .header__lang {
+  .header__btns {
+    grid-column: 12 / -2;
+    grid-row: 1;
+    justify-self: flex-end;
     display: flex;
     gap: var(--gap-12);
     font-size: var(--font-12);
     font-weight: bold;
   }
-  .header__lang a {
+  .header__btns a {
     width: var(--size-36);
     aspect-ratio: 1;
     display: grid;
@@ -25,15 +30,15 @@ const lang = Astro.currentLocale as "ru" | "fi";
     background-color: transparent;
   }
 
-  .header__lang a[data-active] {
+  .header__btns a[data-active] {
     border: 2px solid transparent;
     background-color: var(--black);
     color: var(--white);
   }
 
   @media screen and (max-width: 1199px) {
-    .header__lang {
-      margin-inline-end: var(--gap-16);
+    .header__btns {
+      grid-column: 5 / -2;
     }
   }
 </style>

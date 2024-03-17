@@ -1,23 +1,21 @@
 ---
 // Localization
-import { headerLinks } from "@Content/i18n/_header";
+import { headerLinks } from '@Content/i18n/_header';
 // Components
-import SubMenu from "./SubMenu.astro";
+import SubMenu from './SubMenu.astro';
 // Get language from Astro Runtime API
-const lang = Astro.currentLocale as "ru" | "fi";
+const lang = Astro.currentLocale as 'ru' | 'fi';
 ---
 
 <script>
-  const links = [...document.querySelectorAll<HTMLLIElement>(".nav__link")];
-  const buttons = [
-    ...document.querySelectorAll<HTMLButtonElement>('[aria-haspopup="menu"]'),
-  ];
+  const links = [...document.querySelectorAll<HTMLLIElement>('.nav__link')];
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>('[aria-haspopup="menu"]')];
 
   function resetToDefault() {
-    links.some((li) => {
+    links.some(li => {
       if (!li.firstElementChild) return;
-      li.firstElementChild.setAttribute("data-expanded", "false");
-      li.firstElementChild.setAttribute("aria-expanded", "false");
+      li.firstElementChild.setAttribute('data-expanded', 'false');
+      li.firstElementChild.setAttribute('aria-expanded', 'false');
     });
   }
 
@@ -25,35 +23,35 @@ const lang = Astro.currentLocale as "ru" | "fi";
     function bodyElementHandler(event: MouseEvent) {
       const el = event.target as HTMLElement;
 
-      if (!el.closest(".nav__link")) {
+      if (!el.closest('.nav__link')) {
         resetToDefault();
       }
     }
 
-    document.addEventListener("mousedown", bodyElementHandler, { once: true });
+    document.addEventListener('mousedown', bodyElementHandler, { once: true });
   }
 
   function switchStateHandler(ev: MouseEvent) {
     const currTarget = ev.currentTarget as HTMLButtonElement;
 
-    if (currTarget.dataset.expanded === "false") {
+    if (currTarget.dataset.expanded === 'false') {
       resetToDefault();
 
-      currTarget.setAttribute("data-expanded", "true");
-      currTarget.setAttribute("aria-expanded", "true");
+      currTarget.setAttribute('data-expanded', 'true');
+      currTarget.setAttribute('aria-expanded', 'true');
       return;
     }
 
-    currTarget.setAttribute("data-expanded", "false");
-    currTarget.setAttribute("aria-expanded", "false");
+    currTarget.setAttribute('data-expanded', 'false');
+    currTarget.setAttribute('aria-expanded', 'false');
   }
 
-  buttons.forEach((btn) => {
-    btn.addEventListener("mousedown", switchStateHandler);
+  buttons.forEach(btn => {
+    btn.addEventListener('mousedown', switchStateHandler);
   });
 
-  links.forEach((link) => {
-    link.addEventListener("click", handleOutsideClick);
+  links.forEach(link => {
+    link.addEventListener('click', handleOutsideClick);
   });
 </script>
 
@@ -90,14 +88,10 @@ const lang = Astro.currentLocale as "ru" | "fi";
       <SubMenu subMenu={headerLinks[lang].signup.submenu} index={2} />
     </li>
     <li class="nav__link" role="menuitem">
-      <a href={`/${lang}/schedule`} data-astro-reload class="nav__link-name"
-        >{headerLinks[lang].schedule}
-      </a>
+      <a href={`/${lang}/schedule`} data-astro-reload class="nav__link-name">{headerLinks[lang].schedule} </a>
     </li>
     <li class="nav__link" role="menuitem">
-      <a href={`/${lang}/articles`} data-astro-reload class="nav__link-name"
-        >{headerLinks[lang].articles}
-      </a>
+      <a href={`/${lang}/articles`} data-astro-reload class="nav__link-name">{headerLinks[lang].articles} </a>
     </li>
     <li class="nav__link">
       <button
@@ -119,14 +113,18 @@ const lang = Astro.currentLocale as "ru" | "fi";
 
 <style>
   .header__nav {
+    grid-row: 1;
+    grid-column: 3 / 10 span;
+    justify-self: center;
+    align-self: center;
     height: 100%;
     display: flex;
     gap: var(--gap-36);
     margin-inline: auto;
-    &.open-menu {
-      display: flex;
-    }
     /* position: relative; */
+  }
+  .header__nav.open-menu {
+    display: flex;
   }
 
   .nav__links {
@@ -140,18 +138,18 @@ const lang = Astro.currentLocale as "ru" | "fi";
     place-content: center;
   } */
 
-  button[data-expanded="true"] ~ :global(.subnav) {
+  button[data-expanded='true'] ~ :global(.subnav) {
     opacity: 1;
     translate: 0 0;
     pointer-events: all;
     transition: all 0.3s ease-in-out;
   }
 
-  button[data-expanded="true"] .icon {
+  button[data-expanded='true'] .icon {
     rotate: z 180deg;
     fill: var(--violet);
   }
-  button[data-expanded="true"] {
+  button[data-expanded='true'] {
     color: var(--violet);
   }
 
@@ -192,6 +190,7 @@ const lang = Astro.currentLocale as "ru" | "fi";
 
   @media screen and (max-width: 1199px) {
     .header__nav {
+      grid-column: 2 / -2;
       min-width: 100vw;
       display: none;
       position: fixed;
@@ -213,18 +212,18 @@ const lang = Astro.currentLocale as "ru" | "fi";
       grid-template-rows: auto 0fr;
       padding-inline: var(--gap-16);
       padding-block: var(--gap-18);
-      transition: all 0.3s ease-in-out;
+      /* transition: all 0.3s ease-in-out; */
     }
 
     .nav__link:nth-of-type(odd) {
       background-color: var(--opacity-3);
     }
 
-    .nav__link:has(button[data-expanded="true"]) {
+    .nav__link:has(button[data-expanded='true']) {
       grid-template-rows: auto 1fr;
     }
 
-    button[data-expanded="true"] ~ :global(.subnav) {
+    button[data-expanded='true'] ~ :global(.subnav) {
       opacity: 1;
       padding-block-end: var(--gap-18);
       /* translate: 0 0; */
@@ -239,7 +238,5 @@ const lang = Astro.currentLocale as "ru" | "fi";
       padding-block: var(--gap-12);
       position: relative;
     }
-  }
-  @media screen and (max-width: 767px) {
   }
 </style>

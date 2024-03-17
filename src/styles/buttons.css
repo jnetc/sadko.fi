@@ -1,14 +1,20 @@
 .btn {
-  /* min-block-size: var(--size-56); */
+  height: min-content;
+  width: min-content;
+  /* max-height: var(--size-56); */
   display: flex;
   align-items: center;
-  padding-block: var(--gap-12);
-  padding-inline: var(--gap-32) var(--gap-16);
   border-radius: 4rem;
-  border: 1px solid transparent;
-  font-size: var(--font-20);
   font-weight: bold;
   white-space: nowrap;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding-block: var(--gap-12);
+  padding-inline: var(--gap-32) var(--gap-16);
+  border: 1px solid transparent;
+  font-size: var(--font-20);
 }
 
 .btn-primary {
@@ -28,16 +34,35 @@
     0 15px 10px var(--opacity-3);
 }
 
-.btn__icon {
-  display: grid;
-  place-content: center;
-  width: clamp(var(--size-32), 2vw, var(--size-36));
-  aspect-ratio: 1;
-  margin-left: var(--gap-16);
-  border-radius: 4rem;
+.btn-ternary {
+  gap: var(--gap-12);
+  padding-block: var(--gap-8);
+  padding-inline-end: var(--gap-16);
+  border: 1px solid var(--violet-light);
+  font-size: var(--font-16);
 }
 
-.btn__icon svg {
+.icon-first .btn__icon {
+  rotate: z -90deg;
+}
+
+.btn .btn__icon {
+  display: grid;
+  place-content: center;
+  aspect-ratio: 1;
+  border-radius: 4rem;
+  margin-left: var(--gap-16);
+}
+.btn-primary .btn__icon,
+.btn-secondary .btn__icon {
+  width: var(--size-36);
+  /* width: clamp(var(--size-32), 2vw, var(--size-36)); */
+}
+.btn-ternary .btn__icon {
+  width: var(--size-32);
+}
+
+.btn .btn__icon svg {
   width: clamp(var(--size-20), 2vw, var(--size-24));
   aspect-ratio: 1;
 }
@@ -46,7 +71,8 @@
   background-color: var(--white);
 }
 
-.btn-secondary .btn__icon {
+.btn-secondary .btn__icon,
+.btn-ternary .btn__icon {
   background-color: var(--violet);
 }
 
@@ -54,7 +80,8 @@
   fill: var(--violet);
 }
 
-.btn-secondary .btn__icon svg {
+.btn-secondary .btn__icon svg,
+.btn-ternary .btn__icon svg {
   fill: var(--white);
 }
 
@@ -73,7 +100,7 @@
   display: grid;
   place-content: center;
   width: var(--size-56);
-  aspect-ratio: 1;
+  height: var(--size-56);
   background-color: var(--white);
   border: 1px solid var(--violet-light);
   border-radius: 100vh;
@@ -82,8 +109,8 @@
     0 15px 10px var(--opacity-3);
 }
 
-.circle-button .icon {
+.circle-button  *  {
   width: var(--size-24);
-  aspect-ratio: 1;
+  height: var(--size-24);
   pointer-events: none;
 }

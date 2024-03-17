@@ -1,6 +1,5 @@
 ---
-// Get language from Astro Runtime API
-const lang = Astro.currentLocale as "ru" | "fi";
+const lang = Astro.currentLocale as 'ru' | 'fi';
 ---
 
 <a href=`/${lang}` class="header__logo" title="sadko.fi" aria-label="sadko.fi">
@@ -8,12 +7,11 @@ const lang = Astro.currentLocale as "ru" | "fi";
 </a>
 
 <style>
+  .header__logo {
+    grid-column: 2 / 2 span;
+    grid-row: 1;
+  }
   .header__logo img {
     height: var(--size-48);
-  }
-  @media screen and (max-width: 1199px) {
-    .header__logo {
-      margin-inline-start: var(--gap-16);
-    }
   }
 </style>

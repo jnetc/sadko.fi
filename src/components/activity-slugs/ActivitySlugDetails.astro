@@ -1,0 +1,154 @@
+---
+import { main_locale } from '@Locales/main_locale';
+// Components
+import ActivitySlugBlankBtn from '@Components/activity-slugs/ActivitySlugBlankBtn.astro';
+import ActivitySlugCircleBtn from '@Components/activity-slugs/ActivitySlugCircleBtn.astro';
+// Helpers
+import publishDate from '@Helpers/publishDate';
+
+const lang = Astro.currentLocale as 'ru' | 'fi';
+
+import type { IActivity } from '@Types';
+interface Props {
+  publish: string;
+  data: IActivity;
+}
+
+const { data, publish } = Astro.props;
+---
+
+<section class="activity__details">
+  <time datetime={publish.split('T')[0]}>
+    {main_locale[lang].publish}
+    {publishDate(publish, lang)}
+  </time>
+  <h1>{data.title}</h1>
+  <p class="details__text">
+    {main_locale[lang].teacher}
+    <strong>{data.teacher}</strong>
+  </p>
+  <p class="details__text">
+    {main_locale[lang].date}
+    <strong>{data.date}</strong>
+  </p>
+  <p class="details__text">
+    {main_locale[lang].time}
+    <strong>{data.time}</strong>
+  </p>
+  <p class="details__text">
+    {main_locale[lang].age}
+    <strong>{data.age}</strong>
+  </p>
+  <p class="details__text">
+    {main_locale[lang].price}
+    <strong>{data.price}</strong>
+  </p>
+  <address class="details__text">
+    {main_locale[lang].address}
+    <strong>{data.address}</strong>
+  </address>
+  <p class="details__text">
+    {main_locale[lang].phone}
+    <strong>{data.phone}</strong>
+  </p>
+  <p class="details__text">
+    {main_locale[lang].email}
+    <strong>{data.email}</strong>
+  </p>
+  <div class="details__btns">
+    <ActivitySlugBlankBtn data={data.primary_href} lang={lang} />
+    <ActivitySlugCircleBtn data={data.facebook} icon="facebook" />
+    <ActivitySlugCircleBtn data={data.instagram} icon="instagram" />
+  </div>
+</section>
+
+<style>
+  .activity__details {
+    grid-column: 8 / span 7;
+    grid-row: 2;
+    display: grid;
+    grid-template-rows: min-content;
+    gap: var(--gap-16) var(--gap-36);
+    align-self: flex-start;
+  }
+
+  .activity__details time {
+    grid-row: 1;
+    color: var(--grey-300);
+    font-size: var(--font-14);
+  }
+  .activity__details h1 {
+    grid-row: 2;
+    padding-bottom: var(--gap-18);
+    font-size: clamp(var(--font-32), 3.3vw, var(--font-48));
+    color: var(--black);
+    line-height: 1;
+  }
+
+  .details__text {
+    height: min-content;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: var(--gap-12) var(--gap-18);
+    color: var(--grey-200);
+    font-size: var(--font-18);
+    font-style: normal;
+    font-weight: bold;
+  }
+  .details__text strong {
+    color: var(--black);
+  }
+
+  .details__btns {
+    width: min-content;
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    gap: var(--gap-18);
+    padding-block: var(--gap-36);
+  }
+
+  @media screen and (max-width: 959px) {
+    .activity__details {
+      gap: var(--gap-24) var(--gap-36);
+      grid-column: 2 / -2;
+      grid-row: 3;
+    }
+
+    .activity__details h1 {
+      font-size: clamp(var(--font-36), 5vw, var(--font-48));
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .details__text {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media screen and (max-width: 420px) {
+    .details__btns {
+      justify-self: center;
+    }
+
+    .details__btns:has(a:nth-child(3)) {
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+    }
+    .details__btns:has(a:nth-child(3)) a:nth-child(1) {
+      grid-column: 1 / -1;
+      grid-row: 1;
+    }
+    .details__btns:has(a:nth-child(3)) a:nth-child(2),
+    .details__btns:has(a:nth-child(3)) a:nth-child(3) {
+      grid-row: 2;
+    }
+    .details__btns:has(a:nth-child(3)) a:nth-child(2) {
+      grid-column: 1;
+      justify-self: flex-end;
+    }
+    .details__btns:has(a:nth-child(3)) a:nth-child(3) {
+      grid-column: 2;
+    }
+  }
+</style>

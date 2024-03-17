@@ -47,7 +47,11 @@ export type TypeUIActivityIcons =
 
 type TypeBlanks = "blank-hobby" | "blank-camp" | "blank-membership";
 
-export type Pages = "home" | TypeBlanks | TypeUIActivityIcons;
+export type ActivitiesPages = "page_masters" | "page_camps" | "page_festivals" | "page_concerts" | "page_projects" | "page_parents" | "page_clubs" | "page_courses" | "page_travels" | "page_celebrations" | "page_concerts" | "page_usefuls";
+
+
+export type Pages = "home" | TypeBlanks | TypeUIActivityIcons | ActivitiesPages;
+export type Links = "home" | TypeBlanks | TypeUIActivityIcons;
 
 export type TypeUICardShapes =
   "shape01"
@@ -84,14 +88,24 @@ export interface ISubMenu {
 }
 
 
-// INDEX.HTML
+// COMMON TYPES
+export type SEOType = {
+  seo_title: string;
+  seo_description: string;
+}
 export type HeadingTextType = {
   heading: string;
   text: string;
 }
 
+export type TitleDescriptionType = {
+  title: string;
+  description: string;
+}
+
 export type HrefType = {
   url: string;
+  target: "" | "_blank"
 }
 
 export type SlugType = {
@@ -235,20 +249,29 @@ export interface HomeBodyFeedbacks {
   items: Array<HeadingTextType>;
 }
 
-
-export interface IActivity extends SlugType, PrimaryButtonType {
-  image: ImageType;
+export interface IActivityiesPage extends SEOType, TitleDescriptionType {
   title: string;
   description: string;
+  articles: Array<{article: IActivityArticle}>;
+}
+
+export interface IActivityArticle  {
+  data: { image: ImageType;  text: RichTextField} & TitleDescriptionType & SlugType;
+  last_publication_date: string;
+}
+export interface IActivity extends SEOType, TitleDescriptionType, SlugType {
+  image: ImageType;
   teacher: string;
   date: string;
   time: string;
   age: string;
-  price: number;
+  price: string;
   address: string;
   phone: string;
   email: string;
+  primary_href: HrefType;
   facebook: HrefType;
   instagram: HrefType;
-  text: RichTextField;
+  text: RichTextField
+  publication_date: string;
 }

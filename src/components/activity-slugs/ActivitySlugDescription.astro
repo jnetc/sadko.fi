@@ -1,0 +1,43 @@
+---
+import { main_locale } from '@Locales/main_locale';
+const lang = Astro.currentLocale as 'ru' | 'fi';
+
+interface Props {
+  md: string;
+}
+const { md } = Astro.props;
+---
+
+<section class="activity__description">
+  <h2 class="description__h2">{main_locale[lang].description}</h2>
+  <div class="description__txt">
+    <Fragment set:html={md} />
+  </div>
+</section>
+
+<style>
+  .activity__description {
+    grid-column: 2 / -2;
+    grid-row: 3;
+  }
+
+  .description__h2 {
+    font-size: var(--font-32);
+    padding-bottom: var(--gap-18);
+  }
+
+  .description__txt {
+    display: grid;
+    row-gap: var(--gap-16);
+    font-size: var(--font-18);
+    color: var(--grey-300);
+    line-height: 1.4;
+  }
+
+  @media screen and (max-width: 959px) {
+    .activity__description {
+      grid-column: 2 / -2;
+      grid-row: 4;
+    }
+  }
+</style>

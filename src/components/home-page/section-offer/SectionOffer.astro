@@ -1,5 +1,5 @@
 ---
-import type { HomeBodyOffer } from "@Types";
+import type { HomeBodyOffer } from '@Types';
 interface Props {
   data: HomeBodyOffer;
 }
@@ -24,12 +24,9 @@ const { primary } = Astro.props.data;
 </section>
 
 <style>
-  .offer {
-    padding-inline: var(--gap-16);
-  }
   .offer__box {
     height: calc(100% + 6rem);
-    grid-column: 1 / 7 span;
+    grid-column: 2 / 8 span;
     grid-row: 1;
     display: flex;
     flex-direction: column;
@@ -60,7 +57,7 @@ const { primary } = Astro.props.data;
 
   .offer__image {
     align-self: center;
-    grid-column: 6 / 7 span;
+    grid-column: 8 / 7 span;
     grid-row: 1;
     position: relative;
   }
@@ -69,8 +66,11 @@ const { primary } = Astro.props.data;
     .offer__box {
       padding-block: var(--gap-48);
       padding-inline: var(--gap-32);
-      grid-column: 1 / -1;
+      grid-column: 2 / -2;
       align-items: center;
+    }
+    .offer__box h2 {
+      text-align: center;
     }
     .offer__image {
       display: none;

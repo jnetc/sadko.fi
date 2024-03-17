@@ -1,23 +1,16 @@
 ---
-// import { getCollection } from 'astro:content';
 // import {getRelativeLocaleUrl} from 'astro:i18n'
 // Global Styles
-import "@Styles/variable.css";
-import "@Styles/fonts.css";
-import "@Styles/global.css";
-import "@Styles/buttons.css";
+import '@Styles/variable.css';
+import '@Styles/fonts.css';
+import '@Styles/global.css';
+import '@Styles/buttons.css';
 // Components
-import Header from "@Components/header/Header.astro";
-import Footer from "@Components/footer/Footer.astro";
+import Header from '@Components/header/Header.astro';
+import Footer from '@Components/footer/Footer.astro';
 
 // Get language from Astro Runtime API
-const lang = Astro.currentLocale as "ru" | "fi";
-// console.log(lang);
-// export default lang
-// console.log(Astro.url);
-// console.log('languages', lang);
-
-// console.log('locale_',getRelativeLocaleUrl(lang, "activities"));
+const lang = Astro.currentLocale as 'ru' | 'fi';
 ---
 
 <!doctype html>
@@ -47,7 +40,7 @@ const lang = Astro.currentLocale as "ru" | "fi";
 
     <!-- <slot name="head" /> -->
   </head>
-  <body>
+  <body class="body">
     <Header />
     <slot />
     <Footer />

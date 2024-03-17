@@ -1,0 +1,26 @@
+.activities {
+  row-gap: var(--gap-64);
+}
+
+.page__header {
+  grid-column: 2 / -2;
+  display: grid;
+  row-gap: var(--gap-32);
+}
+
+.page__header :where(h1, p) {
+  text-align: center;
+}
+
+.page__header h1 {
+  color: var(--black);
+  font-size: clamp(var(--font-36), 6.5vw, var(--font-64));
+}
+
+.page__header p {
+  max-width: 960px;
+  justify-self: center;
+  color: var(--grey-300);
+  font-size: clamp(var(--font-18), 2vw, var(--font-20));
+  line-height: 1.4;
+}

@@ -1,38 +1,52 @@
 ---
+// Global Styles
+import '@Styles/activity_page.css';
 // Content
-import query from "@Queries/masters";
+import query from '@Queries/page_masters';
 // Types
-import type { IActivity } from "@Types";
+import type { IActivityiesPage } from '@Types';
 // Layouts
-import Layout from "@Layouts/Layout.astro";
+import Layout from '@Layouts/Layout.astro';
+import Article from '@Components/activity-pages/Article.astro';
+// Helpers
+import { singleWithLinks } from '@Lib/prismiccms';
 
-const lang = Astro.currentLocale as "ru" | "fi";
+const lang = Astro.currentLocale as 'ru' | 'fi';
 
-import { repeatable } from "@Lib/prismiccms";
-const response = await repeatable(query, "masters", lang);
+const response = await singleWithLinks(query, 'page_masters', 'masters', lang);
+
 // LOCAL DATA!!!
 // Remove CACHE folder to get updated data!!!
-// import { RepeatableLocaleData } from "@Lib/localdata";
-// const response = await RepeatableLocaleData(query, "masters", lang);
-// console.log(response);
+// import { SingleWithLinkLocaleData } from '@Lib/localdata';
+// const response = await SingleWithLinkLocaleData(query, 'page_masters', 'masters', lang);
+// Define Type IActivityiesPage
+const data = response.data as IActivityiesPage;
+// const content = data.articles.map(article => {
+//   // data.map((article: IActivityArticle) => {
+//   // });
+//   console.log(article);
+//   article.data.
+//   return {, ...article } as IActivityArticle;
+// });
 ---
 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>{data.seo_title}</title>
+  <meta name="description" content={data.seo_description} />
+</head>
+
 <Layout>
-  <!-- <main>{props.title}</main> -->
-  <h1>{lang === "ru" ? "Мастер Класс" : "Master Class"}</h1>
-  {
-    response.map((master) => {
-      const data = master.data as IActivity;
-      return (
-        <section>
-          <span>{master.last_publication_date}</span>
-          <h2>{data.title}</h2>
-          <p>{data.description}</p>
-          <a href={`masters/${data.slug.url}`} class="btn btn-primary">
-            {lang === "ru" ? "Далее" : "Lisaa"}
-          </a>
-        </section>
-      );
-    })
-  }
+  <main class="grid activities main">
+    <div class="page__header">
+      <h1>{data.title}</h1>
+      {data.description && <p>{data.description}</p>}
+    </div>
+    {
+      data.articles.map(i => {
+        return <Article article={i.article} />;
+      })
+    }
+  </main>
 </Layout>

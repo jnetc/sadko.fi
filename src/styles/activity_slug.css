@@ -1,0 +1,26 @@
+.activity {
+  row-gap: var(--gap-36);
+}
+
+.activity .btn-ternary {
+  grid-column: 2 / -2;
+}
+
+.activity__image {
+  grid-row: 2;
+  grid-column: 2 / span 6;
+  width: 100%;
+  max-height: 300px;
+  min-height: 100%;
+  border-radius: var(--border-corner-32);
+  object-fit: cover;
+  object-position: center;
+}
+
+@media screen and (max-width: 959px) {
+  .activity__image {
+    grid-column: 1 / -1;
+    max-height: 320px;
+    border-radius: 0;
+  }
+}

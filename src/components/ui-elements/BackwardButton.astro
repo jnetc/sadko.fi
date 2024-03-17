@@ -1,0 +1,21 @@
+---
+import { main_locale } from '@Locales/main_locale';
+
+interface Props {
+  href: string;
+  isBack?: boolean;
+}
+
+const lang = Astro.currentLocale as 'ru' | 'fi';
+
+const { href, isBack } = Astro.props;
+---
+
+<a href={href} class=`btn btn-ternary place ${isBack && "icon-first"}`>
+  <span class="btn__icon" aria-hidden="true">
+    <svg>
+      <use xlink:href="/svg/ui_icons.svg#arrow_outward"></use>
+    </svg>
+  </span>
+  {main_locale[lang].button_back}
+</a>

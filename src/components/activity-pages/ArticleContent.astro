@@ -1,0 +1,95 @@
+---
+// Helpers
+import publishDate from '@Helpers/publishDate';
+// Locale
+import { main_locale } from '@Locales/main_locale';
+// Types
+import type { TitleDescriptionType } from '@Types';
+
+const lang = Astro.currentLocale as 'ru' | 'fi';
+
+interface Props {
+  content: TitleDescriptionType;
+  publish: string;
+}
+
+const { content, publish } = Astro.props;
+---
+
+<div class="activities__content">
+  <time datetime={publish.split('T')[0]} class="article__publish">
+    {main_locale[lang].publish}
+    {publishDate(publish, lang)}
+  </time>
+  <h2 class="article__title">{content.title}</h2>
+  <p class="article__description">{content.description}</p>
+  <span class="activities__icon" aria-hidden="true">
+    <svg>
+      <use xlink:href="/svg/ui_icons.svg#arrow_outward"></use>
+    </svg>
+  </span>
+</div>
+
+<style>
+  .activities__content {
+    display: grid;
+    grid-template-columns: minmax(150px, 1fr) 3rem;
+    grid-template-rows: auto auto 1fr;
+    gap: var(--gap-16);
+    padding-block: var(--gap-32);
+    padding-inline-end: var(--gap-32);
+  }
+
+  .activities__content :where(h2, p) {
+    grid-column: 1 / -1;
+    width: fit-content;
+    height: min-content;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .activities__content :where(time, p) {
+    font-weight: bold;
+  }
+
+  .activities__content time {
+    align-self: center;
+    color: var(--grey-300);
+    font-size: var(--font-14);
+  }
+  .activities__content h2 {
+    -webkit-line-clamp: 3;
+    color: var(--black);
+    font-size: clamp(var(--font-24), 3.5vw, var(--font-36));
+  }
+
+  .activities__content p {
+    -webkit-line-clamp: 6;
+    color: var(--grey-300);
+    font-size: var(--font-18);
+    line-height: 1.4;
+  }
+
+  .activities__icon {
+    grid-column: 2;
+    grid-row: 1;
+    display: grid;
+    place-content: center;
+    aspect-ratio: 1;
+    border-radius: 4rem;
+    width: var(--size-36);
+    background-color: var(--violet);
+  }
+  .activities__icon svg {
+    width: clamp(var(--size-20), 2vw, var(--size-24));
+    aspect-ratio: 1;
+    fill: var(--white);
+  }
+
+  @media screen and (max-width: 767px) {
+    .activities__content {
+      padding-inline: var(--gap-32);
+    }
+  }
+</style>

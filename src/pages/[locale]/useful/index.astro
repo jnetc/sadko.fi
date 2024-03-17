@@ -1,0 +1,40 @@
+---
+// Global Styles
+import '@Styles/activity_page.css';
+// Content
+import query from '@Queries/page_parents';
+// Types
+import type { IActivityiesPage } from '@Types';
+// Layouts
+import Layout from '@Layouts/Layout.astro';
+import Article from '@Components/activity-pages/Article.astro';
+// Helpers
+import { singleWithLinks } from '@Lib/prismiccms';
+
+const lang = Astro.currentLocale as 'ru' | 'fi';
+
+const response = await singleWithLinks(query, 'page_usefuls', 'useful', lang);
+
+const data = response.data as IActivityiesPage;
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>{data.seo_title}</title>
+  <meta name="description" content={data.seo_description} />
+</head>
+
+<Layout>
+  <main class="grid activities main">
+    <div class="page__header">
+      <h1>{data.title}</h1>
+      {data.description && <p>{data.description}</p>}
+    </div>
+    {
+      data.articles.map(i => {
+        return <Article article={i.article} />;
+      })
+    }
+  </main>
+</Layout>

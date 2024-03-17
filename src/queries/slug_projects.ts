@@ -1,8 +1,9 @@
-// import { lang } from '@Layouts//Layout.astro';
 export default `{
-  allMasterss {
+  allProjectss {
     edges {
       node {
+        seo_title
+        seo_description
         slug {
           ... on _ExternalLink {
             url
@@ -23,6 +24,7 @@ export default `{
         primary_href {
           ... on _ExternalLink {
             url
+            target
           }
         }
         facebook {

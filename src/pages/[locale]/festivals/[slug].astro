@@ -1,0 +1,75 @@
+---
+export const prerender = true;
+// Content
+import query from '@Queries/slug_festivals';
+// Types
+import type { IActivity } from '@Types';
+// Layouts
+import Layout from '@Layouts/Layout.astro';
+// Components
+import ActivitySlugDescription from '@Components/activity-slugs/ActivitySlugDescription.astro';
+import ActivitiSlugDetails from '@Components/activity-slugs/ActivitySlugDetails.astro';
+import BackwardButton from '@Components/ui-elements/BackwardButton.astro';
+// Helpers
+import { toMarkdown } from '@Helpers/toMarkdown';
+import { staticPath, repeatable } from '@Lib/prismiccms';
+
+const lang = Astro.currentLocale as 'ru' | 'fi';
+const path = Astro.url.pathname.split('/')[2];
+
+export async function getStaticPaths() {
+  const response = await staticPath(query, 'festivals');
+
+  return response.flatMap(master => {
+    const data = master.data as IActivity;
+    return [
+      {
+        params: { locale: 'ru', slug: data.slug.url },
+        props: { slug: data.slug.url },
+      },
+      {
+        params: { locale: 'fi', slug: data.slug.url },
+        props: { slug: data.slug.url },
+      },
+    ];
+  });
+}
+
+const response = await repeatable(query, 'festivals', lang);
+
+const { slug } = Astro.props;
+
+const [page] = response.filter(i => {
+  const data = i.data as IActivity;
+
+  if (data.slug.url !== slug) return;
+
+  data.publication_date = i.last_publication_date;
+  return data;
+});
+
+const data = page.data as IActivity;
+const md = await toMarkdown(data.text);
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>{data.seo_title}</title>
+  <meta name="description" content={data.seo_description} />
+</head>
+
+<Layout>
+  <main class="grid activity main">
+    <BackwardButton href={`/${lang}/${path}`} isBack />
+    <img
+      class="activity__image"
+      src={data.image.url}
+      alt={data.image.alt}
+      height={data.image.dimensions.height}
+      width={data.image.dimensions.width}
+    />
+    <ActivitiSlugDetails publish={data.publication_date} data={data} />
+    <ActivitySlugDescription md={md} />
+  </main>
+</Layout>

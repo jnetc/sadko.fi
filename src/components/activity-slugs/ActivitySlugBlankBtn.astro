@@ -1,0 +1,24 @@
+---
+import { main_locale } from '@Locales/main_locale';
+
+import type { HrefType } from '@Types';
+interface Props {
+  data: HrefType;
+  lang: 'ru' | 'fi';
+}
+
+const { data, lang } = Astro.props;
+---
+
+{
+  data.url !== undefined ? (
+    <a href={`/${lang}/${data.url}`} target={data.target} class="btn btn-primary">
+      {main_locale[lang].button_blank}
+      <span class="btn__icon" aria-hidden="true">
+        <svg>
+          <use xlink:href="/svg/ui_icons.svg#arrow_outward" />
+        </svg>
+      </span>
+    </a>
+  ) : null
+}

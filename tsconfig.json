@@ -51,6 +51,9 @@
       "@Lib/*": [
         "./src/lib/*"
       ],
+      "@Locales/*": [
+        "./src/locales/*"
+      ],
       "@Content/*": [
         "./src/content/*"
       ],
