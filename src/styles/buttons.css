@@ -30,7 +30,7 @@
 
 .btn-secondary {
   background-color: var(--white);
-  color: var(----black);
+  color: var(--black);
   border-color: var(--violet-light);
   box-shadow:
     0 25px 20px var(--opacity-3),
