@@ -6,37 +6,144 @@ interface Props {
 const { amount, text } = Astro.props.data;
 ---
 
+<script>
+  const counters = document.querySelectorAll<HTMLSpanElement>('.item__num')!;
+  // Scroll Animation
+  const observer = new IntersectionObserver(
+    entries => {
+      let [entry] = entries;
+      if (!entry.isIntersecting) return;
+
+      let speed = 30;
+
+      entries.forEach(entry => {
+        const el = entry.target as HTMLElement;
+        // If element is not intersecting, stop observing
+        if (entry.isIntersecting) observer.unobserve(el);
+
+        const targetNumber = Number(el.dataset.target);
+        // Find the unit for one entry step
+        const count = targetNumber / speed;
+        // Set data attribute for accurate calculation with decimal
+        entry.target.setAttribute('data-count', '0');
+
+        console.log(el.dataset.target);
+
+        function UpdateCounter() {
+          el.classList.add('show');
+          const initialNumber = Number(el.innerText);
+          // Get decimal number to calculate
+          const countNumber = Number(el.dataset.count);
+          // Getting an integer value with Math.floor()
+          const integer = Math.floor(countNumber);
+          if (initialNumber < targetNumber) {
+            // Set decimal number / toFixed() with speed length, to increase accuracy
+            el.setAttribute('data-count', (countNumber + count).toFixed(`${speed}`.length));
+            // Set integer number
+            el.innerText = integer.toString();
+            setTimeout(UpdateCounter, 50);
+          } else {
+            // remove additional data attribute
+            el.removeAttribute('data-count');
+          }
+        }
+
+        UpdateCounter();
+      });
+    },
+    {
+      root: null,
+      threshold: 0.5,
+    }
+  );
+  counters.forEach(counter => observer.observe(counter));
+</script>
+
 <li class="metric__item">
-  <span class="item__num">{amount}</span>
+  <span class="item__num" data-target={amount}>0</span>
   <p class="item__txt">{text}</p>
-  <span class="item__shape" aria-hidden="true">
-    <svg>
-      <use xlink:href=`/svg/shapes.svg#shape6`></use>
-    </svg>
-  </span>
+  <svg class="item__shape" aria-hidden="true">
+    <use xlink:href=`/svg/shapes.svg#shape14`></use>
+  </svg>
 </li>
 
 <style>
   .metric__item {
     position: relative;
+    min-width: 240px;
+    display: grid;
+    isolation: isolate;
+  }
+
+  .item__num,
+  .item__shape {
+    scale: 0.5;
+    opacity: 0;
+    transform-origin: center;
+    transition: all 0.5s cubic-bezier(0, 0.97, 0.57, 1.11);
   }
   .item__num {
+    text-align: center;
     font-size: var(--font-128);
     font-weight: bold;
+    color: var(--violet-light);
+    transition-delay: 0.2s;
+    mix-blend-mode: difference;
   }
+  .item__num.show {
+    opacity: 1;
+    scale: 1;
+  }
+
   .item__txt {
+    text-align: center;
     font-size: var(--font-24);
   }
+
   .item__shape {
-    position: absolute;
-    top: -1rem;
-    left: -3rem;
-    z-index: -1;
-  }
-  .item__shape svg {
     width: 9rem;
     aspect-ratio: 1;
+    position: absolute;
+    top: -1rem;
+    left: 2rem;
+    z-index: -1;
+  }
+
+  .item__num.show ~ .item__shape {
+    scale: 2.1;
+    opacity: 1;
+  }
+  .metric__item:nth-of-type(1) {
+    z-index: 4;
+  }
+  .metric__item:nth-of-type(2) {
+    z-index: 3;
+  }
+  .metric__item:nth-of-type(3) {
+    z-index: 2;
+  }
+  .metric__item:nth-of-type(4) {
+    z-index: 1;
+  }
+
+  .metric__item:nth-of-type(1) .item__shape {
+    fill: var(--violet-light);
+    rotate: z 45deg;
+  }
+  .metric__item:nth-of-type(2) .item__shape {
+    fill: #f5ce0d;
     fill: var(--yellow);
+    rotate: z -15deg;
+  }
+  .metric__item:nth-of-type(3) .item__shape {
+    fill: #abea0e;
+    fill: var(--green);
+    rotate: z 25deg;
+  }
+  .metric__item:nth-of-type(4) .item__shape {
+    fill: #f9c4f3;
+    fill: var(--pink);
+    rotate: z -55deg;
   }
 
   @media screen and (max-width: 480px) {

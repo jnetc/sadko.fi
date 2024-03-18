@@ -1,5 +1,5 @@
 ---
-import type { HomeBodyGallery } from "@Types";
+import type { HomeBodyGallery } from '@Types';
 interface Props {
   data: HomeBodyGallery;
 }
@@ -8,17 +8,9 @@ const { primary } = Astro.props.data;
 ---
 
 <section class="grid main-section gallery">
-  <img
-    class="gallery__image-pc"
-    src={primary.image_pc.url}
-    alt="photo gallery"
-  />
-  <img
-    class="gallery__image-mob"
-    src={primary.image_mob.url}
-    alt="photo gallery"
-  />
-  <a href={primary.secondary_href.url} class="btn btn-secondary btn-gallery">
+  <img class="gallery__image-pc" src={primary.image_pc.url} alt="photo gallery" />
+  <img class="gallery__image-mob" src={primary.image_mob.url} alt="photo gallery" />
+  <a href={primary.secondary_href.url} class="btn btn-secondary btn-gallery arrow-icon">
     {primary.secondary_button}
     <span class="btn__icon" aria-hidden="true">
       <svg>

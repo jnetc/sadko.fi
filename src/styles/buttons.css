@@ -1,3 +1,5 @@
+@namespace xlink 'http://www.w3.org/1999/xlink';
+
 .btn {
   height: min-content;
   width: min-content;
@@ -8,6 +10,7 @@
   font-weight: bold;
   white-space: nowrap;
 }
+
 
 .btn-primary,
 .btn-secondary {
@@ -42,10 +45,6 @@
   font-size: var(--font-16);
 }
 
-.icon-first .btn__icon {
-  rotate: z -90deg;
-}
-
 .btn .btn__icon {
   display: grid;
   place-content: center;
@@ -60,6 +59,13 @@
 }
 .btn-ternary .btn__icon {
   width: var(--size-32);
+}
+
+.arrow-icon:hover [xlink|href*="#arrow_outward"] {
+  animation: arrow-outward .5s ease-in-out forwards;
+}
+.arrow-icon:hover [xlink|href*="#arrow_backward"] {
+  animation: arrow-backward .5s ease-in-out forwards;
 }
 
 .btn .btn__icon svg {
@@ -94,6 +100,27 @@
   } */
 }
 
+@keyframes arrow-outward {
+
+  50% {
+    transform: translate(1.1rem, -1.1rem);
+  }
+  50.01% {
+    transform: translate(-1.1rem, 1.1rem);
+  }
+
+}
+@keyframes arrow-backward {
+
+  50% {
+    transform: translate(-1.1rem, 0);
+  }
+  50.01% {
+    transform: translate(1.1rem, 0);
+  }
+
+}
+
 
 /* SMALL BUTTONs */
 .circle-button {
@@ -102,15 +129,19 @@
   width: var(--size-56);
   height: var(--size-56);
   background-color: var(--white);
-  border: 1px solid var(--violet-light);
+  border: 1.5px solid var(--violet-light);
   border-radius: 100vh;
   box-shadow:
     0 25px 20px var(--opacity-3),
     0 15px 10px var(--opacity-3);
+    transition: all .3s ease-in-out;
+}
+.circle-button:hover {
+  border-color:  var(--violet);
 }
 
 .circle-button  *  {
-  width: var(--size-24);
-  height: var(--size-24);
+  width: var(--size-32);
+  height: var(--size-32);
   pointer-events: none;
 }

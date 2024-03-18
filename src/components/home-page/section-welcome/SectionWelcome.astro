@@ -12,7 +12,7 @@ const { primary, items } = Astro.props.data;
 <section class="grid main-section">
   <h2>{primary.heading}</h2>
   <p>{primary.text}</p>
-  <a href=`${primary.secondary_href.url}` class="btn btn-secondary btn-welcome">
+  <a href=`${primary.secondary_href.url}` class="btn btn-secondary btn-welcome arrow-icon">
     {primary.secondary_button}
     <span class="btn__icon" aria-hidden="true">
       <svg>
@@ -86,14 +86,15 @@ const { primary, items } = Astro.props.data;
     height: 650px;
     aspect-ratio: 1;
     fill: var(--violet-light);
-    opacity: 0.3;
+    opacity: 0.2;
     z-index: -2;
   }
 
   .metric__list {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--gap-48);
+    column-gap: var(--gap-48);
+    row-gap: var(--gap-96);
     justify-content: center;
   }
 

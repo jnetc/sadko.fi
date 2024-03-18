@@ -200,10 +200,10 @@ export type SliceType = "hero" | "activities" | "welcome" | "offer" | "gallery" 
 //   description: string;
 // }
 
-export interface IIndex {
+export interface IIndex extends SEOType {
   body: Array<HomeBodyHero | HomeBodyActivities | HomeBodyWelcome | HomeBodyOffer | HomeBodyGallery | HomeBodyTeachers | HomeBodyFaq | HomeBodyFeedbacks>;
-  title: string;
-  description: string;
+  // title: string;
+  // description: string;
 }
 
 export interface HomeBodyHero {
