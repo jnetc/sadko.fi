@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 // import tunnel from "astro-tunnel";
 import netlify from '@astrojs/netlify';
+// import netlify from '@astrojs/netlify/edge-functions';
 
 // Что предотвратить ошибку с развертыванием через netlify CLI deploy
 // Не подключаем сразу к netlify через GitHUb!!! Если надо заливать через CLI
