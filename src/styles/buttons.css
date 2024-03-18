@@ -61,6 +61,9 @@
   width: var(--size-32);
 }
 
+.arrow-icon [xlink|href*="#arrow_outward"] {
+  fill: red;
+}
 .arrow-icon:hover [xlink|href*="#arrow_outward"] {
   animation: arrow-outward .5s ease-in-out forwards;
 }
