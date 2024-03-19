@@ -22,7 +22,8 @@ pnpm-lock.yaml*
 # macOS-specific files
 .DS_Store
 
-.vercel
 
-# Local Netlify folder
+# Local folder
+.cache
+.vercel
 .netlify

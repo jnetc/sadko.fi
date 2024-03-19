@@ -1,13 +1,13 @@
 ---
 // Global Styles
-import '@Styles/activity_page.css';
+import '@Styles/articles_page.css';
 // Content
 import query from '@Queries/page_parents';
 // Types
-import type { IActivityiesPage } from '@Types';
+import type { IPageForArticles } from '@Types';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
-import Article from '@Components/activity-pages/Article.astro';
+import Article from '@Components/pages-with-articles/Article.astro';
 // Helpers
 import { singleWithLinks } from '@Lib/prismiccms';
 
@@ -15,7 +15,7 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
 
 const response = await singleWithLinks(query, 'page_travels', 'travels', lang);
 
-const data = response.data as IActivityiesPage;
+const data = response.data as IPageForArticles;
 ---
 
 <head>
@@ -26,7 +26,7 @@ const data = response.data as IActivityiesPage;
 </head>
 
 <Layout>
-  <main class="grid activities main">
+  <main class="grid articles main">
     <div class="page__header">
       <h1>{data.title}</h1>
       {data.description && <p>{data.description}</p>}

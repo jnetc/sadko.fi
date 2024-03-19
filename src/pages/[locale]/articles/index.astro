@@ -2,23 +2,23 @@
 // Global Styles
 import '@Styles/articles_page.css';
 // Content
-import query from '@Queries/page_masters';
-// Types
-import type { IPageForArticles } from '@Types';
+import query from '@Queries/page_articles';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
 import Article from '@Components/pages-with-articles/Article.astro';
 // Helpers
 import { singleWithLinks } from '@Lib/prismiccms';
 
+import type { IPageForArticles } from '@Types';
+
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
-const response = await singleWithLinks(query, 'page_masters', 'masters', lang);
+const response = await singleWithLinks(query, 'page_articles', 'articles', lang);
 
 // LOCAL DATA!!!
 // Remove CACHE folder to get updated data!!!
 // import { SingleWithLinkLocaleData } from '@Lib/localdata';
-// const response = await SingleWithLinkLocaleData(query, 'page_masters', 'masters', lang);
+// const response = await SingleWithLinkLocaleData(query, 'page_articles', 'articles', lang);
 // Define Type IPageForArticles
 const data = response.data as IPageForArticles;
 // const content = data.articles.map(article => {

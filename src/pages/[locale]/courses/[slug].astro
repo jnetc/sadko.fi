@@ -2,10 +2,11 @@
 export const prerender = true;
 // Global Styles
 import '@Styles/activity_slug.css';
+
 // Content
 import query from '@Queries/slug_courses';
 // Types
-import type { IActivity } from '@Types';
+import type { IActivityPage } from '@Types';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
 // Components
@@ -22,7 +23,7 @@ export async function getStaticPaths() {
   const response = await staticPath(query, 'courses');
 
   return response.flatMap(master => {
-    const data = master.data as IActivity;
+    const data = master.data as IActivityPage;
     return [
       {
         params: { locale: 'ru', slug: data.slug.url },
@@ -41,7 +42,7 @@ const response = await repeatable(query, 'courses', lang);
 const { slug } = Astro.props;
 
 const [page] = response.filter(i => {
-  const data = i.data as IActivity;
+  const data = i.data as IActivityPage;
 
   if (data.slug.url !== slug) return;
 
@@ -49,7 +50,7 @@ const [page] = response.filter(i => {
   return data;
 });
 
-const data = page.data as IActivity;
+const data = page.data as IActivityPage;
 const md = await toMarkdown(data.text);
 ---
 
@@ -61,10 +62,10 @@ const md = await toMarkdown(data.text);
 </head>
 
 <Layout>
-  <main class="grid activity main">
+  <main class="grid article main">
     <BackwardButton href={`/${lang}/${path}`} isBack />
     <img
-      class="activity__image"
+      class="article__image article__image-details"
       src={data.image.url}
       alt={data.image.alt}
       height={data.image.dimensions.height}

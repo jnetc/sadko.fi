@@ -47,11 +47,11 @@ export type TypeUIActivityIcons =
 
 type TypeBlanks = "blank-hobby" | "blank-camp" | "blank-membership";
 
-export type ActivitiesPages = "page_masters" | "page_camps" | "page_festivals" | "page_concerts" | "page_projects" | "page_parents" | "page_clubs" | "page_courses" | "page_travels" | "page_celebrations" | "page_concerts" | "page_usefuls";
+export type TypePage = "page_masters" | "page_camps" | "page_festivals" | "page_concerts" | "page_projects" | "page_parents" | "page_clubs" | "page_courses" | "page_travels" | "page_celebrations" | "page_concerts" | "page_usefuls" | "page_articles";
 
 
-export type Pages = "home" | TypeBlanks | TypeUIActivityIcons | ActivitiesPages;
-export type Links = "home" | TypeBlanks | TypeUIActivityIcons;
+export type Pages = "home" | TypeBlanks | TypeUIActivityIcons | TypePage | "articles";
+export type Links = "home" | TypeBlanks | TypeUIActivityIcons | "articles";
 
 export type TypeUICardShapes =
   "shape01"
@@ -249,17 +249,16 @@ export interface HomeBodyFeedbacks {
   items: Array<HeadingTextType>;
 }
 
-export interface IActivityiesPage extends SEOType, TitleDescriptionType {
-  title: string;
-  description: string;
-  articles: Array<{article: IActivityArticle}>;
+export interface IPageForArticles extends SEOType, TitleDescriptionType {
+  articles: Array<{article: IArticleData}>;
 }
 
-export interface IActivityArticle  {
+export interface IArticleData  {
   data: { image: ImageType;  text: RichTextField} & TitleDescriptionType & SlugType;
   last_publication_date: string;
 }
-export interface IActivity extends SEOType, TitleDescriptionType, SlugType {
+
+export interface IActivityPage extends SEOType, TitleDescriptionType, SlugType {
   image: ImageType;
   teacher: string;
   date: string;
@@ -272,6 +271,13 @@ export interface IActivity extends SEOType, TitleDescriptionType, SlugType {
   primary_href: HrefType;
   facebook: HrefType;
   instagram: HrefType;
+  text: RichTextField
+  publication_date: string;
+}
+
+export interface IArticlePage extends SEOType, TitleDescriptionType, SlugType {
+  image: ImageType;
+  author: string;
   text: RichTextField
   publication_date: string;
 }

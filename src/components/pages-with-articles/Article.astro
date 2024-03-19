@@ -1,12 +1,12 @@
 ---
 import ArticleContent from './ArticleContent.astro';
 // Types
-import type { IActivityArticle } from '@Types';
+import type { IArticleData } from '@Types';
 
 const path = Astro.url.pathname.split('/')[2];
 
 interface Props {
-  article: IActivityArticle;
+  article: IArticleData;
 }
 
 const { article } = Astro.props;

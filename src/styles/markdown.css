@@ -1,0 +1,34 @@
+.markdown :where(h2, h3, h4, h5, h6) {
+  padding-block: var(--gap-32) var(--gap-18);
+  color: var(--black);
+  line-height: 1.2;
+}
+
+.markdown :where(a, p, li) {
+  font-size: var(--font-18);
+  line-height: 1.4;
+}
+
+.markdown :where(p, li) {
+  font-size: var(--font-18);
+  line-height: 1.4;
+  color: var(--grey-300);
+}
+
+.markdown a {
+  text-decoration: underline var(--violet);
+  color: var(--violet);
+}
+
+.markdown :where(p) {
+  padding-block-end: var(--gap-16);
+}
+
+.markdown :where(ul, ol)  {
+  padding-inline-start: var(--gap-16);
+  padding-block-end: var(--gap-24);
+}
+
+.markdown li {
+  list-style: disc;
+}

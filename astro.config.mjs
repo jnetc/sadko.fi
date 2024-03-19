@@ -1,8 +1,6 @@
 import { defineConfig } from 'astro/config';
 // import tunnel from "astro-tunnel";
-// import netlify from '@astrojs/netlify';
-import cloudflare from '@astrojs/cloudflare';
-// import netlify from '@astrojs/netlify/functions';
+import netlify from '@astrojs/netlify';
 
 // Что предотвратить ошибку с развертыванием через netlify CLI deploy
 // Не подключаем сразу к netlify через GitHUb!!! Если надо заливать через CLI
@@ -16,7 +14,7 @@ export default defineConfig({
     host: true
   },
   output: 'server',
-  adapter: cloudflare({ mode: 'directory' }),
+  adapter: netlify(),
   build: {
     inlineStylesheets: `always`
   },

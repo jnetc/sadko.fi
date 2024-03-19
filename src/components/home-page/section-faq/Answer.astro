@@ -16,7 +16,7 @@ const md = await toMarkdown(markdown);
     {heading}
     <span class="faq__summary-icon"></span>
   </h3>
-  <div class="faq__p">
+  <div class="faq__p markdown">
     <Fragment set:html={md} />
   </div>
 </li>
@@ -100,11 +100,11 @@ const md = await toMarkdown(markdown);
 
   .faq__details .faq__p {
     grid-row: 2;
-    display: grid;
-    row-gap: var(--gap-16);
+    /* display: grid; */
+    /* row-gap: var(--gap-16); */
     font-size: clamp(var(--font-16), 2.1vw, var(--font-20));
-    color: var(--grey-300);
-    line-height: 1.4;
+    /* color: var(--grey-300); */
+    /* line-height: 1.4; */
     overflow: hidden;
     transition: padding-block 0.3s ease-in-out;
   }

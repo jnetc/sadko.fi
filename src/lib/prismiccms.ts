@@ -108,6 +108,7 @@ const markdownSerializer = prismicR.wrapMapSerializer({
 // serializer from above.
 
 export async function toMarkdown(array: RichTextField) {
-  const markdown =  prismicR.serialize(array, markdownSerializer).join("");
-  return await marked.parse(markdown);
+  const markdown = prismicR.serialize(array, markdownSerializer).join("");
+  const md = await marked.parse(markdown);
+  return md.replaceAll('<br/>', '')
 }

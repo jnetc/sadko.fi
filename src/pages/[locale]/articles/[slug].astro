@@ -1,0 +1,136 @@
+---
+export const prerender = true;
+// Global Styles
+import '@Styles/activity_slug.css';
+
+// Content
+import query from '@Queries/slug_articles';
+// Types
+import type { IArticlePage } from '@Types';
+// Layouts
+import Layout from '@Layouts/Layout.astro';
+// Components
+import BackwardButton from '@Components/ui-elements/BackwardButton.astro';
+// Helpers
+import publishDate from '@Helpers/publishDate';
+// Locales
+import { main_locale } from '@Locales/main_locale';
+// Libs
+import { staticPath, repeatable, toMarkdown } from '@Lib/prismiccms';
+// LOCAL DATA!!!
+// Remove CACHE folder to get updated data!!!
+// import { RepeatableLocaleData } from '@Lib/localdata';
+// import { toMarkdown } from '@Lib/prismiccms';
+
+const lang = Astro.currentLocale as 'ru' | 'fi';
+const path = Astro.url.pathname.split('/')[2];
+
+export async function getStaticPaths() {
+  const response = await staticPath(query, 'articles');
+  // LOCAL DATA!!!
+  // Remove CACHE folder to get updated data!!!
+  // const response = await RepeatableLocaleData(query, 'articles');
+
+  return response.flatMap(master => {
+    const data = master.data as IArticlePage;
+    return [
+      {
+        params: { locale: 'ru', slug: data.slug.url },
+        props: { slug: data.slug.url },
+      },
+      {
+        params: { locale: 'fi', slug: data.slug.url },
+        props: { slug: data.slug.url },
+      },
+    ];
+  });
+}
+
+const response = await repeatable(query, 'articles', lang);
+// const response = await RepeatableLocaleData(query, 'articles', lang);
+
+const { slug } = Astro.props;
+
+const [page] = response.filter(i => {
+  const data = i.data as IArticlePage;
+
+  if (data.slug.url !== slug) return;
+
+  data.publication_date = i.last_publication_date;
+  return data;
+});
+
+const data = page.data as IArticlePage;
+const md = await toMarkdown(data.text);
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>{data.seo_title}</title>
+  <meta name="description" content={data.seo_description} />
+</head>
+
+<Layout>
+  <main class="grid article">
+    <BackwardButton href={`/${lang}/${path}`} isBack />
+    <time datetime={data.publication_date.split('T')[0]}>
+      {main_locale[lang].publish}
+      {publishDate(data.publication_date, lang)}
+    </time>
+    <h1 class="article__title">{data.title}</h1>
+    <p class="article__author">{data.author}</p>
+    <img
+      class="article__image article__image-post"
+      src={data.image.url}
+      alt={data.image.alt}
+      height={data.image.dimensions.height}
+      width={data.image.dimensions.width}
+    />
+    <div class="article__content markdown">
+      <Fragment set:html={md} />
+    </div>
+  </main>
+</Layout>
+
+<style>
+  time,
+  .article__title,
+  .article__content,
+  .article__author {
+    grid-column: 5 / -5;
+  }
+
+  .article__title {
+    padding-block: var(--gap-14) var(--gap-24);
+  }
+  .article__author {
+    padding-block-end: var(--gap-16);
+  }
+  .article__content {
+    padding-block-start: var(--gap-48);
+  }
+
+  .article__content p {
+    font-size: var(--font-18);
+    padding-block: var(--gap-12) 0;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 1200px) {
+    time,
+    .article__title,
+    .article__content,
+    .article__author {
+      grid-column: 3 / -3;
+    }
+  }
+  @media (max-width: 767px) {
+    time,
+    .article__title,
+    .article__content,
+    .article__author {
+      grid-column: 2 / -2;
+    }
+  }
+</style>

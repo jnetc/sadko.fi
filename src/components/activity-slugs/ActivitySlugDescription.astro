@@ -10,7 +10,7 @@ const { md } = Astro.props;
 
 <section class="activity__description">
   <h2 class="description__h2">{main_locale[lang].description}</h2>
-  <div class="description__txt">
+  <div class="markdown">
     <Fragment set:html={md} />
   </div>
 </section>
