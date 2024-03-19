@@ -1,5 +1,5 @@
 ---
-import type { ImageType, SlugType, HeadingTextType } from "@Types";
+import type { ImageType, SlugType, HeadingTextType } from '@Types';
 
 interface Props extends SlugType, HeadingTextType {
   image: ImageType;
@@ -43,7 +43,12 @@ const { heading, text, image, slug } = Astro.props;
     /* gap: var(--gap-16); */
     overflow: hidden;
     position: relative;
+    transition: all 0.3s ease-in-out;
   }
+  .card:hover {
+    box-shadow: 0 0 0 0.75rem var(--opacity-10);
+  }
+
   .card__href {
     height: 100%;
     display: grid;

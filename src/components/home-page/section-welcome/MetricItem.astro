@@ -27,8 +27,6 @@ const { amount, text } = Astro.props.data;
         // Set data attribute for accurate calculation with decimal
         entry.target.setAttribute('data-count', '0');
 
-        console.log(el.dataset.target);
-
         function UpdateCounter() {
           el.classList.add('show');
           const initialNumber = Number(el.innerText);

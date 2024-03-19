@@ -57,7 +57,7 @@ const { primary, items } = Astro.props.data;
     margin-top: var(--gap-48);
   }
   h2 {
-    font-size: clamp(var(--font-24), 6.55vw, var(--font-48));
+    font-size: clamp(var(--font-32), 6.55vw, var(--font-48));
     font-weight: 400;
     line-height: 1;
   }
@@ -116,6 +116,9 @@ const { primary, items } = Astro.props.data;
   @media screen and (max-width: 480px) {
     .metric__list {
       flex-direction: column;
+    }
+    .metric__shape {
+      display: none;
     }
   }
 </style>

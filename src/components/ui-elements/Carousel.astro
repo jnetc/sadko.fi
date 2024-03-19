@@ -7,22 +7,6 @@ import CircleButton from './CircleButton.astro';
 // const id = Astro.props.carouselID
 ---
 
-<div class="carousel">
-  <svg class="carousel-arrow-top">
-    <use xlink:href="/svg/shapes.svg#page_arrow_shot"></use>
-  </svg>
-  <CircleButton icon="arrow" dataValue="prev" extraClass="hide" />
-  <div class="scroll-area">
-    <ul class="cards">
-      <slot />
-    </ul>
-  </div>
-  <CircleButton icon="arrow" dataValue="next" />
-  <svg class="carousel-arrow-bottom">
-    <use xlink:href="/svg/shapes.svg#page_arrow_shot"></use>
-  </svg>
-</div>
-
 <script>
   const prevButtons = document.querySelectorAll<HTMLButtonElement>('[data-dir="prev"]')!;
   const nextButtons = document.querySelectorAll<HTMLButtonElement>('[data-dir="next"]')!;
@@ -56,6 +40,22 @@ import CircleButton from './CircleButton.astro';
     btn.addEventListener('click', ev => moveCarousel(ev, index));
   });
 </script>
+
+<div class="carousel">
+  <svg class="carousel-arrow-top">
+    <use xlink:href="/svg/shapes.svg#page_arrow_shot"></use>
+  </svg>
+  <CircleButton icon="arrow" dataValue="prev" extraClass="hide" />
+  <div class="scroll-area">
+    <ul class="cards">
+      <slot />
+    </ul>
+  </div>
+  <CircleButton icon="arrow" dataValue="next" />
+  <svg class="carousel-arrow-bottom">
+    <use xlink:href="/svg/shapes.svg#page_arrow_shot"></use>
+  </svg>
+</div>
 
 <style>
   .carousel {
@@ -98,13 +98,15 @@ import CircleButton from './CircleButton.astro';
     border-radius: 100vw;
     border: 3px solid var(--white);
   }
-
   .carousel-arrow-top,
   .carousel-arrow-bottom {
     grid-column: 2 / -2;
     height: 1.5rem;
     aspect-ratio: 2 / 1;
     fill: var(--violet-light);
+    translate: -5rem 0;
+    opacity: 0;
+    animation: swipe 5s ease-in-out infinite;
   }
   .carousel-arrow-top {
     margin-inline: auto 1rem;
@@ -112,6 +114,24 @@ import CircleButton from './CircleButton.astro';
   .carousel-arrow-bottom {
     margin-top: 2rem;
     margin-inline: auto;
+    animation-delay: 1s;
+  }
+
+  @keyframes swipe {
+    50% {
+      translate: -0rem 0;
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    95% {
+      opacity: 0;
+      translate: -0rem 0;
+    }
+    100% {
+      translate: -5rem 0;
+    }
   }
 
   @media screen and (max-width: 1200px) {

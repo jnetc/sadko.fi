@@ -1,5 +1,5 @@
 ---
-import type { TypeUIIcons, SlugType, HeadingTextType } from "@Types";
+import type { TypeUIIcons, SlugType, HeadingTextType } from '@Types';
 
 interface Props extends SlugType, HeadingTextType {
   icon: TypeUIIcons;
@@ -39,6 +39,10 @@ const { heading, text, icon, index, slug } = Astro.props;
     border-radius: var(--border-corner-32);
     overflow: hidden;
     /* cursor: grab; */
+    transition: all 0.3s ease-in-out;
+  }
+  .card:hover {
+    box-shadow: 0 0 0 0.75rem var(--opacity-10);
   }
   .card__href {
     height: 100%;
