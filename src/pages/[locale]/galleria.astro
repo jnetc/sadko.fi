@@ -1,18 +1,8 @@
 ---
-import { getCollection } from "astro:content";
 // Layouts
-import Layout from "@Layouts/Layout.astro";
+import Layout from '@Layouts/Layout.astro';
 // Export data from Markdown collections
-export async function getStaticPaths() {
-  const collection = await getCollection("galleria");
 
-  return collection.map((conent) => {
-    return { params: { locale: conent.slug }, props: conent.data };
-  });
-}
-export const prerender = true;
-
-const props = Astro.props;
 // const { locale, slug } = Astro.params;
 // const formattedDate = page.data.date.toLocaleString(lang);
 
@@ -20,5 +10,5 @@ const props = Astro.props;
 ---
 
 <Layout>
-  <main>{props.title}</main>
+  <main>Gallery</main>
 </Layout>

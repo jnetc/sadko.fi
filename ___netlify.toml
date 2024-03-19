@@ -4,6 +4,9 @@
   publish = "dist"
   functions = "functions"
 
+[functions]
+  node_bundler = "esbuild"
+
 [dev]
   command = "pnpm dev"
   targetPort = 4321

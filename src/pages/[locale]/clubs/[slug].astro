@@ -12,9 +12,8 @@ import Layout from '@Layouts/Layout.astro';
 import ActivitySlugDescription from '@Components/activity-slugs/ActivitySlugDescription.astro';
 import ActivitiSlugDetails from '@Components/activity-slugs/ActivitySlugDetails.astro';
 import BackwardButton from '@Components/ui-elements/BackwardButton.astro';
-// Helpers
-import { toMarkdown } from '@Helpers/toMarkdown';
-import { staticPath, repeatable } from '@Lib/prismiccms';
+// Libs
+import { staticPath, repeatable, toMarkdown } from '@Lib/prismiccms';
 
 const lang = Astro.currentLocale as 'ru' | 'fi';
 const path = Astro.url.pathname.split('/')[2];

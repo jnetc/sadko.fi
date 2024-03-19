@@ -1,7 +1,7 @@
 ---
-import { toMarkdown } from "@Helpers/toMarkdown";
+import { toMarkdown } from '@Lib/prismiccms';
 
-import type { RichTextField } from "@prismicio/client";
+import type { RichTextField } from '@prismicio/client';
 interface Props {
   heading: string;
   markdown: RichTextField;
@@ -78,7 +78,7 @@ const md = await toMarkdown(markdown);
   }
   .faq__summary-icon::after,
   .faq__summary-icon::before {
-    content: "";
+    content: '';
     position: absolute;
     height: 2px;
     width: 50%;

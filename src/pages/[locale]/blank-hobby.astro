@@ -1,24 +1,12 @@
 ---
-import { getCollection } from "astro:content";
 // Layouts
-import Layout from "@Layouts/Layout.astro";
+import Layout from '@Layouts/Layout.astro';
 // Export data from Markdown collections
-export async function getStaticPaths() {
-  const collection = await getCollection("blank-hobby");
 
-  return collection.map((conent) => {
-    return { params: { locale: conent.slug }, props: conent.data };
-  });
-}
-export const prerender = true;
-
-const props = Astro.props;
 // const { locale, slug } = Astro.params;
 // const formattedDate = page.data.date.toLocaleString(lang);
 
 // const { Content } = await page.render();
 ---
 
-<Layout>
-  <main>{props.title}</main>
-</Layout>
+<Layout>Blank </Layout>
