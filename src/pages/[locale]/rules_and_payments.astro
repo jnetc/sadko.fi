@@ -2,18 +2,18 @@
 // Global Styles
 import '@Styles/articles_page.css';
 // Content
-import query from '@Queries/about.ts';
+import query from '@Queries/rules_and_payments.ts';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
 // Types
-import type { IAboutPage } from '@Types';
+import type { IRulesAndPaymentsPage } from '@Types';
 
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
 import { single, toMarkdown } from '@Lib/prismiccms';
-const response = await single(query, 'about', lang);
+const response = await single(query, 'rules_and_payments', lang);
 
-const data = response.data as IAboutPage;
+const data = response.data as IRulesAndPaymentsPage;
 const md = await toMarkdown(data.text);
 ---
 

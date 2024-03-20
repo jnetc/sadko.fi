@@ -101,10 +101,13 @@ const { data, publish } = Astro.props;
   }
 
   .details__btns {
-    width: min-content;
-    display: grid;
-    grid-auto-flow: column;
+    /* width: min-content; */
+    /* display: grid; */
+    display: flex;
+    flex-wrap: wrap;
+    /* grid-auto-flow: column; */
     align-items: center;
+
     gap: var(--gap-18);
     padding-block: var(--gap-36);
   }
@@ -127,29 +130,10 @@ const { data, publish } = Astro.props;
     }
   }
 
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 520px) {
     .details__btns {
-      justify-self: center;
-    }
-
-    .details__btns:has(a:nth-child(3)) {
-      grid-template-rows: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
-    }
-    .details__btns:has(a:nth-child(3)) a:nth-child(1) {
-      grid-column: 1 / -1;
-      grid-row: 1;
-    }
-    .details__btns:has(a:nth-child(3)) a:nth-child(2),
-    .details__btns:has(a:nth-child(3)) a:nth-child(3) {
-      grid-row: 2;
-    }
-    .details__btns:has(a:nth-child(3)) a:nth-child(2) {
-      grid-column: 1;
-      justify-self: flex-end;
-    }
-    .details__btns:has(a:nth-child(3)) a:nth-child(3) {
-      grid-column: 2;
+      justify-content: center;
+      gap: var(--gap-32);
     }
   }
 </style>

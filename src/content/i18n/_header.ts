@@ -207,11 +207,11 @@ const blanks: Array<ISubMenu> = [
   },
 ];
 
-const payments: Array<ISubMenu> = [
+const rules_and_payments: Array<ISubMenu> = [
   {
     iconBorder: "cookie",
-    icon: "payments",
-    slug: "payments",
+    icon: "rules_and_payments",
+    slug: "rules_and_payments",
     hrefName: {
       ru: "Оплата",
       fi: "Maksu"
@@ -295,7 +295,7 @@ export const headerLinks = {
       name: 'Записаться',
       submenu: [
         { columnName: "Анкеты", columns: blanks },
-        { columnName: "Оплата", columns: payments },
+        { columnName: "Оплата", columns: rules_and_payments },
       ],
     },
     schedule: 'Расписание',
@@ -321,7 +321,7 @@ export const headerLinks = {
       name: 'Ilmoittautua',
       submenu: [
         { columnName: "Lomakeet", columns: blanks },
-        { columnName: "Maksu", columns: payments },
+        { columnName: "Maksu", columns: rules_and_payments },
       ],
     },
     schedule: 'Aikataulu',

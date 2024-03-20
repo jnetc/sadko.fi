@@ -12,11 +12,11 @@ interface Props {
 const { article } = Astro.props;
 ---
 
-<section class="activities__item">
-  <a class="activities__href" href={`${path}/${article.data.slug.url}`} aria-label={`${path}/${article.data.slug.url}`}>
-    <article class="activities__article arrow-icon">
+<section class="section__item">
+  <a class="section__href" href={`${path}/${article.data.slug.url}`} aria-label={`${path}/${article.data.slug.url}`}>
+    <article class="section__article arrow-icon">
       <img
-        class="activities__image"
+        class="section__image"
         src={article.data.image.url}
         alt={article.data.image.alt}
         height={article.data.image.dimensions.height}
@@ -25,49 +25,49 @@ const { article } = Astro.props;
       <ArticleContent content={article.data} publish={article.last_publication_date} />
     </article>
   </a>
-  <svg class="activities__svg">
+  <svg class="section__svg">
     <use xlink:href="/svg/shapes.svg#page_stroke_02"></use>
   </svg>
 </section>
 
 <style>
-  .activities__item {
+  .section__item {
     grid-column: 2 / -2;
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 6rem));
     column-gap: var(--gap-32);
   }
-  .activities__href {
+  .section__href {
     grid-column: 1 / -5;
   }
-  .activities__item:nth-of-type(even) .activities__href {
+  .section__item:nth-of-type(even) .section__href {
     grid-column: 5 / -1;
   }
-  .activities__item:nth-of-type(even) .activities__svg {
+  .section__item:nth-of-type(even) .section__svg {
     grid-column: 1 / span 4;
   }
-  .activities__item:nth-of-type(even) .activities__article {
+  .section__item:nth-of-type(even) .section__article {
     direction: rtl;
     border-left: 1.5px solid transparent;
   }
-  .activities__item:nth-of-type(odd) .activities__article {
+  .section__item:nth-of-type(odd) .section__article {
     border-right: 1.5px solid transparent;
   }
 
-  .activities__item:nth-of-type(4n - 1) .activities__svg {
+  .section__item:nth-of-type(4n - 1) .section__svg {
     stroke: var(--violet);
   }
-  .activities__item:nth-of-type(4n - 3) .activities__svg {
+  .section__item:nth-of-type(4n - 3) .section__svg {
     stroke: var(--green);
   }
-  .activities__item:nth-of-type(4n) .activities__svg {
+  .section__item:nth-of-type(4n) .section__svg {
     stroke: var(--yellow);
   }
-  .activities__item:nth-of-type(4n - 2) .activities__svg {
+  .section__item:nth-of-type(4n - 2) .section__svg {
     stroke: var(--pink);
   }
 
-  .activities__svg {
+  .section__svg {
     grid-column: 10 / span 4;
     grid-row: 1;
     max-width: 280px;
@@ -76,7 +76,7 @@ const { article } = Astro.props;
     place-self: center;
   }
 
-  .activities__article {
+  .section__article {
     display: grid;
     grid-template-columns: minmax(280px, 40%) 1fr;
     border-radius: var(--border-corner-32);
@@ -85,11 +85,11 @@ const { article } = Astro.props;
       0 15px 10px var(--opacity-3);
     transition: all 0.3s ease-in-out;
   }
-  .activities__item .activities__article:hover {
+  .section__item .section__article:hover {
     border-color: var(--violet);
   }
 
-  .activities__image {
+  .section__image {
     max-height: 250px;
     min-height: 100%;
     object-fit: cover;
@@ -99,29 +99,39 @@ const { article } = Astro.props;
 
   /* MEDIA QUERIES */
   @media (max-width: 1200px) {
-    .activities__item {
+    .section__item {
       grid-template-columns: 1fr;
       column-gap: 0;
     }
 
-    .activities__href {
+    .section__href {
       grid-column: 1 / -1;
     }
 
-    .activities__svg {
+    .section__svg {
       display: none;
     }
   }
 
   @media screen and (max-width: 767px) {
-    .activities__article {
+    .section__article {
       grid-template-columns: 1fr;
-      grid-template-rows: 320px min-content;
+      grid-template-rows: 220px min-content;
       gap: 0;
     }
 
-    .activities__image {
-      max-height: 250px;
+    .section__item:nth-of-type(even) .section__article,
+    .section__item:nth-of-type(odd) .section__article {
+      border-right: 0px solid transparent;
+      border-left: 0px solid transparent;
+    }
+
+    .section__item .section__article {
+      border-bottom: 1.5px solid transparent;
+    }
+
+    .section__image {
+      max-height: 100%;
       border-top-left-radius: var(--border-corner-32);
       border-top-left-radius: var(--border-corner-32);
       border-bottom-right-radius: 0;

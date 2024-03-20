@@ -1,23 +1,18 @@
 ---
-import type { ISubMenu } from "@Types";
+import type { ISubMenu } from '@Types';
 
 interface Props {
   link: ISubMenu;
 }
 // Get language from Astro Runtime API
-const lang = Astro.currentLocale as "ru" | "fi";
+const lang = Astro.currentLocale as 'ru' | 'fi';
 
 const { hrefDesc, slug } = Astro.props.link;
 ---
 
-<a
-  href=`/${lang}/${slug}`
-  class="subnav__link-image"
-  data-astro-reload
-  role="menuitem"
->
+<a href=`/${lang}/${slug}` class="subnav__link-image" data-astro-reload role="menuitem">
   <div class="subnav__link-content">
-    <img src="/webp/payments.webp" alt="payments image" />
+    <img src="/webp/rules_and_payments.webp" alt="rules_and_payments image" />
   </div>
   <p>
     {hrefDesc[lang]}

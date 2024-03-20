@@ -1,7 +1,7 @@
 ---
-import type { ISubMenu } from "@Types";
-import SubLink from "../navigation/SubLink.astro";
-import SubLinkImage from "../navigation/SubLinkImage.astro";
+import type { ISubMenu } from '@Types';
+import SubLink from '../navigation/SubLink.astro';
+import SubLinkImage from '../navigation/SubLinkImage.astro';
 
 interface Props {
   columnName: string;
@@ -10,13 +10,13 @@ interface Props {
 
 const { columnName, columns } = Astro.props;
 
-const exceptions = ["payments", "galleria"];
+const exceptions = ['rules_and_payments', 'galleria'];
 ---
 
 <li class="subnav__column">
   <h3 class="subnav__column-title">{columnName}</h3>
   {
-    columns.map((link) => {
+    columns.map(link => {
       if (exceptions.includes(link.slug)) {
         return <SubLinkImage link={link} />;
       }

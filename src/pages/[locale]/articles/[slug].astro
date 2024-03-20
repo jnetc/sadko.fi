@@ -1,8 +1,8 @@
 ---
 export const prerender = true;
 // Global Styles
-import '@Styles/activity_slug.css';
-
+import '@Styles/articles_slug.css';
+import '@Styles/articles_page.css';
 // Content
 import query from '@Queries/slug_articles';
 // Types
@@ -72,22 +72,22 @@ const md = await toMarkdown(data.text);
 </head>
 
 <Layout>
-  <main class="grid article">
+  <main class="grid page">
     <BackwardButton href={`/${lang}/${path}`} isBack />
-    <time datetime={data.publication_date.split('T')[0]}>
+    <time class="column-sized" datetime={data.publication_date.split('T')[0]}>
       {main_locale[lang].publish}
       {publishDate(data.publication_date, lang)}
     </time>
-    <h1 class="article__title">{data.title}</h1>
-    <p class="article__author">{data.author}</p>
+    <h1 class="page__title column-sized">{data.title}</h1>
+    <p class="page__author column-sized">{data.author}</p>
     <img
-      class="article__image article__image-post"
+      class="page__image page__image-post column-sized"
       src={data.image.url}
       alt={data.image.alt}
       height={data.image.dimensions.height}
       width={data.image.dimensions.width}
     />
-    <div class="article__content markdown">
+    <div class="page__content markdown">
       <Fragment set:html={md} />
     </div>
   </main>
@@ -95,42 +95,32 @@ const md = await toMarkdown(data.text);
 
 <style>
   time,
-  .article__title,
-  .article__content,
-  .article__author {
-    grid-column: 5 / -5;
+  .page__title,
+  .page__author {
+    grid-column: 2 / -2;
+    width: 100%;
   }
 
-  .article__title {
+  time {
+    grid-row: 1;
+    align-self: center;
+  }
+
+  .page__title {
     padding-block: var(--gap-14) var(--gap-24);
   }
-  .article__author {
+
+  .page__author {
     padding-block-end: var(--gap-16);
   }
-  .article__content {
+
+  .page__content {
     padding-block-start: var(--gap-48);
   }
 
-  .article__content p {
-    font-size: var(--font-18);
-    padding-block: var(--gap-12) 0;
-    line-height: 1.4;
-  }
-
-  @media (max-width: 1200px) {
-    time,
-    .article__title,
-    .article__content,
-    .article__author {
-      grid-column: 3 / -3;
-    }
-  }
-  @media (max-width: 767px) {
-    time,
-    .article__title,
-    .article__content,
-    .article__author {
-      grid-column: 2 / -2;
+  @media (max-width: 959px) {
+    time {
+      grid-row: auto;
     }
   }
 </style>

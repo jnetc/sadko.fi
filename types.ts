@@ -38,7 +38,7 @@ export type TypeUIActivityIcons =
   | "projects"
   | "useful"
   | "parents"
-  | "payments"
+  | "rules_and_payments"
   | "about"
   | "teachers"
   | "membership"
@@ -280,4 +280,13 @@ export interface IArticlePage extends SEOType, TitleDescriptionType, SlugType {
   author: string;
   text: RichTextField
   publication_date: string;
+}
+export interface IAboutPage extends SEOType, TitleDescriptionType {
+  text: RichTextField
+}
+export interface IRulesAndPaymentsPage extends SEOType, TitleDescriptionType {
+  text: RichTextField
+}
+export interface IMembershipPage extends SEOType, TitleDescriptionType, SecondaryButtonType {
+  text: RichTextField
 }

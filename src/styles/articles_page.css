@@ -1,15 +1,29 @@
-.articles {
+.separator {
   row-gap: var(--gap-64);
 }
 
-.page__header {
+.column-sized,
+.page__content {
+  max-width: 700px;
+  justify-self: center;
+}
+
+.page__header,
+.page__content {
   grid-column: 2 / -2;
+}
+
+.page__header {
   display: grid;
   row-gap: var(--gap-32);
 }
 
 .page__header :where(h1, p) {
   text-align: center;
+}
+.page__header:not(:has(p)),
+.page__header:has(p) p  {
+  padding-block-end: var(--gap-64);
 }
 
 .page__header h1 {

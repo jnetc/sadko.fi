@@ -12,6 +12,8 @@
 
 .btn-primary,
 .btn-secondary {
+  min-width: 200px;
+  justify-content: center;
   padding-block: var(--gap-12);
   padding-inline: var(--gap-32) var(--gap-16);
   border: 1px solid transparent;
@@ -39,8 +41,21 @@
   gap: var(--gap-12);
   padding-block: var(--gap-8);
   padding-inline-end: var(--gap-16);
-  border: 1px solid var(--violet-light);
+  border: 1px solid transparent;
   font-size: var(--font-16);
+  transition: all .3s ease-in-out;
+}
+.btn-ternary:hover {
+  border-color: var(--violet-light);
+
+}
+.btn-ternary p {
+  opacity: 0;
+  transition: all .3s ease-in-out;
+}
+.btn-ternary:hover p{
+  opacity: 1;
+
 }
 
 .btn .btn__icon {
@@ -108,9 +123,24 @@
   50.01% {
     transform: translate(1.1rem, 0);
   }
-
 }
 
+@media (max-width: 1200px) {
+
+  .btn-ternary {
+    padding: var(--gap-8);
+  }
+  .btn-ternary .btn__icon {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .btn.btn-primary,
+  .btn.btn-secondary {
+    width: 100%;
+  }
+}
 
 /* SMALL BUTTONs */
 .circle-button {

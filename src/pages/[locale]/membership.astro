@@ -1,14 +1,53 @@
 ---
+// Global Styles
+import '@Styles/articles_page.css';
+// Content
+import query from '@Queries/membership.ts';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
-// Export data from Markdown collections
+// Types
+import type { IMembershipPage } from '@Types';
 
-// const { locale, slug } = Astro.params;
-// const formattedDate = page.data.date.toLocaleString(lang);
+const lang = Astro.currentLocale as 'ru' | 'fi';
 
-// const { Content } = await page.render();
+import { single, toMarkdown } from '@Lib/prismiccms';
+const response = await single(query, 'membership', lang);
+
+const data = response.data as IMembershipPage;
+const md = await toMarkdown(data.text);
 ---
 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>{data.seo_title}</title>
+  <meta name="description" content={data.seo_description} />
+</head>
+
 <Layout>
-  <main>Membership</main>
+  <main class="grid about">
+    <div class="page__header column-sized">
+      <h1>{data.title}</h1>
+      {data.description && <p>{data.description}</p>}
+    </div>
+    <div class="page__content markdown">
+      <Fragment set:html={md} />
+    </div>
+    <a href=`${data.secondary_href.url}` class="btn btn-secondary arrow-icon btn-membership">
+      {data.secondary_button}
+      <span class="btn__icon" aria-hidden="true">
+        <svg>
+          <use xlink:href="/svg/ui_icons.svg#arrow_outward" data-xlink="arrow_outward"></use>
+        </svg>
+      </span>
+    </a>
+  </main>
 </Layout>
+<style>
+  .btn-membership {
+    grid-column: 2 / -2;
+    justify-self: center;
+    position: relative;
+    top: -3.5rem;
+  }
+</style>

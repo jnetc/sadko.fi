@@ -53,9 +53,9 @@ const { primary, items } = Astro.props.data;
   }
 
   .btn-welcome {
-    width: min-content;
     margin-top: var(--gap-48);
   }
+
   h2 {
     font-size: clamp(var(--font-32), 6.55vw, var(--font-48));
     font-weight: 400;
@@ -114,6 +114,9 @@ const { primary, items } = Astro.props.data;
   }
 
   @media screen and (max-width: 480px) {
+    .btn-welcome {
+      grid-column: 2 / -2;
+    }
     .metric__list {
       flex-direction: column;
     }

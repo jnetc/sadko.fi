@@ -95,13 +95,10 @@ main {
   position: relative;
 }
 
-/* .main {
-  padding-block: var(--gap-36);
-} */
-
 h1, h2, h3,h4, h5, h6 {
   color: var(--black);
-  text-wrap: balance;
+  text-wrap: pretty;
+  line-height: 1.2;
 }
 p {
   text-wrap: pretty;
@@ -154,13 +151,14 @@ p {
   .grid {
       column-gap: var(--gap-16);
     }
-}
-@media (max-width: 960px) {
-  :root {
-    --body-padding: 1rem;
   }
-  .grid {
-    grid-template-columns: auto repeat(6, minmax(0, 1fr)) auto;
+  @media (max-width: 960px) {
+    :root {
+      --body-padding: 1rem;
+    }
+    .grid {
+      grid-template-columns: auto repeat(6, minmax(0, 1fr)) auto;
+      min-width: 100%;
   }
 }
 
