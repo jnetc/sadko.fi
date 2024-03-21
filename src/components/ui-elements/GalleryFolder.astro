@@ -1,0 +1,84 @@
+---
+import type { HrefType } from '@Types';
+interface Props {
+  href: HrefType;
+  name: string;
+}
+
+const { href, name } = Astro.props;
+---
+
+<a href={href.url} target="_blank" class="folder">
+  <svg class="folder__front">
+    <use xlink:href="/svg/shapes.svg#folder-front"></use>
+  </svg>
+  <div class="folder__image violet-image"></div>
+  <div class="folder__image pink-image"></div>
+  <svg class="folder__back">
+    <use xlink:href="/svg/shapes.svg#folder-back"></use>
+  </svg>
+  <p class="folder__name">{name}</p>
+</a>
+
+<style>
+  .folder {
+    max-width: 280px;
+    display: grid;
+    grid-template-rows: min-content 1fr;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+  }
+
+  .folder:hover .violet-image {
+    translate: -0.5rem -1.5rem;
+    rotate: z -10deg;
+  }
+  .folder:hover .pink-image {
+    translate: 0 -1.5rem;
+    rotate: z 10deg;
+    scale: 1;
+  }
+
+  .folder__front,
+  .folder__back,
+  .folder__image {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .folder__front {
+  }
+  .folder__back {
+    z-index: -100;
+  }
+  .folder__image {
+    max-width: 120px;
+    min-width: 40%;
+    height: 40%;
+    align-self: center;
+    position: relative;
+    left: 50%;
+    border-radius: var(--border-corner-12);
+    transform: translateX(-50%);
+    transition: all 0.3s ease-in-out;
+  }
+  .violet-image {
+    background-color: var(--violet);
+    transform-origin: left bottom;
+    z-index: -5;
+  }
+  .pink-image {
+    top: 1.5rem;
+    background-color: var(--pink);
+    transform-origin: right bottom;
+    z-index: -4;
+  }
+
+  .folder__name {
+    align-self: flex-start;
+    color: var(--grey-300);
+    font-size: var(--font-18);
+    font-weight: bold;
+    text-align: center;
+  }
+</style>

@@ -260,19 +260,32 @@ const aboutus: Array<ISubMenu> = [
     },
     hrefDesc: {
       ru: "Права и обязанности",
-      fi: "oikeudet ja velvollisuudet"
+      fi: "Oikeudet ja velvollisuudet"
+    }
+  },
+  {
+    iconBorder: "cookie",
+    icon: "feedback",
+    slug: "feedback",
+    hrefName: {
+      ru: "Отзывы",
+      fi: "Suosittelut"
+    },
+    hrefDesc: {
+      ru: "Что о нас говорят",
+      fi: "Mitä meistä sanotaan"
     }
   },
 ];
 
-const galleria: Array<ISubMenu> = [
+const gallery: Array<ISubMenu> = [
   {
     iconBorder: "cookie",
-    icon: "galleria",
-    slug: "galleria",
+    icon: "gallery",
+    slug: "gallery",
     hrefName: {
       ru: "Галерея",
-      fi: "Galleria"
+      fi: "gallery"
     },
     hrefDesc: {
       ru: "История в картинках",
@@ -304,7 +317,7 @@ export const headerLinks = {
       name: 'О Sadko',
       submenu: [
         { columnName: "О нас", columns: aboutus },
-        { columnName: "Картинки", columns: galleria },
+        { columnName: "Фотогалерея", columns: gallery },
       ],
     },
   },
@@ -330,7 +343,7 @@ export const headerLinks = {
       name: 'Sadko:sta',
       submenu: [
         { columnName: "Meistä", columns: aboutus },
-        { columnName: "Kuvat", columns: galleria },
+        { columnName: "Kuvagallery", columns: gallery },
       ],
     },
   },

@@ -108,18 +108,18 @@ offer_btn_url: "https://sadko.fi/fi/sigup"
 # Пятый блок домашней страницы "Галерея"
 # ПРИМЕЧАНИЕ!!!
 # Только 4 ссылки на картинки
-# Эти картинки лежат чуть выше в папке webp под названиями galleria-****.webp
+# Эти картинки лежат чуть выше в папке webp под названиями gallery-****.webp
 # Размер картинок 360px на 360px, оптимизированы (сжаты)
 # При замене удалите не нужную, загрузите новую с тем же именем, что и уделенная была
-galleria_images:
+gallery_images:
   [
-    "/webp/galleria-001.webp",
-    "/webp/galleria-002.webp",
-    "/webp/galleria-003.webp",
-    "/webp/galleria-004.webp",
+    "/webp/gallery-001.webp",
+    "/webp/gallery-002.webp",
+    "/webp/gallery-003.webp",
+    "/webp/gallery-004.webp",
   ]
-galleria_btn_name: "Kuvan Galleria"
-galleria_btn_url: "https://sadko.fi/fi/galleria"
+gallery_btn_name: "Kuvan gallery"
+gallery_btn_url: "https://sadko.fi/fi/gallery"
 # Шестой блок домашней страницы "Преподаватели"
 
 # Седьмой блок домашней страницы "Чаво"

@@ -1,0 +1,57 @@
+---
+// Global Styles
+import '@Styles/articles_page.css';
+// Content
+import query from '@Queries/gallery.ts';
+// Layouts
+import Layout from '@Layouts/Layout.astro';
+import GalleryFolder from '@Components/ui-elements/GalleryFolder.astro';
+// Types
+import type { IGalleryPage } from '@Types';
+
+const lang = Astro.currentLocale as 'ru' | 'fi';
+
+import { single } from '@Lib/prismiccms';
+const response = await single(query, 'gallery', lang);
+// LOCAL DATA!!!
+// Remove CACHE folder to get updated data!!!
+// import { SingleLocaleData } from '@Lib/localdata';
+// const response = await SingleLocaleData(query, 'gallery', lang);
+
+const data = response.data as IGalleryPage;
+console.log(data);
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>{data.seo_title}</title>
+  <meta name="description" content={data.seo_description} />
+</head>
+
+<Layout>
+  <main class="grid gallery">
+    <div class="page__header column-sized">
+      <h1>{data.title}</h1>
+      {data.description && <p>{data.description}</p>}
+    </div>
+    <section class="gallery-folders">
+      {data.folder.map(folder => <GalleryFolder href={folder.href} name={folder.name} />)}
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .gallery-folders {
+    grid-column: 2 / -2;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--gap-24);
+  }
+  @media screen and (max-width: 767px) {
+    .gallery-folders {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: var(--gap-18);
+    }
+  }
+</style>

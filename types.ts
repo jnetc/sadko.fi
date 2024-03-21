@@ -42,8 +42,9 @@ export type TypeUIActivityIcons =
   | "about"
   | "teachers"
   | "membership"
-  | "galleria"
-  | "info";
+  | "gallery"
+  | "info"
+  | "feedback";
 
 type TypeBlanks = "blank-hobby" | "blank-camp" | "blank-membership";
 
@@ -289,4 +290,9 @@ export interface IRulesAndPaymentsPage extends SEOType, TitleDescriptionType {
 }
 export interface IMembershipPage extends SEOType, TitleDescriptionType, SecondaryButtonType {
   text: RichTextField
+}
+
+
+export interface IGalleryPage extends SEOType, TitleDescriptionType {
+  folder: Array<{href: HrefType, name: string}>
 }
