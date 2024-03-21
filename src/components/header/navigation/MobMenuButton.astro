@@ -5,12 +5,15 @@
 <script>
   const button = document.querySelector<HTMLButtonElement>('.header__menu-button');
   const navigation = document.querySelector<HTMLElement>('.header__nav');
+  const body = document.documentElement;
   function openSubMenu() {
     if (navigation?.classList.contains('open-menu')) {
       navigation?.classList.remove('open-menu');
+      body.style.overflow = '';
       return;
     }
     navigation?.classList.add('open-menu');
+    body.style.overflow = 'hidden';
   }
   button?.addEventListener('mousedown', openSubMenu);
 </script>
