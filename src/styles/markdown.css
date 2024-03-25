@@ -33,6 +33,7 @@
   color: var(--violet);
   font-weight: bold;
   text-decoration: underline transparent;
+  text-decoration-thickness: 5px;
   text-underline-offset: 5px;
   transition: all .3s ease-in-out;
 }
@@ -40,6 +41,7 @@
 .markdown a:hover {
   text-decoration: underline var(--violet);
   text-underline-offset: 2px;
+  text-decoration-thickness: 5px;
 }
 
 .markdown :where(p) {

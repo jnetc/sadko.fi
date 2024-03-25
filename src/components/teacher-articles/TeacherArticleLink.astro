@@ -1,0 +1,40 @@
+---
+import type { HrefType } from '@Types';
+
+interface Props {
+  link: HrefType;
+  color: string;
+  link_name: string;
+}
+const { link, color, link_name } = Astro.props;
+---
+
+<a class={`teacher__link bg-${color}`} href={link.url} rel="noopener noreferrer" role="listitem">
+  {link_name}
+</a>
+
+<style>
+  .teacher__link {
+    /* max-width: 280px; */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-wrap: pretty;
+    padding: var(--gap-8) var(--gap-16);
+    border-radius: var(--border-corner-32);
+    background-color: var(--violet);
+    color: var(--black);
+    color: var(--white);
+    font-size: var(--font-12);
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+  }
+  .teacher__link.bg-black,
+  .teacher__link.bg-violet {
+    color: var(--white);
+  }
+  .teacher__link:hover {
+    background-color: var(--violet-light);
+    color: var(--black);
+  }
+</style>

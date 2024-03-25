@@ -1,0 +1,193 @@
+---
+import TeacherArticleLink from './TeacherArticleLink.astro';
+// Helpers
+import { toMarkdown } from '@Lib/prismiccms';
+// Locale
+import { main_locale } from '@Locales/main_locale';
+// Types
+import type { ITeacher } from '@Types';
+
+interface Props {
+  data: ITeacher;
+}
+
+const lang = Astro.currentLocale as 'ru' | 'fi';
+
+const { color, image, name, text, links, slug } = Astro.props.data;
+const md = await toMarkdown(text);
+---
+
+<script>
+  const teachers = document.querySelectorAll<HTMLElement>('.teacher');
+
+  function openSubMenu(event: Event) {
+    const btn = event.target as HTMLButtonElement;
+    const teacher = btn.closest('.teacher')!;
+    teacher.classList.toggle('show-all');
+
+    // const timer = setTimeout(() => {
+    //   teacher.scrollIntoView({
+    //     behavior: 'smooth',
+    //   });
+    //   clearTimeout(timer);
+    // }, 600);
+  }
+
+  teachers.forEach(teacher => {
+    const txt = teacher.querySelector<HTMLElement>('.teacher__text')!.scrollHeight;
+    const btn = teacher.querySelector<HTMLButtonElement>('.teacher__btn')!;
+    if (txt <= 75) {
+      btn.remove();
+      return;
+    }
+
+    btn.addEventListener('mousedown', openSubMenu);
+  });
+</script>
+
+<article class="teacher" id={slug.url}>
+  <img
+    class="teacher__image"
+    src={image.url}
+    alt={image.alt}
+    height={image.dimensions.height}
+    width={image.dimensions.width}
+  />
+  <h2 class="teacher__name">{name}</h2>
+  <h3 class="teacher__label">{main_locale[lang].teacher_label}</h3>
+  <div class="teacher__links" role="list">
+    {links.map(link => <TeacherArticleLink link={link.link} color={color} link_name={link.link_name} />)}
+  </div>
+  <div class="markdown teacher__text">
+    <Fragment set:html={md} />
+  </div>
+  <button class="btn btn-secondary arrow-icon teacher__btn">
+    <p class="btn__more">{main_locale[lang].button_more}</p>
+    <p class="btn__hide">{main_locale[lang].button_hide}</p>
+    <span class="btn__icon" aria-hidden="true">
+      <svg>
+        <use xlink:href="/svg/ui_icons.svg#arrow_backward" data-xlink="arrow_backward"></use>
+      </svg>
+    </span>
+  </button>
+</article>
+
+<style>
+  .teacher {
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: 112px 1fr;
+    grid-template-rows: 112px min-content min-content 64px 0fr min-content;
+    gap: var(--gap-12);
+    border-radius: var(--border-corner-32);
+    padding: var(--gap-32);
+    background-color: var(--white);
+    box-shadow:
+      0 25px 20px var(--opacity-3),
+      0 15px 10px var(--opacity-3);
+    transition: grid-template-rows 0.3s ease-in-out;
+  }
+  .teacher.show-all {
+    grid-template-rows: 156px min-content min-content 1fr 1fr min-content;
+  }
+
+  .section:nth-of-type(odd) .teacher {
+    grid-column: 6 / -4;
+  }
+  .section:nth-of-type(even) .teacher {
+    grid-column: 4 / -6;
+  }
+
+  .teacher__image {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 100vw;
+    object-fit: cover;
+    object-position: center;
+  }
+  .teacher__name {
+    grid-column: 2;
+    grid-row: 1;
+    width: min-content;
+    align-self: center;
+    color: var(--black);
+    font-size: clamp(var(--font-20), 4vw, var(--font-36));
+    line-height: 1.2;
+  }
+  .teacher__links {
+    grid-column: 2 span;
+    grid-row: 3;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-8);
+    align-items: flex-start;
+  }
+  .teacher__label {
+    grid-column: 2 span;
+    grid-row: 2;
+    color: var(--black);
+    font-size: clamp(var(--font-16), 2.5vw, var(--font-18));
+  }
+
+  .teacher__text {
+    grid-column: 2 span;
+    grid-row: 4 / 2 span;
+    overflow: hidden;
+    color: var(--grey-300);
+    position: relative;
+  }
+  .teacher__text::after {
+    content: '';
+    position: absolute;
+    inset: 50% 0 0;
+    background-image: linear-gradient(to top, var(--white) 10%, transparent);
+    pointer-events: none;
+  }
+
+  .teacher__text::after {
+    content: '';
+    position: absolute;
+    inset: 50% 0 0;
+    background-image: linear-gradient(to top, var(--white) 10%, transparent);
+    pointer-events: none;
+    transition: all 0.3s ease-in-out;
+  }
+  .teacher.show-all .teacher__text::after {
+    background-image: linear-gradient(to top, transparent 10%, transparent);
+  }
+
+  .teacher__btn {
+    grid-column: 2 span;
+    justify-self: center;
+  }
+  .teacher__btn span {
+    rotate: z -90deg;
+  }
+  .teacher.show-all .teacher__btn span {
+    rotate: z 90deg;
+  }
+  .teacher.show-all .btn__more,
+  .teacher .btn__hide {
+    display: none;
+  }
+  .teacher.show-all .btn__hide {
+    display: block;
+  }
+
+  @media (max-width: 1200px) {
+    .section:nth-of-type(odd) .teacher,
+    .section:nth-of-type(even) .teacher {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (max-width: 520px) {
+    .teacher {
+      grid-template-columns: 80px 1fr;
+      grid-template-rows: 80px min-content min-content 64px 0fr min-content;
+
+      padding: var(--gap-24);
+    }
+  }
+</style>

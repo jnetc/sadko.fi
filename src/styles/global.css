@@ -94,6 +94,20 @@ main {
   column-gap: var(--gap-32);
   position: relative;
 }
+.href {
+    position: relative;
+      color: var(--violet);
+      font-weight: bold;
+      text-decoration: underline transparent;
+      text-decoration-thickness: 5px;
+      text-underline-offset: 5px;
+      transition: all .3s ease-in-out;
+}
+.href:hover {
+  text-decoration: underline var(--violet);
+    text-underline-offset: 2px;
+    text-decoration-thickness: 5px;
+}
 
 h1, h2, h3,h4, h5, h6 {
   color: var(--black);
@@ -140,6 +154,28 @@ p {
 }
 .fill-green {
   fill: var(--green);
+}
+.fill-black {
+  fill: var(--black);
+}
+
+.stroke-violet {
+  stroke: var(--violet);
+}
+.stroke-violet-light {
+  stroke: var(--violet-light);
+}
+.stroke-pink {
+  stroke: var(--pink);
+}
+.stroke-yellow {
+  stroke: var(--yellow);
+}
+.stroke-green {
+  stroke: var(--green);
+}
+.stroke-black {
+  stroke: var(--black);
 }
 
 .main-section {

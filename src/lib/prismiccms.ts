@@ -6,7 +6,7 @@ import { marked } from "marked";
 // Types
 import type { RichTextField } from "@prismicio/client";
 
-import type {Pages, Links, TypeLanguages} from "@Types";
+import type {Pages, Relationship, TypeLanguages} from "@Types";
 
 const repositoryName = import.meta.env.PRISMIC_REPOSITORY_NAME;
 const accessToken = import.meta.env.PRISMIC_ACCESS_TOKEN;
@@ -28,7 +28,16 @@ export async function single(query: string, page: Pages, lang: TypeLanguages ) {
 
   return response;
 }
-export async function singleWithLinks(query: string, page: Pages, link: Links, lang: TypeLanguages ) {
+export async function singleWithLinks(query: string, page: Pages, link: Relationship, lang: TypeLanguages) {
+
+
+  let queryFetchLink;
+
+  if (["clubs", "camps", "masters", "courses", "festivals", "celebrations", "concerts", "travels", "projects", "useful", "parents", "articles"].includes(link)) {
+    queryFetchLink = [`${link}.title`, `${link}.description`, `${link}.image`, `${link}.slug`, `${link}.text`]
+  } else if (link === "teacher") {
+    queryFetchLink = [`${link}.image`, `${link}.color`, `${link}.name`, `${link}.description`, `${link}.slug`, `${link}.text`, `${link}.links`]
+  }
 
   const client = prismic.createClient(repositoryName, {
     accessToken,
@@ -37,7 +46,7 @@ export async function singleWithLinks(query: string, page: Pages, link: Links, l
   });
 
   const response = await client.getSingle(page, {
-    fetchLinks: [`${link}.title`, `${link}.description`, `${link}.image`, `${link}.slug`, `${link}.text`],
+    fetchLinks: queryFetchLink,
     graphQuery: query,
   });
 

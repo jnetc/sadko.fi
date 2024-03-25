@@ -14,6 +14,9 @@ export const main_locale = {
     facebook: 'Facebook',
     instagram: 'Instagram',
     description: 'Содержание',
+    button_more: 'Подробнее',
+    button_hide: 'Свернуть',
+    teacher_label: 'Я преподаю',
   },
   fi: {
     button_back: 'Takaisin',
@@ -30,5 +33,8 @@ export const main_locale = {
     facebook: 'Facebook',
     instagram: 'Instagram',
     description: 'Sisältö',
+    button_more: 'Lisää',
+    button_hide: 'Piilota',
+    teacher_label: 'Olen opettanut',
   },
 };

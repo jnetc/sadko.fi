@@ -1,6 +1,6 @@
 import fs from "node:fs"; // 👈 "node:" prefix is an Astro requirement for Node libs
 import { repeatable, single, singleWithLinks } from "@Lib/prismiccms";
-import type { TypeLanguages, Pages, Links } from "@Types";
+import type { TypeLanguages, Pages, Relationship } from "@Types";
 import type { PrismicDocument } from "@prismicio/client/*";
 
 const CACHE_FOLDER = "./.cache";
@@ -52,7 +52,7 @@ export  async function SingleLocaleData( query: string, page: Pages, lang: TypeL
 }
 
 
-export async function SingleWithLinkLocaleData( query: string, page: Pages, link: Links, lang: TypeLanguages) {
+export async function SingleWithLinkLocaleData( query: string, page: Pages, link: Relationship, lang: TypeLanguages) {
   let response;
 
   if (!fs.existsSync(CACHE_FOLDER)) {

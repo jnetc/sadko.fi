@@ -51,8 +51,8 @@ type TypeBlanks = "blank-hobby" | "blank-camp" | "blank-membership";
 export type TypePage = "page_masters" | "page_camps" | "page_festivals" | "page_concerts" | "page_projects" | "page_parents" | "page_clubs" | "page_courses" | "page_travels" | "page_celebrations" | "page_concerts" | "page_usefuls" | "page_articles";
 
 
-export type Pages = "home" | TypeBlanks | TypeUIActivityIcons | TypePage | "articles";
-export type Links = "home" | TypeBlanks | TypeUIActivityIcons | "articles";
+export type Pages = "home" | TypeBlanks | TypeUIActivityIcons | TypePage | "articles" | "schedule";
+export type Relationship = "home" | TypeUIActivityIcons | "articles" | "teacher";
 
 export type TypeUICardShapes =
   "shape01"
@@ -295,4 +295,19 @@ export interface IMembershipPage extends SEOType, TitleDescriptionType, Secondar
 
 export interface IGalleryPage extends SEOType, TitleDescriptionType {
   folder: Array<{href: HrefType, name: string}>
+}
+
+
+export interface ITeacher {
+  slug: HrefType
+  image: ImageType
+  description: string
+  color: string
+  name: string
+  text: RichTextField
+  links: Array<{link_name: string, link: HrefType}>
+}
+export interface ITeachersPage extends SEOType, TitleDescriptionType {
+  teachers: Array<{teacher: {data: ITeacher}}>
+
 }

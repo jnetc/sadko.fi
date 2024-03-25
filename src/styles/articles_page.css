@@ -15,14 +15,14 @@
 
 .page__header {
   display: grid;
-  row-gap: var(--gap-32);
+  row-gap: var(--gap-18);
 }
 
 .page__header :where(h1, p) {
   text-align: center;
 }
 .page__header:not(:has(p)),
-.page__header:has(p) p  {
+.page__header:has(p):has(~.page__content) p  {
   padding-block-end: var(--gap-64);
 }
 
