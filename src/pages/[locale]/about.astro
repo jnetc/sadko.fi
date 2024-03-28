@@ -1,8 +1,8 @@
 ---
 // Global Styles
 import '@Styles/articles_page.css';
-// Content
-import query from '@Queries/about.ts';
+// Query
+import query from '@Queries/page_about';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
 // Types
@@ -35,3 +35,4 @@ const md = await toMarkdown(data.text);
     </div>
   </main>
 </Layout>
+@Queries/page_about

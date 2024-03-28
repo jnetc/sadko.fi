@@ -1,5 +1,5 @@
 export default `{
-  allConcertss {
+  allCourses {
     edges {
       node {
         seo_title

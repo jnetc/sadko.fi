@@ -1,12 +1,10 @@
 ---
-export const prerender = true;
 // Global Styles
 import '@Styles/articles_slug.css';
-
-// Content
-import query from '@Queries/slug_masters';
+// Query
+import query from '@Queries/page_master';
 // Types
-import type { IActivityPage } from '@Types';
+import type { IActivity } from '@Types';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
 // Components
@@ -14,22 +12,26 @@ import ActivitySlugDescription from '@Components/activity-slugs/ActivitySlugDesc
 import ActivitiSlugDetails from '@Components/activity-slugs/ActivitySlugDetails.astro';
 import BackwardButton from '@Components/ui-elements/BackwardButton.astro';
 // Libs
+import { staticPath, repeatable, toMarkdown } from '@Lib/prismiccms';
 
 const lang = Astro.currentLocale as 'ru' | 'fi';
 const path = Astro.url.pathname.split('/')[2];
 
-import { staticPath, repeatable, toMarkdown } from '@Lib/prismiccms';
 // LOCAL DATA!!!
 // Remove CACHE folder to get updated data!!!
 // import { RepeatableLocaleData } from '@Lib/localdata';
 
 export async function getStaticPaths() {
-  const response = await staticPath(query, 'masters');
+  const response = await staticPath(query, 'master');
+
   // LOCAL DATA!!!
   // Remove CACHE folder to get updated data!!!
-  // const response = await RepeatableLocaleData(query, 'masters');
-  return response.flatMap(master => {
-    const data = master.data as IActivityPage;
+  // const response = await RepeatableLocaleData(query, 'master');
+  console.log(response);
+
+  return response.flatMap(i => {
+    const data = i.data as IActivity;
+    console.log('slug path', data.slug.url);
     return [
       {
         params: { locale: 'ru', slug: data.slug.url },
@@ -43,12 +45,15 @@ export async function getStaticPaths() {
   });
 }
 
-const response = await repeatable(query, 'masters', lang);
-// const response = await RepeatableLocaleData(query, 'masters', lang);
+const response = await repeatable(query, 'master', lang);
+// const response = await RepeatableLocaleData(query, 'master', lang);
+// const { data } = Astro.props;
 const { slug } = Astro.props;
+// console.log('slug data', data);
+console.log('slug data', slug);
 
 const [page] = response.filter(i => {
-  const data = i.data as IActivityPage;
+  const data = i.data as IActivity;
 
   if (data.slug.url !== slug) return;
 
@@ -56,11 +61,41 @@ const [page] = response.filter(i => {
   return data;
 });
 
-const data = page.data as IActivityPage;
+const data = page.data as IActivity;
 const md = await toMarkdown(data.text);
+export const prerender = true;
 ---
 
-<head>
+{
+  data === undefined ? (
+    <h1>Page not found</h1>
+  ) : (
+    <>
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>{data.seo_title}</title>
+        <meta name="description" content={data.seo_description} />
+      </head>
+      <Layout>
+        <main class="grid page">
+          <BackwardButton href={`/${lang}/${path}`} isBack />
+          <img
+            class="page__image page__image-details"
+            src={data.image.url}
+            alt={data.image.alt}
+            height={data.image.dimensions.height}
+            width={data.image.dimensions.width}
+          />
+          <ActivitiSlugDetails publish={data.publication_date} data={data} />
+          <ActivitySlugDescription md={md} />
+        </main>
+      </Layout>
+    </>
+  )
+}
+
+<!-- <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
   <title>{data.seo_title}</title>
@@ -80,4 +115,4 @@ const md = await toMarkdown(data.text);
     <ActivitiSlugDetails publish={data.publication_date} data={data} />
     <ActivitySlugDescription md={md} />
   </main>
-</Layout>
+</Layout> -->

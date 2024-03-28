@@ -12,7 +12,7 @@ const { data, lang } = Astro.props;
 
 {
   data.url !== undefined ? (
-    <a href={`/${lang}/${data.url}`} target={data.target} class="btn btn-primary arrow-icon">
+    <a href={data.url} target={data.target} class="btn btn-primary arrow-icon">
       {main_locale[lang].button_blank}
       <span class="btn__icon" aria-hidden="true">
         <svg>
@@ -22,3 +22,12 @@ const { data, lang } = Astro.props;
     </a>
   ) : null
 }
+
+<!-- <a href={`/${lang}/${data.url}`} target={data.target} class="btn btn-primary arrow-icon">
+  {main_locale[lang].button_blank}
+  <span class="btn__icon" aria-hidden="true">
+    <svg>
+      <use xlink:href="/svg/ui_icons.svg#arrow_outward" data-xlink="arrow_outward" />
+    </svg>
+  </span>
+</a> -->

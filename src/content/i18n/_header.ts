@@ -166,43 +166,56 @@ const others: Array<ISubMenu> = [
 ];
 
 const blanks: Array<ISubMenu> = [
+  // {
+  //   iconBorder: "list",
+  //   icon: "pen",
+  //   slug: "blank-hobby",
+  //   hrefName: {
+  //     ru: "Кружки",
+  //     fi: "Kerhot"
+  //   },
+  //   hrefDesc: {
+  //     ru: "Выбери и запишись к нам",
+  //     fi: "Valitse ja ilmoittaudu meille"
+  //   }
+  // },
+  // {
+  //   iconBorder: "list",
+  //   icon: "pen",
+  //   slug: "blank-camp",
+  //   hrefName: {
+  //     ru: "Лагеря",
+  //     fi: "Leirit"
+  //   },
+  //   hrefDesc: {
+  //     ru: "Записывайся заранее",
+  //     fi: "Ilmoittaudu etukäteen"
+  //   }
+  // },
+  // {
+  //   iconBorder: "list",
+  //   icon: "pen",
+  //   slug: "blank-membership",
+  //   hrefName: {
+  //     ru: "Членство",
+  //     fi: "Jäsenyys"
+  //   },
+  //   hrefDesc: {
+  //     ru: "Стань одним из нас",
+  //     fi: "Ryhdy yhdeksi meistä"
+  //   }
+  // },
   {
-    iconBorder: "list",
-    icon: "pen",
-    slug: "blank-hobby",
+    iconBorder: "cookie",
+    icon: "blanks",
+    slug: "blanks",
     hrefName: {
-      ru: "Кружки",
-      fi: "Kerhot"
+      ru: "Анкеты",
+      fi: "Lomakeet"
     },
     hrefDesc: {
-      ru: "Выбери и запишись к нам",
-      fi: "Valitse ja ilmoittaudu meille"
-    }
-  },
-  {
-    iconBorder: "list",
-    icon: "pen",
-    slug: "blank-camp",
-    hrefName: {
-      ru: "Лагеря",
-      fi: "Leirit"
-    },
-    hrefDesc: {
-      ru: "Записывайся заранее",
-      fi: "Ilmoittaudu etukäteen"
-    }
-  },
-  {
-    iconBorder: "list",
-    icon: "pen",
-    slug: "blank-membership",
-    hrefName: {
-      ru: "Членство",
-      fi: "Jäsenyys"
-    },
-    hrefDesc: {
-      ru: "Стань одним из нас",
-      fi: "Ryhdy yhdeksi meistä"
+      ru: "Формы для записи",
+      fi: "Ilmoittamis- ja lomakkeet"
     }
   },
 ];
@@ -265,8 +278,8 @@ const aboutus: Array<ISubMenu> = [
   },
   {
     iconBorder: "cookie",
-    icon: "feedback",
-    slug: "feedback",
+    icon: "feedbacks",
+    slug: "feedbacks",
     hrefName: {
       ru: "Отзывы",
       fi: "Suosittelut"

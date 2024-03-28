@@ -1,6 +1,6 @@
 export default `{
-  allPage_clubss {
-     edges {
+  allFeedbacks_pages {
+    edges {
       node {
         seo_title
         seo_description

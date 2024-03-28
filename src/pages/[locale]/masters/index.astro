@@ -1,33 +1,23 @@
 ---
 // Global Styles
 import '@Styles/articles_page.css';
-// Content
-import query from '@Queries/page_masters';
+// Query
+import pageQuery from '@Queries/page_masters';
+import articlesQuery from '@Queries/page_master';
 // Types
-import type { IPageForArticles } from '@Types';
+import type { IActivity, IPage } from '@Types';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
 import Article from '@Components/pages-with-articles/Article.astro';
-// Helpers
-import { singleWithLinks } from '@Lib/prismiccms';
+// Libs
+import { single, repeatable } from '@Lib/prismiccms';
 
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
-const response = await singleWithLinks(query, 'page_masters', 'masters', lang);
+const response = await single(pageQuery, 'page_masters', lang);
+const articles = await repeatable(articlesQuery, 'master', lang);
 
-// LOCAL DATA!!!
-// Remove CACHE folder to get updated data!!!
-// import { SingleWithLinkLocaleData } from '@Lib/localdata';
-// const response = await SingleWithLinkLocaleData(query, 'page_masters', 'masters', lang);
-// Define Type IPageForArticles
-const data = response.data as IPageForArticles;
-// const content = data.articles.map(article => {
-//   // data.map((article: IArticleData) => {
-//   // });
-//   console.log(article);
-//   article.data.
-//   return {, ...article } as IArticleData;
-// });
+const data = response.data as IPage;
 ---
 
 <head>
@@ -44,8 +34,9 @@ const data = response.data as IPageForArticles;
       {data.description && <p>{data.description}</p>}
     </div>
     {
-      data.articles.map(i => {
-        return <Article article={i.article} />;
+      articles.map(i => {
+        const data = i.data as IActivity;
+        return <Article article={data} date={i.last_publication_date} />;
       })
     }
   </main>

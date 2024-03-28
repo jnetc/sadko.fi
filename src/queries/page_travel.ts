@@ -1,5 +1,5 @@
 export default `{
-  allUsefuls {
+  allTravels {
     edges {
       node {
         seo_title

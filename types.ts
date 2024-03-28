@@ -39,20 +39,30 @@ export type TypeUIActivityIcons =
   | "useful"
   | "parents"
   | "rules_and_payments"
+  | "blanks"
   | "about"
   | "teachers"
   | "membership"
   | "gallery"
   | "info"
-  | "feedback";
+  | "feedbacks";
 
-type TypeBlanks = "blank-hobby" | "blank-camp" | "blank-membership";
+// type TypeBlanks = "blank-hobby" | "blank-camp" | "blank-membership";
+// type TypeBlanks = "blank-hobby" | "blank-camp" | "blank-membership";
 
 export type TypePage = "page_masters" | "page_camps" | "page_festivals" | "page_concerts" | "page_projects" | "page_parents" | "page_clubs" | "page_courses" | "page_travels" | "page_celebrations" | "page_concerts" | "page_usefuls" | "page_articles";
 
 
-export type Pages = "home" | TypeBlanks | TypeUIActivityIcons | TypePage | "articles" | "schedule";
-export type Relationship = "home" | TypeUIActivityIcons | "articles" | "teacher";
+export type Pages = "home" |  TypeUIActivityIcons | TypePage | "articles" | "schedule" | "blanks" | "page_feedbacks" | "page_teachers" | "teacher" | "article" | "camp" | "club" | "master"
+  | "course"
+  | "festival"
+  | "celebration"
+  | "concert"
+  | "travel"
+  | "project"
+  | "useful"
+  | "parent";
+export type Relationship = "home" | TypeUIActivityIcons | "articles" | "teacher" | "feedbacks" | "feedback";
 
 export type TypeUICardShapes =
   "shape01"
@@ -83,7 +93,7 @@ interface LangRouteName {
 export interface ISubMenu {
   iconBorder: "cookie" | "list";
   icon: TypeUIActivityIcons | "pen";
-  slug: TypeUIActivityIcons | TypeBlanks;
+  slug: TypeUIActivityIcons;
   hrefName: LangRouteName;
   hrefDesc: LangRouteName;
 }
@@ -250,16 +260,14 @@ export interface HomeBodyFeedbacks {
   items: Array<HeadingTextType>;
 }
 
-export interface IPageForArticles extends SEOType, TitleDescriptionType {
-  articles: Array<{article: IArticleData}>;
-}
+export interface IPage extends SEOType, TitleDescriptionType {}
 
-export interface IArticleData  {
-  data: { image: ImageType;  text: RichTextField} & TitleDescriptionType & SlugType;
-  last_publication_date: string;
-}
+// export interface IArticleData  {
+//   data: { image: ImageType;  text: RichTextField} & TitleDescriptionType & SlugType;
+//   last_publication_date: string;
+// }
 
-export interface IActivityPage extends SEOType, TitleDescriptionType, SlugType {
+export interface IActivity extends SEOType, TitleDescriptionType, SlugType {
   image: ImageType;
   teacher: string;
   date: string;
@@ -276,8 +284,9 @@ export interface IActivityPage extends SEOType, TitleDescriptionType, SlugType {
   publication_date: string;
 }
 
-export interface IArticlePage extends SEOType, TitleDescriptionType, SlugType {
+export interface IArticle extends SEOType, TitleDescriptionType, SlugType {
   image: ImageType;
+  description: string;
   author: string;
   text: RichTextField
   publication_date: string;
@@ -307,7 +316,10 @@ export interface ITeacher {
   text: RichTextField
   links: Array<{link_name: string, link: HrefType}>
 }
-export interface ITeachersPage extends SEOType, TitleDescriptionType {
-  teachers: Array<{teacher: {data: ITeacher}}>
 
+export interface IFeedback {
+  slug: HrefType
+  color: string
+  name: string
+  text: RichTextField
 }

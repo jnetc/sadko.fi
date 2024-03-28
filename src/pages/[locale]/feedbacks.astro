@@ -1,0 +1,89 @@
+---
+// Global Styles
+import '@Styles/articles_page.css';
+// Query
+import query from '@Queries/page_feedbacks';
+// Layouts
+import Layout from '@Layouts/Layout.astro';
+// import FeedbackArticle from '@Components/feedback-articles/FeedbackArticle.astro';
+// Types
+import type { IPage } from '@Types';
+
+const lang = Astro.currentLocale as 'ru' | 'fi';
+
+// import { singleWithLinks } from '@Lib/prismiccms';
+// const response = await singleWithLinks(query, 'feedbacks', 'feedback', lang);
+// LOCAL DATA!!!
+// Remove CACHE folder to get updated data!!!
+import { SingleLocaleData } from '@Lib/localdata';
+const response = await SingleLocaleData(query, 'page_feedbacks', lang);
+
+const data = response.data as IPage;
+console.log(data);
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>{data.seo_title}</title>
+  <meta name="description" content={data.seo_description} />
+</head>
+
+<Layout>
+  <main class="grid feedbacks separator">
+    <div class="page__header column-sized">
+      <h1>{data.title}</h1>
+      {data.description && <p>{data.description}</p>}
+    </div>
+    <!-- {
+      data.feedbacks.map(i => (
+        <div class="feedback-wrapper grid">
+          <FeedbackArticle data={i.feedback.data} />
+        </div>
+      ))
+    } -->
+    <!-- <svg class={`feedback-wrapper__svg stroke-${i.feedback.data.color}`}>
+          <use xlink:href="/svg/shapes.svg#page_stroke_02" />
+        </svg> -->
+  </main>
+</Layout>
+
+<style is:global>
+  .feedback-wrapper {
+    grid-column: 2 / -2;
+  }
+
+  /* .feedback-wrapper:nth-of-type(even) .feedback-wrapper__svg {
+    grid-column: 9 / span 4;
+    rotate: z 180deg;
+    justify-self: flex-start;
+  }
+
+  .feedback-wrapper__svg {
+    grid-column: 3 / span 4;
+    grid-row: 1;
+    max-width: 360px;
+    aspect-ratio: 1;
+    stroke-width: 20;
+    justify-self: flex-end;
+    z-index: -1;
+  }
+
+  .feedback-wrapper:nth-of-type(odd) .feedback {
+    grid-column: 6 / -4;
+  }
+  .feedback-wrapper:nth-of-type(even) .feedback {
+    grid-column: 4 / -6;
+  } */
+
+  @media (max-width: 1200px) {
+    .feedback-wrapper__svg {
+      display: none;
+    }
+    .feedback-wrapper:nth-of-type(odd) .feedback,
+    .feedback-wrapper:nth-of-type(even) .feedback {
+      grid-column: 1 / -1;
+    }
+  }
+</style>
+@Queries/page_feedbacks

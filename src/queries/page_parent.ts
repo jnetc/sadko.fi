@@ -1,5 +1,5 @@
 export default `{
-  allTravelss {
+  allParents {
     edges {
       node {
         seo_title

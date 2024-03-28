@@ -1,11 +1,11 @@
 export default `{
-  allCampss {
+  allArticles {
     edges {
       node {
         seo_title
         seo_description
         slug {
-          ... on _ExternalLink {
+          ...on _ExternalLink {
             url
           }
         }

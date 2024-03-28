@@ -24,17 +24,15 @@ const { icon, hrefDesc, slug } = Astro.props.link;
 
 <style>
   .subnav__link-image {
-    display: grid;
-    max-width: 400px;
-    min-width: max-content;
-    /* min-height: 100%; */
-    grid-template-columns: 1fr;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 360px;
     grid-template-rows: 1fr auto;
     row-gap: var(--gap-24);
     padding: var(--gap-12);
     border-radius: var(--border-corner-12);
     transition: all 0.3s ease-in-out;
-    flex-grow: 1;
   }
   .subnav__link-image:hover,
   .subnav__link-image:focus-visible {
@@ -51,14 +49,10 @@ const { icon, hrefDesc, slug } = Astro.props.link;
   }
 
   .subnav__link-content {
-    grid-column: 1;
-    grid-row: 1;
-    display: grid;
+    display: flex;
   }
 
   p {
-    grid-column: 1;
-    grid-row: 2;
     display: flex;
     justify-content: space-between;
     gap: var(--gap-8);

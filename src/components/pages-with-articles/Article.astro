@@ -1,28 +1,29 @@
 ---
 import ArticleContent from './ArticleContent.astro';
 // Types
-import type { IArticleData } from '@Types';
+import type { IArticle, IActivity } from '@Types';
 
 const path = Astro.url.pathname.split('/')[2];
 
 interface Props {
-  article: IArticleData;
+  article: IArticle | IActivity;
+  date: string;
 }
 
-const { article } = Astro.props;
+const { article, date } = Astro.props;
 ---
 
 <section class="section__item">
-  <a class="section__href" href={`${path}/${article.data.slug.url}`} aria-label={`${path}/${article.data.slug.url}`}>
+  <a class="section__href" href={`${path}/${article.slug.url}`} aria-label={`${path}/${article.slug.url}`}>
     <article class="section__article arrow-icon">
       <img
         class="section__image"
-        src={article.data.image.url}
-        alt={article.data.image.alt}
-        height={article.data.image.dimensions.height}
-        width={article.data.image.dimensions.width}
+        src={article.image.url}
+        alt={article.image.alt}
+        height={article.image.dimensions.height}
+        width={article.image.dimensions.width}
       />
-      <ArticleContent content={article.data} publish={article.last_publication_date} />
+      <ArticleContent content={article} publish={date} />
     </article>
   </a>
   <svg class="section__svg">

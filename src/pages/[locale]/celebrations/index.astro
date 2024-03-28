@@ -1,21 +1,23 @@
 ---
 // Global Styles
 import '@Styles/articles_page.css';
-// Content
-import query from '@Queries/page_parents';
+// Query
+import pageQuery from '@Queries/page_celebrations';
+import articlesQuery from '@Queries/page_celebration';
 // Types
-import type { IPageForArticles } from '@Types';
+import type { IActivity, IPage } from '@Types';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
 import Article from '@Components/pages-with-articles/Article.astro';
-// Helpers
-import { singleWithLinks } from '@Lib/prismiccms';
+// Libs
+import { single, repeatable } from '@Lib/prismiccms';
 
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
-const response = await singleWithLinks(query, 'page_celebrations', 'celebrations', lang);
+const response = await single(pageQuery, 'page_celebrations', lang);
+const articles = await repeatable(articlesQuery, 'celebration', lang);
 
-const data = response.data as IPageForArticles;
+const data = response.data as IPage;
 ---
 
 <head>
@@ -32,8 +34,9 @@ const data = response.data as IPageForArticles;
       {data.description && <p>{data.description}</p>}
     </div>
     {
-      data.articles.map(i => {
-        return <Article article={i.article} />;
+      articles.map(i => {
+        const data = i.data as IActivity;
+        return <Article article={data} date={i.last_publication_date} />;
       })
     }
   </main>

@@ -3,13 +3,12 @@ export const prerender = true;
 // Global Styles
 import '@Styles/articles_slug.css';
 import '@Styles/articles_page.css';
-// Content
-import query from '@Queries/slug_articles';
+// Query
+import query from '@Queries/page_article';
 // Types
-import type { IArticlePage } from '@Types';
+import type { IArticle } from '@Types';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
-// Components
 import BackwardButton from '@Components/ui-elements/BackwardButton.astro';
 // Helpers
 import publishDate from '@Helpers/publishDate';
@@ -26,13 +25,13 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
 const path = Astro.url.pathname.split('/')[2];
 
 export async function getStaticPaths() {
-  const response = await staticPath(query, 'articles');
+  const response = await staticPath(query, 'article');
   // LOCAL DATA!!!
   // Remove CACHE folder to get updated data!!!
   // const response = await RepeatableLocaleData(query, 'articles');
 
   return response.flatMap(master => {
-    const data = master.data as IArticlePage;
+    const data = master.data as IArticle;
     return [
       {
         params: { locale: 'ru', slug: data.slug.url },
@@ -46,13 +45,13 @@ export async function getStaticPaths() {
   });
 }
 
-const response = await repeatable(query, 'articles', lang);
+const response = await repeatable(query, 'article', lang);
 // const response = await RepeatableLocaleData(query, 'articles', lang);
 
 const { slug } = Astro.props;
 
 const [page] = response.filter(i => {
-  const data = i.data as IArticlePage;
+  const data = i.data as IArticle;
 
   if (data.slug.url !== slug) return;
 
@@ -60,7 +59,7 @@ const [page] = response.filter(i => {
   return data;
 });
 
-const data = page.data as IArticlePage;
+const data = page.data as IArticle;
 const md = await toMarkdown(data.text);
 ---
 
@@ -124,3 +123,4 @@ const md = await toMarkdown(data.text);
     }
   }
 </style>
+@Queries/article @Queries/page_article

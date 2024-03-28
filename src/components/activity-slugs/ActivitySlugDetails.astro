@@ -8,10 +8,10 @@ import publishDate from '@Helpers/publishDate';
 
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
-import type { IActivityPage } from '@Types';
+import type { IActivity } from '@Types';
 interface Props {
   publish: string;
-  data: IActivityPage;
+  data: IActivity;
 }
 
 const { data, publish } = Astro.props;

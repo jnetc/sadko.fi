@@ -10,7 +10,7 @@ interface Props {
 
 const { columnName, columns } = Astro.props;
 
-const exceptions = ['rules_and_payments', 'gallery'];
+const exceptions = ['rules_and_payments', 'gallery', 'blanks'];
 ---
 
 <li class="subnav__column">
@@ -27,6 +27,8 @@ const exceptions = ['rules_and_payments', 'gallery'];
 
 <style>
   .subnav__column {
+    flex-grow: 1;
+    max-width: 320px;
     display: flex;
     flex-direction: column;
     row-gap: var(--gap-12);

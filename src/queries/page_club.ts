@@ -1,5 +1,5 @@
 export default `{
-  allCelebrationss {
+  allClubs {
     edges {
       node {
         seo_title

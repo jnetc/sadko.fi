@@ -37,11 +37,14 @@ export async function singleWithLinks(query: string, page: Pages, link: Relation
     queryFetchLink = [`${link}.title`, `${link}.description`, `${link}.image`, `${link}.slug`, `${link}.text`]
   } else if (link === "teacher") {
     queryFetchLink = [`${link}.image`, `${link}.color`, `${link}.name`, `${link}.description`, `${link}.slug`, `${link}.text`, `${link}.links`]
+  } else if (link === "feedback") {
+    queryFetchLink = [ `${link}.color`, `${link}.name`, `${link}.slug`, `${link}.text.rich-text-field`]
   }
 
   const client = prismic.createClient(repositoryName, {
     accessToken,
     // fetchOptions: { cache: "force-cache" },
+
     defaultParams: { lang },
   });
 
@@ -49,6 +52,9 @@ export async function singleWithLinks(query: string, page: Pages, link: Relation
     fetchLinks: queryFetchLink,
     graphQuery: query,
   });
+  // console.log("RESPONCE_", response.data.feedbacks[2].feedback.data);
+  // console.log("RESPONCE_", response.data.teachers[0].teacher.data);
+
 
   return response;
 }

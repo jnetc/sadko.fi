@@ -1,42 +1,42 @@
 ---
-import TeacherArticleLink from './TeacherArticleLink.astro';
 // Helpers
 import { toMarkdown } from '@Lib/prismiccms';
 // Locale
 import { main_locale } from '@Locales/main_locale';
 // Types
-import type { ITeacher } from '@Types';
+import type { IFeedback } from '@Types';
 
 interface Props {
-  data: ITeacher;
+  data: IFeedback;
 }
 
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
-const { color, image, name, text, links, slug } = Astro.props.data;
+const { color, name, text, slug } = Astro.props.data;
 const md = await toMarkdown(text);
+console.log(md);
 ---
 
 <script>
-  const teachers = document.querySelectorAll<HTMLElement>('.teacher');
+  const feedbacks = document.querySelectorAll<HTMLElement>('.feedback');
 
   function openSubMenu(event: Event) {
     const btn = event.target as HTMLButtonElement;
-    const teacher = btn.closest('.teacher')!;
-    teacher.classList.toggle('show-all');
+    const feedback = btn.closest('.feedback')!;
+    feedback.classList.toggle('show-all');
 
     // const timer = setTimeout(() => {
-    //   teacher.scrollIntoView({
+    //   feedback.scrollIntoView({
     //     behavior: 'smooth',
     //   });
     //   clearTimeout(timer);
     // }, 600);
   }
 
-  teachers.forEach(teacher => {
-    const txt = teacher.querySelector<HTMLElement>('.teacher__text')!.scrollHeight;
-    const btn = teacher.querySelector<HTMLButtonElement>('.teacher__btn')!;
-    if (txt <= 75) {
+  feedbacks.forEach(feedback => {
+    const txt = feedback.querySelector<HTMLElement>('.feedback__text')!.scrollHeight;
+    const btn = feedback.querySelector<HTMLButtonElement>('.feedback__btn')!;
+    if (txt <= 150) {
       btn.remove();
       return;
     }
@@ -45,23 +45,15 @@ const md = await toMarkdown(text);
   });
 </script>
 
-<article class="teacher" id={slug.url}>
-  <img
-    class="teacher__image"
-    src={image.url}
-    alt={image.alt}
-    height={image.dimensions.height}
-    width={image.dimensions.width}
-  />
-  <h2 class="teacher__name">{name}</h2>
-  <h3 class="teacher__label">{main_locale[lang].teacher_label}</h3>
-  <div class="teacher__links" role="list">
-    {links.map(link => <TeacherArticleLink link={link.link} color={color} link_name={link.link_name} />)}
-  </div>
-  <div class="markdown teacher__text">
+<article class="feedback" id={slug.url}>
+  <svg class={`feedback__svg fill-${color}`}>
+    <use xlink:href="/svg/shapes.svg#shape_02"></use>
+  </svg>
+  <h2 class="feedback__name">{name}</h2>
+  <div class="markdown feedback__text">
     <Fragment set:html={md} />
   </div>
-  <button class="btn btn-secondary arrow-icon teacher__btn">
+  <button class="btn btn-secondary arrow-icon feedback__btn">
     <p class="btn__more">{main_locale[lang].button_more}</p>
     <p class="btn__hide">{main_locale[lang].button_hide}</p>
     <span class="btn__icon" aria-hidden="true">
@@ -73,11 +65,23 @@ const md = await toMarkdown(text);
 </article>
 
 <style>
-  .teacher {
-    grid-row: 1;
+  .feedback__svg {
+    grid-column: 2;
+    grid-row: 2 span;
+    max-width: 360px;
+    aspect-ratio: 1;
+    /* stroke-width: 20; */
+    justify-self: flex-end;
+    z-index: -1;
+  }
+
+  .feedback {
+    max-width: 70ch;
+    grid-column: 2 / -2;
+    justify-self: center;
     display: grid;
-    grid-template-columns: 112px 1fr;
-    grid-template-rows: 112px min-content min-content 64px 0fr min-content;
+    /* grid-template-columns: 1fr; */
+    grid-template-rows: auto 120px 0fr min-content;
     gap: var(--gap-12);
     border-radius: var(--border-corner-32);
     padding: var(--gap-32);
@@ -87,18 +91,18 @@ const md = await toMarkdown(text);
       0 15px 10px var(--opacity-3);
     transition: grid-template-rows 0.3s ease-in-out;
   }
-  .teacher.show-all {
-    grid-template-rows: 156px min-content min-content 1fr 1fr min-content;
+  .feedback.show-all {
+    grid-template-rows: auto 0.9fr 1fr min-content;
   }
 
-  .section:nth-of-type(odd) .teacher {
+  /* .section:nth-of-type(odd) .feedback {
     grid-column: 6 / -4;
   }
-  .section:nth-of-type(even) .teacher {
+  .section:nth-of-type(even) .feedback {
     grid-column: 4 / -6;
-  }
+  } */
 
-  .teacher__image {
+  /* .feedback__image {
     grid-column: 1;
     grid-row: 1;
     width: 100%;
@@ -106,9 +110,9 @@ const md = await toMarkdown(text);
     border-radius: 100vw;
     object-fit: cover;
     object-position: center;
-  }
-  .teacher__name {
-    grid-column: 2;
+  } */
+  .feedback__name {
+    /* grid-column: 1; */
     grid-row: 1;
     width: min-content;
     align-self: center;
@@ -116,29 +120,29 @@ const md = await toMarkdown(text);
     font-size: clamp(var(--font-20), 4vw, var(--font-36));
     line-height: 1.2;
   }
-  .teacher__links {
+  /* .feedback__links {
     grid-column: 2 span;
     grid-row: 3;
     display: flex;
     flex-wrap: wrap;
     gap: var(--gap-8);
     align-items: flex-start;
-  }
-  .teacher__label {
+  } */
+  /* .feedback__label {
     grid-column: 2 span;
     grid-row: 2;
     color: var(--black);
     font-size: clamp(var(--font-16), 2.5vw, var(--font-18));
-  }
+  } */
 
-  .teacher__text {
-    grid-column: 2 span;
-    grid-row: 4 / 2 span;
+  .feedback__text {
+    /* grid-column: 2 span; */
+    grid-row: 2 / 2 span;
     overflow: hidden;
     color: var(--grey-300);
     position: relative;
   }
-  .teacher__text::after {
+  .feedback__text::after {
     content: '';
     position: absolute;
     inset: 50% 0 0;
@@ -146,7 +150,7 @@ const md = await toMarkdown(text);
     pointer-events: none;
   }
 
-  .teacher__text::after {
+  .feedback__text::after {
     content: '';
     position: absolute;
     inset: 50% 0 0;
@@ -154,32 +158,31 @@ const md = await toMarkdown(text);
     pointer-events: none;
     transition: all 0.3s ease-in-out;
   }
-  .teacher.show-all .teacher__text::after {
+  .feedback.show-all .feedback__text::after {
     background-image: linear-gradient(to top, transparent 10%, transparent);
   }
 
-  .teacher__btn {
-    grid-column: 2 span;
+  .feedback__btn {
+    grid-row: 4;
     justify-self: center;
   }
-  .teacher__btn span {
+  .feedback__btn span {
     rotate: z -90deg;
   }
-  .teacher.show-all .teacher__btn span {
+  .feedback.show-all .feedback__btn span {
     rotate: z 90deg;
   }
-  .teacher.show-all .btn__more,
-  .teacher .btn__hide {
+  .feedback.show-all .btn__more,
+  .feedback .btn__hide {
     display: none;
   }
-  .teacher.show-all .btn__hide {
+  .feedback.show-all .btn__hide {
     display: block;
   }
 
   @media (max-width: 520px) {
-    .teacher {
-      grid-template-columns: 80px 1fr;
-      grid-template-rows: 80px min-content min-content 64px 0fr min-content;
+    .feedback {
+      grid-template-rows: 1fr 64px 0fr min-content;
       padding: var(--gap-24);
     }
   }

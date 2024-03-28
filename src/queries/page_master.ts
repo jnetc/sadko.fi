@@ -1,5 +1,5 @@
 export default `{
-  allProjectss {
+  allMasters {
     edges {
       node {
         seo_title

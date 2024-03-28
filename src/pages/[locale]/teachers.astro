@@ -1,49 +1,56 @@
 ---
 // Global Styles
 import '@Styles/articles_page.css';
-// Content
-import query from '@Queries/teachers.ts';
+// Query
+import pageQuery from '@Queries/page_teachers';
+import teacherQuery from '@Queries/teacher';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
 import TeacherArticle from '@Components/teacher-articles/TeacherArticle.astro';
+// Libs
+import { single, repeatable } from '@Lib/prismiccms';
 // Types
-import type { ITeachersPage } from '@Types';
+import type { ITeacher, IPage } from '@Types';
 
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
-import { singleWithLinks } from '@Lib/prismiccms';
-const response = await singleWithLinks(query, 'teachers', 'teacher', lang);
+const pageResponse = await single(pageQuery, 'page_teachers', lang);
+const teachersResponse = await repeatable(teacherQuery, 'teacher', lang);
 // LOCAL DATA!!!
 // Remove CACHE folder to get updated data!!!
 // import { SingleWithLinkLocaleData } from '@Lib/localdata';
 // const response = await SingleWithLinkLocaleData(query, 'teachers', 'teacher', lang);
 
-const data = response.data as ITeachersPage;
+const page = pageResponse.data as IPage;
+const teachers = teachersResponse;
 ---
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
-  <title>{data.seo_title}</title>
-  <meta name="description" content={data.seo_description} />
+  <title>{page.seo_title}</title>
+  <meta name="description" content={page.seo_description} />
 </head>
 
 <Layout>
   <main class="grid teachers separator">
     <div class="page__header column-sized">
-      <h1>{data.title}</h1>
-      {data.description && <p>{data.description}</p>}
+      <h1>{page.title}</h1>
+      {page.description && <p>{page.description}</p>}
     </div>
     {
-      data.teachers.map(i => (
-        <div class="teacher-wrapper grid">
-          <TeacherArticle data={i.teacher.data} />
+      teachers.map(i => {
+        const data = i.data as ITeacher;
+        return (
+          <div class="teacher-wrapper grid">
+            <TeacherArticle data={data as ITeacher} />
 
-          <svg class={`teacher-wrapper__svg stroke-${i.teacher.data.color}`}>
-            <use xlink:href="/svg/shapes.svg#page_stroke_02" />
-          </svg>
-        </div>
-      ))
+            <svg class={`teacher-wrapper__svg stroke-${data.color}`}>
+              <use xlink:href="/svg/shapes.svg#page_stroke_02" />
+            </svg>
+          </div>
+        );
+      })
     }
   </main>
 </Layout>
@@ -69,24 +76,6 @@ const data = response.data as ITeachersPage;
     z-index: -1;
   }
 
-  /* .teacher {
-    grid-row: 1;
-    display: grid;
-    grid-template-columns: 112px 1fr;
-    grid-template-rows: 112px min-content min-content 64px 0fr min-content;
-    gap: var(--gap-12);
-    border-radius: var(--border-corner-32);
-    padding: var(--gap-32);
-    background-color: var(--white);
-    box-shadow:
-      0 25px 20px var(--opacity-3),
-      0 15px 10px var(--opacity-3);
-    transition: grid-template-rows 0.3s ease-in-out;
-  }
-  .teacher.show-all {
-    grid-template-rows: 156px min-content min-content 1fr 1fr min-content;
-  } */
-
   .teacher-wrapper:nth-of-type(odd) .teacher {
     grid-column: 6 / -4;
   }
@@ -94,108 +83,6 @@ const data = response.data as ITeachersPage;
     grid-column: 4 / -6;
   }
 
-  /* .teacher__image {
-    grid-column: 1;
-    grid-row: 1;
-    width: 100%;
-    height: 100%;
-    border-radius: 100vw;
-    object-fit: cover;
-    object-position: center;
-  }
-  .teacher__name {
-    grid-column: 2;
-    grid-row: 1;
-    width: min-content;
-    align-self: center;
-    color: var(--black);
-    font-size: clamp(var(--font-20), 4vw, var(--font-36));
-    line-height: 1.2;
-  }
-  .teacher__links {
-    grid-column: 2 span;
-    grid-row: 3;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--gap-8);
-    align-items: flex-start;
-  }
-  .teacher__label {
-    grid-column: 2 span;
-    grid-row: 2;
-    color: var(--black);
-    font-size: clamp(var(--font-16), 2.5vw, var(--font-18));
-  } */
-
-  /* .teacher__link {
-    max-width: 280px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    text-wrap: pretty;
-    padding: var(--gap-8) var(--gap-16);
-    border-radius: var(--border-corner-32);
-    background-color: var(--violet);
-    color: var(--black);
-    color: var(--white);
-    font-size: var(--font-12);
-    font-weight: bold;
-    transition: all 0.3s ease-in-out;
-  }
-  .teacher__link.bg-black,
-  .teacher__link.bg-violet {
-    color: var(--white);
-  }
-  .teacher__link:hover {
-    background-color: var(--violet-light);
-    color: var(--black);
-  }
-
-  .teacher__text {
-    grid-column: 2 span;
-    grid-row: 4 / 2 span;
-    overflow: hidden;
-    color: var(--grey-300);
-    position: relative;
-  }
-  .teacher__text::after {
-    content: '';
-    position: absolute;
-    inset: 50% 0 0;
-    background-image: linear-gradient(to top, var(--white) 10%, transparent);
-    pointer-events: none;
-  }
-
-  .teacher__text::after {
-    content: '';
-    position: absolute;
-    inset: 50% 0 0;
-    background-image: linear-gradient(to top, var(--white) 10%, transparent);
-    pointer-events: none;
-    transition: all 0.3s ease-in-out;
-  }
-  .teacher.show-all .teacher__text::after {
-    background-image: linear-gradient(to top, transparent 10%, transparent);
-  }
-
-  .teacher__btn {
-    grid-column: 2 span;
-    justify-self: center;
-  }
-  .teacher__btn span {
-    rotate: z -90deg;
-  }
-  .teacher.show-all .teacher__btn span {
-    rotate: z 90deg;
-  }
-
-  .teacher.show-all .btn__more,
-  .teacher .btn__hide {
-    display: none;
-  }
-  .teacher.show-all .btn__hide {
-    display: block;
-  } */
   @media (max-width: 1200px) {
     .teacher-wrapper__svg {
       display: none;
@@ -205,12 +92,5 @@ const data = response.data as ITeachersPage;
       grid-column: 1 / -1;
     }
   }
-  @media (max-width: 520px) {
-    .teacher {
-      grid-template-columns: 80px 1fr;
-      grid-template-rows: 80px min-content min-content 64px 0fr min-content;
-
-      padding: var(--gap-24);
-    }
-  }
 </style>
+@Queries/slug_teachers @Queries/teachers @Queries/teacher @Queries/page_teacher @Queries/teacher

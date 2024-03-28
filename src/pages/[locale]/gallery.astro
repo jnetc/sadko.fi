@@ -1,8 +1,8 @@
 ---
 // Global Styles
 import '@Styles/articles_page.css';
-// Content
-import query from '@Queries/gallery.ts';
+// Query
+import query from '@Queries/page_gallery';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
 import GalleryFolder from '@Components/ui-elements/GalleryFolder.astro';
@@ -54,3 +54,4 @@ const data = response.data as IGalleryPage;
     }
   }
 </style>
+@Queries/page_gallery

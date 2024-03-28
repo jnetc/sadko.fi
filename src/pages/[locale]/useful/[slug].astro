@@ -2,10 +2,10 @@
 export const prerender = true;
 // Global Styles
 import '@Styles/articles_slug.css';
-// Content
-import query from '@Queries/slug_useful';
+// Query
+import query from '@Queries/page_useful';
 // Types
-import type { IActivityPage } from '@Types';
+import type { IActivity } from '@Types';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
 // Components
@@ -21,8 +21,8 @@ const path = Astro.url.pathname.split('/')[2];
 export async function getStaticPaths() {
   const response = await staticPath(query, 'useful');
 
-  return response.flatMap(master => {
-    const data = master.data as IActivityPage;
+  return response.flatMap(i => {
+    const data = i.data as IActivity;
     return [
       {
         params: { locale: 'ru', slug: data.slug.url },
@@ -41,7 +41,7 @@ const response = await repeatable(query, 'useful', lang);
 const { slug } = Astro.props;
 
 const [page] = response.filter(i => {
-  const data = i.data as IActivityPage;
+  const data = i.data as IActivity;
 
   if (data.slug.url !== slug) return;
 
@@ -49,7 +49,7 @@ const [page] = response.filter(i => {
   return data;
 });
 
-const data = page.data as IActivityPage;
+const data = page.data as IActivity;
 const md = await toMarkdown(data.text);
 ---
 

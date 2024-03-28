@@ -1,6 +1,6 @@
 export default `{
-  allPage_clubss {
-     edges {
+  allPage_teacherss {
+    edges {
       node {
         seo_title
         seo_description

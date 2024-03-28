@@ -1,52 +1,49 @@
 ---
 // Global Styles
 import '@Styles/articles_page.css';
-// Content
-import query from '@Queries/page_articles';
+// Query
+import pageQuery from '@Queries/page_articles';
+import articleQuery from '@Queries/page_article';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
 import Article from '@Components/pages-with-articles/Article.astro';
-// Helpers
-import { singleWithLinks } from '@Lib/prismiccms';
-
-import type { IPageForArticles } from '@Types';
+// Libs
+import { single, repeatable } from '@Lib/prismiccms';
+// Types
+import type { IArticle, IPage } from '@Types';
 
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
-const response = await singleWithLinks(query, 'page_articles', 'articles', lang);
+const pesponse = await single(pageQuery, 'page_articles', lang);
+const articles = await repeatable(articleQuery, 'article', lang);
 
 // LOCAL DATA!!!
 // Remove CACHE folder to get updated data!!!
 // import { SingleWithLinkLocaleData } from '@Lib/localdata';
 // const response = await SingleWithLinkLocaleData(query, 'page_articles', 'articles', lang);
 // Define Type IPageForArticles
-const data = response.data as IPageForArticles;
-// const content = data.articles.map(article => {
-//   // data.map((article: IArticleData) => {
-//   // });
-//   console.log(article);
-//   article.data.
-//   return {, ...article } as IArticleData;
-// });
+const page = pesponse.data as IPage;
 ---
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
-  <title>{data.seo_title}</title>
-  <meta name="description" content={data.seo_description} />
+  <title>{page.seo_title}</title>
+  <meta name="description" content={page.seo_description} />
 </head>
 
 <Layout>
   <main class="grid separator">
     <div class="page__header">
-      <h1>{data.title}</h1>
-      {data.description && <p>{data.description}</p>}
+      <h1>{page.title}</h1>
+      {page.description && <p>{page.description}</p>}
     </div>
     {
-      data.articles.map(i => {
-        return <Article article={i.article} />;
+      articles.map(i => {
+        const data = i.data as IArticle;
+        return <Article article={data} date={i.last_publication_date} />;
       })
     }
   </main>
 </Layout>
+@Queries/page_article

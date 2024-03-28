@@ -1,5 +1,5 @@
 export default `{
-  allPage_clubss {
+  allPage_usefulss {
      edges {
       node {
         seo_title

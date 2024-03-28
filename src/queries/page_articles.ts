@@ -6,21 +6,6 @@ export default `{
         seo_description
         title
         description
-         articles {
-            article {
-            ... on  Articles {
-              slug {
-                ... on _ExternalLink {
-                  url
-                }
-              }
-              image
-              title
-              description
-              text
-            }
-          }
-        }
       }
     }
   }

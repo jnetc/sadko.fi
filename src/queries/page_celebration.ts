@@ -1,5 +1,5 @@
 export default `{
-  allCoursess {
+  allCelebrations {
     edges {
       node {
         seo_title

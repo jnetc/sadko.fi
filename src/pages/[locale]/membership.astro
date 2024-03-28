@@ -1,8 +1,8 @@
 ---
 // Global Styles
 import '@Styles/articles_page.css';
-// Content
-import query from '@Queries/membership.ts';
+// Query
+import query from '@Queries/page_membership';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
 // Types
@@ -50,3 +50,4 @@ const md = await toMarkdown(data.text);
     margin-top: var(--gap-32);
   }
 </style>
+@Queries/page_membership
