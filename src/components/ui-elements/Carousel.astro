@@ -18,6 +18,7 @@ import CircleButton from './CircleButton.astro';
     const direction = el.dataset.dir === 'prev' ? -1 : 1;
     // Move all cards array in current direction
     cards[index].scrollBy({ left: direction, behavior: 'smooth' });
+    console.log(cards[index], el.dataset.dir);
   }
 
   function showControlButton(event: Event, index: number) {

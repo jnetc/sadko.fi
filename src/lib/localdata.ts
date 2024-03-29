@@ -22,7 +22,7 @@ export async function RepeatableLocaleData(query: string, page: Pages, lang?: Ty
   } else {
     console.info("__________ DATA FROM CMS ___________");
 
-    response = await repeatable(query, page, lang);
+    response = await repeatable(query, page, lang );
     // Write projects to "caching" file
     fs.writeFileSync(JSON_FILE, JSON.stringify(response));
     return response;

@@ -1,11 +1,11 @@
 ---
-import type { ImageType, SlugType, HeadingTextType } from '@Types';
+import type { ITeacher } from '@Types';
 
-interface Props extends SlugType, HeadingTextType {
-  image: ImageType;
+interface Props {
+  data: ITeacher;
 }
 
-const { heading, text, image, slug } = Astro.props;
+const { description, name, image, slug } = Astro.props.data;
 ---
 
 <li class="card">
@@ -17,8 +17,8 @@ const { heading, text, image, slug } = Astro.props;
       height={image.dimensions.height}
       class="card__image"
     />
-    <h3>{heading}</h3>
-    <p>{text}</p>
+    <h3>{name}</h3>
+    <p>{description}</p>
     <div class="card__icon" aria-hidden="true">
       <svg class="icon">
         <use xlink:href=`/svg/ui_icons.svg#arrow_outward`></use>

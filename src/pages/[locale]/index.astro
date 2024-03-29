@@ -18,6 +18,7 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
 
 import { single } from '@Lib/prismiccms';
 const response = await single(query, 'home', lang);
+
 // LOCAL DATA!!!
 // Remove CACHE folder to get updated data!!!
 // import { SingleLocaleData } from '@Lib/localdata';

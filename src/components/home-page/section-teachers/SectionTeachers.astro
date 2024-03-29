@@ -1,15 +1,24 @@
 ---
-import H2Title from "@Components/ui-elements/H2Title.astro";
-import H2Description from "@Components/ui-elements/H2Description.astro";
-import Carousel from "@Components/ui-elements/Carousel.astro";
-import Teacher from "./Teacher.astro";
-
-import type { HomeBodyTeachers } from "@Types";
+// Query
+import { teachers } from '@Queries/index.ts';
+// Components
+import H2Title from '@Components/ui-elements/H2Title.astro';
+import H2Description from '@Components/ui-elements/H2Description.astro';
+import Carousel from '@Components/ui-elements/Carousel.astro';
+import Teacher from './Teacher.astro';
+// Libs
+import { repeatable } from '@Lib/prismiccms';
+// Types
+import type { HomeBodyTeachers, ITeacher } from '@Types';
 interface Props {
   data: HomeBodyTeachers;
 }
 
-const { primary, items } = Astro.props.data;
+const lang = Astro.currentLocale as 'ru' | 'fi';
+
+const articles = await repeatable(teachers, 'teacher', lang, { path: 'my.teacher.carousel_visible', value: true });
+
+const { primary } = Astro.props.data;
 ---
 
 <section class="grid main-section teachers">
@@ -17,17 +26,16 @@ const { primary, items } = Astro.props.data;
   <H2Description>{primary.text}</H2Description>
   <Carousel>
     {
-      items.map((i) => {
-        return (
-          <Teacher
-            heading={i.heading}
-            text={i.text}
-            image={i.image}
-            slug={i.slug}
-          />
-        );
+      articles.map(i => {
+        const data = i.data as ITeacher;
+        return <Teacher data={data} />;
       })
     }
+    <!-- {
+      items.map(i => {
+        return <Teacher heading={i.heading} text={i.text} image={i.image} slug={i.slug} />;
+      })
+    } -->
   </Carousel>
   <svg class="teachers__page-arrow-long">
     <use xlink:href="/svg/shapes.svg#page_arrow_long"></use>

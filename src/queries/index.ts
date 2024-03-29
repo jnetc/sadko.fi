@@ -126,3 +126,22 @@ export default `{
     }
   }
 }`
+
+
+export const teachers = `{
+  allTeachers {
+    edges {
+      node {
+        carousel_visible
+        slug {
+          ...on _ExternalLink {
+            url
+          }
+        }
+        name
+        color
+        description
+      }
+    }
+  }
+}`

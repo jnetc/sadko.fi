@@ -61,7 +61,8 @@ export type Pages = "home" |  TypeUIActivityIcons | TypePage | "articles" | "sch
   | "travel"
   | "project"
   | "useful"
-  | "parent";
+  | "parent"
+| "feedback";
 export type Relationship = "home" | TypeUIActivityIcons | "articles" | "teacher" | "feedbacks" | "feedback";
 
 export type TypeUICardShapes =
@@ -261,11 +262,14 @@ export interface HomeBodyFeedbacks {
 }
 
 export interface IPage extends SEOType, TitleDescriptionType {}
+export interface IFeedPage extends IPage {
+  article_arr: Array<{ article: IArticle }>;
+}
 
-// export interface IArticleData  {
-//   data: { image: ImageType;  text: RichTextField} & TitleDescriptionType & SlugType;
-//   last_publication_date: string;
-// }
+export interface IArticleData  {
+  data: { image: ImageType;  text: RichTextField} & TitleDescriptionType & SlugType;
+  last_publication_date: string;
+}
 
 export interface IActivity extends SEOType, TitleDescriptionType, SlugType {
   image: ImageType;
@@ -308,6 +312,7 @@ export interface IGalleryPage extends SEOType, TitleDescriptionType {
 
 
 export interface ITeacher {
+  carousel_visible: boolean
   slug: HrefType
   image: ImageType
   description: string

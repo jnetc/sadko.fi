@@ -14,7 +14,6 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
 
 const { color, name, text, slug } = Astro.props.data;
 const md = await toMarkdown(text);
-console.log(md);
 ---
 
 <script>
@@ -81,7 +80,7 @@ console.log(md);
     justify-self: center;
     display: grid;
     /* grid-template-columns: 1fr; */
-    grid-template-rows: auto 120px 0fr min-content;
+    grid-template-rows: min-content 120px 0fr min-content;
     gap: var(--gap-12);
     border-radius: var(--border-corner-32);
     padding: var(--gap-32);
@@ -92,7 +91,7 @@ console.log(md);
     transition: grid-template-rows 0.3s ease-in-out;
   }
   .feedback.show-all {
-    grid-template-rows: auto 0.9fr 1fr min-content;
+    grid-template-rows: min-content 120px 1fr min-content;
   }
 
   /* .section:nth-of-type(odd) .feedback {

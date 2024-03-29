@@ -1,4 +1,5 @@
 ---
+export const prerender = true;
 // Global Styles
 import '@Styles/articles_slug.css';
 // Query
@@ -27,7 +28,7 @@ export async function getStaticPaths() {
   // LOCAL DATA!!!
   // Remove CACHE folder to get updated data!!!
   // const response = await RepeatableLocaleData(query, 'master');
-  console.log(response);
+  // console.log(response);
 
   return response.flatMap(i => {
     const data = i.data as IActivity;
@@ -50,7 +51,7 @@ const response = await repeatable(query, 'master', lang);
 // const { data } = Astro.props;
 const { slug } = Astro.props;
 // console.log('slug data', data);
-console.log('slug data', slug);
+// console.log('slug data', slug);
 
 const [page] = response.filter(i => {
   const data = i.data as IActivity;
@@ -63,7 +64,6 @@ const [page] = response.filter(i => {
 
 const data = page.data as IActivity;
 const md = await toMarkdown(data.text);
-export const prerender = true;
 ---
 
 {

@@ -36,7 +36,7 @@ const md = await toMarkdown(text);
   teachers.forEach(teacher => {
     const txt = teacher.querySelector<HTMLElement>('.teacher__text')!.scrollHeight;
     const btn = teacher.querySelector<HTMLButtonElement>('.teacher__btn')!;
-    if (txt <= 75) {
+    if (txt <= 80) {
       btn.remove();
       return;
     }
@@ -88,7 +88,7 @@ const md = await toMarkdown(text);
     transition: grid-template-rows 0.3s ease-in-out;
   }
   .teacher.show-all {
-    grid-template-rows: 156px min-content min-content 1fr 1fr min-content;
+    grid-template-rows: 156px min-content min-content 64px 1fr min-content;
   }
 
   .section:nth-of-type(odd) .teacher {

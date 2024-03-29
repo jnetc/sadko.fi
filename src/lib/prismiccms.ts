@@ -28,6 +28,22 @@ export async function single(query: string, page: Pages, lang: TypeLanguages ) {
 
   return response;
 }
+export async function single2(query: string, page: Pages, lang: TypeLanguages ) {
+
+  // const pages = ["home", "schedule", "about", "membership", "blank-hobby", "blank-camp", "blank-membership"]
+
+  const client = prismic.createClient(repositoryName, {
+    accessToken,
+    // fetchOptions: { cache: "force-cache" },
+    defaultParams: { lang },
+  });
+
+  const response = await client.getSingle(page, {
+    graphQuery: query,
+  });
+
+  return response;
+}
 export async function singleWithLinks(query: string, page: Pages, link: Relationship, lang: TypeLanguages) {
 
 
@@ -59,7 +75,7 @@ export async function singleWithLinks(query: string, page: Pages, link: Relation
   return response;
 }
 
-export async function repeatable(query: string, page: Pages, lang?: TypeLanguages,) {
+export async function repeatable(query: string, page: Pages, lang?: TypeLanguages, filters?: {path: string, value: string| number| boolean}) {
 
   const client = prismic.createClient(repositoryName, {
     accessToken,
@@ -69,6 +85,24 @@ export async function repeatable(query: string, page: Pages, lang?: TypeLanguage
 
   const response = await client.getAllByType(page, {
     graphQuery: query,
+    filters: filters === undefined ? filters : [prismic.filter.at(filters.path, filters.value)],
+    orderings: [{ field: "document.last_publication_date", direction: "desc" } ],
+  });
+
+  return response;
+}
+export async function repeatable2(query: string, page: Pages, lang?: TypeLanguages,) {
+
+  const client = prismic.createClient(repositoryName, {
+    accessToken,
+    // fetchOptions: { cache: "force-cache" },
+    defaultParams: { lang },
+  });
+
+  const response = await client.getAllByType(page, {
+    graphQuery: query,
+    filters: [prismic.filter.at('my.teacher.carousel_visible', false)],
+    orderings: [{ field: "document.last_publication_date", direction: "desc" } ],
   });
 
   return response;
