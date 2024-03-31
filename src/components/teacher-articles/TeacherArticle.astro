@@ -34,12 +34,15 @@ const md = await toMarkdown(text);
   }
 
   teachers.forEach(teacher => {
-    const txt = teacher.querySelector<HTMLElement>('.teacher__text')!.scrollHeight;
-    const btn = teacher.querySelector<HTMLButtonElement>('.teacher__btn')!;
-    if (txt <= 9 * 16 + 16) {
-      btn.remove();
+    // const txt = teacher.querySelector<HTMLElement>('.teacher__text')!.scrollHeight;
+    const btn = teacher.querySelector<HTMLButtonElement>('.teacher__btn');
+    if (!btn) {
       return;
     }
+    // if (txt <= 9 * 16 + 16 ) {
+    //   btn.remove();
+    //   return;
+    // }
 
     btn.addEventListener('mousedown', openSubMenu);
   });
@@ -61,15 +64,19 @@ const md = await toMarkdown(text);
   <div class="markdown teacher__text">
     <Fragment set:html={md} />
   </div>
-  <button class="btn btn-secondary arrow-icon teacher__btn">
-    <p class="btn__more">{main_locale[lang].button_more}</p>
-    <p class="btn__hide">{main_locale[lang].button_hide}</p>
-    <span class="btn__icon" aria-hidden="true">
-      <svg>
-        <use xlink:href="/svg/ui_icons.svg#arrow_backward" data-xlink="arrow_backward"></use>
-      </svg>
-    </span>
-  </button>
+  {
+    md.length > 300 ? (
+      <button class="btn btn-secondary arrow-icon teacher__btn">
+        <p class="btn__more">{main_locale[lang].button_more}</p>
+        <p class="btn__hide">{main_locale[lang].button_hide}</p>
+        <span class="btn__icon" aria-hidden="true">
+          <svg>
+            <use xlink:href="/svg/ui_icons.svg#arrow_backward" data-xlink="arrow_backward" />
+          </svg>
+        </span>
+      </button>
+    ) : null
+  }
 </article>
 
 <style>

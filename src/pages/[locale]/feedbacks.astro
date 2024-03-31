@@ -55,38 +55,4 @@ const data = response.data as IPage;
   .feedback-wrapper {
     grid-column: 2 / -2;
   }
-
-  /* .feedback-wrapper:nth-of-type(even) .feedback-wrapper__svg {
-    grid-column: 9 / span 4;
-    rotate: z 180deg;
-    justify-self: flex-start;
-  }
-
-  .feedback-wrapper__svg {
-    grid-column: 3 / span 4;
-    grid-row: 1;
-    max-width: 360px;
-    aspect-ratio: 1;
-    stroke-width: 20;
-    justify-self: flex-end;
-    z-index: -1;
-  }
-
-  .feedback-wrapper:nth-of-type(odd) .feedback {
-    grid-column: 6 / -4;
-  }
-  .feedback-wrapper:nth-of-type(even) .feedback {
-    grid-column: 4 / -6;
-  } */
-
-  @media (max-width: 1200px) {
-    .feedback-wrapper__svg {
-      display: none;
-    }
-    .feedback-wrapper:nth-of-type(odd) .feedback,
-    .feedback-wrapper:nth-of-type(even) .feedback {
-      grid-column: 1 / -1;
-    }
-  }
 </style>
-@Queries/page_feedbacks
