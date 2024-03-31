@@ -19,8 +19,11 @@ const title = props.split(',');
       </span>
     </span>
   </span>
-  <svg class="title__stroke">
-    <use xlink:href="/svg/shapes.svg#page_stroke_01"></use>
+  <svg class="title__stroke" fill="none" viewBox="0 0 334 473">
+    <path
+      d="M204.074 431C293.779 390.26 316.431 314.576 301.617 326.116C281.586 341.718 214.526 385.926 153.562 390.26C153.562 390.26 288.553 280.175 301.617 257.638C226.903 268.039 37.9144 421.465 27.2789 405.862C-21.3077 385.059 360.838 156.221 316.422 165.755C272.006 175.29 109.145 289.71 109.145 289.71L220.621 157.954L45.5676 278.441C45.5676 278.441 223.419 61.738 99.7493 34"
+      stroke-linecap="round"
+      stroke-linejoin="round"></path>
   </svg>
 </h1>
 
@@ -95,7 +98,17 @@ const title = props.split(',');
     stroke-width: 35;
     rotate: z 90deg;
     translate: -9rem -3rem;
+    stroke-dashoffset: 2540;
+    stroke-dasharray: 2540;
+    animation: stroke 1.5s ease-in-out forwards;
+    animation-delay: 0.5s;
     z-index: -1;
+  }
+
+  @keyframes stroke {
+    100% {
+      stroke-dashoffset: 0;
+    }
   }
 
   @keyframes swing {

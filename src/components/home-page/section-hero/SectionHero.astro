@@ -24,11 +24,11 @@ const { primary } = Astro.props.data;
         </svg>
       </span>
     </a>
-    <a href={primary.secondary_href.url} class="btn btn-secondary">
+    <a href={primary.secondary_href.url} class="btn btn-secondary location-icon">
       {primary.secondary_button}
       <span class="btn__icon" aria-hidden="true">
         <svg>
-          <use xlink:href="/svg/ui_icons.svg#location"></use>
+          <use xlink:href="/svg/ui_icons.svg#location" data-xlink="location"></use>
         </svg>
       </span>
     </a>

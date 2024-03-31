@@ -1,24 +1,27 @@
 ---
 import CircleButton from './CircleButton.astro';
-// interface Props {
-//   carouselID: number;
-// }
-
-// const id = Astro.props.carouselID
 ---
 
 <script>
   const prevButtons = document.querySelectorAll<HTMLButtonElement>('[data-dir="prev"]')!;
   const nextButtons = document.querySelectorAll<HTMLButtonElement>('[data-dir="next"]')!;
   const cards = document.querySelectorAll<HTMLUListElement>('.cards')!;
+  const scrollArea = document.querySelectorAll<HTMLDivElement>('.scroll-area')!;
 
   function moveCarousel(event: MouseEvent, index: number) {
     const el = event.target as HTMLButtonElement;
+    // Last visible spase between cards
+    const gap = 32;
+    // Get the width of the scroll area and substract the last gap to get the four card and three gaps
+    // because last gap we don't need to calculate it for smooth animation if we use scrollbar after pressed a buttons
+    const scrollStep = Math.round(scrollArea[index].getBoundingClientRect().width) - gap;
+    // Removing the snapped class from the carousel to make it easier to move all cards within the visible area
+    cards[index].classList.remove('snapped');
     // Creating a direction when a button was clicked
-    const direction = el.dataset.dir === 'prev' ? -1 : 1;
+    // const direction = el.dataset.dir === 'prev' ? -1 : 1;
+    const direction = el.dataset.dir === 'prev' ? -scrollStep : scrollStep;
     // Move all cards array in current direction
     cards[index].scrollBy({ left: direction, behavior: 'smooth' });
-    console.log(cards[index], el.dataset.dir);
   }
 
   function showControlButton(event: Event, index: number) {
@@ -31,6 +34,15 @@ import CircleButton from './CircleButton.astro';
       : nextButtons[index].classList.remove('hide');
   }
 
+  function snapping(event: Event) {
+    const el = event.target as HTMLElement;
+    // We add a snapped class to the carousel to make its animation smoother and maintain position accuracy
+    el.classList.add('snapped');
+  }
+
+  scrollArea.forEach(area => {
+    area.addEventListener('mousedown', ev => snapping(ev));
+  });
   cards.forEach((arr, index) => {
     arr.addEventListener('scroll', ev => showControlButton(ev, index));
   });
@@ -48,7 +60,7 @@ import CircleButton from './CircleButton.astro';
   </svg>
   <CircleButton icon="arrow" dataValue="prev" extraClass="hide" />
   <div class="scroll-area">
-    <ul class="cards">
+    <ul class="cards snapped">
       <slot />
     </ul>
   </div>
@@ -61,7 +73,6 @@ import CircleButton from './CircleButton.astro';
 <style>
   .carousel {
     grid-column: 2 / -2;
-    /* max-width: 1504px; */
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -86,6 +97,9 @@ import CircleButton from './CircleButton.astro';
     overflow-x: auto;
     scrollbar-width: auto;
     scrollbar-color: var(--violet) var(--white);
+    transition: all 0.3s ease-in-out;
+  }
+  .cards.snapped {
     scroll-snap-type: x mandatory;
   }
   .cards::-webkit-scrollbar {
@@ -99,6 +113,7 @@ import CircleButton from './CircleButton.astro';
     border-radius: 100vw;
     border: 3px solid var(--white);
   }
+
   .carousel-arrow-top,
   .carousel-arrow-bottom {
     grid-column: 2 / -2;

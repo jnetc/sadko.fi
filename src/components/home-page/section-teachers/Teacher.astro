@@ -1,15 +1,16 @@
 ---
 import type { ITeacher } from '@Types';
-
 interface Props {
   data: ITeacher;
 }
 
-const { description, name, image, slug } = Astro.props.data;
+const lang = Astro.currentLocale as 'ru' | 'fi';
+
+const { description, name, image, slug, color } = Astro.props.data;
 ---
 
-<li class="card">
-  <a class="card__href" href=`${slug.url}`>
+<li class=`card bg-${color}`>
+  <a class="card__href" href=`/${lang}/teachers/#${slug.url}`>
     <img
       src={image.url}
       alt={image.alt}
@@ -26,6 +27,9 @@ const { description, name, image, slug } = Astro.props.data;
       <svg class="cookie">
         <use xlink:href=`/svg/ui_icons.svg#cookie`></use>
       </svg>
+      <svg class=`card__shape fill-${color}` aria-hidden="true">
+        <use xlink:href=`/svg/shapes.svg#shape14`></use>
+      </svg>
     </div>
   </a>
 </li>
@@ -36,14 +40,15 @@ const { description, name, image, slug } = Astro.props.data;
     scroll-margin-inline-start: var(--gap-32);
     scroll-snap-align: start;
     scroll-snap-stop: always;
-    /* block-size: 432px; */
-    /* display: flex; */
-    /* flex-direction: column; */
+    background-color: var(--white);
     border-radius: var(--border-corner-32);
-    /* gap: var(--gap-16); */
     overflow: hidden;
     position: relative;
     transition: all 0.3s ease-in-out;
+    box-shadow:
+      0 25px 20px var(--opacity-3),
+      0 15px 10px var(--opacity-3);
+    z-index: 1;
   }
   .card:hover {
     box-shadow: 0 0 0 0.75rem var(--opacity-10);
@@ -52,27 +57,9 @@ const { description, name, image, slug } = Astro.props.data;
   .card__href {
     height: 100%;
     display: grid;
-    grid-template-rows: auto 3rem auto;
-    gap: var(--gap-16);
-
-    /* flex-direction: column; */
+    grid-template-rows: auto min-content auto;
+    gap: var(--gap-12);
     padding: var(--gap-48) var(--gap-32) var(--gap-96);
-    /* padding: var(--gap-24) var(--gap-24) var(--gap-48); */
-  }
-  .card:nth-of-type(5n - 4) {
-    background-color: var(--violet-light);
-  }
-  .card:nth-of-type(5n - 3) {
-    background-color: var(--green);
-  }
-  .card:nth-of-type(5n - 2) {
-    background-color: var(--pink);
-  }
-  .card:nth-of-type(5n - 1) {
-    background-color: var(--violet);
-  }
-  .card:nth-of-type(5n) {
-    background-color: var(--black);
   }
 
   .card__icon {
@@ -105,31 +92,55 @@ const { description, name, image, slug } = Astro.props.data;
     width: var(--size-32);
     fill: var(--black);
   }
-  .card:nth-of-type(5n - 1) .icon,
-  .card:nth-of-type(5n) .icon {
+  .card.bg-black .icon,
+  .card.bg-violet .icon {
     fill: var(--white);
+  }
+
+  .card:hover .icon {
+    animation: arrow-outward 0.5s ease-in-out forwards;
+  }
+
+  @keyframes arrow-outward {
+    50% {
+      transform: translate(0.5rem, -0.5rem);
+      opacity: 0;
+    }
+    50.01% {
+      transform: translate(-0.5rem, 0.5rem);
+      opacity: 0;
+    }
   }
 
   .cookie {
     width: var(--size-64);
     stroke: var(--black);
   }
-  .card:nth-of-type(5n - 1) .cookie,
-  .card:nth-of-type(5n) .cookie {
+  .card.bg-black .cookie,
+  .card.bg-violet .cookie {
     stroke: var(--white);
+  }
+
+  .card__shape {
+    position: absolute;
+    inset: -2.5rem 0 0 0.2rem;
+    scale: 2.5;
+    z-index: -1;
+    pointer-events: none;
+    rotate: z 180deg;
   }
 
   h3,
   p {
     color: var(--black);
   }
-  .card:nth-of-type(5n - 1) :is(h3, p),
-  .card:nth-of-type(5n) :is(h3, p) {
-    color: var(--white);
+  .card.bg-black :is(h3, p),
+  .card.bg-violet :is(h3, p) {
+    /* color: var(--white); */
   }
 
   h3 {
-    /* min-height: 3rem; */
+    width: min-content;
     align-self: flex-end;
     font-size: var(--font-24);
   }

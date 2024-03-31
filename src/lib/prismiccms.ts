@@ -91,22 +91,22 @@ export async function repeatable(query: string, page: Pages, lang?: TypeLanguage
 
   return response;
 }
-export async function repeatable2(query: string, page: Pages, lang?: TypeLanguages,) {
+// export async function repeatable2(query: string, page: Pages, lang?: TypeLanguages,) {
 
-  const client = prismic.createClient(repositoryName, {
-    accessToken,
-    // fetchOptions: { cache: "force-cache" },
-    defaultParams: { lang },
-  });
+//   const client = prismic.createClient(repositoryName, {
+//     accessToken,
+//     // fetchOptions: { cache: "force-cache" },
+//     defaultParams: { lang },
+//   });
 
-  const response = await client.getAllByType(page, {
-    graphQuery: query,
-    filters: [prismic.filter.at('my.teacher.carousel_visible', false)],
-    orderings: [{ field: "document.last_publication_date", direction: "desc" } ],
-  });
+//   const response = await client.getAllByType(page, {
+//     graphQuery: query,
+//     filters: [prismic.filter.at('my.teacher.carousel_visible', false)],
+//     orderings: [{ field: "document.last_publication_date", direction: "desc" } ],
+//   });
 
-  return response;
-}
+//   return response;
+// }
 
 export async function staticPath( query: string, page: Pages) {
 

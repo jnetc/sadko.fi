@@ -25,18 +25,18 @@ const md = await toMarkdown(text);
     const teacher = btn.closest('.teacher')!;
     teacher.classList.toggle('show-all');
 
-    // const timer = setTimeout(() => {
-    //   teacher.scrollIntoView({
-    //     behavior: 'smooth',
-    //   });
-    //   clearTimeout(timer);
-    // }, 600);
+    const timer = setTimeout(() => {
+      teacher.scrollIntoView({
+        behavior: 'smooth',
+      });
+      clearTimeout(timer);
+    }, 0);
   }
 
   teachers.forEach(teacher => {
     const txt = teacher.querySelector<HTMLElement>('.teacher__text')!.scrollHeight;
     const btn = teacher.querySelector<HTMLButtonElement>('.teacher__btn')!;
-    if (txt <= 80) {
+    if (txt <= 9 * 16 + 16) {
       btn.remove();
       return;
     }
@@ -75,9 +75,8 @@ const md = await toMarkdown(text);
 <style>
   .teacher {
     grid-row: 1;
-    display: grid;
-    grid-template-columns: 112px 1fr;
-    grid-template-rows: 112px min-content min-content 64px 0fr min-content;
+    display: flex;
+    flex-wrap: wrap;
     gap: var(--gap-12);
     border-radius: var(--border-corner-32);
     padding: var(--gap-32);
@@ -85,10 +84,6 @@ const md = await toMarkdown(text);
     box-shadow:
       0 25px 20px var(--opacity-3),
       0 15px 10px var(--opacity-3);
-    transition: grid-template-rows 0.3s ease-in-out;
-  }
-  .teacher.show-all {
-    grid-template-rows: 156px min-content min-content 64px 1fr min-content;
   }
 
   .section:nth-of-type(odd) .teacher {
@@ -99,43 +94,40 @@ const md = await toMarkdown(text);
   }
 
   .teacher__image {
-    grid-column: 1;
-    grid-row: 1;
-    width: 100%;
-    height: 100%;
+    flex-basis: 150px;
     border-radius: 100vw;
     object-fit: cover;
     object-position: center;
   }
+
   .teacher__name {
-    grid-column: 2;
-    grid-row: 1;
     width: min-content;
+    flex-shrink: 1;
     align-self: center;
     color: var(--black);
-    font-size: clamp(var(--font-20), 4vw, var(--font-36));
+    font-size: clamp(var(--font-24), 4vw, var(--font-36));
     line-height: 1.2;
   }
+
   .teacher__links {
-    grid-column: 2 span;
-    grid-row: 3;
     display: flex;
+    flex-grow: 1;
+    flex-basis: 100%;
     flex-wrap: wrap;
     gap: var(--gap-8);
     align-items: flex-start;
   }
   .teacher__label {
-    grid-column: 2 span;
-    grid-row: 2;
+    flex-basis: 100%;
+    flex-grow: 1;
     color: var(--black);
     font-size: clamp(var(--font-16), 2.5vw, var(--font-18));
   }
 
   .teacher__text {
-    grid-column: 2 span;
-    grid-row: 4 / 2 span;
+    max-height: 9rem;
+    padding-block-start: var(--gap-8);
     overflow: hidden;
-    color: var(--grey-300);
     position: relative;
   }
   .teacher__text::after {
@@ -143,24 +135,25 @@ const md = await toMarkdown(text);
     position: absolute;
     inset: 50% 0 0;
     background-image: linear-gradient(to top, var(--white) 10%, transparent);
+    transition: all 0.3s ease-in-out;
     pointer-events: none;
   }
 
-  .teacher__text::after {
-    content: '';
-    position: absolute;
-    inset: 50% 0 0;
-    background-image: linear-gradient(to top, var(--white) 10%, transparent);
-    pointer-events: none;
-    transition: all 0.3s ease-in-out;
+  .teacher.show-all .teacher__text {
+    max-height: 100%;
   }
   .teacher.show-all .teacher__text::after {
     background-image: linear-gradient(to top, transparent 10%, transparent);
   }
+  .teacher:not(:has(button)) .teacher__text {
+    max-height: 100%;
+  }
+  .teacher:not(:has(button)) .teacher__text::after {
+    background-image: none;
+  }
 
   .teacher__btn {
-    grid-column: 2 span;
-    justify-self: center;
+    margin-inline: auto;
   }
   .teacher__btn span {
     rotate: z -90deg;
@@ -178,9 +171,11 @@ const md = await toMarkdown(text);
 
   @media (max-width: 520px) {
     .teacher {
-      grid-template-columns: 80px 1fr;
-      grid-template-rows: 80px min-content min-content 64px 0fr min-content;
-      padding: var(--gap-24);
+      padding: var(--gap-24) var(--gap-24) var(--gap-36);
+    }
+    .teacher__image {
+      height: 96px;
+      flex-basis: 96px;
     }
   }
 </style>

@@ -8,24 +8,21 @@ import articlesQuery from '@Queries/feedback';
 import Layout from '@Layouts/Layout.astro';
 import FeedbackArticle from '@Components/feedback-articles/FeedbackArticle.astro';
 // Libs
-import { single } from '@Lib/prismiccms';
+import { single, repeatable } from '@Lib/prismiccms';
 // Types
 import type { IFeedback, IPage } from '@Types';
 
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
 const response = await single(pageQuery, 'page_feedbacks', lang);
-
-// const articles = await repeatable(articlesQuery, 'feedback', lang);
+const articles = await repeatable(articlesQuery, 'feedback', lang);
 // LOCAL DATA!!!
 // Remove CACHE folder to get updated data!!!
-import { RepeatableLocaleData } from '@Lib/localdata';
+// import { RepeatableLocaleData } from '@Lib/localdata';
 // const response = await SingleLocaleData(pageQuery, 'page_feedbacks', lang);
-const articles = await RepeatableLocaleData(articlesQuery, 'feedback', lang);
+// const articles = await RepeatableLocaleData(articlesQuery, 'feedback', lang);
 
 const data = response.data as IPage;
-
-console.log(response);
 ---
 
 <head>
@@ -42,11 +39,11 @@ console.log(response);
       {data.description && <p>{data.description}</p>}
     </div>
     {
-      articles.map(i => {
+      articles.map((i, index) => {
         const data = i.data as IFeedback;
         return (
           <div class="feedback-wrapper grid">
-            <FeedbackArticle data={data} />
+            <FeedbackArticle data={data} index={index} />
           </div>
         );
       })

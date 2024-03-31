@@ -105,6 +105,11 @@
   animation: arrow-backward .5s ease-in-out forwards;
 }
 
+.location-icon:hover [data-xlink="location"] {
+  animation: location .5s linear forwards;
+  transform-origin: center bottom;
+}
+
 @keyframes arrow-outward {
 
   50% {
@@ -124,8 +129,23 @@
     transform: translate(1.1rem, 0);
   }
 }
+@keyframes location {
 
-@media (max-width: 1200px) {
+  20% {
+    transform: rotateZ(15deg);
+  }
+  40% {
+    transform:rotateZ(-15deg);
+  }
+  60% {
+    transform:rotateZ(15deg);
+  }
+  80% {
+    transform:rotateZ(-15deg);
+  }
+}
+
+@media  (max-width: 1200px) {
 
   .btn-ternary {
     padding: var(--gap-8);
@@ -135,7 +155,7 @@
   }
 }
 
-@media screen and (max-width: 520px) {
+@media (max-width: 520px) {
   .btn.btn-primary,
   .btn.btn-secondary {
     width: 100%;

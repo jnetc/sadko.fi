@@ -1,15 +1,26 @@
 ---
-import H2Title from "@Components/ui-elements/H2Title.astro";
-import H2Description from "@Components/ui-elements/H2Description.astro";
-import Carousel from "@Components/ui-elements/Carousel.astro";
-import Feedback from "./Feedback.astro";
+// Query
+import { feedbacks } from '@Queries/index.ts';
+// Components
+import H2Title from '@Components/ui-elements/H2Title.astro';
+import H2Description from '@Components/ui-elements/H2Description.astro';
+import Carousel from '@Components/ui-elements/Carousel.astro';
+import Feedback from './Feedback.astro';
+// Locale
+import { main_locale } from '@Locales/main_locale';
+// Libs
+import { repeatable } from '@Lib/prismiccms';
 
-import type { HomeBodyFeedbacks } from "@Types";
+import type { HomeBodyFeedbacks, IFeedback } from '@Types';
 interface Props {
   data: HomeBodyFeedbacks;
 }
 
-const { primary, items } = Astro.props.data;
+const lang = Astro.currentLocale as 'ru' | 'fi';
+
+const articles = await repeatable(feedbacks, 'feedback', lang, { path: 'my.feedback.carousel_visible', value: true });
+
+const { primary } = Astro.props.data;
 ---
 
 <section class="grid main-section">
@@ -17,9 +28,90 @@ const { primary, items } = Astro.props.data;
   <H2Description>{primary.text}</H2Description>
   <Carousel>
     {
-      items.map((i, index) => {
-        return <Feedback heading={i.heading} text={i.text} index={index} />;
+      articles.map((i, index) => {
+        const data = i.data as IFeedback;
+        return <Feedback data={data} index={index} />;
       })
     }
+    <li class=`card`>
+      <a class="card__href" href=`/${lang}/feedbacks`>
+        <h3>{main_locale[lang].carousel_feedbacks}</h3>
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href=`/svg/ui_icons.svg#arrow_outward`></use>
+        </svg>
+      </a>
+    </li>
   </Carousel>
 </section>
+
+<style>
+  .card {
+    scroll-padding-inline-start: var(--gap-32);
+    scroll-margin-inline-start: var(--gap-32);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    background-color: var(--white);
+    border-radius: var(--border-corner-32);
+    border: 1.5px solid var(--violet-light);
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    box-shadow:
+      0 25px 20px var(--opacity-3),
+      0 15px 10px var(--opacity-3);
+    z-index: 1;
+  }
+  .card:hover {
+    box-shadow: 0 0 0 0.75rem var(--opacity-10);
+    border-color: var(--violet);
+  }
+
+  .card__href {
+    height: 100%;
+    display: grid;
+    grid-template-columns: min-content max-content;
+    gap: var(--gap-12);
+    place-content: center;
+    padding: var(--gap-64) var(--gap-32) var(--gap-64);
+  }
+
+  h3 {
+    color: var(--black);
+  }
+
+  h3 {
+    align-self: flex-end;
+    font-size: var(--font-24);
+  }
+
+  .icon {
+    width: var(--size-56);
+    aspect-ratio: 1;
+    justify-self: center;
+    align-self: flex-end;
+    fill: var(--violet);
+  }
+
+  .card:hover .icon {
+    animation: arrow-outward 0.5s ease-in-out forwards;
+  }
+
+  @keyframes arrow-outward {
+    50% {
+      transform: translate(0.5rem, -0.5rem);
+      opacity: 0;
+    }
+    50.01% {
+      transform: translate(-0.5rem, 0.5rem);
+      opacity: 0;
+    }
+  }
+  .card__shape {
+    position: absolute;
+    inset: 0rem 0 0 0rem;
+    scale: 2.5;
+    z-index: -1;
+    pointer-events: none;
+    rotate: z 180deg;
+  }
+</style>

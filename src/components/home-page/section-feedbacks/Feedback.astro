@@ -1,19 +1,30 @@
 ---
+import { toMarkdown } from '@Lib/prismiccms';
+
+import type { IFeedback } from '@Types';
 interface Props {
-  heading: string;
-  text: string;
+  data: IFeedback;
   index: number;
 }
 
-const { heading, text, index } = Astro.props;
+const lang = Astro.currentLocale as 'ru' | 'fi';
+
+const { data, index } = Astro.props;
+const md = await toMarkdown(data.text);
+
+const shapeNumber = (index % 12) + 1;
 ---
 
 <li class="card">
-  <svg class="card__shape" aria-hidden="true">
-    <use xlink:href=`/svg/shapes.svg#shape${index + 1}`></use>
-  </svg>
-  <h3>{heading}</h3>
-  <p>{text}</p>
+  <a class="card__href" href=`/${lang}/feedbacks/#${data.slug.url}`>
+    <svg class=`card__shape fill-${data.color}` aria-hidden="true">
+      <use xlink:href=`/svg/shapes.svg#shape${shapeNumber}`></use>
+    </svg>
+    <h3>{data.name}</h3>
+    <div>
+      <Fragment set:html={md} />
+    </div>
+  </a>
 </li>
 
 <style>
@@ -22,12 +33,9 @@ const { heading, text, index } = Astro.props;
     scroll-margin-inline-start: var(--gap-32);
     scroll-snap-align: start;
     scroll-snap-stop: always;
-    display: grid;
-    grid-template-rows: 3.5rem 1fr;
-    padding: var(--gap-128) var(--gap-32) var(--gap-48);
     position: relative;
+    background-color: var(--white);
     border-radius: var(--border-corner-32);
-    gap: var(--gap-24);
     box-shadow:
       0 25px 20px var(--opacity-3),
       0 15px 10px var(--opacity-3);
@@ -35,6 +43,15 @@ const { heading, text, index } = Astro.props;
   }
   .card:hover {
     box-shadow: 0 0 0 0.75rem var(--opacity-10);
+  }
+
+  .card__href {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 3.5rem 1fr;
+    gap: var(--gap-24);
+    padding: var(--gap-128) var(--gap-32) var(--gap-48);
+    color: var(--grey-300);
   }
 
   .card__icon {
@@ -50,22 +67,11 @@ const { heading, text, index } = Astro.props;
     position: absolute;
     top: calc(-1 * var(--shape) / 3);
     right: 0;
+    transition: all 0.3s ease-in-out;
   }
-
-  .card:nth-of-type(5n - 4) .card__shape {
-    fill: var(--violet-light);
-  }
-  .card:nth-of-type(5n - 3) .card__shape {
-    fill: var(--green);
-  }
-  .card:nth-of-type(5n - 2) .card__shape {
-    fill: var(--pink);
-  }
-  .card:nth-of-type(5n - 1) .card__shape {
-    fill: var(--violet);
-  }
-  .card:nth-of-type(5n) .card__shape {
-    fill: var(--black);
+  .card:hover .card__shape {
+    scale: 1.1;
+    translate: 0 1rem;
   }
 
   h3,
@@ -75,9 +81,10 @@ const { heading, text, index } = Astro.props;
 
   h3 {
     align-self: flex-end;
-    font-size: var(--font-32);
+    font-size: var(--font-24);
+    width: min-content;
   }
-  p {
+  div {
     min-block-size: var(--size-56);
     font-size: var(--font-16);
 

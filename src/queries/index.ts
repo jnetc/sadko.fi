@@ -145,3 +145,21 @@ export const teachers = `{
     }
   }
 }`
+
+export const feedbacks = `{
+  allFeedbacks {
+    edges {
+      node {
+        carousel_visible
+        slug {
+          ... on _ExternalLink {
+            url
+          }
+        }
+        name
+        color
+        text
+      }
+    }
+  }
+}`

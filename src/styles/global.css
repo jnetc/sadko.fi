@@ -82,7 +82,7 @@ button {
 header,
 footer,
 main {
-  /* max-width: 1504px; */
+  max-width: 1500px;
   margin-inline: auto;
 }
 

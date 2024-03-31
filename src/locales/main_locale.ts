@@ -17,6 +17,8 @@ export const main_locale = {
     button_more: 'Подробнее',
     button_hide: 'Свернуть',
     teacher_label: 'Я преподаю',
+    carousel_teachers: 'Показать всех',
+    carousel_feedbacks: 'Все отзывы',
   },
   fi: {
     button_back: 'Takaisin',
@@ -36,5 +38,7 @@ export const main_locale = {
     button_more: 'Lisää',
     button_hide: 'Piilota',
     teacher_label: 'Olen opettanut',
+    carousel_teachers: 'Näytä kaikki',
+    carousel_feedbacks: 'Kaikki arvaukset',
   },
 };
