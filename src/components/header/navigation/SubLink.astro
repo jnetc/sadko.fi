@@ -1,21 +1,16 @@
 ---
-import type { ISubMenu } from "@Types";
+import type { ISubMenu } from '@Types';
 
 interface Props {
   link: ISubMenu;
 }
 // Get language from Astro Runtime API
-const lang = Astro.currentLocale as "ru" | "fi";
+const lang = Astro.currentLocale as 'ru' | 'fi';
 
 const { icon, hrefDesc, hrefName, iconBorder, slug } = Astro.props.link;
 ---
 
-<a
-  href=`/${lang}/${slug}`
-  class="subnav__link"
-  data-astro-reload
-  role="menuitem"
->
+<a href=`/${lang}/${slug}` class="subnav__link" data-astro-reload>
   <div class="subnav__link-content" aria-hidden="true">
     <svg class="icon">
       <use xlink:href=`/svg/ui_icons.svg#${icon}`></use>

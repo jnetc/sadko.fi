@@ -1,6 +1,6 @@
 ---
-import type { ISubMenu } from "@Types";
-import SubColumn from "./SubColumn.astro";
+import type { ISubMenu } from '@Types';
+import SubColumn from './SubColumn.astro';
 
 interface Props {
   subMenu: Array<{ columnName: string; columns: Array<ISubMenu> }>;
@@ -10,12 +10,8 @@ interface Props {
 const { subMenu, index } = Astro.props;
 ---
 
-<ul class=`subnav subnav-${index}` role="menu">
-  {
-    subMenu.map((sub) => (
-      <SubColumn columnName={sub.columnName} columns={sub.columns} />
-    ))
-  }
+<ul class=`subnav subnav-${index}`>
+  {subMenu.map(sub => <SubColumn columnName={sub.columnName} columns={sub.columns} />)}
 </ul>
 
 <style is:global>
@@ -38,7 +34,7 @@ const { subMenu, index } = Astro.props;
     z-index: -2;
   }
   .subnav::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
     translate: 0 -100px;

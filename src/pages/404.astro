@@ -1,8 +1,65 @@
 ---
 // Layouts
 import Layout from '@Layouts/Layout.astro';
+// Locale
+import { main_locale } from '@Locales/main_locale';
+
+const lang = Astro.currentLocale as 'ru' | 'fi';
 ---
 
 <Layout>
-  <main>404</main>
+  <main class="grid">
+    <img src="/svg/page_404.svg" alt="page not found" />
+    <h1>{main_locale[lang].page_not_found_h1}</h1>
+    <p>{main_locale[lang].page_not_found_p}</p>
+    <a href=`/${lang}` class="btn btn-secondary btn-404 revers arrow-icon">
+      {main_locale[lang].page_not_found_btn}
+      <span class="btn__icon" aria-hidden="true">
+        <svg>
+          <use xlink:href="/svg/ui_icons.svg#arrow_outward" data-xlink="arrow_outward"></use>
+        </svg>
+      </span>
+    </a>
+  </main>
 </Layout>
+
+<style>
+  main {
+    flex-grow: 1;
+    grid-template-rows: 1fr repeat(4, auto) 1fr;
+    gap: var(--gap-16);
+  }
+
+  .btn-404,
+  img,
+  h1,
+  p {
+    grid-column: 2 / -2;
+    text-align: center;
+    justify-self: center;
+  }
+
+  img {
+    grid-row: 2;
+    min-height: 160px;
+  }
+
+  h1 {
+    grid-row: 3;
+    font-size: clamp(var(--font-32), 7vw, var(--font-48));
+    color: var(--black);
+  }
+
+  p {
+    grid-row: 4;
+    max-width: 70ch;
+    padding-block-end: var(--gap-24);
+    color: var(--grey-300);
+    font-size: clamp(var(--font-18), 2vw, var(--font-20));
+    line-height: 1.4;
+  }
+
+  .btn-404 {
+    grid-row: 5;
+  }
+</style>

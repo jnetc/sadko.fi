@@ -9,6 +9,7 @@ import type { IActivity, IPage } from '@Types';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
 import Article from '@Components/pages-with-articles/Article.astro';
+import PageEmpty from '@Components/page-empty/PageEmpty.astro';
 // Libs
 import { single, repeatable } from '@Lib/prismiccms';
 
@@ -29,15 +30,19 @@ const data = response.data as IPage;
 
 <Layout>
   <main class="grid separator">
-    <div class="page__header">
-      <h1>{data.title}</h1>
-      {data.description && <p>{data.description}</p>}
+    <div class="page-header">
+      <h1 class="header__heading">{data.title}</h1>
+      {data.description && <p class="page-header__description">{data.description}</p>}
     </div>
     {
-      articles.map(i => {
-        const data = i.data as IActivity;
-        return <Article article={data} date={i.last_publication_date} />;
-      })
+      articles.length >= 1 ? (
+        articles.map(i => {
+          const data = i.data as IActivity;
+          return <Article article={data} date={i.last_publication_date} />;
+        })
+      ) : (
+        <PageEmpty />
+      )
     }
   </main>
 </Layout>

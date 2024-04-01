@@ -30,9 +30,9 @@ const data = response.data as IGalleryPage;
 
 <Layout>
   <main class="grid gallery">
-    <div class="page__header column-sized">
-      <h1>{data.title}</h1>
-      {data.description && <p>{data.description}</p>}
+    <div class="page-header column-sized">
+      <h1 class="header__heading">{data.title}</h1>
+      {data.description && <p class="page-header__description">{data.description}</p>}
     </div>
     <section class="gallery-folders">
       {data.folder.map(folder => <GalleryFolder href={folder.href} name={folder.name} />)}

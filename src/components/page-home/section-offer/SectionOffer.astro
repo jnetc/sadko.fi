@@ -1,0 +1,79 @@
+---
+import type { HomeBodyOffer } from '@Types';
+interface Props {
+  data: HomeBodyOffer;
+}
+
+const { primary } = Astro.props.data;
+---
+
+<section class="grid main-section offer">
+  <div class="offer__box">
+    <h2>{primary.heading}</h2>
+    <p>{primary.text}</p>
+    <a href=`${primary.primary_href.url}` target="_blank" class="btn btn-primary arrow-icon btn-offer">
+      {primary.primary_button}
+      <span class="btn__icon" aria-hidden="true">
+        <svg>
+          <use xlink:href="/svg/ui_icons.svg#arrow_outward" data-xlink="arrow_outward"></use>
+        </svg>
+      </span>
+    </a>
+  </div>
+  <img class="offer__image" src="/webp/offer.webp" alt="children" />
+</section>
+
+<style>
+  .offer__box {
+    height: calc(100% + 6rem);
+    grid-column: 2 / 8 span;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: var(--gap-48);
+    padding-inline: var(--gap-48) var(--gap-128);
+    border-radius: var(--border-corner-32);
+    background-color: var(--white);
+    box-shadow:
+      0 25px 20px var(--opacity-3),
+      0 15px 10px var(--opacity-3);
+    translate: 0 -3rem;
+  }
+
+  .offer__box h2 {
+    font-size: clamp(var(--font-28), 5vw, var(--font-48));
+  }
+
+  .offer__box p {
+    padding-block: var(--gap-36) var(--gap-24);
+    color: var(--grey-300);
+    font-size: clamp(var(--font-18), 2.5vw, var(--font-24));
+  }
+
+  .btn-offer {
+    width: min-content;
+  }
+
+  .offer__image {
+    align-self: center;
+    grid-column: 8 / 7 span;
+    grid-row: 1;
+    position: relative;
+  }
+
+  @media (max-width: 1200px) {
+    .offer__box {
+      padding-block: var(--gap-48);
+      padding-inline: var(--gap-32);
+      grid-column: 2 / -2;
+      align-items: center;
+    }
+    .offer__box h2 {
+      text-align: center;
+    }
+    .offer__image {
+      display: none;
+    }
+  }
+</style>

@@ -9,6 +9,7 @@ import type { IPage, IActivity } from '@Types';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
 import Article from '@Components/pages-with-articles/Article.astro';
+import PageEmpty from '@Components/page-empty/PageEmpty.astro';
 // Libs
 import { single, repeatable } from '@Lib/prismiccms';
 
@@ -17,27 +18,31 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
 const response = await single(pageQuery, 'page_camps', lang);
 const articles = await repeatable(articlesQuery, 'camp', lang);
 
-const page = response.data as IPage;
+const data = response.data as IPage;
 ---
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
-  <title>{page.seo_title}</title>
-  <meta name="description" content={page.seo_description} />
+  <title>{data.seo_title}</title>
+  <meta name="description" content={data.seo_description} />
 </head>
 
 <Layout>
   <main class="grid separator">
-    <div class="page__header">
-      <h1>{page.title}</h1>
-      {page.description && <p>{page.description}</p>}
+    <div class="page-header">
+      <h1 class="header__heading">{data.title}</h1>
+      {data.description && <p class="page-header__description">{data.description}</p>}
     </div>
     {
-      articles.map(i => {
-        const data = i.data as IActivity;
-        return <Article article={data} date={i.last_publication_date} />;
-      })
+      articles.length >= 1 ? (
+        articles.map(i => {
+          const data = i.data as IActivity;
+          return <Article article={data} date={i.last_publication_date} />;
+        })
+      ) : (
+        <PageEmpty />
+      )
     }
   </main>
 </Layout>

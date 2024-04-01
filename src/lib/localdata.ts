@@ -1,6 +1,6 @@
 import fs from "node:fs"; // 👈 "node:" prefix is an Astro requirement for Node libs
-import { repeatable, single, singleWithLinks } from "@Lib/prismiccms";
-import type { TypeLanguages, Pages, Relationship } from "@Types";
+import { repeatable, single  } from "@Lib/prismiccms";
+import type { TypeLanguages, Pages } from "@Types";
 import type { PrismicDocument } from "@prismicio/client/*";
 
 const CACHE_FOLDER = "./.cache";
@@ -52,7 +52,7 @@ export  async function SingleLocaleData( query: string, page: Pages, lang: TypeL
 }
 
 
-export async function SingleWithLinkLocaleData( query: string, page: Pages, link: Relationship, lang: TypeLanguages) {
+export async function SingleWithLinkLocaleData( query: string, page: Pages,  lang: TypeLanguages) {
   let response;
 
   if (!fs.existsSync(CACHE_FOLDER)) {
@@ -68,7 +68,7 @@ export async function SingleWithLinkLocaleData( query: string, page: Pages, link
   } else {
     console.info("__________ DATA FROM CMS ___________");
 
-    response = await singleWithLinks( query, page, link, lang);
+    response = await single( query, page,  lang);
     // Write projects to "caching" file
     fs.writeFileSync(JSON_FILE, JSON.stringify(response));
     return response;

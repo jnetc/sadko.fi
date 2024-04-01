@@ -50,10 +50,21 @@ export type TypeUIActivityIcons =
 // type TypeBlanks = "blank-hobby" | "blank-camp" | "blank-membership";
 // type TypeBlanks = "blank-hobby" | "blank-camp" | "blank-membership";
 
-export type TypePage = "page_masters" | "page_camps" | "page_festivals" | "page_concerts" | "page_projects" | "page_parents" | "page_clubs" | "page_courses" | "page_travels" | "page_celebrations" | "page_concerts" | "page_usefuls" | "page_articles";
+export type TypePage = "page_masters" | "page_camps" | "page_festivals" | "page_concerts" | "page_projects" | "page_parents" | "page_clubs" | "page_courses" | "page_travels" | "page_celebrations" | "page_concerts" | "page_usefuls" | "page_articles" | "page_feedbacks" | "page_teachers";
 
 
-export type Pages = "home" |  TypeUIActivityIcons | TypePage | "articles" | "schedule" | "blanks" | "page_feedbacks" | "page_teachers" | "teacher" | "article" | "camp" | "club" | "master"
+export type Pages =
+  "home"
+  | TypeUIActivityIcons
+  | TypePage
+  | "articles"
+  | "schedule"
+  | "blanks"
+  | "teacher"
+  | "article"
+  | "camp"
+  | "club"
+  | "master"
   | "course"
   | "festival"
   | "celebration"
@@ -62,8 +73,9 @@ export type Pages = "home" |  TypeUIActivityIcons | TypePage | "articles" | "sch
   | "project"
   | "useful"
   | "parent"
-| "feedback";
-export type Relationship = "home" | TypeUIActivityIcons | "articles" | "teacher" | "feedbacks" | "feedback";
+  | "feedback"
+  | "common_data";
+// export type Relationship = "home" | TypeUIActivityIcons | "articles" | "teacher" | "feedbacks" | "feedback";
 
 export type TypeUICardShapes =
   "shape01"
@@ -211,6 +223,16 @@ export type SliceType = "hero" | "activities" | "welcome" | "offer" | "gallery" 
 //   title: string;
 //   description: string;
 // }
+
+export interface ICommonData {
+  address: string;
+  geolocation: string;
+  phone: string;
+  email: string;
+  whatsapp: string;
+  facebook: string;
+  instagram: string;
+}
 
 export interface IIndex extends SEOType {
   body: Array<HomeBodyHero | HomeBodyActivities | HomeBodyWelcome | HomeBodyOffer | HomeBodyGallery | HomeBodyTeachers | HomeBodyFaq | HomeBodyFeedbacks>;

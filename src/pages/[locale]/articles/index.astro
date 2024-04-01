@@ -7,6 +7,7 @@ import articleQuery from '@Queries/page_article';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
 import Article from '@Components/pages-with-articles/Article.astro';
+import PageEmpty from '@Components/page-empty/PageEmpty.astro';
 // Libs
 import { single, repeatable } from '@Lib/prismiccms';
 // Types
@@ -22,28 +23,31 @@ const articles = await repeatable(articleQuery, 'article', lang);
 // import { SingleWithLinkLocaleData } from '@Lib/localdata';
 // const response = await SingleWithLinkLocaleData(query, 'page_articles', 'articles', lang);
 // Define Type IPageForArticles
-const page = pesponse.data as IPage;
+const data = pesponse.data as IPage;
 ---
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
-  <title>{page.seo_title}</title>
-  <meta name="description" content={page.seo_description} />
+  <title>{data.seo_title}</title>
+  <meta name="description" content={data.seo_description} />
 </head>
 
 <Layout>
   <main class="grid separator">
-    <div class="page__header">
-      <h1>{page.title}</h1>
-      {page.description && <p>{page.description}</p>}
+    <div class="page-header">
+      <h1 class="header__heading">{data.title}</h1>
+      {data.description && <p class="page-header__description">{data.description}</p>}
     </div>
     {
-      articles.map(i => {
-        const data = i.data as IArticle;
-        return <Article article={data} date={i.last_publication_date} />;
-      })
+      articles.length >= 1 ? (
+        articles.map(i => {
+          const data = i.data as IArticle;
+          return <Article article={data} date={i.last_publication_date} />;
+        })
+      ) : (
+        <PageEmpty />
+      )
     }
   </main>
 </Layout>
-@Queries/page_article

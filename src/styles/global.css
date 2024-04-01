@@ -25,18 +25,17 @@ html {
 body {
   /* max-block-size: 100svh; */
   min-height: 100svh;
+  display: flex;
+  flex-direction: column;
   /* max-inline-size: 1920px; */
   /* margin-inline: auto; */
   font-family: 'Comfortaa', sans-serif;
   -webkit-font-smoothing: antialiased; /* for MacOs */
 }
 /* prevent scroll */
-.body {
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap-36);
-  overflow: hidden;
-}
+/* .body { */
+  /* overflow: hidden; */
+/* } */
 
 img,
 picture,
@@ -85,6 +84,10 @@ main {
   max-width: 1500px;
   margin-inline: auto;
 }
+main {
+  padding-block: var(--gap-36);
+}
+
 
 /* CLASSES */
 /* 1920 > */
@@ -94,19 +97,24 @@ main {
   column-gap: var(--gap-32);
   position: relative;
 }
+.grid:has(.page__empty) {
+  flex-grow: 1;
+  grid-template-rows: min-content 1fr;
+}
+
 .href {
-    position: relative;
-      color: var(--violet);
-      font-weight: bold;
-      text-decoration: underline transparent;
-      text-decoration-thickness: 5px;
-      text-underline-offset: 5px;
-      transition: all .3s ease-in-out;
+  position: relative;
+  color: var(--violet);
+  font-weight: bold;
+  text-decoration: underline transparent;
+  text-decoration-thickness: 5px;
+  text-underline-offset: 5px;
+  transition: all .3s ease-in-out;
 }
 .href:hover {
   text-decoration: underline var(--violet);
-    text-underline-offset: 2px;
-    text-decoration-thickness: 5px;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 5px;
 }
 
 h1, h2, h3,h4, h5, h6 {

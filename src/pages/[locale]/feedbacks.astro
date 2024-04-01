@@ -34,9 +34,9 @@ const data = response.data as IPage;
 
 <Layout>
   <main class="grid feedbacks separator">
-    <div class="page__header column-sized">
-      <h1>{data.title}</h1>
-      {data.description && <p>{data.description}</p>}
+    <div class="page-header column-sized">
+      <h1 class="header__heading">{data.title}</h1>
+      {data.description && <p class="page-header__description">{data.description}</p>}
     </div>
     {
       articles.map((i, index) => {

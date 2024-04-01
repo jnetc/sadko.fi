@@ -55,7 +55,11 @@
 }
 .btn-ternary:hover p{
   opacity: 1;
+}
 
+/* REVERS TEXT AND ICON */
+.revers {
+  direction: rtl;
 }
 
 .btn .btn__icon {
@@ -64,6 +68,10 @@
   aspect-ratio: 1;
   border-radius: 4rem;
   margin-left: var(--gap-16);
+}
+.btn.revers .btn__icon {
+  margin-inline: var(--gap-16) 0;
+  rotate: z -90deg;
 }
 .btn-primary .btn__icon,
 .btn-secondary .btn__icon {

@@ -6,7 +6,7 @@ import { marked } from "marked";
 // Types
 import type { RichTextField } from "@prismicio/client";
 
-import type {Pages, Relationship, TypeLanguages} from "@Types";
+import type {Pages, TypeLanguages} from "@Types";
 
 const repositoryName = import.meta.env.PRISMIC_REPOSITORY_NAME;
 const accessToken = import.meta.env.PRISMIC_ACCESS_TOKEN;
@@ -44,36 +44,36 @@ export async function single2(query: string, page: Pages, lang: TypeLanguages ) 
 
   return response;
 }
-export async function singleWithLinks(query: string, page: Pages, link: Relationship, lang: TypeLanguages) {
+// export async function singleWithLinks(query: string, page: Pages, link: Relationship, lang: TypeLanguages) {
 
 
-  let queryFetchLink;
+//   let queryFetchLink;
 
-  if (["clubs", "camps", "masters", "courses", "festivals", "celebrations", "concerts", "travels", "projects", "useful", "parents", "articles"].includes(link)) {
-    queryFetchLink = [`${link}.title`, `${link}.description`, `${link}.image`, `${link}.slug`, `${link}.text`]
-  } else if (link === "teacher") {
-    queryFetchLink = [`${link}.image`, `${link}.color`, `${link}.name`, `${link}.description`, `${link}.slug`, `${link}.text`, `${link}.links`]
-  } else if (link === "feedback") {
-    queryFetchLink = [ `${link}.color`, `${link}.name`, `${link}.slug`, `${link}.text.rich-text-field`]
-  }
+//   if (["clubs", "camps", "masters", "courses", "festivals", "celebrations", "concerts", "travels", "projects", "useful", "parents", "articles"].includes(link)) {
+//     queryFetchLink = [`${link}.title`, `${link}.description`, `${link}.image`, `${link}.slug`, `${link}.text`]
+//   } else if (link === "teacher") {
+//     queryFetchLink = [`${link}.image`, `${link}.color`, `${link}.name`, `${link}.description`, `${link}.slug`, `${link}.text`, `${link}.links`]
+//   } else if (link === "feedback") {
+//     queryFetchLink = [ `${link}.color`, `${link}.name`, `${link}.slug`, `${link}.text.rich-text-field`]
+//   }
 
-  const client = prismic.createClient(repositoryName, {
-    accessToken,
-    // fetchOptions: { cache: "force-cache" },
+//   const client = prismic.createClient(repositoryName, {
+//     accessToken,
+//     // fetchOptions: { cache: "force-cache" },
 
-    defaultParams: { lang },
-  });
+//     defaultParams: { lang },
+//   });
 
-  const response = await client.getSingle(page, {
-    fetchLinks: queryFetchLink,
-    graphQuery: query,
-  });
-  // console.log("RESPONCE_", response.data.feedbacks[2].feedback.data);
-  // console.log("RESPONCE_", response.data.teachers[0].teacher.data);
+//   const response = await client.getSingle(page, {
+//     fetchLinks: queryFetchLink,
+//     graphQuery: query,
+//   });
+//   // console.log("RESPONCE_", response.data.feedbacks[2].feedback.data);
+//   // console.log("RESPONCE_", response.data.teachers[0].teacher.data);
 
 
-  return response;
-}
+//   return response;
+// }
 
 export async function repeatable(query: string, page: Pages, lang?: TypeLanguages, filters?: {path: string, value: string| number| boolean}) {
 

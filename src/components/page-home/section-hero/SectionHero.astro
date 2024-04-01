@@ -1,0 +1,125 @@
+---
+import HeroTitle from '@Components/page-home/section-hero/HeroTitle.astro';
+// Type
+import type { HomeBodyHero } from '@Types';
+interface Props {
+  data: HomeBodyHero;
+}
+// export const prerender = true;
+const { primary } = Astro.props.data;
+---
+
+<section class="grid main-section hero">
+  <p class="hero__label">{primary.label}</p>
+  <HeroTitle text={primary.heading} />
+  <p class="hero__desc">
+    {primary.text}
+  </p>
+  <div class="hero__action-btns">
+    <a href={primary.primary_href.url} target="_blank" class="btn btn-primary arrow-icon">
+      {primary.primary_button}
+      <span class="btn__icon" aria-hidden="true">
+        <svg>
+          <use xlink:href="/svg/ui_icons.svg#arrow_outward" data-xlink="arrow_outward"></use>
+        </svg>
+      </span>
+    </a>
+    <a href={primary.secondary_href.url} class="btn btn-secondary location-icon">
+      {primary.secondary_button}
+      <span class="btn__icon" aria-hidden="true">
+        <svg>
+          <use xlink:href="/svg/ui_icons.svg#location" data-xlink="location"></use>
+        </svg>
+      </span>
+    </a>
+  </div>
+  <img class="hero__boy" src="/webp/boy.webp" alt="boy with skateboard" />
+  <img class="hero__girl" src="/webp/girl.webp" alt="girl" />
+  <svg class="hero__page-arrow-long">
+    <use xlink:href="/svg/shapes.svg#page_arrow_long"></use>
+  </svg>
+</section>
+
+<style is:global>
+  .hero {
+    padding-block-start: var(--gap-72);
+  }
+
+  .hero__label,
+  .hero__title,
+  .hero__desc,
+  .hero__action-btns,
+  .hero__page-arrow-long {
+    grid-column: 2 / -2;
+    justify-self: center;
+  }
+
+  .hero__label,
+  .hero__desc {
+    color: var(--grey-300);
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .hero__label {
+    grid-row: 1;
+    font-size: clamp(var(--font-16), 2.5vw, var(--font-20));
+  }
+
+  .hero__desc {
+    grid-row: 3;
+    max-width: 660px;
+    font-size: clamp(var(--font-18), 2.5vw, var(--font-24));
+  }
+
+  .hero__action-btns {
+    grid-row: 4;
+    height: min-content;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-20) var(--gap-40);
+    justify-content: center;
+    padding-block: var(--gap-48) var(--gap-80);
+  }
+
+  .hero__boy,
+  .hero__girl {
+    grid-row: 1 / span 5;
+    justify-self: center;
+    display: flex;
+  }
+  .hero__boy {
+    grid-column: 11 / 3 span;
+    max-width: 240px;
+    align-self: center;
+  }
+  .hero__girl {
+    grid-column: 2 / 3 span;
+    align-self: flex-end;
+    position: relative;
+    bottom: 5rem;
+  }
+
+  .hero__page-arrow-long {
+    grid-row: 5;
+    width: 180px;
+    aspect-ratio: 1;
+    fill: var(--violet);
+  }
+
+  @media (max-width: 1200px) {
+    .hero__boy,
+    .hero__girl {
+      display: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero__action-btns a {
+      width: min-content;
+    }
+    .hero__page-arrow-long {
+      max-width: 140px;
+    }
+  }
+</style>

@@ -1,6 +1,6 @@
 ---
 // Localization
-import { headerLinks } from '@Content/i18n/_header';
+import { headerLinks } from 'src/routes/routes';
 // Components
 import SubMenu from './SubMenu.astro';
 // Get language from Astro Runtime API
@@ -55,16 +55,10 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
   });
 </script>
 
-<nav class="header__nav" role="menu">
-  <ul class="nav__links" role="menubar">
+<nav class="header__nav">
+  <ul class="nav__links">
     <li class="nav__link">
-      <button
-        type="button"
-        class="nav__link-name"
-        role="menuitem"
-        aria-haspopup="menu"
-        aria-expanded="false"
-        data-expanded="false"
+      <button type="button" class="nav__link-name" aria-haspopup="menu" aria-expanded="false" data-expanded="false"
         >{headerLinks[lang].activities.name}
         <svg class="icon">
           <use xlink:href=`/svg/ui_icons.svg#arrow`></use>
@@ -73,13 +67,7 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
       <SubMenu subMenu={headerLinks[lang].activities.submenu} index={1} />
     </li>
     <li class="nav__link">
-      <button
-        type="button"
-        class="nav__link-name"
-        role="menuitem"
-        aria-haspopup="menu"
-        aria-expanded="false"
-        data-expanded="false"
+      <button type="button" class="nav__link-name" aria-haspopup="menu" aria-expanded="false" data-expanded="false"
         >{headerLinks[lang].signup.name}
         <svg class="icon">
           <use xlink:href=`/svg/ui_icons.svg#arrow`></use>
@@ -87,20 +75,14 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
       </button>
       <SubMenu subMenu={headerLinks[lang].signup.submenu} index={2} />
     </li>
-    <li class="nav__link" role="menuitem">
+    <li class="nav__link">
       <a href={`/${lang}/schedule`} data-astro-reload class="nav__link-name">{headerLinks[lang].schedule} </a>
     </li>
-    <li class="nav__link" role="menuitem">
+    <li class="nav__link">
       <a href={`/${lang}/articles`} data-astro-reload class="nav__link-name">{headerLinks[lang].articles} </a>
     </li>
     <li class="nav__link">
-      <button
-        type="button"
-        class="nav__link-name"
-        role="menuitem"
-        aria-haspopup="menu"
-        aria-expanded="false"
-        data-expanded="false"
+      <button type="button" class="nav__link-name" aria-haspopup="menu" aria-expanded="false" data-expanded="false"
         >{headerLinks[lang].about.name}
         <svg class="icon">
           <use xlink:href=`/svg/ui_icons.svg#arrow`></use>

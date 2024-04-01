@@ -1,17 +1,23 @@
 ---
-// import {getRelativeLocaleUrl} from 'astro:i18n'
 // Global Styles
 import '@Styles/variable.css';
 import '@Styles/fonts.css';
 import '@Styles/global.css';
 import '@Styles/buttons.css';
 import '@Styles/markdown.css';
+// Query
+// import query from '@Queries/common_data';
+// import { single } from '@Lib/prismiccms';
 // Components
 import Header from '@Components/header/Header.astro';
 import Footer from '@Components/footer/Footer.astro';
+// Types
+// import type { ICommonData } from '@Types';
 
 // Get language from Astro Runtime API
 const lang = Astro.currentLocale as 'ru' | 'fi';
+// const response = await single(query, 'common_data', lang);
+// const data = response.data as ICommonData;
 ---
 
 <!doctype html>
@@ -42,8 +48,27 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
     <!-- <slot name="head" /> -->
   </head>
   <body class="body">
+    <!-- <address class="address-header">
+      {data.address}
+    </address> -->
     <Header />
     <slot />
     <Footer />
   </body>
 </html>
+
+<style>
+  .address-header {
+    /* height: 2rem; */
+    display: flex;
+    gap: var(--gap-18);
+    padding: var(--gap-12) var(--gap-16);
+    background-color: var(--black);
+    color: var(--grey-50);
+    font-style: normal;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--font-14);
+    /* margin-inline: auto; */
+  }
+</style>
