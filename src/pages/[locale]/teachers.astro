@@ -35,8 +35,8 @@ const teachers = teachersResponse;
 <Layout>
   <main class="grid teachers separator">
     <div class="page-header column-sized">
-      <h1>{page.title}</h1>
-      {page.description && <p>{page.description}</p>}
+      <h1 class="header__heading">{page.title}</h1>
+      {page.description && <p class="page-header__description">{page.description}</p>}
     </div>
     {
       teachers.map(i => {
