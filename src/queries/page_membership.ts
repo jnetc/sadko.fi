@@ -1,5 +1,5 @@
 export default `{
-  allMemberships {
+  allPage_memberships {
     edges {
       node {
         seo_title

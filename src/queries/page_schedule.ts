@@ -1,11 +1,11 @@
 export default `{
-  allPage_abouts {
+  allPage_teacherss {
     edges {
       node {
         seo_title
         seo_description
         title
-     		description
+        sub_title
         text
       }
     }

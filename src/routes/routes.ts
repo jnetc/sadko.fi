@@ -223,8 +223,8 @@ const blanks: Array<ISubMenu> = [
 const rules_and_payments: Array<ISubMenu> = [
   {
     iconBorder: "cookie",
-    icon: "rules_and_payments",
-    slug: "rules_and_payments",
+    icon: "rules-and-payments",
+    slug: "rules-and-payments",
     hrefName: {
       ru: "Оплата",
       fi: "Maksu"

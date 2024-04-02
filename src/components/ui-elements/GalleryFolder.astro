@@ -28,6 +28,12 @@ const { href, name } = Astro.props;
     justify-content: center;
     align-items: flex-end;
     position: relative;
+    padding: var(--gap-12);
+    border-radius: var(--border-corner-12);
+    transition: all 0.3s ease-in-out;
+  }
+  .folder:hover {
+    background-color: var(--opacity-8);
   }
 
   .folder:hover .violet-image {
@@ -54,7 +60,7 @@ const { href, name } = Astro.props;
   .folder__image {
     max-width: 120px;
     min-width: 40%;
-    height: 40%;
+    height: 45%;
     align-self: center;
     position: relative;
     left: 50%;
@@ -68,7 +74,7 @@ const { href, name } = Astro.props;
     z-index: -5;
   }
   .pink-image {
-    top: 1.5rem;
+    top: 1rem;
     background-color: var(--pink);
     transform-origin: right bottom;
     z-index: -4;

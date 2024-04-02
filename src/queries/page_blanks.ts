@@ -1,21 +1,20 @@
 export default `{
- allPage_gallerys {
+  allPage_blankss {
     edges {
       node {
         seo_title
         seo_description
         title
-     		description
-       	folder {
+        description
+        blank {
+          name
           href {
-            ...on _ExternalLink {
+            ... on _ExternalLink {
               url
               target
             }
           }
-          name
         }
-
       }
     }
   }

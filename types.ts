@@ -38,7 +38,7 @@ export type TypeUIActivityIcons =
   | "projects"
   | "useful"
   | "parents"
-  | "rules_and_payments"
+  | "rules-and-payments"
   | "blanks"
   | "about"
   | "teachers"
@@ -50,7 +50,7 @@ export type TypeUIActivityIcons =
 // type TypeBlanks = "blank-hobby" | "blank-camp" | "blank-membership";
 // type TypeBlanks = "blank-hobby" | "blank-camp" | "blank-membership";
 
-export type TypePage = "page_masters" | "page_camps" | "page_festivals" | "page_concerts" | "page_projects" | "page_parents" | "page_clubs" | "page_courses" | "page_travels" | "page_celebrations" | "page_concerts" | "page_usefuls" | "page_articles" | "page_feedbacks" | "page_teachers";
+export type TypePage = "page_masters" | "page_camps" | "page_festivals" | "page_concerts" | "page_projects" | "page_parents" | "page_clubs" | "page_courses" | "page_travels" | "page_celebrations" | "page_concerts" | "page_usefuls" | "page_articles" | "page_feedbacks" | "page_teachers" | "page_schedule" | "page_blanks" | "page_about" | "page_membership" | "page_gallery" | "page_rules-and-payments";
 
 
 export type Pages =
@@ -270,7 +270,7 @@ export interface HomeBodyGallery {
 export interface HomeBodyTeachers {
   slice_type:  'teachers';
   primary: HeadingTextType;
-  items: Array<HeadingTextType & SlugType & {image: ImageType}>;
+  // items: Array<HeadingTextType & SlugType & {image: ImageType}>;
 }
 export interface HomeBodyFaq {
   slice_type: 'faq';
@@ -280,18 +280,20 @@ export interface HomeBodyFaq {
 export interface HomeBodyFeedbacks {
   slice_type: 'feedbacks';
   primary: HeadingTextType;
-  items: Array<HeadingTextType>;
+  // items: Array<HeadingTextType>;
 }
 
-export interface IPage extends SEOType, TitleDescriptionType {}
-export interface IFeedPage extends IPage {
-  article_arr: Array<{ article: IArticle }>;
-}
+export interface IPage extends SEOType, TitleDescriptionType { }
 
-export interface IArticleData  {
-  data: { image: ImageType;  text: RichTextField} & TitleDescriptionType & SlugType;
-  last_publication_date: string;
-}
+
+// export interface IFeedPage extends IPage {
+//   article_arr: Array<{ article: IArticle }>;
+// }
+
+// export interface IArticleData  {
+//   data: { image: ImageType;  text: RichTextField} & TitleDescriptionType & SlugType;
+//   last_publication_date: string;
+// }
 
 export interface IActivity extends SEOType, TitleDescriptionType, SlugType {
   image: ImageType;
@@ -317,19 +319,31 @@ export interface IArticle extends SEOType, TitleDescriptionType, SlugType {
   text: RichTextField
   publication_date: string;
 }
+
 export interface IAboutPage extends SEOType, TitleDescriptionType {
   text: RichTextField
 }
+
 export interface IRulesAndPaymentsPage extends SEOType, TitleDescriptionType {
   text: RichTextField
 }
+
 export interface IMembershipPage extends SEOType, TitleDescriptionType, SecondaryButtonType {
   text: RichTextField
 }
 
+export interface ISchedulePage extends SEOType {
+  title: string;
+  sub_title: string;
+  text: RichTextField
+}
 
 export interface IGalleryPage extends SEOType, TitleDescriptionType {
   folder: Array<{href: HrefType, name: string}>
+}
+
+export interface IBlanksPage extends SEOType, TitleDescriptionType {
+  blank: Array<{href: HrefType, name: string}>
 }
 
 

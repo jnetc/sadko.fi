@@ -2,7 +2,7 @@
 // Global Styles
 import '@Styles/articles_page.css';
 // Query
-import query from '@Queries/page_rules_and_payments';
+import query from '@Queries/page_rules-and-payments';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
 // Types
@@ -11,7 +11,7 @@ import type { IRulesAndPaymentsPage } from '@Types';
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
 import { single, toMarkdown } from '@Lib/prismiccms';
-const response = await single(query, 'rules_and_payments', lang);
+const response = await single(query, 'page_rules-and-payments', lang);
 
 const data = response.data as IRulesAndPaymentsPage;
 const md = await toMarkdown(data.text);
@@ -35,4 +35,3 @@ const md = await toMarkdown(data.text);
     </div>
   </main>
 </Layout>
-@Queries/page_rules_and_payments

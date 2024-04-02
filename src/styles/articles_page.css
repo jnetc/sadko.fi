@@ -68,7 +68,7 @@
 } */
 .page-header:not(:has(.page-header__description)):has(~ .page__empty) {
   padding-block-end: 0;
-};
+}
 
 
 /* @media (max-width: 559px) {

@@ -11,7 +11,7 @@ import type { IMembershipPage } from '@Types';
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
 import { single, toMarkdown } from '@Lib/prismiccms';
-const response = await single(query, 'membership', lang);
+const response = await single(query, 'page_membership', lang);
 
 const data = response.data as IMembershipPage;
 const md = await toMarkdown(data.text);
@@ -50,4 +50,3 @@ const md = await toMarkdown(data.text);
     margin-top: var(--gap-32);
   }
 </style>
-@Queries/page_membership

@@ -1,0 +1,101 @@
+---
+import type { HrefType } from '@Types';
+interface Props {
+  href: HrefType;
+  name: string;
+}
+
+const { href, name } = Astro.props;
+---
+
+<a href={href.url} target="_blank" class="blank">
+  <svg class="blank__front">
+    <use xlink:href="/svg/shapes.svg#blank-front"></use>
+  </svg>
+  <svg class="blank__back">
+    <use xlink:href="/svg/shapes.svg#blank-back"></use>
+  </svg>
+  <svg class="blank__pen">
+    <use xlink:href="/svg/shapes.svg#blank-pen"></use>
+  </svg>
+  <p class="blank__name">{name}</p>
+</a>
+
+<style>
+  .blank {
+    max-width: 280px;
+    display: grid;
+    grid-template-rows: min-content 1fr;
+    gap: var(--gap-18);
+    justify-content: center;
+    align-items: flex-end;
+    padding: var(--gap-12);
+    position: relative;
+    border-radius: var(--border-corner-12);
+    transition: all 0.3s ease-in-out;
+  }
+  .blank svg {
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .blank:hover {
+    background-color: var(--opacity-8);
+  }
+
+  .blank__front,
+  .blank__back,
+  .blank__pen {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .blank__front,
+  .blank__back {
+    position: relative;
+    justify-self: center;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .blank__front {
+    max-width: 120px;
+  }
+  .blank:hover .blank__front {
+    rotate: z -10deg;
+    scale: 1.1;
+  }
+
+  .blank__back {
+    max-width: 110px;
+    left: 0.25rem;
+    bottom: 0.25rem;
+    z-index: -1;
+  }
+  .blank:hover .blank__back {
+    rotate: z 10deg;
+    scale: 1.1;
+  }
+
+  .blank__pen {
+    height: 100px;
+    width: 1rem;
+    position: relative;
+    justify-self: center;
+    right: -4.5rem;
+    bottom: 1rem;
+    transition: all 0.3s ease-in-out;
+  }
+  .blank:hover .blank__pen {
+    translate: -1rem -0.5rem;
+    rotate: z 20deg;
+    scale: 1.1;
+  }
+
+  .blank__name {
+    align-self: flex-start;
+    color: var(--grey-300);
+    font-size: var(--font-18);
+    font-weight: bold;
+    text-align: center;
+  }
+</style>

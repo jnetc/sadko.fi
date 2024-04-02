@@ -11,7 +11,7 @@ import type { IAboutPage } from '@Types';
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
 import { single, toMarkdown } from '@Lib/prismiccms';
-const response = await single(query, 'about', lang);
+const response = await single(query, 'page_about', lang);
 
 const data = response.data as IAboutPage;
 const md = await toMarkdown(data.text);

@@ -1,5 +1,5 @@
 export default `{
-  allRules_and_paymentss {
+  allPage_rulesAndPaymentss {
     edges {
       node {
         seo_title

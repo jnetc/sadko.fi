@@ -1,0 +1,53 @@
+---
+// Global Styles
+import '@Styles/articles_page.css';
+// Query
+import query from '@Queries/page_blanks';
+// Layouts
+import Layout from '@Layouts/Layout.astro';
+import BlankItem from '@Components/ui-elements/BlankItem.astro';
+// Types
+import type { IBlanksPage } from '@Types';
+
+const lang = Astro.currentLocale as 'ru' | 'fi';
+
+import { single } from '@Lib/prismiccms';
+const response = await single(query, 'page_blanks', lang);
+// LOCAL DATA!!!
+// Remove CACHE folder to get updated data!!!
+// import { SingleLocaleData } from '@Lib/localdata';
+// const response = await SingleLocaleData(query, 'gallery', lang);
+
+const data = response.data as IBlanksPage;
+---
+
+<Layout>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{data.seo_title}</title>
+    <meta name="description" content={data.seo_description} />
+  </head>
+
+  <main class="grid separator">
+    <div class="page-header column-sized">
+      <h1 class="header__heading">{data.title}</h1>
+      {data.description && <p class="page-header__description">{data.description}</p>}
+    </div>
+    <section class="blanks">
+      {data.blank.map(folder => <BlankItem href={folder.href} name={folder.name} />)}
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .blanks {
+    grid-column: 2 / -2;
+    max-width: 70ch;
+    justify-self: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-24);
+  }
+</style>
