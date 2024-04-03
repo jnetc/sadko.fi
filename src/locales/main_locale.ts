@@ -23,6 +23,7 @@ export const main_locale = {
     page_not_found_p: 'Упс! Кажется, мы не смогли найти запрашиваемую вами страницу. Пожалуйста, проверьте ссылку или вернитесь на главную страницу. Благодарим за понимание.',
     page_not_found_btn: 'На главную',
     activities_not_found_p: 'Ой! Сейчас у нас тут нет ни какой активности. Однако мы всегда работаем над обновлением и добавлением нового контента. Извините за возможные неудобства.',
+    select_schedule: 'Все расписания',
   },
   fi: {
     button_back: 'Takaisin',
@@ -48,5 +49,6 @@ export const main_locale = {
     page_not_found_p: 'Hups, emme löydä pyytämääsi sivua. Tarkista linkki tai palaa etusivulle. Kiitos ymmärryksestänne.',
     page_not_found_btn: 'Etusivulle',
     activities_not_found_p: 'Hups! Täällä ei ole juuri nyt toimintaa. Pyrimme kuitenkin aina päivittämään ja lisäämään uutta sisältöä. Pahoittelemme tästä mahdollisesti aiheutuvaa haittaa.',
+    select_schedule: 'Kaikki aikataulut',
   },
 };

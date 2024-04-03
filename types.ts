@@ -364,3 +364,23 @@ export interface IFeedback {
   name: string
   text: RichTextField
 }
+
+type DayType = {
+  name: string;
+  time: string;
+  age: string;
+  price: string;
+  label: string;
+}
+
+export interface ISchedule  {
+  place: string
+  href: HrefType
+  monday: Array<DayType>
+  tuesday: Array<DayType>
+  wednesday: Array<DayType>
+  thursday: Array<DayType>
+  friday: Array<DayType>
+  saturday: Array<DayType>
+  sunday: Array<DayType>
+}
