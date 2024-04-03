@@ -8,21 +8,30 @@ interface Props {
 const { href, name } = Astro.props;
 ---
 
-<a href={href.url} target="_blank" class="folder">
-  <svg class="folder__front">
-    <use xlink:href="/svg/shapes.svg#folder-front"></use>
-  </svg>
-  <div class="folder__image violet-image"></div>
-  <div class="folder__image pink-image"></div>
-  <svg class="folder__back">
-    <use xlink:href="/svg/shapes.svg#folder-back"></use>
-  </svg>
-  <p class="folder__name">{name}</p>
-</a>
+<li>
+  <a href={href.url} target="_blank" class="folder">
+    <svg aria-hidden="true">
+      <use xlink:href="/svg/shapes.svg#folder-front"></use>
+    </svg>
+    <svg aria-hidden="true">
+      <use xlink:href="/svg/shapes.svg#folder-doc1"></use>
+    </svg>
+    <svg aria-hidden="true">
+      <use xlink:href="/svg/shapes.svg#folder-doc2"></use>
+    </svg>
+    <svg aria-hidden="true">
+      <use xlink:href="/svg/shapes.svg#folder-back"></use>
+    </svg>
+    <p class="folder__name">{name}</p>
+  </a>
+</li>
 
 <style>
+  li {
+  }
   .folder {
     max-width: 280px;
+    height: 100%;
     display: grid;
     grid-template-rows: min-content 1fr;
     justify-content: center;
@@ -36,54 +45,36 @@ const { href, name } = Astro.props;
     background-color: var(--opacity-8);
   }
 
-  .folder:hover .violet-image {
+  svg {
+    grid-column: 1;
+    grid-row: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+  svg:nth-of-type(n + 2):nth-of-type(-n + 3) {
+    transform-origin: center bottom;
+    transition: all 0.3s ease-in-out;
+    z-index: -2;
+  }
+
+  .folder:hover svg:nth-of-type(2) {
     translate: -0.5rem -1.5rem;
     rotate: z -10deg;
   }
-  .folder:hover .pink-image {
-    translate: 0 -1.5rem;
+  .folder:hover svg:nth-of-type(3) {
+    translate: 0 -2.5rem;
     rotate: z 10deg;
     scale: 1;
   }
 
-  .folder__front,
-  .folder__back,
-  .folder__image {
-    grid-column: 1;
-    grid-row: 1;
-  }
-  .folder__front {
-  }
-  .folder__back {
-    z-index: -100;
-  }
-  .folder__image {
-    max-width: 120px;
-    min-width: 40%;
-    height: 45%;
-    align-self: center;
-    position: relative;
-    left: 50%;
-    border-radius: var(--border-corner-12);
-    transform: translateX(-50%);
-    transition: all 0.3s ease-in-out;
-  }
-  .violet-image {
-    background-color: var(--violet);
-    transform-origin: left bottom;
-    z-index: -5;
-  }
-  .pink-image {
-    top: 1rem;
-    background-color: var(--pink);
-    transform-origin: right bottom;
-    z-index: -4;
+  svg:last-of-type {
+    z-index: -3;
   }
 
   .folder__name {
     align-self: flex-start;
     color: var(--grey-300);
-    font-size: var(--font-18);
+    font-size: clamp(var(--font-16), 2vw, var(--font-18));
     font-weight: bold;
     text-align: center;
   }

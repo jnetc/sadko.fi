@@ -8,22 +8,24 @@ interface Props {
 const { href, name } = Astro.props;
 ---
 
-<a href={href.url} target="_blank" class="blank">
-  <svg class="blank__front">
-    <use xlink:href="/svg/shapes.svg#blank-front"></use>
-  </svg>
-  <svg class="blank__back">
-    <use xlink:href="/svg/shapes.svg#blank-back"></use>
-  </svg>
-  <svg class="blank__pen">
-    <use xlink:href="/svg/shapes.svg#blank-pen"></use>
-  </svg>
-  <p class="blank__name">{name}</p>
-</a>
+<li>
+  <a href={href.url} target="_blank" class="blank">
+    <svg class="blank__front">
+      <use xlink:href="/svg/shapes.svg#blank-front"></use>
+    </svg>
+    <svg class="blank__back">
+      <use xlink:href="/svg/shapes.svg#blank-back"></use>
+    </svg>
+    <svg class="blank__pen">
+      <use xlink:href="/svg/shapes.svg#blank-pen"></use>
+    </svg>
+    <p class="blank__name">{name}</p>
+  </a>
+</li>
 
 <style>
   .blank {
-    max-width: 280px;
+    height: 100%;
     display: grid;
     grid-template-rows: min-content 1fr;
     gap: var(--gap-18);

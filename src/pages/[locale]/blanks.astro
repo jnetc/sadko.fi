@@ -34,9 +34,9 @@ const data = response.data as IBlanksPage;
       <h1 class="header__heading">{data.title}</h1>
       {data.description && <p class="page-header__description">{data.description}</p>}
     </div>
-    <section class="blanks">
+    <ul class="blanks">
       {data.blank.map(folder => <BlankItem href={folder.href} name={folder.name} />)}
-    </section>
+    </ul>
   </main>
 </Layout>
 
@@ -45,9 +45,13 @@ const data = response.data as IBlanksPage;
     grid-column: 2 / -2;
     max-width: 70ch;
     justify-self: center;
-    justify-content: center;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--gap-24);
+  }
+  @media screen and (max-width: 559px) {
+    .blanks {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
