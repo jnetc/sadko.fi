@@ -46,12 +46,12 @@ const data = response.data as IBlanksPage;
     max-width: 70ch;
     justify-self: center;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: var(--gap-24);
   }
   @media screen and (max-width: 559px) {
     .blanks {
-      grid-template-columns: 1fr;
+      justify-self: stretch;
     }
   }
 </style>

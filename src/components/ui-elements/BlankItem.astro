@@ -10,13 +10,13 @@ const { href, name } = Astro.props;
 
 <li>
   <a href={href.url} target="_blank" class="blank">
-    <svg class="blank__front">
+    <svg class="blank__front" aria-hidden="true">
       <use xlink:href="/svg/shapes.svg#blank-front"></use>
     </svg>
-    <svg class="blank__back">
+    <svg class="blank__back" aria-hidden="true">
       <use xlink:href="/svg/shapes.svg#blank-back"></use>
     </svg>
-    <svg class="blank__pen">
+    <svg class="blank__pen" aria-hidden="true">
       <use xlink:href="/svg/shapes.svg#blank-pen"></use>
     </svg>
     <p class="blank__name">{name}</p>
@@ -36,32 +36,25 @@ const { href, name } = Astro.props;
     border-radius: var(--border-corner-12);
     transition: all 0.3s ease-in-out;
   }
-  .blank svg {
-    pointer-events: none;
-    user-select: none;
-  }
 
   .blank:hover {
     background-color: var(--opacity-8);
   }
 
-  .blank__front,
-  .blank__back,
-  .blank__pen {
+  svg {
     grid-column: 1;
     grid-row: 1;
+    pointer-events: none;
+    user-select: none;
+    transition: all 0.3s ease-in-out;
   }
 
   .blank__front,
   .blank__back {
     position: relative;
     justify-self: center;
-    transition: all 0.3s ease-in-out;
   }
 
-  .blank__front {
-    max-width: 120px;
-  }
   .blank:hover .blank__front {
     rotate: z -10deg;
     scale: 1.1;
@@ -69,7 +62,7 @@ const { href, name } = Astro.props;
 
   .blank__back {
     max-width: 110px;
-    left: 0.25rem;
+    left: 0.5rem;
     bottom: 0.25rem;
     z-index: -1;
   }
@@ -85,10 +78,9 @@ const { href, name } = Astro.props;
     justify-self: center;
     right: -4.5rem;
     bottom: 1rem;
-    transition: all 0.3s ease-in-out;
   }
   .blank:hover .blank__pen {
-    translate: -1rem -0.5rem;
+    translate: -3rem 0;
     rotate: z 20deg;
     scale: 1.1;
   }
@@ -99,5 +91,21 @@ const { href, name } = Astro.props;
     font-size: var(--font-18);
     font-weight: bold;
     text-align: center;
+  }
+
+  @media screen and (max-width: 559px) {
+    .blank__front {
+      rotate: z -10deg;
+      scale: 1.1;
+    }
+    .blank__back {
+      rotate: z 10deg;
+      scale: 1.1;
+    }
+    .blank__pen {
+      translate: -3rem 0;
+      rotate: z 20deg;
+      scale: 1.1;
+    }
   }
 </style>
