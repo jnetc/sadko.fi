@@ -94,18 +94,18 @@ const { href, name } = Astro.props;
   }
 
   @media screen and (max-width: 559px) {
+    svg {
+      scale: 1.1;
+    }
     .blank__front {
       rotate: z -10deg;
-      scale: 1.1;
     }
     .blank__back {
       rotate: z 10deg;
-      scale: 1.1;
     }
     .blank__pen {
       translate: -3rem 0;
       rotate: z 20deg;
-      scale: 1.1;
     }
   }
 </style>

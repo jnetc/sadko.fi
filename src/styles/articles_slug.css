@@ -29,6 +29,8 @@ time:has(+ .activity__title)  {
 }
 
 img.page__image-post {
+  max-width: 70ch;
+  justify-self: center;
   grid-column: 2 / -2;
 }
 
@@ -46,7 +48,7 @@ img.page__image-details {
 @media screen and (max-width: 959px) {
   img.page__image-details,
   img.page__image-post {
-    max-width: 100% ;
+    max-width: 100%;
     grid-column: 1 / -1;
     border-radius: 0;
   }

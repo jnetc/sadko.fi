@@ -3,7 +3,7 @@ export const prerender = true;
 // Global Styles
 import '@Styles/articles_slug.css';
 // Query
-import query from '@Queries/page_celebration';
+import { repeatableQuery } from '@Queries/page_celebrations';
 // Types
 import type { IActivity } from '@Types';
 // Layouts
@@ -19,7 +19,7 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
 const path = Astro.url.pathname.split('/')[2];
 
 export async function getStaticPaths() {
-  const response = await staticPath(query, 'celebration');
+  const response = await staticPath(repeatableQuery, 'celebration');
 
   return response.flatMap(i => {
     const data = i.data as IActivity;
@@ -36,7 +36,7 @@ export async function getStaticPaths() {
   });
 }
 
-const response = await repeatable(query, 'celebration', lang);
+const response = await repeatable(repeatableQuery, 'celebration', lang);
 
 const { slug } = Astro.props;
 

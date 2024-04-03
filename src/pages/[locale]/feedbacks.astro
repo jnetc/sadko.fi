@@ -2,7 +2,7 @@
 // Global Styles
 import '@Styles/articles_page.css';
 // Query
-import pageQuery from '@Queries/page_feedbacks';
+import pageQuery, { repeatableQuery } from '@Queries/page_feedbacks';
 import articlesQuery from '@Queries/feedback';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
@@ -15,7 +15,7 @@ import type { IFeedback, IPage } from '@Types';
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
 const response = await single(pageQuery, 'page_feedbacks', lang);
-const articles = await repeatable(articlesQuery, 'feedback', lang);
+const articles = await repeatable(repeatableQuery, 'feedback', lang);
 // LOCAL DATA!!!
 // Remove CACHE folder to get updated data!!!
 // import { RepeatableLocaleData } from '@Lib/localdata';

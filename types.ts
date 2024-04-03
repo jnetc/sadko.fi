@@ -334,7 +334,7 @@ export interface IMembershipPage extends SEOType, TitleDescriptionType, Secondar
 
 export interface ISchedulePage extends SEOType {
   title: string;
-  sub_title: string;
+  subtitle: string;
   text: RichTextField
 }
 

@@ -2,8 +2,7 @@
 // Global Styles
 import '@Styles/articles_page.css';
 // Query
-import pageQuery from '@Queries/page_teachers';
-import teacherQuery from '@Queries/teacher';
+import pageQuery, { repeatableQuery } from '@Queries/page_teachers';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
 import TeacherArticle from '@Components/teacher-articles/TeacherArticle.astro';
@@ -15,7 +14,7 @@ import type { ITeacher, IPage } from '@Types';
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
 const pageResponse = await single(pageQuery, 'page_teachers', lang);
-const teachersResponse = await repeatable(teacherQuery, 'teacher', lang);
+const teachersResponse = await repeatable(repeatableQuery, 'teacher', lang);
 // LOCAL DATA!!!
 // Remove CACHE folder to get updated data!!!
 // import { SingleWithLinkLocaleData } from '@Lib/localdata';

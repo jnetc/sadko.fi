@@ -2,8 +2,7 @@
 // Global Styles
 import '@Styles/articles_page.css';
 // Query
-import pageQuery from '@Queries/page_concerts';
-import articlesQuery from '@Queries/page_concert';
+import pageQuery, { repeatableQuery } from '@Queries/page_concerts';
 // Types
 import type { IActivity, IPage } from '@Types';
 // Layouts
@@ -16,7 +15,7 @@ import { single, repeatable } from '@Lib/prismiccms';
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
 const response = await single(pageQuery, 'page_concerts', lang);
-const articles = await repeatable(articlesQuery, 'concert', lang);
+const articles = await repeatable(repeatableQuery, 'concert', lang);
 
 const data = response.data as IPage;
 ---

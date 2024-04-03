@@ -2,8 +2,7 @@
 // Global Styles
 import '@Styles/articles_page.css';
 // Query
-import pageQuery from '@Queries/page_articles';
-import articleQuery from '@Queries/page_article';
+import pageQuery, { repeatableQuery } from '@Queries/page_articles';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
 import Article from '@Components/pages-with-articles/Article.astro';
@@ -16,7 +15,7 @@ import type { IArticle, IPage } from '@Types';
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
 const pesponse = await single(pageQuery, 'page_articles', lang);
-const articles = await repeatable(articleQuery, 'article', lang);
+const articles = await repeatable(repeatableQuery, 'article', lang);
 
 // LOCAL DATA!!!
 // Remove CACHE folder to get updated data!!!

@@ -2,8 +2,7 @@
 // Global Styles
 import '@Styles/articles_page.css';
 // Query
-import pageQuery from '@Queries/page_parents';
-import articlesQuery from '@Queries/page_parent';
+import pageQuery, { repeatableQuery } from '@Queries/page_parents';
 // Types
 import type { IActivity, IPage } from '@Types';
 // Layouts
@@ -16,7 +15,7 @@ import { single, repeatable } from '@Lib/prismiccms';
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
 const response = await single(pageQuery, 'page_parents', lang);
-const articles = await repeatable(articlesQuery, 'parent', lang);
+const articles = await repeatable(repeatableQuery, 'parent', lang);
 
 const data = response.data as IPage;
 ---

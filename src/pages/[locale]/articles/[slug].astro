@@ -1,10 +1,10 @@
 ---
 export const prerender = true;
 // Global Styles
-import '@Styles/articles_slug.css';
 import '@Styles/articles_page.css';
+import '@Styles/articles_slug.css';
 // Query
-import query from '@Queries/page_article';
+import { repeatableQuery } from '@Queries/page_articles';
 // Types
 import type { IArticle } from '@Types';
 // Layouts
@@ -25,10 +25,10 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
 const path = Astro.url.pathname.split('/')[2];
 
 export async function getStaticPaths() {
-  const response = await staticPath(query, 'article');
+  const response = await staticPath(repeatableQuery, 'article');
   // LOCAL DATA!!!
   // Remove CACHE folder to get updated data!!!
-  // const response = await RepeatableLocaleData(query, 'articles');
+  // const response = await RepeatableLocaleData(repeatableQuery, 'articles');
 
   return response.flatMap(master => {
     const data = master.data as IArticle;
@@ -45,8 +45,8 @@ export async function getStaticPaths() {
   });
 }
 
-const response = await repeatable(query, 'article', lang);
-// const response = await RepeatableLocaleData(query, 'articles', lang);
+const response = await repeatable(repeatableQuery, 'article', lang);
+// const response = await RepeatableLocaleData(repeatableQuery, 'articles', lang);
 
 const { slug } = Astro.props;
 
@@ -73,14 +73,14 @@ const md = await toMarkdown(data.text);
 <Layout>
   <main class="grid page">
     <BackwardButton href={`/${lang}/${path}`} isBack />
-    <time class="column-sized" datetime={data.publication_date.split('T')[0]}>
+    <time datetime={data.publication_date.split('T')[0]}>
       {main_locale[lang].publish}
       {publishDate(data.publication_date, lang)}
     </time>
-    <h1 class="page__title column-sized">{data.title}</h1>
-    <p class="page__author column-sized">{data.author}</p>
+    <h1 class="page__title">{data.title}</h1>
+    <p class="page__author">{data.author}</p>
     <img
-      class="page__image page__image-post column-sized"
+      class="page__image page__image-post"
       src={data.image.url}
       alt={data.image.alt}
       height={data.image.dimensions.height}
@@ -93,11 +93,11 @@ const md = await toMarkdown(data.text);
 </Layout>
 
 <style>
-  time,
-  .page__title,
-  .page__author {
-    grid-column: 2 / -2;
+  .page > :not(a, img) {
     width: 100%;
+    max-width: 640px;
+    justify-self: center;
+    grid-column: 2 / -2;
   }
 
   time {
@@ -123,4 +123,3 @@ const md = await toMarkdown(data.text);
     }
   }
 </style>
-@Queries/article @Queries/page_article

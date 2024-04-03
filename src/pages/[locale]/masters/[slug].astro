@@ -3,7 +3,7 @@ export const prerender = true;
 // Global Styles
 import '@Styles/articles_slug.css';
 // Query
-import query from '@Queries/page_master';
+import { repeatableQuery } from '@Queries/page_masters';
 // Types
 import type { IActivity } from '@Types';
 // Layouts
@@ -23,7 +23,7 @@ const path = Astro.url.pathname.split('/')[2];
 // import { RepeatableLocaleData } from '@Lib/localdata';
 
 export async function getStaticPaths() {
-  const response = await staticPath(query, 'master');
+  const response = await staticPath(repeatableQuery, 'master');
 
   // LOCAL DATA!!!
   // Remove CACHE folder to get updated data!!!
@@ -46,7 +46,7 @@ export async function getStaticPaths() {
   });
 }
 
-const response = await repeatable(query, 'master', lang);
+const response = await repeatable(repeatableQuery, 'master', lang);
 // const response = await RepeatableLocaleData(query, 'master', lang);
 // const { data } = Astro.props;
 const { slug } = Astro.props;
