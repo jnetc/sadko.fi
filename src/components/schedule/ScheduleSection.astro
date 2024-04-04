@@ -1,0 +1,27 @@
+---
+// Components
+import Day from './Day.astro';
+// Locale
+import { main_locale } from '@Locales/main_locale';
+
+import type { ISchedule } from '@Types';
+interface Props {
+  data: ISchedule;
+  id: string;
+}
+
+const lang = Astro.currentLocale as 'ru' | 'fi';
+
+const { id, data } = Astro.props;
+---
+
+<section class="schedule__item" data-id={id}>
+  <h2>{data.place}</h2>
+  {data.monday.length > 0 && <Day day={data.monday} name={main_locale[lang].schedule_monday} />}
+  {data.tuesday.length > 0 && <Day day={data.tuesday} name={main_locale[lang].schedule_tuesday} />}
+  {data.wednesday.length > 0 && <Day day={data.wednesday} name={main_locale[lang].schedule_wednesday} />}
+  {data.thursday.length > 0 && <Day day={data.thursday} name={main_locale[lang].schedule_thursday} />}
+  {data.friday.length > 0 && <Day day={data.friday} name={main_locale[lang].schedule_friday} />}
+  {data.saturday.length > 0 && <Day day={data.saturday} name={main_locale[lang].schedule_saturday} />}
+  {data.sunday.length > 0 && <Day day={data.sunday} name={main_locale[lang].schedule_sunday} />}
+</section>

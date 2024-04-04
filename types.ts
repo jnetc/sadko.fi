@@ -365,7 +365,7 @@ export interface IFeedback {
   text: RichTextField
 }
 
-type DayType = {
+export type DayType = {
   name: string;
   time: string;
   age: string;

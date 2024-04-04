@@ -76,7 +76,10 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
       <SubMenu subMenu={headerLinks[lang].signup.submenu} index={2} />
     </li>
     <li class="nav__link">
-      <a href={`/${lang}/schedule`} data-astro-reload class="nav__link-name">{headerLinks[lang].schedule} </a>
+      <a href={`/${lang}/schedule`} data-astro-reload class="nav__link-name"
+        >{headerLinks[lang].schedule}
+        <span class="nav__link-icon"></span>
+      </a>
     </li>
     <li class="nav__link">
       <a href={`/${lang}/articles`} data-astro-reload class="nav__link-name">{headerLinks[lang].articles} </a>
@@ -114,11 +117,6 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
     gap: var(--gap-36);
     font-size: var(--font-18);
   }
-
-  /* .nav__link {
-    display: grid;
-    place-content: center;
-  } */
 
   button[data-expanded='true'] ~ :global(.subnav) {
     opacity: 1;
@@ -169,6 +167,24 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
     transition: all 0.3s ease-in-out;
     rotate: z 0;
   }
+
+  /* .nav__link-name::after {
+    content: '';
+    position: absolute;
+    inset-inline: -1rem;
+    inset-block: -1.5rem;
+    translate: 0 -5rem;
+    background-color: var(--opacity-10);
+    border-radius: 0 0 var(--border-corner-16) var(--border-corner-16);
+    transition: all 0.3s ease-in-out;
+    user-select: none;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .nav__link-name:hover::after {
+    translate: 0 0rem;
+  } */
 
   @media screen and (max-width: 1199px) {
     .header__nav {

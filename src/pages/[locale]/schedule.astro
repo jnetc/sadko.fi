@@ -5,7 +5,7 @@ import '@Styles/articles_page.css';
 import query, { repeatableQuery } from '@Queries/page_schedule';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
-// import BlankItem from '@Components/ui-elements/BlankItem.astro';
+import ScheduleSection from '@Components/schedule/ScheduleSection.astro';
 // Locale
 import { main_locale } from '@Locales/main_locale';
 // Types
@@ -72,7 +72,7 @@ console.log(schedule);
         <use xlink:href="/svg/ui_icons.svg#arrow_drop_down"></use>
       </svg>
       <select class="schedule-select__select">
-        <option value="all">{main_locale[lang].select_schedule}</option>
+        <option value="all">{main_locale[lang].schedule_select}</option>
         {
           schedule.map(i => {
             const data = i.data as ISchedule;
@@ -86,11 +86,7 @@ console.log(schedule);
       {
         schedule.map(i => {
           const data = i.data as ISchedule;
-          return (
-            <h1 class="schedule__item" data-id={i.id}>
-              {data.place}
-            </h1>
-          );
+          return <ScheduleSection data={data} id={i.id} />;
         })
       }
     </section>

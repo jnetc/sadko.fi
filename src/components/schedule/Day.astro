@@ -1,0 +1,26 @@
+---
+import type { DayType } from '@Types';
+interface Props {
+  day: Array<DayType>;
+  name: string;
+}
+
+const { day, name } = Astro.props;
+---
+
+<ul class="schedule__day">
+  <li class="schedule-day__name">{name}</li>
+  {
+    day.map(i => (
+      <li class="schedule-day__row">
+        <p class="schedule-day__cell">{i.name}</p>
+        <p class="schedule-day__cell">{i.time}</p>
+        <p class="schedule-day__cell">{i.age}</p>
+        <p class="schedule-day__cell">{i.price}</p>
+        <p class="schedule-day__cell">{i.label}</p>
+      </li>
+    ))
+  }
+</ul>
+
+<style></style>
