@@ -106,7 +106,6 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
     display: flex;
     gap: var(--gap-36);
     margin-inline: auto;
-    /* position: relative; */
   }
   .header__nav.open-menu {
     display: flex;
@@ -141,19 +140,6 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
     position: relative;
     font-size: var(--font-18);
     color: var(--black);
-
-    /* &:hover,
-    &:focus-visible {
-      color: var(--violet);
-    }
-
-    > .icon {
-      width: var(--size-18);
-      aspect-ratio: 1;
-      fill: var(--black);
-      transition: all 0.3s ease-in-out;
-      rotate: z 0;
-    } */
   }
 
   .nav__link-name:hover,
@@ -168,23 +154,9 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
     rotate: z 0;
   }
 
-  /* .nav__link-name::after {
-    content: '';
-    position: absolute;
-    inset-inline: -1rem;
-    inset-block: -1.5rem;
-    translate: 0 -5rem;
-    background-color: var(--opacity-10);
-    border-radius: 0 0 var(--border-corner-16) var(--border-corner-16);
-    transition: all 0.3s ease-in-out;
-    user-select: none;
-    pointer-events: none;
-    z-index: -1;
-  }
-
   .nav__link-name:hover::after {
     translate: 0 0rem;
-  } */
+  }
 
   @media screen and (max-width: 1199px) {
     .header__nav {
@@ -210,7 +182,6 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
       grid-template-rows: auto 0fr;
       padding-inline: var(--gap-16);
       padding-block: var(--gap-18);
-      /* transition: all 0.3s ease-in-out; */
     }
 
     .nav__link:nth-of-type(odd) {
@@ -224,14 +195,12 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
     button[data-expanded='true'] ~ :global(.subnav) {
       opacity: 1;
       padding-block-end: var(--gap-18);
-      /* translate: 0 0; */
       pointer-events: all;
       transition: all 0.3s ease-in-out;
     }
     .nav__link-name {
       display: flex;
       justify-content: center;
-      /* align-items: flex-start; */
       column-gap: var(--gap-6);
       padding-block: var(--gap-12);
       position: relative;

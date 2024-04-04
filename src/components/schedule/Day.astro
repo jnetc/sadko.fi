@@ -8,19 +8,160 @@ interface Props {
 const { day, name } = Astro.props;
 ---
 
-<ul class="schedule__day">
-  <li class="schedule-day__name">{name}</li>
-  {
-    day.map(i => (
-      <li class="schedule-day__row">
-        <p class="schedule-day__cell">{i.name}</p>
-        <p class="schedule-day__cell">{i.time}</p>
-        <p class="schedule-day__cell">{i.age}</p>
-        <p class="schedule-day__cell">{i.price}</p>
-        <p class="schedule-day__cell">{i.label}</p>
-      </li>
-    ))
-  }
-</ul>
+<section class="schedule__day">
+  <h3 class="schedule-day__name">{name}</h3>
+  <div class="schedule__day-table">
+    {
+      day.map(i => (
+        <ul class="schedule-day__row">
+          <li class="schedule-day__cell">{i.name}</li>
+          <li class="schedule-day__cell">{i.time}</li>
+          <li class="schedule-day__cell">{i.age}</li>
+          {i.price && <li class="schedule-day__cell">{i.price}</li>}
+          {i.label && (
+            <li class="schedule-day__cell">
+              <button type="button" class="schedule-day__info">
+                <svg class="schedule-day__info-icon" aria-hidden="true">
+                  <use xlink:href="/svg/ui_icons.svg#info" />
+                </svg>
+              </button>
+              <p class="schedule-day__label">{i.label}</p>
+            </li>
+          )}
+        </ul>
+      ))
+    }
+  </div>
+</section>
 
-<style></style>
+<style>
+  .schedule__day {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .schedule-day__name {
+    font-size: var(--font-28);
+    padding-inline: var(--gap-32);
+    padding-block: var(--gap-16);
+    position: relative;
+    /* background-color: var(--violet-light); */
+    border-radius: var(--border-corner-16) var(--border-corner-16) 0 0;
+    isolation: isolate;
+  }
+  .schedule-day__name::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    inset-block: 0;
+    background-image: linear-gradient(to bottom, transparent 65%, var(--black));
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  .schedule__day:nth-of-type(1) h3,
+  .schedule__day:nth-of-type(7) h3 {
+    background-color: var(--violet);
+    color: var(--white);
+  }
+  .schedule__day:nth-of-type(2) h3 {
+    background-color: var(--pink);
+  }
+  .schedule__day:nth-of-type(3) h3 {
+    background-color: var(--green);
+  }
+  .schedule__day:nth-of-type(4) h3 {
+    background-color: var(--violet-light);
+  }
+  .schedule__day:nth-of-type(5) h3 {
+    background-color: var(--black);
+    color: var(--white);
+  }
+  .schedule__day:nth-of-type(6) h3 {
+    background-color: var(--yellow);
+  }
+
+  .schedule__day-table {
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-24);
+    padding: var(--gap-32);
+    background-color: var(--white);
+    border-radius: 0 var(--border-corner-16) var(--border-corner-16) var(--border-corner-16);
+    box-shadow:
+      0 25px 20px var(--opacity-5),
+      0 15px 10px var(--opacity-8);
+  }
+
+  .schedule-day__row {
+    display: grid;
+    grid-template-columns: 1fr 15ch 20ch 20ch;
+    gap: var(--gap-12);
+  }
+  .schedule-day__cell {
+    position: relative;
+    font-size: var(--font-18);
+    font-weight: bold;
+  }
+  .schedule-day__cell:has(button):last-child {
+    justify-self: center;
+  }
+  .schedule-day__info {
+    width: 2rem;
+    height: 2rem;
+    display: grid;
+    place-content: center;
+    border-radius: 50vw;
+    border: 2px solid var(--violet);
+    justify-self: center;
+    align-self: center;
+  }
+  .schedule-day__info:focus-visible {
+    outline: 2px solid var(--violet);
+    outline-offset: 2px;
+  }
+  .schedule-day__info:hover ~ .schedule-day__label {
+    display: block;
+  }
+
+  .schedule-day__info-icon,
+  .schedule-day__label {
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .schedule-day__info-icon {
+    height: 24px;
+    width: 24px;
+    fill: var(--violet);
+  }
+
+  .schedule-day__label {
+    display: none;
+    min-width: max(24ch, 100%);
+    height: fit-content;
+    padding: var(--gap-18);
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    background-color: var(--violet);
+    border-radius: var(--border-corner-16);
+    color: var(--white);
+    line-height: 1.4;
+    translate: -50% 0;
+  }
+
+  .schedule-day__label::after {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: -1.5rem;
+    left: 50%;
+    translate: -50% 0;
+    border-color: var(--violet) transparent transparent transparent;
+    border-width: 15px;
+    border-style: solid;
+  }
+</style>

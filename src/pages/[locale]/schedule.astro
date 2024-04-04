@@ -36,10 +36,10 @@ console.log(schedule);
 
     schedule.forEach(i => {
       if (value === 'all') {
-        return (i.style.display = 'block');
+        return (i.style.display = 'flex');
       }
       if (i.dataset.id === value) {
-        return (i.style.display = 'block');
+        return (i.style.display = 'flex');
       }
 
       i.style.display = 'none';
@@ -55,7 +55,7 @@ console.log(schedule);
     <meta name="description" content={data.seo_description} />
   </head>
 
-  <main class="grid separator">
+  <main class="grid separator schedule-page">
     <div class="page-header column-sized">
       <h1 class="header__heading">{data.title}</h1>
       <h2 class="header__sub-heading">{data.subtitle}</h2>
@@ -93,23 +93,27 @@ console.log(schedule);
   </main>
 
   <style>
+    .schedule-page {
+      justify-items: center;
+    }
     .schedule {
       grid-column: 2 / -2;
-      max-width: 70ch;
-      justify-self: center;
+      max-width: min(1200px, 100%);
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-96);
     }
     .schedule-select {
-      display: grid;
       grid-column: 2 / -2;
-      justify-self: center;
+      display: grid;
       position: relative;
     }
     .schedule-select__icon {
-      width: 2rem;
+      width: 1.5rem;
       aspect-ratio: 1;
       position: absolute;
-      inset-block: 18%;
-      right: 0.5rem;
+      inset-block: 1rem;
+      right: 1rem;
       fill: var(--violet);
     }
     .schedule-select__select {
