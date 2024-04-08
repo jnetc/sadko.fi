@@ -10,7 +10,7 @@ const { primary } = Astro.props.data;
 <section class="grid main-section offer">
   <div class="offer__box">
     <h2>{primary.heading}</h2>
-    <p>{primary.text}</p>
+    <p class="font-20">{primary.text}</p>
     <a href=`${primary.primary_href.url}` target="_blank" class="btn btn-primary arrow-icon btn-offer">
       {primary.primary_button}
       <span class="btn__icon" aria-hidden="true">
@@ -32,7 +32,7 @@ const { primary } = Astro.props.data;
     flex-direction: column;
     justify-content: center;
     padding-block: var(--gap-48);
-    padding-inline: var(--gap-48) var(--gap-128);
+    padding-inline: var(--gap-48) var(--gap-192);
     border-radius: var(--border-corner-32);
     background-color: var(--white);
     box-shadow:
@@ -42,13 +42,11 @@ const { primary } = Astro.props.data;
   }
 
   .offer__box h2 {
-    font-size: clamp(var(--font-28), 5vw, var(--font-48));
+    font-size: clamp(var(--font-28), 5vw, var(--font-32));
   }
 
   .offer__box p {
     padding-block: var(--gap-36) var(--gap-24);
-    color: var(--grey-300);
-    font-size: clamp(var(--font-18), 2.5vw, var(--font-24));
   }
 
   .btn-offer {

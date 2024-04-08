@@ -24,7 +24,7 @@ const { heading, text, icon, index, slug } = Astro.props;
       <use xlink:href=`/svg/shapes.svg#shape${index + 1}`></use>
     </svg>
     <h3>{heading}</h3>
-    <p>{text}</p>
+    <p class="card__text">{text}</p>
   </a>
 </li>
 
@@ -74,6 +74,7 @@ const { heading, text, icon, index, slug } = Astro.props;
     flex-grow: 1;
     align-content: flex-start;
   }
+
   .card__shape {
     --shape: 218px;
     width: var(--shape);
@@ -131,24 +132,24 @@ const { heading, text, icon, index, slug } = Astro.props;
     stroke: var(--white);
   }
 
-  h3,
-  p {
+  h3 {
     color: var(--black);
   }
+
   .card:nth-of-type(5n - 1) :is(h3, p),
   .card:nth-of-type(5n) :is(h3, p) {
     color: var(--white);
   }
 
   h3 {
+    width: min-content;
     align-self: flex-end;
-    font-size: var(--font-32);
+    font-size: var(--font-24);
   }
+
   p {
     min-block-size: var(--size-56);
-    font-size: var(--font-16);
     font-weight: bold;
-    line-height: 1.4;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;

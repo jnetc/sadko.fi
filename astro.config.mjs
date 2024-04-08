@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-// import tunnel from "astro-tunnel";
+import sitemap from '@astrojs/sitemap';
 import netlify from '@astrojs/netlify';
 
 // Что предотвратить ошибку с развертыванием через netlify CLI deploy
@@ -9,7 +9,7 @@ import netlify from '@astrojs/netlify';
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://www.sadko.fi",
+  site: "https://sadko.fi",
   server: {
     host: true
   },
@@ -31,5 +31,5 @@ export default defineConfig({
       redirectToDefaultLocale: false
     }
   },
-  integrations: []
+  integrations: [sitemap()]
 });

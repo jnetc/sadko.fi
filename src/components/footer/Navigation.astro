@@ -1,0 +1,102 @@
+---
+// Routes
+import { headerLinks } from 'src/routes/routes';
+
+const lang = Astro.currentLocale as 'ru' | 'fi';
+const extraLocale = {
+  ru: {
+    important: 'Важное',
+  },
+  fi: {
+    important: 'Tärkeä',
+  },
+};
+---
+
+<section class="footer__navigation">
+  {
+    headerLinks[lang].activities.submenu.map(submenu => (
+      <ul>
+        <li>
+          <h3>{submenu.columnName}</h3>
+        </li>
+        {submenu.columns.map(i => (
+          <li>
+            <a href={i.slug}>{i.hrefName[lang]}</a>
+          </li>
+        ))}
+      </ul>
+    ))
+  }
+  {
+    (
+      <ul>
+        <li>
+          <h3>{extraLocale[lang].important}</h3>
+        </li>
+        <li>
+          <a href={headerLinks[lang].signup.submenu[1].columns[0].slug}>
+            {headerLinks[lang].signup.submenu[1].columns[0].hrefName[lang]}
+          </a>
+        </li>
+        <li>
+          <a href={`/${lang}/articles`}>{headerLinks[lang].articles}</a>
+        </li>
+        <li>
+          <a href={`/${lang}/schedule`}>{headerLinks[lang].schedule}</a>
+        </li>
+      </ul>
+    )
+  }
+  {
+    (
+      <ul>
+        <li>
+          <h3>{headerLinks[lang].about.submenu[0].columnName}</h3>
+        </li>
+        {headerLinks[lang].about.submenu[0].columns.map(i => (
+          <li>
+            <a href={i.slug}>{i.hrefName[lang]}</a>
+          </li>
+        ))}
+        <li>
+          <a href={headerLinks[lang].about.submenu[1].columns[0].slug}>
+            {headerLinks[lang].about.submenu[1].columns[0].hrefName[lang]}
+          </a>
+        </li>
+      </ul>
+    )
+  }
+</section>
+
+<style>
+  .footer__navigation {
+    grid-column: 2 / span 2;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--gap-32);
+  }
+
+  .footer__navigation ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-6);
+  }
+
+  .footer__navigation li {
+    white-space: nowrap;
+  }
+
+  .footer__navigation h3 {
+    font-size: clamp(var(--font-20), 3.5vw, var(--font-24));
+    padding-block-end: var(--gap-12);
+  }
+
+  @media (max-width: 960px) {
+    .footer__navigation {
+      grid-column: 1;
+      justify-content: space-around;
+    }
+  }
+</style>

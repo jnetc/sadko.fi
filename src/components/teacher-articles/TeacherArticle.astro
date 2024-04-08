@@ -13,7 +13,7 @@ interface Props {
 
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
-const { color, image, name, text, links, slug } = Astro.props.data;
+const { color, image, name, text, links, slug, description } = Astro.props.data;
 const md = await toMarkdown(text);
 ---
 
@@ -57,7 +57,7 @@ const md = await toMarkdown(text);
     width={image.dimensions.width}
   />
   <h2 class="teacher__name">{name}</h2>
-  <h3 class="teacher__label">{main_locale[lang].teacher_label}</h3>
+  <h3 class="teacher__label">{description}</h3>
   <div class="teacher__links" role="list">
     {links.map(link => <TeacherArticleLink link={link.link} color={color} link_name={link.link_name} />)}
   </div>

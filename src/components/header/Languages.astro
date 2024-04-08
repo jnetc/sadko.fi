@@ -17,8 +17,6 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
     justify-self: flex-end;
     display: flex;
     gap: var(--gap-12);
-    font-size: var(--font-12);
-    font-weight: bold;
   }
   .header__btns a {
     width: var(--size-36);
@@ -28,6 +26,8 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
     border-radius: 50%;
     border: 2px solid var(--black);
     background-color: transparent;
+    font-size: var(--font-12);
+    font-weight: bold;
   }
 
   .header__btns a[data-active] {

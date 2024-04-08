@@ -6,17 +6,14 @@ interface Props {
 const { extraClass } = Astro.props;
 ---
 
-<p class=`p-heading ${extraClass ?? ''}`>
+<p class=`p-heading font-24 ${extraClass ?? ''}`>
   <slot />
 </p>
 
 <style>
   .p-heading {
     grid-column: 2 / -2;
-    font-size: clamp(var(--font-18), 2.5vw, var(--font-24));
     text-align: center;
-    line-height: 1.4;
     padding-block: var(--gap-16) var(--gap-64);
-    color: var(--grey-300);
   }
 </style>

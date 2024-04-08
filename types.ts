@@ -236,8 +236,6 @@ export interface ICommonData {
 
 export interface IIndex extends SEOType {
   body: Array<HomeBodyHero | HomeBodyActivities | HomeBodyWelcome | HomeBodyOffer | HomeBodyGallery | HomeBodyTeachers | HomeBodyFaq | HomeBodyFeedbacks>;
-  // title: string;
-  // description: string;
 }
 
 export interface HomeBodyHero {
@@ -253,7 +251,7 @@ export interface HomeBodyActivities {
 
 export interface HomeBodyWelcome {
   slice_type:  'welcome';
-  primary: SecondaryButtonType & HeadingTextType;
+  primary: SecondaryButtonType & {heading: string; text: RichTextField};
   items: Array<{text: string;  amount: number}>;
 }
 
@@ -270,30 +268,20 @@ export interface HomeBodyGallery {
 export interface HomeBodyTeachers {
   slice_type:  'teachers';
   primary: HeadingTextType;
-  // items: Array<HeadingTextType & SlugType & {image: ImageType}>;
 }
+
 export interface HomeBodyFaq {
   slice_type: 'faq';
   primary: HeadingTextType;
   items: Array<{question: string;  answer: RichTextField}>;
 }
+
 export interface HomeBodyFeedbacks {
   slice_type: 'feedbacks';
   primary: HeadingTextType;
-  // items: Array<HeadingTextType>;
 }
 
 export interface IPage extends SEOType, TitleDescriptionType { }
-
-
-// export interface IFeedPage extends IPage {
-//   article_arr: Array<{ article: IArticle }>;
-// }
-
-// export interface IArticleData  {
-//   data: { image: ImageType;  text: RichTextField} & TitleDescriptionType & SlugType;
-//   last_publication_date: string;
-// }
 
 export interface IActivity extends SEOType, TitleDescriptionType, SlugType {
   image: ImageType;
@@ -367,6 +355,7 @@ export interface IFeedback {
 
 export type DayType = {
   name: string;
+  info: string;
   time: string;
   age: string;
   price: string;
@@ -374,7 +363,8 @@ export type DayType = {
 }
 
 export interface ISchedule  {
-  place: string
+  name: string
+  address: string;
   href: HrefType
   monday: Array<DayType>
   tuesday: Array<DayType>

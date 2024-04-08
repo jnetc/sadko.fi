@@ -16,7 +16,8 @@ export const repeatableQuery = `{
   allSchedules {
     edges {
       node {
-        place
+        name
+        address
         href {
           ... on _ExternalLink {
             url
@@ -24,6 +25,7 @@ export const repeatableQuery = `{
         }
         monday {
           name
+          info
           time
           age
           price
@@ -31,6 +33,7 @@ export const repeatableQuery = `{
         }
         tuesday {
           name
+          info
           time
           age
           price
@@ -38,6 +41,7 @@ export const repeatableQuery = `{
         }
         wednesday {
           name
+          info
           time
           age
           price
@@ -45,6 +49,7 @@ export const repeatableQuery = `{
         }
         thursday {
           name
+          info
           time
           age
           price
@@ -52,6 +57,7 @@ export const repeatableQuery = `{
         }
         friday {
           name
+          info
           time
           age
           price
@@ -59,6 +65,7 @@ export const repeatableQuery = `{
         }
         saturday {
           name
+          info
           time
           age
           price
@@ -66,6 +73,7 @@ export const repeatableQuery = `{
         }
         sunday {
           name
+          info
           time
           age
           price

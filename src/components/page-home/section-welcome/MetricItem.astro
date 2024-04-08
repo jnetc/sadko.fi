@@ -59,7 +59,7 @@ const { amount, text } = Astro.props.data;
 
 <li class="metric__item">
   <span class="item__num" data-target={amount}>0</span>
-  <p class="item__txt">{text}</p>
+  <p class="item__txt font-24">{text}</p>
   <svg class="item__shape" aria-hidden="true">
     <use xlink:href=`/svg/shapes.svg#shape14`></use>
   </svg>
@@ -95,7 +95,6 @@ const { amount, text } = Astro.props.data;
 
   .item__txt {
     text-align: center;
-    font-size: var(--font-24);
   }
 
   .item__shape {
@@ -147,9 +146,6 @@ const { amount, text } = Astro.props.data;
   @media screen and (max-width: 480px) {
     .item__num {
       font-size: var(--font-96);
-    }
-    .item__txt {
-      font-size: var(--font-18);
     }
   }
 </style>

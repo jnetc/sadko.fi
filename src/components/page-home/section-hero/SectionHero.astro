@@ -12,7 +12,7 @@ const { primary } = Astro.props.data;
 <section class="grid main-section hero">
   <p class="hero__label">{primary.label}</p>
   <HeroTitle text={primary.heading} />
-  <p class="hero__desc">
+  <p class="hero__desc font-24">
     {primary.text}
   </p>
   <div class="hero__action-btns">
@@ -56,20 +56,16 @@ const { primary } = Astro.props.data;
 
   .hero__label,
   .hero__desc {
-    color: var(--grey-300);
     text-align: center;
-    line-height: 1.4;
   }
 
   .hero__label {
     grid-row: 1;
-    font-size: clamp(var(--font-16), 2.5vw, var(--font-20));
   }
 
   .hero__desc {
     grid-row: 3;
     max-width: 660px;
-    font-size: clamp(var(--font-18), 2.5vw, var(--font-24));
   }
 
   .hero__action-btns {

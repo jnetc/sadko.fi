@@ -10,11 +10,6 @@
   grid-row: 1;
 }
 
-time {
-  color: var(--grey-300);
-  font-size: var(--font-14);
-}
-
 time:has(+ .activity__title)  {
   grid-row: 1;
 }

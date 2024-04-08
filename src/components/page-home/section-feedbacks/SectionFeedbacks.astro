@@ -23,7 +23,7 @@ const articles = await repeatable(feedbacks, 'feedback', lang, { path: 'my.feedb
 const { primary } = Astro.props.data;
 ---
 
-<section class="grid main-section">
+<section class="grid">
   <H2Title>{primary.heading}</H2Title>
   <H2Description>{primary.text}</H2Description>
   <Carousel>

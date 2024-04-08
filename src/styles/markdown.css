@@ -19,32 +19,25 @@
   padding-block-start: 0;
 }
 
-.markdown :where(a, p, li) {
-  font-size: var(--font-18);
-}
-
-.markdown :where(p, li) {
-  line-height: 1.4;
-  color: var(--grey-300);
+.markdown:not(.font-20):not(.font-24) :where(a, p, li ,em) {
+  font-size: clamp(var(--font-16), 3vw, var(--font-18));
 }
 
 .markdown a {
   position: relative;
   color: var(--violet);
   font-weight: bold;
-  text-decoration: underline transparent;
-  text-decoration-thickness: 5px;
-  text-underline-offset: 5px;
+  text-decoration: underline var(--violet);
+  text-underline-offset: 4px;
   transition: all .3s ease-in-out;
 }
 
 .markdown a:hover {
-  text-decoration: underline var(--violet);
+  text-decoration: underline transparent;
   text-underline-offset: 2px;
-  text-decoration-thickness: 5px;
 }
 
-.markdown :where(p) {
+.markdown p {
   padding-block-end: var(--gap-16);
 }
 

@@ -23,8 +23,6 @@ const response = await single(query, 'page_schedule', lang);
 const data = response.data as ISchedulePage;
 const schedule = await repeatable(repeatableQuery, 'schedule', lang);
 const md = await toMarkdown(data.text);
-
-console.log(schedule);
 ---
 
 <script>
@@ -61,14 +59,14 @@ console.log(schedule);
       <h2 class="header__sub-heading">{data.subtitle}</h2>
       {
         data.text && (
-          <div class="page-header__description">
+          <div class="page-header__description font-20">
             <Fragment set:html={md} />
           </div>
         )
       }
     </div>
     <div class="schedule-select">
-      <svg class="schedule-select__icon">
+      <svg class="schedule-select__icon" aria-hidden="true">
         <use xlink:href="/svg/ui_icons.svg#arrow_drop_down"></use>
       </svg>
       <select class="schedule-select__select">
@@ -76,7 +74,7 @@ console.log(schedule);
         {
           schedule.map(i => {
             const data = i.data as ISchedule;
-            return <option value={i.id}>{data.place}</option>;
+            return <option value={i.id}>{data.name}</option>;
           })
         }
       </select>
@@ -91,46 +89,56 @@ console.log(schedule);
       }
     </section>
   </main>
-
-  <style>
-    .schedule-page {
-      justify-items: center;
-    }
-    .schedule {
-      grid-column: 2 / -2;
-      max-width: min(1200px, 100%);
-      display: flex;
-      flex-direction: column;
-      gap: var(--gap-96);
-    }
-    .schedule-select {
-      grid-column: 2 / -2;
-      display: grid;
-      position: relative;
-    }
-    .schedule-select__icon {
-      width: 1.5rem;
-      aspect-ratio: 1;
-      position: absolute;
-      inset-block: 1rem;
-      right: 1rem;
-      fill: var(--violet);
-    }
-    .schedule-select__select {
-      appearance: none;
-      max-width: max-content;
-      padding-block: var(--gap-16);
-      padding-inline: var(--gap-16) var(--gap-40);
-      border: 1.5px solid var(--violet-light);
-      border-radius: var(--border-corner-8);
-      outline-color: var(--violet);
-      font-family: 'Comfortaa', sans-serif;
-      -webkit-font-smoothing: antialiased;
-      font-size: var(--font-18);
-      cursor: pointer;
-    }
-    .shedule-select:focus-visible {
-      border-color: var(--violet);
-    }
-  </style>
 </Layout>
+
+<style>
+  .schedule-page {
+    justify-items: center;
+  }
+  .schedule {
+    grid-column: 2 / -2;
+    width: min(1200px, 100%);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-96);
+  }
+  .schedule-select {
+    grid-column: 2 / -2;
+    display: grid;
+    position: relative;
+  }
+  .schedule-select__icon {
+    width: 1.5rem;
+    aspect-ratio: 1;
+    position: absolute;
+    inset-block: 1rem;
+    right: 1rem;
+    fill: var(--violet);
+    pointer-events: none;
+    user-select: none;
+  }
+  .schedule-select__select {
+    appearance: none;
+    max-width: max-content;
+    padding-block: var(--gap-16);
+    padding-inline: var(--gap-16) var(--gap-40);
+    border: 1.5px solid var(--violet-light);
+    border-radius: var(--border-corner-8);
+    outline-color: var(--violet);
+    font-family: 'Comfortaa', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: clamp(var(--font-16), 2vw, var(--font-18));
+    cursor: pointer;
+  }
+  .shedule-select:focus-visible {
+    border-color: var(--violet);
+  }
+  @media (max-width: 960px) {
+    .schedule {
+      min-width: 100%;
+    }
+    /* .schedule-select__select {
+      font-size: var(--font-14);
+    } */
+  }
+</style>

@@ -1,19 +1,91 @@
 ---
+// Components
+import Navigation from '@Components/footer/Navigation.astro';
+import Logo from '@Components/footer//Logo.astro';
+import Address from '@Components/footer/Address.astro';
 
+// const lang = Astro.currentLocale as 'ru' | 'fi';
 ---
 
-<footer class="grid main-grid footer">
+<footer class="grid footer">
+  <div class="footer-container">
+    <Logo />
+    <Address />
+    <Navigation />
+    <svg class="footer__shape1 stroke-pink">
+      <use xlink:href="/svg/shapes.svg#page_stroke_02"></use>
+    </svg>
+    <svg class="footer__shape2 stroke-violet">
+      <use xlink:href="/svg/shapes.svg#page_stroke_01"></use>
+    </svg>
+  </div>
   <p class="copyright">Copyright © {new Date().getFullYear()} Sadko ry</p>
+  <p class="designed">
+    Designed by <a href="https://www.devan.fi">devan.fi</a> & <a href="https://www.letta.fi">letta.fi</a>
+  </p>
 </footer>
 <style>
-  .footer {
-    margin-top: auto;
-    grid-column: 2 / -2;
-    padding-block: 0 var(--gap-18);
+  .footer__shape1,
+  .footer__shape2 {
+    position: absolute;
+    aspect-ratio: 1;
+    stroke-width: 23;
   }
-  .copyright {
+  .footer__shape1 {
+    width: 250px;
+    top: -5rem;
+    right: 0;
+    rotate: z 90deg;
+  }
+  .footer__shape2 {
+    width: 250px;
+    bottom: -10rem;
+    left: -5rem;
+  }
+  .footer {
+    row-gap: var(--gap-8);
+    padding-block: var(--gap-64) var(--gap-18);
+    background-color: var(--yellow);
+    border-radius: var(--border-corner-32) var(--border-corner-32) 0 0;
+    overflow: hidden;
+  }
+  .footer-container {
+    width: min(100%, 1500px);
+    grid-column: 2 /-2;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 0.5fr repeat(2, minmax(320px, 1fr)) 0.5fr;
+    gap: var(--gap-48);
+    position: relative;
+    padding-block-end: var(--gap-32);
+  }
+
+  .copyright,
+  .designed {
     grid-column: 2 / -2;
     justify-self: center;
-    color: var(--grey-300);
+    position: relative;
+    z-index: 5;
+  }
+  .designed,
+  .designed a {
+    font-size: var(--font-14);
+  }
+
+  @media (max-width: 1200px) {
+    .footer__shape1,
+    .footer__shape2 {
+      display: none;
+    }
+  }
+
+  @media (max-width: 960px) {
+    .footer-container {
+      grid-template-columns: 1fr;
+    }
+    .footer__logo,
+    .footer__contact {
+      grid-column: 1;
+    }
   }
 </style>

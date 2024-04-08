@@ -14,24 +14,24 @@ const { day, name } = Astro.props;
     {
       day.map(i => (
         <ul class="schedule-day__row">
-          <li class="schedule-day__cell">{i.name}</li>
+          <li class="schedule-day__cell">
+            {i.name}
+            {i.info && <em>{`*${i.info}`}</em>}
+          </li>
           <li class="schedule-day__cell">{i.time}</li>
           <li class="schedule-day__cell">{i.age}</li>
           {i.price && <li class="schedule-day__cell">{i.price}</li>}
-          {i.label && (
-            <li class="schedule-day__cell">
-              <button type="button" class="schedule-day__info">
-                <svg class="schedule-day__info-icon" aria-hidden="true">
-                  <use xlink:href="/svg/ui_icons.svg#info" />
-                </svg>
-              </button>
-              <p class="schedule-day__label">{i.label}</p>
-            </li>
-          )}
+          {i.label && <li class="schedule-day__cell label-cell">{`*${i.label}`}</li>}
         </ul>
       ))
     }
   </div>
+
+  <!-- <button type="button" class="schedule-day__info">
+    <svg class="schedule-day__info-icon" aria-hidden="true">
+      <use xlink:href="/svg/ui_icons.svg#info"></use>
+    </svg>
+  </button> -->
 </section>
 
 <style>
@@ -41,7 +41,7 @@ const { day, name } = Astro.props;
   }
 
   .schedule-day__name {
-    font-size: var(--font-28);
+    font-size: clamp(var(--font-24), 3vw, var(--font-32));
     padding-inline: var(--gap-32);
     padding-block: var(--gap-16);
     position: relative;
@@ -54,17 +54,15 @@ const { day, name } = Astro.props;
     position: absolute;
     inset-inline: 0;
     inset-block: 0;
-    background-image: linear-gradient(to bottom, transparent 65%, var(--black));
+    background-image: linear-gradient(to bottom, transparent 85%, var(--black));
     mix-blend-mode: overlay;
     pointer-events: none;
   }
 
-  .schedule__day:nth-of-type(1) h3,
-  .schedule__day:nth-of-type(7) h3 {
-    background-color: var(--violet);
-    color: var(--white);
+  .schedule__day:nth-of-type(7n - 6) h3 {
+    background-color: var(--yellow);
   }
-  .schedule__day:nth-of-type(2) h3 {
+  .schedule__day:nth-of-type(7n - 5) h3 {
     background-color: var(--pink);
   }
   .schedule__day:nth-of-type(3) h3 {
@@ -74,19 +72,16 @@ const { day, name } = Astro.props;
     background-color: var(--violet-light);
   }
   .schedule__day:nth-of-type(5) h3 {
-    background-color: var(--black);
+    background-color: var(--violet);
     color: var(--white);
-  }
-  .schedule__day:nth-of-type(6) h3 {
-    background-color: var(--yellow);
   }
 
   .schedule__day-table {
     flex-basis: 100%;
     display: flex;
     flex-direction: column;
-    gap: var(--gap-24);
-    padding: var(--gap-32);
+    /* gap: var(--gap-18); */
+    /* padding: var(--gap-32); */
     background-color: var(--white);
     border-radius: 0 var(--border-corner-16) var(--border-corner-16) var(--border-corner-16);
     box-shadow:
@@ -98,16 +93,57 @@ const { day, name } = Astro.props;
     display: grid;
     grid-template-columns: 1fr 15ch 20ch 20ch;
     gap: var(--gap-12);
+    padding-inline: var(--gap-32);
+    padding-block: var(--gap-18);
+    font-size: clamp(var(--font-16), 3vw, var(--font-18));
   }
-  .schedule-day__cell {
-    position: relative;
-    font-size: var(--font-18);
+
+  /* .schedule-day__cell {
+    max-height: min-content;
+  } */
+  .schedule-day__row:not(:last-child) {
+    border-bottom: 1px solid var(--violet-light);
+  }
+
+  .schedule-day__cell:first-child {
+    font-weight: bold;
+    font-size: clamp(var(--font-18), 2vw, var(--font-20));
+  }
+
+  .schedule-day__row:nth-child(even) {
+    background-color: var(--opacity-3);
+  }
+  .label-cell,
+  .schedule-day__cell em {
     font-weight: bold;
   }
-  .schedule-day__cell:has(button):last-child {
-    justify-self: center;
+  .label-cell {
+    color: var(--violet);
   }
-  .schedule-day__info {
+  .schedule-day__cell em {
+    font-size: var(--font-16);
+    color: red;
+  }
+
+  @media (max-width: 960px) {
+    .schedule__day-table {
+      /* flex-direction: row; */
+      /* flex-wrap: wrap; */
+      /* overflow-x: scroll; */
+    }
+    .schedule-day__row {
+      /* flex-shrink: ; */
+      /* flex-basis: 20%; */
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 559px) {
+    .schedule__day {
+      display: initial;
+    }
+  }
+
+  /* .schedule-day__info {
     width: 2rem;
     height: 2rem;
     display: grid;
@@ -135,24 +171,26 @@ const { day, name } = Astro.props;
     height: 24px;
     width: 24px;
     fill: var(--violet);
-  }
+  } */
 
-  .schedule-day__label {
-    display: none;
-    min-width: max(24ch, 100%);
-    height: fit-content;
-    padding: var(--gap-18);
-    position: absolute;
-    bottom: 3rem;
-    left: 50%;
-    background-color: var(--violet);
-    border-radius: var(--border-corner-16);
-    color: var(--white);
-    line-height: 1.4;
-    translate: -50% 0;
-  }
+  /* .schedule-day__label { */
+  /* display: none; */
+  /* min-width: max(24ch, 100%); */
+  /* height: fit-content; */
+  /* padding: var(--gap-18); */
+  /* position: absolute; */
+  /* bottom: 3rem; */
+  /* left: 1rem; */
+  /* background-color: var(--violet); */
+  /* border-radius: var(--border-corner-16); */
+  /* color: var(--white); */
+  /* color: red; */
+  /* font-weight: bold; */
+  /* line-height: 1.4; */
+  /* translate: -50% 0; */
+  /* } */
 
-  .schedule-day__label::after {
+  /* .schedule-day__label::after {
     content: '';
     width: 0;
     height: 0;
@@ -163,5 +201,5 @@ const { day, name } = Astro.props;
     border-color: var(--violet) transparent transparent transparent;
     border-width: 15px;
     border-style: solid;
-  }
+  } */
 </style>

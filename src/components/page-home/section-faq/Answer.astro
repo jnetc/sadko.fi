@@ -54,7 +54,7 @@ const md = await toMarkdown(markdown);
     gap: var(--gap-16);
     position: relative;
     color: var(--black);
-    font-size: clamp(var(--font-20), 3vw, var(--font-32));
+    font-size: clamp(var(--font-24), 3vw, var(--font-32));
     font-weight: bold;
     list-style-type: none;
     transition: padding-block 0.3s ease-in-out;
@@ -100,20 +100,11 @@ const md = await toMarkdown(markdown);
 
   .faq__details .faq__p {
     grid-row: 2;
-    /* display: grid; */
-    /* row-gap: var(--gap-16); */
-    font-size: clamp(var(--font-16), 2.1vw, var(--font-20));
-    /* color: var(--grey-300); */
-    /* line-height: 1.4; */
     overflow: hidden;
     transition: padding-block 0.3s ease-in-out;
   }
   .faq__summary.open + .faq__p {
     padding-block-end: var(--gap-48);
-  }
-
-  .faq__p :global(a) {
-    text-decoration: underline var(--violet);
   }
 
   @media (max-width: 1200px) {

@@ -23,19 +23,12 @@ html {
 }
 
 body {
-  /* max-block-size: 100svh; */
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  /* max-inline-size: 1920px; */
-  /* margin-inline: auto; */
   font-family: 'Comfortaa', sans-serif;
   -webkit-font-smoothing: antialiased; /* for MacOs */
 }
-/* prevent scroll */
-/* .body { */
-  /* overflow: hidden; */
-/* } */
 
 img,
 picture,
@@ -78,22 +71,19 @@ button {
   -webkit-font-smoothing: antialiased;
       /* for MacOs */
 }
-header,
-footer,
-main {
-  max-width: 1500px;
-  margin-inline: auto;
-}
-main {
-  padding-block: var(--gap-36);
-}
 
+main {
+  min-height: calc(100dvh - 84px);
+  padding-block: var(--gap-36) var(--gap-96);
+  align-items: baseline;
+}
 
 /* CLASSES */
 /* 1920 > */
 .grid {
   display: grid;
   grid-template-columns: 1fr repeat(12, minmax(0, 6rem)) 1fr;
+  grid-auto-rows: min-content;
   column-gap: var(--gap-32);
   position: relative;
 }
@@ -122,8 +112,34 @@ h1, h2, h3,h4, h5, h6 {
   text-wrap: pretty;
   line-height: 1.2;
 }
+
 p {
   text-wrap: pretty;
+  line-height: 1.4;
+}
+
+a, p, em {
+  font-size: clamp(var(--font-16), 3vw, var(--font-18));
+}
+
+.font-20,
+.font-20 p {
+  font-size: clamp(var(--font-18), 2.75vw, var(--font-20));
+}
+
+.font-24,
+.font-24 p {
+  font-size: clamp(var(--font-20), 2.5vw, var(--font-24));
+}
+
+time {
+  font-size: var(--font-14);
+}
+
+p,
+li,
+time {
+  color: var(--grey-300);
 }
 
 .bg-violet {
@@ -193,16 +209,17 @@ p {
 /* MEDIA QUERIES */
 @media (max-width: 1200px) {
   .grid {
-      column-gap: var(--gap-16);
-    }
+    column-gap: var(--gap-16);
   }
-  @media (max-width: 960px) {
-    :root {
-      --body-padding: 1rem;
-    }
-    .grid {
-      grid-template-columns: auto repeat(6, minmax(0, 1fr)) auto;
-      min-width: 100%;
+}
+
+@media (max-width: 960px) {
+  :root {
+    --body-padding: 1rem;
+  }
+  .grid {
+    grid-template-columns: auto repeat(6, minmax(0, 1fr)) auto;
+    min-width: 100%;
   }
 }
 
@@ -215,10 +232,3 @@ p {
     grid-column: 2 / -2;
   }
 }
-
-/* Prevent to show content if orientation & height is valid */
-/* @media only screen and (orientation: landscape) and (max-device-height: 780px) {
-  body {
-
-  }
-} */
