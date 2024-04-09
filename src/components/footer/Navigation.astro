@@ -22,7 +22,7 @@ const extraLocale = {
         </li>
         {submenu.columns.map(i => (
           <li>
-            <a href={i.slug}>{i.hrefName[lang]}</a>
+            <a href={`${lang}/${i.slug}`}>{i.hrefName[lang]}</a>
           </li>
         ))}
       </ul>
@@ -35,7 +35,7 @@ const extraLocale = {
           <h3>{extraLocale[lang].important}</h3>
         </li>
         <li>
-          <a href={headerLinks[lang].signup.submenu[1].columns[0].slug}>
+          <a href={`${lang}/${headerLinks[lang].signup.submenu[1].columns[0].slug}`}>
             {headerLinks[lang].signup.submenu[1].columns[0].hrefName[lang]}
           </a>
         </li>
@@ -56,11 +56,11 @@ const extraLocale = {
         </li>
         {headerLinks[lang].about.submenu[0].columns.map(i => (
           <li>
-            <a href={i.slug}>{i.hrefName[lang]}</a>
+            <a href={`${lang}/${i.slug}`}>{i.hrefName[lang]}</a>
           </li>
         ))}
         <li>
-          <a href={headerLinks[lang].about.submenu[1].columns[0].slug}>
+          <a href={`${lang}/${headerLinks[lang].about.submenu[1].columns[0].slug}`}>
             {headerLinks[lang].about.submenu[1].columns[0].hrefName[lang]}
           </a>
         </li>

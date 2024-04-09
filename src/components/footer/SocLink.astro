@@ -1,0 +1,26 @@
+---
+import type { HrefType } from '@Types';
+
+interface Props {
+  link: HrefType;
+  icon: 'facebook' | 'instagram' | 'telegram' | 'whatsapp';
+}
+
+const { link, icon } = Astro.props;
+---
+
+<li>
+  <a href={link.url} target={link.target} title={icon} aria-label={icon}>
+    <svg class="icon" aria-hidden="true">
+      <use xlink:href=`/svg/ui_icons.svg#${icon}`></use>
+    </svg>
+  </a>
+</li>
+
+<style>
+  .icon {
+    width: var(--size-40);
+    height: var(--size-40);
+    fill: var(--black);
+  }
+</style>

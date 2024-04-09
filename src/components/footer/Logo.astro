@@ -1,11 +1,19 @@
 ---
 const lang = Astro.currentLocale as 'ru' | 'fi';
+
+interface Props {
+  data: string;
+}
+
+const { data } = Astro.props;
 ---
 
-<a href=`/${lang}` class="footer__logo" title="sadko.fi" aria-label="sadko.fi">
-  <img src="/webp/logo.webp" alt="sadko logo" />
-  <p>Хельсинкский многофункциональный центр развития и творчества</p>
-</a>
+<div class="footer__logo">
+  <a href=`/${lang}` class="footer__logo" title="sadko.fi" aria-label="sadko.fi">
+    <img src="/svg/logo.svg" alt="sadko logo" />
+  </a>
+  <p>{data}</p>
+</div>
 
 <style>
   .footer__logo {
@@ -14,9 +22,9 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
     flex-direction: column;
     gap: var(--gap-8);
   }
+
   .footer__logo img {
-    height: 70px;
-    width: 150px;
+    width: 200px;
   }
 
   @media (max-width: 960px) {

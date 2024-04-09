@@ -3,7 +3,7 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
 ---
 
 <a href=`/${lang}` class="header__logo" title="sadko.fi" aria-label="sadko.fi">
-  <img src="/webp/logo.webp" alt="sadko logo" />
+  <img src="/svg/logo.svg" alt="sadko logo" />
 </a>
 <style>
   .header__logo {
@@ -11,6 +11,6 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
     grid-row: 1;
   }
   .header__logo img {
-    height: var(--size-48);
+    height: var(--size-36);
   }
 </style>

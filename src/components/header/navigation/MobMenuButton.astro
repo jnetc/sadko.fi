@@ -9,18 +9,23 @@
   function openSubMenu() {
     if (navigation?.classList.contains('open-menu')) {
       navigation?.classList.remove('open-menu');
+      button?.classList.remove('open-menu');
       body.style.overflow = '';
       return;
     }
     navigation?.classList.add('open-menu');
+    button?.classList.add('open-menu');
     body.style.overflow = 'hidden';
   }
   button?.addEventListener('mousedown', openSubMenu);
 </script>
 
-<button type="button" class="header__menu-button" aria-label="mobile menu button">
-  <svg class="icon" aria-hidden="true">
+<button type="button" class="header__menu-button" aria-label="mobile menu button" title="mobile menu button">
+  <svg class="icon menu" aria-hidden="true">
     <use xlink:href=`/svg/ui_icons.svg#menu`></use>
+  </svg>
+  <svg class="icon close" aria-hidden="true">
+    <use xlink:href=`/svg/ui_icons.svg#close`></use>
   </svg>
 </button>
 
@@ -36,11 +41,21 @@
     border-radius: 50%;
     background-color: var(--violet-light);
   }
+  .header__menu-button.open-menu .menu {
+    display: none;
+  }
+  .header__menu-button.open-menu .close {
+    display: block;
+  }
 
-  .header__menu-button .icon {
+  .icon {
     width: var(--size-24);
     aspect-ratio: 1;
   }
+  .close {
+    display: none;
+  }
+
   @media screen and (min-width: 1199px) {
     .header__menu-button {
       display: none;

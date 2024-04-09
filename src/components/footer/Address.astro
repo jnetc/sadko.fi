@@ -1,11 +1,24 @@
 ---
+import type { ICommonData } from '@Types';
+import SocLink from './SocLink.astro';
+interface Props {
+  data: Omit<ICommonData, 'notification'>;
+}
 
+const { data } = Astro.props;
+const phone = data.phone.replace(/(\d{3})(\d{8})/, '($1) $2');
 ---
 
 <address class="footer__contact">
-  <a href="tel:+1234567890">123-456-7890</a>
-  <a href="mailto:example@example.com">example@example.com</a>
-  <p>Suunnistajankuja 4 C Länsimäki рядом метро Mellunmäki.</p>
+  <p>{phone}</p>
+  <p>{data.email}</p>
+  <p>{data.description}</p>
+  <ul class="footer__links">
+    {data.facebook.url && <SocLink link={data.facebook} icon="facebook" />}
+    {data.instagram.url && <SocLink link={data.instagram} icon="instagram" />}
+    {data.telegram.url && <SocLink link={data.telegram} icon="telegram" />}
+    {data.whatsapp.url && <SocLink link={data.whatsapp} icon="whatsapp" />}
+  </ul>
 </address>
 
 <style>
@@ -18,20 +31,27 @@
     position: relative;
     z-index: 5;
   }
+
   .footer__contact > * {
     flex-basis: 100%;
     color: var(--black);
     font-style: normal;
   }
-  .footer__contact a:nth-of-type(1) {
-    font-size: clamp(var(--font-32), 4.5vw, var(--font-48));
+  .footer__contact p:nth-of-type(1) {
+    font-size: clamp(var(--font-28), 3.3vw, var(--font-40));
+  }
+  .footer__contact p:nth-of-type(2) {
+    font-size: clamp(var(--font-20), 2vw, var(--font-24));
+  }
+  .footer__contact p:not(:last-of-type) {
     font-weight: bold;
+    white-space: nowrap;
   }
-  .footer__contact a:nth-of-type(2) {
-    font-size: clamp(var(--font-20), 2.5vw, var(--font-24));
-  }
-  .footer__contact p {
-    /* font-size: var(--font-18); */
+
+  .footer__links {
+    display: flex;
+    gap: var(--gap-12);
+    padding-block-start: var(--gap-8);
   }
 
   @media (max-width: 960px) {

@@ -225,13 +225,16 @@ export type SliceType = "hero" | "activities" | "welcome" | "offer" | "gallery" 
 // }
 
 export interface ICommonData {
+  notification: string;
+  description: string;
   address: string;
   geolocation: string;
   phone: string;
   email: string;
-  whatsapp: string;
-  facebook: string;
-  instagram: string;
+  whatsapp: HrefType;
+  facebook: HrefType;
+  instagram: HrefType;
+  telegram: HrefType;
 }
 
 export interface IIndex extends SEOType {
