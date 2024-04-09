@@ -12,11 +12,11 @@ const { data } = Astro.props;
 
 <header class="grid header">
   {
-    data && (
+    data ? (
       <div class="notification">
         <p>{data}</p>
       </div>
-    )
+    ) : null
   }
   <Logo />
   <Navigation />

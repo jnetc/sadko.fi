@@ -29,13 +29,13 @@ const data = response.data as IIndex;
 
 <Layout>
   <main>
-    {data.body[0].slice_type === 'hero' && <SectionHero data={data.body[0]} />}
-    {data.body[1].slice_type === 'activities' && <SectionActivities data={data.body[1]} />}
-    {data.body[2].slice_type === 'welcome' && <SectionWelcome data={data.body[2]} />}
-    {data.body[3].slice_type === 'offer' && <SectionOffer data={data.body[3]} />}
-    {data.body[4].slice_type === 'gallery' && <SectionGallery data={data.body[4]} />}
-    {data.body[5].slice_type === 'teachers' && <SectionTeachers data={data.body[5]} />}
-    {data.body[6].slice_type === 'faq' && <SectionFaq data={data.body[6]} />}
-    {data.body[7].slice_type === 'feedbacks' && <SectionFeedbacks data={data.body[7]} />}
+    {data.body[0].slice_type === 'hero' ? <SectionHero data={data.body[0]} /> : null}
+    {data.body[1].slice_type === 'activities' ? <SectionActivities data={data.body[1]} /> : null}
+    {data.body[2].slice_type === 'welcome' ? <SectionWelcome data={data.body[2]} /> : null}
+    {data.body[3].slice_type === 'offer' ? <SectionOffer data={data.body[3]} /> : null}
+    {data.body[4].slice_type === 'gallery' ? <SectionGallery data={data.body[4]} /> : null}
+    {data.body[5].slice_type === 'teachers' ? <SectionTeachers data={data.body[5]} /> : null}
+    {data.body[6].slice_type === 'faq' ? <SectionFaq data={data.body[6]} /> : null}
+    {data.body[7].slice_type === 'feedbacks' ? <SectionFeedbacks data={data.body[7]} /> : null}
   </main>
 </Layout>

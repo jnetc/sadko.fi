@@ -28,7 +28,7 @@ const md = await toMarkdown(data.text);
   <main class="grid">
     <div class="page-header column-sized">
       <h1 class="header__heading">{data.title}</h1>
-      {data.description && <p class="page-header__description font-20">{data.description}</p>}
+      {data.description ? <p class="page-header__description font-20">{data.description}</p> : null}
     </div>
     <div class="page__content markdown">
       <Fragment set:html={md} />

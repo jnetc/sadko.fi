@@ -57,8 +57,8 @@ const { data, publish } = Astro.props;
   </p>
   <div class="details__btns">
     <ActivitySlugBlankBtn data={data.primary_href} lang={lang} />
-    <ActivitySlugCircleBtn data={data.facebook} icon="facebook" />
-    <ActivitySlugCircleBtn data={data.instagram} icon="instagram" />
+    {data.facebook.url ? <ActivitySlugCircleBtn data={data.facebook} icon="facebook" /> : null}
+    {data.instagram.url ? <ActivitySlugCircleBtn data={data.instagram} icon="instagram" /> : null}
   </div>
 </section>
 

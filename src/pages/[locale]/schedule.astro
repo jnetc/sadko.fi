@@ -58,11 +58,11 @@ const md = await toMarkdown(data.text);
       <h1 class="header__heading">{data.title}</h1>
       <h2 class="header__sub-heading">{data.subtitle}</h2>
       {
-        data.text && (
+        data.text ? (
           <div class="page-header__description font-20">
             <Fragment set:html={md} />
           </div>
-        )
+        ) : null
       }
     </div>
     <div class="schedule-select">

@@ -34,15 +34,8 @@ const md = await toMarkdown(text);
   }
 
   teachers.forEach(teacher => {
-    // const txt = teacher.querySelector<HTMLElement>('.teacher__text')!.scrollHeight;
     const btn = teacher.querySelector<HTMLButtonElement>('.teacher__btn');
-    if (!btn) {
-      return;
-    }
-    // if (txt <= 9 * 16 + 16 ) {
-    //   btn.remove();
-    //   return;
-    // }
+    if (!btn) return;
 
     btn.addEventListener('mousedown', openSubMenu);
   });

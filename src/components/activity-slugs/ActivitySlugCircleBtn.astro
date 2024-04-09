@@ -8,14 +8,10 @@ interface Props {
 const { data, icon } = Astro.props;
 ---
 
-{
-  data.url !== undefined ? (
-    <a href={data.url} target={data.target} class="circle-button">
-      <span class="icon" aria-hidden="true">
-        <svg>
-          <use xlink:href={`/svg/ui_icons.svg#${icon}`} />
-        </svg>
-      </span>
-    </a>
-  ) : null
-}
+<a href={data.url} target={data.target} class="circle-button">
+  <span class="icon" aria-hidden="true">
+    <svg>
+      <use xlink:href={`/svg/ui_icons.svg#${icon}`}></use>
+    </svg>
+  </span>
+</a>
