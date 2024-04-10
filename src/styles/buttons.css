@@ -1,7 +1,6 @@
 .btn {
   height: min-content;
   width: min-content;
-  /* max-height: var(--size-56); */
   display: flex;
   align-items: center;
   border-radius: 4rem;
@@ -76,7 +75,6 @@
 .btn-primary .btn__icon,
 .btn-secondary .btn__icon {
   width: var(--size-36);
-  /* width: clamp(var(--size-32), 2vw, var(--size-36)); */
 }
 .btn-ternary .btn__icon {
   width: var(--size-32);
@@ -119,17 +117,15 @@
 }
 
 @keyframes arrow-outward {
-
   50% {
     transform: translate(1.1rem, -1.1rem);
   }
   50.01% {
     transform: translate(-1.1rem, 1.1rem);
   }
-
 }
-@keyframes arrow-backward {
 
+@keyframes arrow-backward {
   50% {
     transform: translate(-1.1rem, 0);
   }
@@ -137,8 +133,8 @@
     transform: translate(1.1rem, 0);
   }
 }
-@keyframes location {
 
+@keyframes location {
   20% {
     transform: rotateZ(15deg);
   }
@@ -154,10 +150,10 @@
 }
 
 @media  (max-width: 1200px) {
-
   .btn-ternary {
     padding: var(--gap-8);
   }
+
   .btn-ternary .btn__icon {
     margin-left: 0;
   }

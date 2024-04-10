@@ -47,11 +47,9 @@ img.page__image-details {
     grid-column: 1 / -1;
     border-radius: 0;
   }
+
   .page:has(.page__image-post) .btn-ternary {
     margin-bottom: var(--gap-20);
 
   }
-}
-
-@media screen and (max-width: 767px) {
 }

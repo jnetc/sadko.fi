@@ -50,8 +50,6 @@ const response = await repeatable(repeatableQuery, 'master', lang);
 // const response = await RepeatableLocaleData(query, 'master', lang);
 // const { data } = Astro.props;
 const { slug } = Astro.props;
-// console.log('slug data', data);
-// console.log('slug data', slug);
 
 const [page] = response.filter(i => {
   const data = i.data as IActivity;
@@ -64,8 +62,6 @@ const [page] = response.filter(i => {
 
 const data = page.data as IActivity;
 const md = await toMarkdown(data.text);
-
-console.log(data);
 ---
 
 <head>

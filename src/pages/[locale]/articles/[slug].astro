@@ -16,19 +16,12 @@ import publishDate from '@Helpers/publishDate';
 import { main_locale } from '@Locales/main_locale';
 // Libs
 import { staticPath, repeatable, toMarkdown } from '@Lib/prismiccms';
-// LOCAL DATA!!!
-// Remove CACHE folder to get updated data!!!
-// import { RepeatableLocaleData } from '@Lib/localdata';
-// import { toMarkdown } from '@Lib/prismiccms';
 
 const lang = Astro.currentLocale as 'ru' | 'fi';
 const path = Astro.url.pathname.split('/')[2];
 
 export async function getStaticPaths() {
   const response = await staticPath(repeatableQuery, 'article');
-  // LOCAL DATA!!!
-  // Remove CACHE folder to get updated data!!!
-  // const response = await RepeatableLocaleData(repeatableQuery, 'articles');
 
   return response.flatMap(master => {
     const data = master.data as IArticle;
@@ -46,7 +39,6 @@ export async function getStaticPaths() {
 }
 
 const response = await repeatable(repeatableQuery, 'article', lang);
-// const response = await RepeatableLocaleData(repeatableQuery, 'articles', lang);
 
 const { slug } = Astro.props;
 

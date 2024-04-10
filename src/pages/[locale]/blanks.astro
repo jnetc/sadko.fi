@@ -13,10 +13,6 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
 
 import { single } from '@Lib/prismiccms';
 const response = await single(query, 'page_blanks', lang);
-// LOCAL DATA!!!
-// Remove CACHE folder to get updated data!!!
-// import { SingleLocaleData } from '@Lib/localdata';
-// const response = await SingleLocaleData(query, 'gallery', lang);
 
 const data = response.data as IBlanksPage;
 ---

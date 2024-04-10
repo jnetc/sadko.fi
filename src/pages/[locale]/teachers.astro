@@ -15,10 +15,6 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
 
 const pageResponse = await single(pageQuery, 'page_teachers', lang);
 const teachersResponse = await repeatable(repeatableQuery, 'teacher', lang);
-// LOCAL DATA!!!
-// Remove CACHE folder to get updated data!!!
-// import { SingleWithLinkLocaleData } from '@Lib/localdata';
-// const response = await SingleWithLinkLocaleData(query, 'teachers', 'teacher', lang);
 
 const page = pageResponse.data as IPage;
 const teachers = teachersResponse;

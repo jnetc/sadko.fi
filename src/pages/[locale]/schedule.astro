@@ -8,20 +8,17 @@ import Layout from '@Layouts/Layout.astro';
 import ScheduleSection from '@Components/schedule/ScheduleSection.astro';
 // Locale
 import { main_locale } from '@Locales/main_locale';
+// Libs
+import { single, toMarkdown, repeatable } from '@Lib/prismiccms';
 // Types
 import type { ISchedule, ISchedulePage } from '@Types';
 
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
-import { single, toMarkdown, repeatable } from '@Lib/prismiccms';
 const response = await single(query, 'page_schedule', lang);
-// LOCAL DATA!!!
-// Remove CACHE folder to get updated data!!!
-// import { SingleLocaleData } from '@Lib/localdata';
-// const response = await SingleLocaleData(query, 'gallery', lang);
+const schedule = await repeatable(repeatableQuery, 'schedule', lang);
 
 const data = response.data as ISchedulePage;
-const schedule = await repeatable(repeatableQuery, 'schedule', lang);
 const md = await toMarkdown(data.text);
 ---
 
@@ -96,6 +93,7 @@ const md = await toMarkdown(data.text);
   .schedule-page {
     justify-items: center;
   }
+
   .schedule {
     grid-column: 2 / -2;
     width: min(1200px, 100%);
@@ -103,11 +101,13 @@ const md = await toMarkdown(data.text);
     flex-direction: column;
     gap: var(--gap-96);
   }
+
   .schedule-select {
     grid-column: 2 / -2;
     display: grid;
     position: relative;
   }
+
   .schedule-select__icon {
     width: 1.5rem;
     aspect-ratio: 1;
@@ -118,6 +118,7 @@ const md = await toMarkdown(data.text);
     pointer-events: none;
     user-select: none;
   }
+
   .schedule-select__select {
     appearance: none;
     max-width: max-content;
@@ -134,12 +135,10 @@ const md = await toMarkdown(data.text);
   .shedule-select:focus-visible {
     border-color: var(--violet);
   }
+
   @media (max-width: 960px) {
     .schedule {
       min-width: 100%;
     }
-    /* .schedule-select__select {
-      font-size: var(--font-14);
-    } */
   }
 </style>
