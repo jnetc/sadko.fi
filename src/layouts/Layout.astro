@@ -17,6 +17,7 @@ import type { ICommonData } from '@Types';
 
 // Get language from Astro Runtime API
 const lang = Astro.currentLocale as 'ru' | 'fi';
+
 const response = await single(query, 'common_data', lang);
 const data = response.data as ICommonData;
 
@@ -40,15 +41,10 @@ const { notification, ...footer } = data;
     <meta name="keywords" content="sadko" />
 
     <meta name="generator" content={Astro.generator} />
-    <meta name="rating" content="General" />
-
-    <meta name="geo.region" content="FI" />
     <!-- <meta
       name="google-site-verification"
       content="H0uSTqaKvyYCig_6IA0D_Le4q6K8__tuSDHhYWX6htM"
     /> -->
-
-    <!-- <slot name="head" /> -->
   </head>
   <body class="body">
     <Header data={notification} />

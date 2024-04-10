@@ -14,7 +14,7 @@ const md = await toMarkdown(markdown);
 <li class="faq__details">
   <h3 class="faq__summary" data-index="0" tabindex="0">
     {heading}
-    <span class="faq__summary-icon"></span>
+    <span class="faq__summary-icon" aria-hidden="true"></span>
   </h3>
   <div class="faq__p markdown">
     <Fragment set:html={md} />
@@ -75,6 +75,8 @@ const md = await toMarkdown(markdown);
     position: relative;
     border-radius: 100vw;
     border: 2px solid var(--violet);
+    pointer-events: none;
+    user-select: none;
   }
   .faq__summary-icon::after,
   .faq__summary-icon::before {

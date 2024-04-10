@@ -27,6 +27,7 @@ const data = response.data as IBlanksPage;
     <meta name="viewport" content="width=device-width" />
     <title>{data.seo_title}</title>
     <meta name="description" content={data.seo_description} />
+    <link rel="canonical" href=`https://sadko.fi/${lang}/blanks` hreflang={lang} />
   </head>
 
   <main class="grid separator">

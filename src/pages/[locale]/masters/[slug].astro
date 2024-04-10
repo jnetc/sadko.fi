@@ -66,17 +66,19 @@ const data = page.data as IActivity;
 const md = await toMarkdown(data.text);
 ---
 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>{data.seo_title}</title>
+  <meta name="description" content={data.seo_description} />
+  <link rel="canonical" href={`https://sadko.fi/${lang}/masters/${data.slug.url}`} hreflang={lang} />
+</head>
+
 {
   data === undefined ? (
     <h1>Page not found</h1>
   ) : (
     <>
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <title>{data.seo_title}</title>
-        <meta name="description" content={data.seo_description} />
-      </head>
       <Layout>
         <main class="grid page">
           <BackwardButton href={`/${lang}/${path}`} isBack />

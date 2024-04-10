@@ -25,6 +25,7 @@ const data = response.data as IPage;
   <meta name="viewport" content="width=device-width" />
   <title>{data.seo_title}</title>
   <meta name="description" content={data.seo_description} />
+  <link rel="canonical" href=`https://sadko.fi/${lang}/parents` hreflang={lang} />
 </head>
 
 <Layout>
