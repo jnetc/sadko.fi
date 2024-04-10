@@ -11,17 +11,19 @@ const extraLocale = {
     important: 'Tärkeä',
   },
 };
+
+const { about, activities, signup, schedule, articles } = headerLinks[lang];
 ---
 
 <section class="footer__navigation">
   {
-    headerLinks[lang].activities.submenu.map(submenu => (
-      <ul>
-        <li>
-          <h3>{submenu.columnName}</h3>
+    activities.submenu.map(submenu => (
+      <ul class="footer__column">
+        <li class="footer__column-item">
+          <h3 class="footer__column-title">{submenu.columnName}</h3>
         </li>
         {submenu.columns.map(i => (
-          <li>
+          <li class="footer__column-item">
             <a href={`${lang}/${i.slug}`}>{i.hrefName[lang]}</a>
           </li>
         ))}
@@ -30,39 +32,35 @@ const extraLocale = {
   }
   {
     (
-      <ul>
-        <li>
-          <h3>{extraLocale[lang].important}</h3>
+      <ul class="footer__column">
+        <li class="footer__column-item">
+          <h3 class="footer__column-title">{extraLocale[lang].important}</h3>
         </li>
-        <li>
-          <a href={`${lang}/${headerLinks[lang].signup.submenu[1].columns[0].slug}`}>
-            {headerLinks[lang].signup.submenu[1].columns[0].hrefName[lang]}
-          </a>
+        <li class="footer__column-item">
+          <a href={`${lang}/${signup.submenu[1].columns[0].slug}`}>{signup.submenu[1].columns[0].hrefName[lang]}</a>
         </li>
-        <li>
-          <a href={`/${lang}/articles`}>{headerLinks[lang].articles}</a>
+        <li class="footer__column-item">
+          <a href={`/${lang}/articles`}>{articles}</a>
         </li>
-        <li>
-          <a href={`/${lang}/schedule`}>{headerLinks[lang].schedule}</a>
+        <li class="footer__column-item">
+          <a href={`/${lang}/schedule`}>{schedule}</a>
         </li>
       </ul>
     )
   }
   {
     (
-      <ul>
-        <li>
-          <h3>{headerLinks[lang].about.submenu[0].columnName}</h3>
+      <ul class="footer__column">
+        <li class="footer__column-item">
+          <h3 class="footer__column-title">{about.submenu[0].columnName}</h3>
         </li>
-        {headerLinks[lang].about.submenu[0].columns.map(i => (
-          <li>
+        {about.submenu[0].columns.map(i => (
+          <li class="footer__column-item">
             <a href={`${lang}/${i.slug}`}>{i.hrefName[lang]}</a>
           </li>
         ))}
-        <li>
-          <a href={`${lang}/${headerLinks[lang].about.submenu[1].columns[0].slug}`}>
-            {headerLinks[lang].about.submenu[1].columns[0].hrefName[lang]}
-          </a>
+        <li class="footer__column-item">
+          <a href={`${lang}/${about.submenu[1].columns[0].slug}`}>{about.submenu[1].columns[0].hrefName[lang]}</a>
         </li>
       </ul>
     )
@@ -78,17 +76,17 @@ const extraLocale = {
     gap: var(--gap-32);
   }
 
-  .footer__navigation ul {
+  .footer__column {
     display: flex;
     flex-direction: column;
-    gap: var(--gap-6);
+    gap: var(--gap-12);
   }
 
-  .footer__navigation li {
+  .footer__column-item {
     white-space: nowrap;
   }
 
-  .footer__navigation h3 {
+  .footer__column-title {
     font-size: clamp(var(--font-20), 3.5vw, var(--font-24));
     padding-block-end: var(--gap-12);
   }

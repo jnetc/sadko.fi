@@ -11,6 +11,7 @@ import { single } from '@Lib/prismiccms';
 // Components
 import Header from '@Components/header/Header.astro';
 import Footer from '@Components/footer/Footer.astro';
+import ContactButtons from '@Components/ui-mobile/ContactButtons.astro';
 // Types
 import type { ICommonData } from '@Types';
 
@@ -53,5 +54,6 @@ const { notification, ...footer } = data;
     <Header data={notification} />
     <slot />
     <Footer data={footer} />
+    <ContactButtons data={footer} />
   </body>
 </html>

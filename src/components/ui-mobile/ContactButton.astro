@@ -1,0 +1,41 @@
+---
+import type { HrefType } from '@Types';
+
+interface Props {
+  link: HrefType | string;
+  icon: 'phone' | 'email' | 'telegram' | 'whatsapp';
+  prefix?: 'tel' | 'mailto';
+}
+
+const { link, icon, prefix } = Astro.props;
+---
+
+<a
+  href={typeof link === 'string' ? `${prefix}:${link}` : link.url}
+  target={typeof link === 'string' ? '' : link.target}
+  title=`Contact us ${icon}`
+  aria-label=`Contact us ${icon}`
+>
+  <svg class="icon">
+    <use xlink:href=`/svg/ui_icons.svg#${icon}`></use>
+  </svg>
+</a>
+
+<style>
+  a {
+    width: var(--size-56);
+    aspect-ratio: 1;
+    display: grid;
+    place-content: center;
+    background-color: var(--white);
+    border-radius: 50vw;
+    border: 1.5px solid var(--violet-light);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .icon {
+    width: var(--size-32);
+    height: var(--size-32);
+    fill: var(--violet);
+  }
+</style>

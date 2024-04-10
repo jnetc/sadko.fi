@@ -30,23 +30,6 @@ const { data } = Astro.props;
   </p>
 </footer>
 <style>
-  .footer__shape1,
-  .footer__shape2 {
-    position: absolute;
-    aspect-ratio: 1;
-    stroke-width: 23;
-  }
-  .footer__shape1 {
-    width: 250px;
-    top: -5rem;
-    right: 0;
-    rotate: z 90deg;
-  }
-  .footer__shape2 {
-    width: 250px;
-    bottom: -10rem;
-    left: -5rem;
-  }
   .footer {
     row-gap: var(--gap-8);
     padding-block: var(--gap-64) var(--gap-18);
@@ -77,6 +60,24 @@ const { data } = Astro.props;
     font-size: var(--font-14);
   }
 
+  .footer__shape1,
+  .footer__shape2 {
+    position: absolute;
+    aspect-ratio: 1;
+    stroke-width: 23;
+  }
+  .footer__shape1 {
+    width: 250px;
+    top: -5rem;
+    right: 0;
+    rotate: z 90deg;
+  }
+  .footer__shape2 {
+    width: 250px;
+    bottom: -10rem;
+    left: -5rem;
+  }
+
   @media (max-width: 1199px) {
     .footer__shape1,
     .footer__shape2 {
@@ -85,12 +86,22 @@ const { data } = Astro.props;
   }
 
   @media (max-width: 960px) {
+    .footer {
+      border-radius: var(--border-corner-16) var(--border-corner-16) 0 0;
+    }
+
     .footer-container {
       grid-template-columns: 1fr;
     }
+
     .footer__logo,
     .footer__contact {
       grid-column: 1;
+    }
+  }
+  @media (max-width: 559px) {
+    .footer {
+      padding-block-end: calc(var(--size-64) + var(--gap-18));
     }
   }
 </style>

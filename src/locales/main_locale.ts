@@ -30,6 +30,8 @@ export const main_locale = {
     schedule_friday: 'Пятница',
     schedule_saturday: 'Суббота',
     schedule_sunday: 'Воскресенье',
+    contact_button_show: 'Связаться с нами',
+    contact_button_hide: 'Свернуть меня',
   },
   fi: {
     button_back: 'Takaisin',
@@ -62,5 +64,7 @@ export const main_locale = {
     schedule_friday: 'Perjantai',
     schedule_saturday: 'Lauantai',
     schedule_sunday: 'Sunnuntai',
+    contact_button_show: 'Ota yhteytä',
+    contact_button_hide: 'Sulje minut',
   },
 };
