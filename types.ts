@@ -47,15 +47,12 @@ export type TypeUIActivityIcons =
   | "info"
   | "feedbacks";
 
-// type TypeBlanks = "blank-hobby" | "blank-camp" | "blank-membership";
-// type TypeBlanks = "blank-hobby" | "blank-camp" | "blank-membership";
 
 export type TypePage = "page_masters" | "page_camps" | "page_festivals" | "page_concerts" | "page_projects" | "page_parents" | "page_clubs" | "page_courses" | "page_travels" | "page_celebrations" | "page_concerts" | "page_usefuls" | "page_articles" | "page_feedbacks" | "page_teachers" | "page_schedule" | "page_blanks" | "page_about" | "page_membership" | "page_gallery" | "page_rules-and-payments";
 
 
 export type Pages =
   "home"
-  | TypeUIActivityIcons
   | TypePage
   | "articles"
   | "schedule"
@@ -75,7 +72,6 @@ export type Pages =
   | "parent"
   | "feedback"
   | "common_data";
-// export type Relationship = "home" | TypeUIActivityIcons | "articles" | "teacher" | "feedbacks" | "feedback";
 
 export type TypeUICardShapes =
   "shape01"
@@ -159,70 +155,8 @@ export type SecondaryButtonType = {
   secondary_href: HrefType;
 }
 
-
-/* PRIMARY TYPE */
-// export interface PrimaryType extends HeadingTextType, SlugType, PrimaryButtonType, SecondaryButtonType {
-//   label?: string;
-//   // primary_button?: string;
-//   // primary_href?: HrefType;
-//   // secondary_button?: string;
-//   // secondary_href?: HrefType;
-// }
-
-// export interface PrimaryGalleryType extends HeadingTextType, SecondaryButtonType {
-//   image_pc: ImageType;
-//   image_mob: ImageType;
-// }
-
-// export interface PrimaryType extends HeadingTextType, LabelType, PrimaryButtonType, SecondaryButtonType { }
-// export interface PrimaryWithPrimaryBtnType extends HeadingTextType, PrimaryButtonType { }
-// export interface PrimaryWithSecondatyBtnType extends HeadingTextType, SecondaryButtonType { }
-
-
-
-/* FIELDS TYPE */
-
-// export interface FieldsOnlyImageType extends SlugType {
-//   image: ImageType;
-// }
-
-// export interface FieldsWithImageType extends HeadingTextType, FieldsOnlyImageType { }
-
-// export interface FieldsWithIconType extends HeadingTextType, SlugType {
-//   icon: TypeUIIcons;
-// }
-
-
-// export interface FieldsAmountType {
-//   text: string;
-//   amount: number
-// }
-
-// export interface FieldsFaqType {
-//   question: string;
-//   answer: RichTextField;
-// }
-
 /* SLICES */
 export type SliceType = "hero" | "activities" | "welcome" | "offer" | "gallery" | "teachers" | "faq" | "feedbacks"
-
-// export interface IBodyWithItems {
-//   primary: PrimaryType | PrimaryGalleryType;
-//   items: Array<HeadingTextType | FieldsWithImageType | FieldsOnlyImageType | FieldsWithIconType | FieldsAmountType| FieldsFaqType>;
-//   slice_type: SliceType;
-// }
-
-// export interface IBodyWithoutItems {
-//   primary: PrimaryType;
-//   slice_type: SliceType;
-// }
-
-
-// export interface IIndex {
-//   body: Array<IBodyWithItems | IBodyWithoutItems>;
-//   title: string;
-//   description: string;
-// }
 
 export interface ICommonData {
   notification: string;
@@ -296,7 +230,7 @@ export interface IActivity extends SEOType, TitleDescriptionType, SlugType {
   address: string;
   phone: string;
   email: string;
-  primary_href: HrefType;
+  has_blank:boolean
   facebook: HrefType;
   instagram: HrefType;
   text: RichTextField

@@ -32,13 +32,7 @@ export const repeatableQuery = `{
         address
         phone
         email
-        primary_button
-        primary_href {
-          ... on _ExternalLink {
-            url
-            target
-          }
-        }
+        has_blank
         facebook {
           ... on _ExternalLink {
             url

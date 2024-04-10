@@ -56,7 +56,7 @@ const { data, publish } = Astro.props;
     <strong>{data.email}</strong>
   </p>
   <div class="details__btns">
-    <ActivitySlugBlankBtn data={data.primary_href} lang={lang} />
+    {data.has_blank ? <ActivitySlugBlankBtn lang={lang} /> : null}
     {data.facebook.url ? <ActivitySlugCircleBtn data={data.facebook} icon="facebook" /> : null}
     {data.instagram.url ? <ActivitySlugCircleBtn data={data.instagram} icon="instagram" /> : null}
   </div>
@@ -68,7 +68,7 @@ const { data, publish } = Astro.props;
     grid-row: 2;
     display: grid;
     grid-template-rows: min-content;
-    gap: var(--gap-16) var(--gap-36);
+    gap: var(--gap-8) var(--gap-36);
     align-self: flex-start;
   }
 
