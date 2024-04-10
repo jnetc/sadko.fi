@@ -33,19 +33,18 @@ const { data } = Astro.props;
 
   .notification {
     grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
     padding: var(--gap-12) var(--gap-16);
     margin-block-start: var(--gap-16);
-    background-color: var(--black);
+    background-color: var(--red);
   }
 
   .notification p {
-    width: min(100%, 1200px);
-    margin-inline: auto;
-    color: var(--grey-50);
-    font-style: normal;
-    justify-content: center;
-    align-items: center;
+    width: min(min-content, 1200px);
+    color: var(--white);
     font-size: var(--font-14);
+    font-style: normal;
   }
   @media screen and (max-width: 1199px) {
     .notification {

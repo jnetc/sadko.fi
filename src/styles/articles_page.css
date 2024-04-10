@@ -37,7 +37,7 @@
   font-size: clamp(var(--font-20), 3.2vw, var(--font-24));
 }
 .page-header__description :where(em, strong) {
-  color: red;
+  color: var(--red);
   font-weight: bold;
   font-style: normal;
   text-decoration: underline;

@@ -9,8 +9,8 @@ const { primary } = Astro.props.data;
 ---
 
 <section class="grid main-section gallery">
-  <img class="gallery__image-pc" src={primary.image_pc.url} alt="photo gallery" />
-  <img class="gallery__image-mob" src={primary.image_mob.url} alt="photo gallery" />
+  <img class="gallery__image-pc" loading="lazy" src={primary.image_pc.url} alt="photo gallery" />
+  <img class="gallery__image-mob" loading="lazy" src={primary.image_mob.url} alt="photo gallery" />
   <a href=`/${lang}/${primary.secondary_href.url}` class="btn btn-secondary btn-gallery arrow-icon">
     {primary.secondary_button}
     <span class="btn__icon" aria-hidden="true">

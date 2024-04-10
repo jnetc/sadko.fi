@@ -10,7 +10,7 @@ const { data } = Astro.props;
 
 <div class="footer__logo">
   <a href=`/${lang}` class="footer__logo" title="sadko.fi" aria-label="sadko.fi">
-    <img src="/svg/logo.svg" alt="sadko logo" />
+    <img src="/svg/logo.svg" alt="sadko logo" width="106" height="36" />
   </a>
   <p>{data}</p>
 </div>
@@ -24,7 +24,10 @@ const { data } = Astro.props;
   }
 
   .footer__logo img {
-    width: 200px;
+    width: min(50%, 200px);
+    height: auto;
+    /* width: 200px; */
+    /* height: 70px; */
   }
 
   @media (max-width: 960px) {

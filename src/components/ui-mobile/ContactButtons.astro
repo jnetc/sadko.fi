@@ -36,7 +36,7 @@ const { data } = Astro.props;
 </section>
 
 <style>
-  /* .contact {
+  .contact {
     position: fixed;
     inset-inline: 0;
     bottom: 0;
@@ -54,15 +54,16 @@ const { data } = Astro.props;
 
   .contact__btn-action {
     height: var(--size-56);
-    flex: 1 0 100%;
-    background-color: #8464f6;
+    flex: 0 1 100%;
+    background-color: #7759e5;
     border-radius: var(--border-corner-32) var(--border-corner-32) 0 0;
     transition:
       background-color 0.2s ease-in-out,
-      translate 0.3s cubic-bezier(0, 0.79, 0.55, 1.02);
+      border-radius 0.3s cubic-bezier(0, 0.79, 0.55, 1.02),
+      flex 0.3s cubic-bezier(0, 0.79, 0.55, 1.02);
     box-shadow:
-      0 25px 20px var(--opacity-5),
-      0 15px 10px var(--opacity-5);
+      0 25px 20px var(--opacity-10),
+      0 15px 10px var(--opacity-10);
   }
   .contact__btn-action:active {
     background-color: #a28af9;
@@ -71,7 +72,8 @@ const { data } = Astro.props;
   .contact__btn-action p {
     color: var(--white);
     text-align: center;
-    font-size: var(--font-16);
+    font-size: var(--font-18);
+    font-weight: bold;
   }
 
   .contact.show-btns {
@@ -81,6 +83,7 @@ const { data } = Astro.props;
   }
   .contact.show-btns .contact__btn-action {
     border-radius: var(--border-corner-32);
+    flex: 0 1 75%;
   }
   .contact.show-btns p:first-of-type {
     display: none;
@@ -102,5 +105,5 @@ const { data } = Astro.props;
     .contact {
       display: none;
     }
-  } */
+  }
 </style>
