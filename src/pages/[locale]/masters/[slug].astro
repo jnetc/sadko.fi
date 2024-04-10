@@ -64,6 +64,8 @@ const [page] = response.filter(i => {
 
 const data = page.data as IActivity;
 const md = await toMarkdown(data.text);
+
+console.log(data);
 ---
 
 <head>
@@ -72,36 +74,6 @@ const md = await toMarkdown(data.text);
   <title>{data.seo_title}</title>
   <meta name="description" content={data.seo_description} />
   <link rel="canonical" href={`https://sadko.fi/${lang}/masters/${data.slug.url}`} hreflang={lang} />
-</head>
-
-{
-  data === undefined ? (
-    <h1>Page not found</h1>
-  ) : (
-    <>
-      <Layout>
-        <main class="grid page">
-          <BackwardButton href={`/${lang}/${path}`} isBack />
-          <img
-            class="page__image page__image-details"
-            src={data.image.url}
-            alt={data.image.alt}
-            height={data.image.dimensions.height}
-            width={data.image.dimensions.width}
-          />
-          <ActivitiSlugDetails publish={data.publication_date} data={data} />
-          <ActivitySlugDescription md={md} />
-        </main>
-      </Layout>
-    </>
-  )
-}
-
-<!-- <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
-  <title>{data.seo_title}</title>
-  <meta name="description" content={data.seo_description} />
 </head>
 
 <Layout>
@@ -117,4 +89,4 @@ const md = await toMarkdown(data.text);
     <ActivitiSlugDetails publish={data.publication_date} data={data} />
     <ActivitySlugDescription md={md} />
   </main>
-</Layout> -->
+</Layout>
