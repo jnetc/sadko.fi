@@ -31,5 +31,7 @@ export default defineConfig({
       redirectToDefaultLocale: false
     }
   },
+  devToolbar: {enabled: false},
   integrations: [sitemap()]
+
 });

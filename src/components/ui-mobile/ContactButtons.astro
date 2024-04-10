@@ -37,37 +37,49 @@ const { data } = Astro.props;
 
 <style>
   .contact {
+    /* width:50vw; */
     position: fixed;
+
+    /* inset-inline: 3rem; */
     inset-inline: 0;
+    /* justify-content: center; */
+    /* justify-self: center; */
+    /* align-self: center; */
+    /* align-items: center; */
     bottom: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: var(--gap-16);
-    padding-block-end: var(--gap-16);
-    padding-block: var(--gap-56) var(--gap-36);
+    gap: var(--gap-36);
+    padding-block-end: var(--gap-36);
+    /* padding-block: var(--gap-56) var(--gap-36); */
     background-color: var(--white);
     border-radius: var(--border-corner-32) var(--border-corner-32) 0 0;
     /* border-inline: 2px solid var(--violet); */
-    border-block-start: 2px solid var(--violet);
-    translate: 0 calc(var(--size-56) + var(--gap-96));
+    /* border-block-start: 2px solid var(--violet); */
+    translate: 0 calc(var(--size-56) + var(--gap-80));
     transition: all 0.3s cubic-bezier(0, 0.79, 0.55, 1.02);
     z-index: 50;
   }
 
   .contact__btn-action {
-    width: max(200px, 75vw);
+    /* width: max(200px, 65vw); */
     height: var(--size-56);
-    /* flex: 1 0 80%; */
-    position: absolute;
-    top: -2.5rem;
+    flex: 1 0 100%;
+    /* position: absolute; */
+    /* inset-inline: 0; */
+    /* top: 0; */
+    /* top: calc(-1 * var(--size-56)); */
     background-color: #8464f6;
     border-radius: var(--border-corner-32) var(--border-corner-32) 0 0;
-    border-radius: var(--border-corner-32);
-    transition: all 0.2s ease-in-out;
+    /* opacity: 0.9; */
+    transition:
+    background-color 0.2s ease-in-out,
+    translate 0.3s cubic-bezier(0, 0.79, 0.55, 1.02),
+    opacity: 0.3s ease-in-out;
     box-shadow:
-      0 25px 20px var(--opacity-5),
-      0 15px 10px var(--opacity-5);
+    0 25px 20px var(--opacity-5),
+    0 15px 10px var(--opacity-5);
   }
   .contact__btn-action:active {
     background-color: #a28af9;
@@ -81,9 +93,13 @@ const { data } = Astro.props;
 
   .contact.show-btns {
     translate: 0 0;
+    inset-inline: 0;
+    width: 100vw;
   }
   .contact.show-btns .contact__btn-action {
-    translate: 0 0.5rem;
+    /* translate: 0 1.5rem; */
+    border-radius: var(--border-corner-32);
+    opacity: 1;
   }
   .contact.show-btns p:first-of-type {
     display: none;
