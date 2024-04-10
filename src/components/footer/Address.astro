@@ -13,7 +13,7 @@ const phone = data.phone.replace(/(\d{3})(\d{8})/, '($1) $2');
 <address class="footer__contact">
   <p>{phone}</p>
   <p>{data.email}</p>
-  <p>{data.description}</p>
+  <p>{data.address}</p>
   <ul class="footer__links">
     {data.facebook.url ? <SocLink link={data.facebook} icon="facebook" /> : null}
     {data.instagram.url ? <SocLink link={data.instagram} icon="instagram" /> : null}
