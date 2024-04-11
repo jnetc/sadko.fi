@@ -43,12 +43,15 @@ const { data } = Astro.props;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: var(--gap-36);
+    gap: var(--gap-48);
     padding-block-end: var(--gap-36);
     background-color: var(--white);
     border-radius: var(--border-corner-32) var(--border-corner-32) 0 0;
-    translate: 0 calc(var(--size-56) + var(--gap-80));
+    translate: 0 calc(var(--size-56) + var(--gap-96));
     transition: all 0.3s cubic-bezier(0, 0.79, 0.55, 1.02);
+    box-shadow:
+      0 -25px 20px transparent,
+      0 -15px 10px transparent;
     z-index: 50;
   }
 
@@ -77,13 +80,17 @@ const { data } = Astro.props;
   }
 
   .contact.show-btns {
-    translate: 0 0;
-    inset-inline: 0;
     width: 100vw;
+    inset-inline: 0;
+    box-shadow:
+      0 -25px 20px var(--opacity-3),
+      0 -15px 10px var(--opacity-3);
+    translate: 0 0;
   }
   .contact.show-btns .contact__btn-action {
     border-radius: var(--border-corner-32);
     flex: 0 1 75%;
+    translate: 0 1rem;
   }
   .contact.show-btns p:first-of-type {
     display: none;

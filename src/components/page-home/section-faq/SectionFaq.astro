@@ -21,15 +21,6 @@ const { primary, items } = Astro.props.data;
     // Collapse only target
     if (list.classList.contains('open')) {
       list.classList.remove('open');
-      // Find parent element
-      const root = list.closest('.faq__details')!;
-      // Scroll to top of parent element
-      const timer = setTimeout(() => {
-        root.scrollIntoView({
-          behavior: 'smooth',
-        });
-        clearTimeout(timer);
-      }, 0);
       return;
     }
 
@@ -42,6 +33,16 @@ const { primary, items } = Astro.props.data;
     });
 
     list.classList.add('open');
+
+    // Find parent element
+    const root = list.closest('.faq__details')!;
+    // Scroll to top of parent element
+    const timer = setTimeout(() => {
+      root.scrollIntoView({
+        behavior: 'smooth',
+      });
+      clearTimeout(timer);
+    }, 300);
   }
 
   summaries.forEach(summary => {
