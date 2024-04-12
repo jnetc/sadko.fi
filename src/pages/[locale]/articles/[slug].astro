@@ -18,7 +18,6 @@ import { main_locale } from '@Locales/main_locale';
 import { staticPath, repeatable, toMarkdown } from '@Lib/prismiccms';
 
 const lang = Astro.currentLocale as 'ru' | 'fi';
-const path = Astro.url.pathname.split('/')[2];
 
 export async function getStaticPaths() {
   const response = await staticPath(repeatableQuery, 'article');
@@ -65,7 +64,7 @@ const md = await toMarkdown(data.text);
 
 <Layout>
   <main class="grid page">
-    <BackwardButton href={`/${lang}/${path}`} isBack />
+    <BackwardButton isOneColumn />
     <time datetime={data.publication_date.split('T')[0]}>
       {main_locale[lang].publish}
       {publishDate(data.publication_date, lang)}
@@ -86,7 +85,7 @@ const md = await toMarkdown(data.text);
 </Layout>
 
 <style>
-  .page > :not(a, img) {
+  .page > :not(.slug-back, img) {
     width: 100%;
     max-width: 640px;
     justify-self: center;

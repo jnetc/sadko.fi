@@ -57,7 +57,7 @@ const md = await toMarkdown(data.text);
       <h2 class="header__sub-heading">{data.subtitle}</h2>
       {
         data.text ? (
-          <div class="page-header__description font-20">
+          <div class="page-header__description markdown font-20">
             <Fragment set:html={md} />
           </div>
         ) : null

@@ -116,6 +116,41 @@
   transform-origin: center bottom;
 }
 
+/* For slug on the top of the page */
+.slug-back {
+  grid-column: 2 / -2;
+  width: max-content;
+  position: absolute;
+  top: 0;
+}
+
+.slug-back button {
+  display: flex;
+  gap: var(--gap-12);
+  align-items: center;
+}
+
+.slug-back span {
+  width: var(--size-32);
+  height: var(--size-32);
+  display: grid;
+  place-content: center;
+  border-radius: 50vw;
+  border: 1.5px solid var(--violet-light);
+  overflow: hidden;
+}
+
+.slug-back svg {
+  width: 24px;
+  height: 24px;
+}
+
+.one-column {
+  width: 100%;
+  max-width: 640px;
+  justify-self: center;
+}
+
 @keyframes arrow-outward {
   50% {
     transform: translate(1.1rem, -1.1rem);

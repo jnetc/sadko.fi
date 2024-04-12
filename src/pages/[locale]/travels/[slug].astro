@@ -16,7 +16,6 @@ import BackwardButton from '@Components/ui-elements/BackwardButton.astro';
 import { staticPath, repeatable, toMarkdown } from '@Lib/prismiccms';
 
 const lang = Astro.currentLocale as 'ru' | 'fi';
-const path = Astro.url.pathname.split('/')[2];
 
 export async function getStaticPaths() {
   const response = await staticPath(repeatableQuery, 'travel');
@@ -63,7 +62,7 @@ const md = await toMarkdown(data.text);
 
 <Layout>
   <main class="grid page">
-    <BackwardButton href={`/${lang}/${path}`} isBack />
+    <BackwardButton />
     <img
       class="page__image page__image-details"
       src={data.image.url}

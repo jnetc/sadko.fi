@@ -16,14 +16,9 @@ const { md } = Astro.props;
 </section>
 
 <style>
-  .colums-markdown {
-    column-width: 50ch;
-    column-gap: var(--gap-32);
-    column-rule: 1px solid var(--violet-light);
-  }
   .activity__description {
     grid-column: 2 / -2;
-    grid-row: 3;
+    /* grid-row: 3; */
   }
 
   .description__h2 {
@@ -35,6 +30,11 @@ const { md } = Astro.props;
     display: grid;
     row-gap: var(--gap-16);
     font-size: var(--font-18);
+  }
+  .colums-markdown {
+    column-width: 50ch;
+    column-gap: var(--gap-32);
+    column-rule: 1px solid var(--violet-light);
   }
 
   @media screen and (max-width: 959px) {

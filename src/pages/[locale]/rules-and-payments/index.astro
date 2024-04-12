@@ -5,16 +5,18 @@ import '@Styles/articles_page.css';
 import query from '@Queries/page_rules-and-payments';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
+import RuleItem from '@Components/ui-elements/RuleItem.astro';
+// Libs
+import { single, toMarkdown } from '@Lib/prismiccms';
 // Types
 import type { IRulesAndPaymentsPage } from '@Types';
 
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
-import { single, toMarkdown } from '@Lib/prismiccms';
 const response = await single(query, 'page_rules-and-payments', lang);
 
 const data = response.data as IRulesAndPaymentsPage;
-const md = await toMarkdown(data.text);
+const md = await toMarkdown(data.sub_title);
 ---
 
 <head>
@@ -26,13 +28,35 @@ const md = await toMarkdown(data.text);
 </head>
 
 <Layout>
-  <main class="grid">
+  <main class="grid separator">
     <div class="page-header column-sized">
       <h1 class="header__heading">{data.title}</h1>
-      {data.description ? <p class="page-header__description font-20">{data.description}</p> : null}
+      {
+        data.sub_title ? (
+          <div class="page-header__description markdown font-20">
+            <Fragment set:html={md} />
+          </div>
+        ) : null
+      }
     </div>
-    <div class="page__content markdown">
-      <Fragment set:html={md} />
-    </div>
+    <ul class="rules">
+      {data.rules.map(folder => <RuleItem href={folder.href} name={folder.name} />)}
+    </ul>
   </main>
 </Layout>
+
+<style>
+  .rules {
+    grid-column: 2 / -2;
+    max-width: 70ch;
+    justify-self: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--gap-24);
+  }
+  @media screen and (max-width: 559px) {
+    .rules {
+      justify-self: stretch;
+    }
+  }
+</style>

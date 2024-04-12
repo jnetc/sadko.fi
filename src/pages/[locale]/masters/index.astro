@@ -10,7 +10,7 @@ import Layout from '@Layouts/Layout.astro';
 import Article from '@Components/pages-with-articles/Article.astro';
 import PageEmpty from '@Components/page-empty/PageEmpty.astro';
 // Libs
-import { single, repeatable } from '@Lib/prismiccms';
+import { single, repeatable, toMarkdown } from '@Lib/prismiccms';
 
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
@@ -23,6 +23,7 @@ const articles = await repeatable(repeatableQuery, 'master', lang);
 // const articles = await RepeatableLocaleData(articlesQuery, 'master', lang);
 
 const data = response.data as IPage;
+const md = await toMarkdown(data.sub_title);
 ---
 
 <head>
@@ -37,7 +38,13 @@ const data = response.data as IPage;
   <main class="grid separator">
     <div class="page-header">
       <h1 class="header__heading">{data.title}</h1>
-      {data.description ? <p class="page-header__description font-20">{data.description}</p> : null}
+      {
+        data.sub_title ? (
+          <div class="page-header__description markdown font-20">
+            <Fragment set:html={md} />
+          </div>
+        ) : null
+      }
     </div>
     {
       articles.length >= 1 ? (

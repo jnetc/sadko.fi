@@ -71,6 +71,7 @@ export type Pages =
   | "useful"
   | "parent"
   | "feedback"
+  | "rules-and-payment"
   | "common_data";
 
 export type TypeUICardShapes =
@@ -121,6 +122,10 @@ export type HeadingTextType = {
 export type TitleDescriptionType = {
   title: string;
   description: string;
+}
+export type TitleWithSubTitleType = {
+  title: string;
+  sub_title: RichTextField;
 }
 
 export type HrefType = {
@@ -218,7 +223,7 @@ export interface HomeBodyFeedbacks {
   primary: HeadingTextType;
 }
 
-export interface IPage extends SEOType, TitleDescriptionType { }
+export interface IPage extends SEOType, TitleWithSubTitleType { }
 
 export interface IActivity extends SEOType, TitleDescriptionType, SlugType {
   image: ImageType;
@@ -239,21 +244,24 @@ export interface IActivity extends SEOType, TitleDescriptionType, SlugType {
 
 export interface IArticle extends SEOType, TitleDescriptionType, SlugType {
   image: ImageType;
-  description: string;
+  // description: string;
   author: string;
   text: RichTextField
   publication_date: string;
 }
 
-export interface IAboutPage extends SEOType, TitleDescriptionType {
+export interface IAboutPage extends SEOType, TitleWithSubTitleType {
   text: RichTextField
 }
 
-export interface IRulesAndPaymentsPage extends SEOType, TitleDescriptionType {
+export interface IRulesAndPaymentsPage extends SEOType, TitleWithSubTitleType {
+  rules: Array<{href: HrefType, name: string}>
+}
+export interface IRulesAndPayments extends SEOType, TitleDescriptionType, SlugType {
   text: RichTextField
 }
 
-export interface IMembershipPage extends SEOType, TitleDescriptionType, SecondaryButtonType {
+export interface IMembershipPage extends SEOType, TitleWithSubTitleType, SecondaryButtonType {
   text: RichTextField
 }
 
@@ -263,11 +271,11 @@ export interface ISchedulePage extends SEOType {
   text: RichTextField
 }
 
-export interface IGalleryPage extends SEOType, TitleDescriptionType {
+export interface IGalleryPage extends SEOType, TitleWithSubTitleType {
   folder: Array<{href: HrefType, name: string}>
 }
 
-export interface IBlanksPage extends SEOType, TitleDescriptionType {
+export interface IBlanksPage extends SEOType, TitleWithSubTitleType {
   blank: Array<{href: HrefType, name: string}>
 }
 

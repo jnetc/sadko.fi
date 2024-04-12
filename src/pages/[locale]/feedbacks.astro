@@ -7,7 +7,7 @@ import pageQuery, { repeatableQuery } from '@Queries/page_feedbacks';
 import Layout from '@Layouts/Layout.astro';
 import FeedbackArticle from '@Components/feedback-articles/FeedbackArticle.astro';
 // Libs
-import { single, repeatable } from '@Lib/prismiccms';
+import { single, repeatable, toMarkdown } from '@Lib/prismiccms';
 // Types
 import type { IFeedback, IPage } from '@Types';
 
@@ -17,6 +17,7 @@ const response = await single(pageQuery, 'page_feedbacks', lang);
 const articles = await repeatable(repeatableQuery, 'feedback', lang);
 
 const data = response.data as IPage;
+const md = await toMarkdown(data.sub_title);
 ---
 
 <head>
@@ -31,7 +32,13 @@ const data = response.data as IPage;
   <main class="grid feedbacks separator">
     <div class="page-header column-sized">
       <h1 class="header__heading">{data.title}</h1>
-      {data.description ? <p class="page-header__description font-20">{data.description}</p> : null}
+      {
+        data.sub_title ? (
+          <div class="page-header__description markdown font-20">
+            <Fragment set:html={md} />
+          </div>
+        ) : null
+      }
     </div>
     {
       articles.map((i, index) => {

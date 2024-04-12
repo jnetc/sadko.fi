@@ -2,6 +2,14 @@
   row-gap: var(--gap-64);
 }
 
+.grid.separator .page-header {
+  padding-block-end: 0;
+}
+
+.grid:not(.separator) .page-header {
+  padding-block-end: var(--gap-64);
+}
+
 .page-header,
 .page__content,
 .page__empty {
@@ -49,6 +57,8 @@
   justify-self: center;
 }
 
+
+
 .page__empty * {
   justify-self: center;
 }
@@ -57,9 +67,9 @@
   padding-block: var(--gap-12) var(--gap-24);
 }
 
-.page-header:not(:has(.page-header__description)) {
+/* .page-header:not(:has(.page-header__description)) {
   padding-block-end: var(--gap-64);
-}
+} */
 
 .page-header:not(:has(.page-header__description)):has(~ .page__empty) {
   padding-block-end: 0;

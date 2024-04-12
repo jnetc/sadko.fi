@@ -15,6 +15,7 @@ const response = await single(query, 'page_membership', lang);
 
 const data = response.data as IMembershipPage;
 const md = await toMarkdown(data.text);
+const subTitle = await toMarkdown(data.sub_title);
 ---
 
 <head>
@@ -29,7 +30,13 @@ const md = await toMarkdown(data.text);
   <main class="grid about">
     <div class="page-header column-sized">
       <h1 class="header__heading">{data.title}</h1>
-      {data.description ? <p class="page-header__description font-20">{data.description}</p> : null}
+      {
+        data.sub_title ? (
+          <div class="page-header__description markdown font-20">
+            <Fragment set:html={subTitle} />
+          </div>
+        ) : null
+      }
     </div>
     <div class="page__content markdown">
       <Fragment set:html={md} />

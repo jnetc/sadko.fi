@@ -30,6 +30,7 @@ body {
   -webkit-font-smoothing: antialiased; /* for MacOs */
 }
 
+/* GLOBAL MEDIA */
 img,
 picture,
 svg,
@@ -45,15 +46,21 @@ svg {
   -webkit-user-select: none;
 }
 
-a {
-  text-decoration: none;
-}
-a:active {
+/* GLOBAL TEXT */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--black);
+  text-wrap: pretty;
+  line-height: 1.2;
 }
 
-ul {
-  list-style-type: none;
+p {
+  text-wrap: pretty;
+  line-height: 1.4;
 }
 
 p,
@@ -62,6 +69,45 @@ textarea {
   font-weight: 400;
 }
 
+a,
+p,
+em {
+  font-size: clamp(var(--font-16), 3vw, var(--font-18));
+}
+
+p,
+li,
+time {
+  color: var(--grey-300);
+}
+
+a {
+  text-decoration: none;
+}
+
+a:active {
+  color: var(--black);
+}
+
+ul {
+  list-style-type: none;
+}
+
+.font-20,
+.font-20 p {
+  font-size: clamp(var(--font-18), 2.75vw, var(--font-20));
+}
+
+.font-24,
+.font-24 p {
+  font-size: clamp(var(--font-20), 2.5vw, var(--font-24));
+}
+
+time {
+  font-size: var(--font-14);
+}
+
+/* RESET BUTTON STYLE */
 button {
   appearance: none;
   background-color: transparent;
@@ -74,7 +120,7 @@ button {
 
 main {
   min-height: calc(100dvh - 84px);
-  padding-block: var(--gap-36) var(--gap-96);
+  padding-block: var(--gap-56) var(--gap-96);
   align-items: baseline;
 }
 
@@ -95,53 +141,18 @@ main {
 .href {
   position: relative;
   color: var(--violet);
+  font-size: clamp(var(--font-16), 3vw, var(--font-18));
   font-weight: bold;
   text-decoration: underline transparent;
-  text-decoration-thickness: 5px;
   text-underline-offset: 5px;
   transition: all .3s ease-in-out;
 }
 .href:hover {
   text-decoration: underline var(--violet);
   text-underline-offset: 2px;
-  text-decoration-thickness: 5px;
 }
 
-h1, h2, h3,h4, h5, h6 {
-  color: var(--black);
-  text-wrap: pretty;
-  line-height: 1.2;
-}
-
-p {
-  text-wrap: pretty;
-  line-height: 1.4;
-}
-
-a, p, em {
-  font-size: clamp(var(--font-16), 3vw, var(--font-18));
-}
-
-.font-20,
-.font-20 p {
-  font-size: clamp(var(--font-18), 2.75vw, var(--font-20));
-}
-
-.font-24,
-.font-24 p {
-  font-size: clamp(var(--font-20), 2.5vw, var(--font-24));
-}
-
-time {
-  font-size: var(--font-14);
-}
-
-p,
-li,
-time {
-  color: var(--grey-300);
-}
-
+/* COLORS */
 .bg-violet {
   background-color: var(--violet);
 }

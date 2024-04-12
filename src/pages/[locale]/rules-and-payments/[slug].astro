@@ -1,0 +1,70 @@
+---
+export const prerender = true;
+// Global Styles
+import '@Styles/articles_page.css';
+// Query
+import { repeatableQuery } from '@Queries/page_rules-and-payments';
+// Types
+import type { IRulesAndPayments } from '@Types';
+// Layouts
+import Layout from '@Layouts/Layout.astro';
+import BackwardButton from '@Components/ui-elements/BackwardButton.astro';
+// Libs
+import { staticPath, repeatable, toMarkdown } from '@Lib/prismiccms';
+
+const lang = Astro.currentLocale as 'ru' | 'fi';
+
+export async function getStaticPaths() {
+  const response = await staticPath(repeatableQuery, 'rules-and-payment');
+
+  return response.flatMap(i => {
+    const data = i.data as IRulesAndPayments;
+
+    return [
+      {
+        params: { locale: 'ru', slug: data.slug.url },
+        props: { slug: data.slug.url },
+      },
+      {
+        params: { locale: 'fi', slug: data.slug.url },
+        props: { slug: data.slug.url },
+      },
+    ];
+  });
+}
+
+const response = await repeatable(repeatableQuery, 'rules-and-payment', lang);
+
+const { slug } = Astro.props;
+
+const [page] = response.filter(i => {
+  const data = i.data as IRulesAndPayments;
+
+  if (data.slug.url !== slug) return;
+
+  return data;
+});
+
+const data = page.data as IRulesAndPayments;
+const md = await toMarkdown(data.text);
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>{data.seo_title}</title>
+  <meta name="description" content={data.seo_description} />
+  <link rel="canonical" href={`https://sadko.fi/${lang}/rules-and-payments/${data.slug.url}`} hreflang={lang} />
+</head>
+
+<Layout>
+  <main class="grid">
+    <BackwardButton isOneColumn />
+    <div class="page-header column-sized">
+      <h1 class="header__heading">{data.title}</h1>
+    </div>
+    <div class="page__content markdown">
+      <Fragment set:html={md} />
+    </div>
+  </main>
+</Layout>

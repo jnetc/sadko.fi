@@ -104,7 +104,10 @@
   --size-64: 4rem;
   --size-72: 4.5rem;
   --size-96: 6rem;
-  --size-96: 6rem;
+  --size-112: 7rem;
+  --size-128: 8rem;
+  --size-152: 9.5rem;
+  --size-176: 11rem;
   --size-192: 12rem;
   --size-208: 13rem;
 }

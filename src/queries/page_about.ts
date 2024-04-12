@@ -5,7 +5,7 @@ export default `{
         seo_title
         seo_description
         title
-     		description
+     		sub_title
         text
       }
     }

@@ -11,10 +11,11 @@ import type { IBlanksPage } from '@Types';
 
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
-import { single } from '@Lib/prismiccms';
+import { single, toMarkdown } from '@Lib/prismiccms';
 const response = await single(query, 'page_blanks', lang);
 
 const data = response.data as IBlanksPage;
+const md = await toMarkdown(data.sub_title);
 ---
 
 <Layout>
@@ -29,7 +30,13 @@ const data = response.data as IBlanksPage;
   <main class="grid separator">
     <div class="page-header column-sized">
       <h1 class="header__heading">{data.title}</h1>
-      {data.description ? <p class="page-header__description font-20">{data.description}</p> : null}
+      {
+        data.sub_title ? (
+          <div class="page-header__description markdown font-20">
+            <Fragment set:html={md} />
+          </div>
+        ) : null
+      }
     </div>
     <ul class="blanks">
       {data.blank.map(folder => <BlankItem href={folder.href} name={folder.name} />)}
