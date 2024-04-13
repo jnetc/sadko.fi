@@ -11,22 +11,22 @@ const { href, name } = Astro.props;
 ---
 
 <li>
-  <a href=`${url}/${href.url}` class="blank" title={name} aria-label={name}>
-    <svg class="blank__front" aria-hidden="true">
-      <use xlink:href="/svg/shapes.svg#blank-front"></use>
+  <a href=`${url}/${href.url}` class="rules" title={name} aria-label={name}>
+    <svg class="rules__front" aria-hidden="true">
+      <use xlink:href="/svg/shapes.svg#rules-front"></use>
     </svg>
-    <svg class="blank__back" aria-hidden="true">
+    <svg class="rules__back" aria-hidden="true">
       <use xlink:href="/svg/shapes.svg#blank-back"></use>
     </svg>
-    <svg class="blank__pen" aria-hidden="true">
-      <use xlink:href="/svg/shapes.svg#blank-pen"></use>
+    <svg class="rules__stamp" aria-hidden="true">
+      <use xlink:href="/svg/shapes.svg#rules-stamp"></use>
     </svg>
-    <p class="blank__name">{name}</p>
+    <p class="rules__name">{name}</p>
   </a>
 </li>
 
 <style>
-  .blank {
+  .rules {
     height: 100%;
     display: grid;
     grid-template-rows: min-content 1fr;
@@ -39,7 +39,7 @@ const { href, name } = Astro.props;
     transition: all 0.3s ease-in-out;
   }
 
-  .blank:hover {
+  .rules:hover {
     background-color: var(--opacity-8);
   }
 
@@ -51,43 +51,41 @@ const { href, name } = Astro.props;
     transition: all 0.3s ease-in-out;
   }
 
-  .blank__front,
-  .blank__back {
+  .rules__front,
+  .rules__back {
     position: relative;
     justify-self: center;
   }
 
-  .blank:hover .blank__front {
+  .rules:hover .rules__front {
     rotate: z -10deg;
     scale: 1.1;
   }
 
-  .blank__back {
+  .rules__back {
     max-width: 110px;
     left: 0.5rem;
     bottom: 0.25rem;
     z-index: -1;
   }
-  .blank:hover .blank__back {
+  .rules:hover .rules__back {
     rotate: z 10deg;
     scale: 1.1;
   }
 
-  .blank__pen {
-    height: 100px;
-    width: 1rem;
+  .rules__stamp {
+    height: 4rem;
     position: relative;
     justify-self: center;
-    right: -4.5rem;
-    bottom: 1rem;
+    right: -1.8rem;
+    bottom: -0.5rem;
   }
-  .blank:hover .blank__pen {
-    translate: -3rem 0;
+  .rules:hover .rules__stamp {
     rotate: z 20deg;
-    scale: 1.1;
+    scale: 1.25;
   }
 
-  .blank__name {
+  .rules__name {
     align-self: flex-start;
     font-weight: bold;
     text-align: center;
@@ -97,15 +95,15 @@ const { href, name } = Astro.props;
     svg {
       scale: 1.1;
     }
-    .blank__front {
+    .rules__front {
       rotate: z -10deg;
     }
-    .blank__back {
+    .rules__back {
       rotate: z 10deg;
     }
-    .blank__pen {
-      translate: -3rem 0;
-      rotate: z 20deg;
+    .rules__stamp {
+      rotate: z 10deg;
+      scale: 1.1;
     }
   }
 </style>

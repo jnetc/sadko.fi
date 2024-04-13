@@ -11,13 +11,13 @@ const { href, name } = Astro.props;
 <li>
   <a href={href.url} target={href.target} class="blank" title={href.url} aria-label={href.url}>
     <svg class="blank__front" aria-hidden="true">
-      <use xlink:href="/svg/shapes.svg#blank-front"></use>
+      <use xlink:href="/svg/shapes.svg#form-front"></use>
     </svg>
     <svg class="blank__back" aria-hidden="true">
       <use xlink:href="/svg/shapes.svg#blank-back"></use>
     </svg>
     <svg class="blank__pen" aria-hidden="true">
-      <use xlink:href="/svg/shapes.svg#blank-pen"></use>
+      <use xlink:href="/svg/shapes.svg#form-pen"></use>
     </svg>
     <p class="blank__name">{name}</p>
   </a>
