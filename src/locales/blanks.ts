@@ -1,28 +1,104 @@
-export const locale_blanks = {
+export const locale_blank = {
   ru: {
-    seo_camp_title: 'Анкета для лагеря',
-    seo_club_title: 'Анкета для кружка',
-    camp_title: 'Анкета для лагеря',
-    club_title: 'Анкета для кружка',
-    camp_sub_title: 'Уважаемые родители, укажите, пожалуйста, название лагеря и заполните анкету! Данные ребенка и родителя пишите на финском языке!',
-    club_sub_title: 'Уважаемые родители, укажите, пожалуйста, название кружка и заполните анкету! Данные ребенка и родителя пишите на финском языке!',
     important: 'Обязательные поля для заполнения',
-    camp_select_all: "Выберите лагерь",
-    club_select_all: "Выберите кружок",
-    legend_child: 'Ребенок',
-    legend_parent: 'Родитель',
+    child_legend: 'Ребенок',
+    child_name_label: 'Имя ребенка',
+    child_name_title: 'Имя и фамилия (только на латинице!)',
+    child_date_label: 'Дата рождения',
+    child_textarea_label: 'Дополнительная информация о ребёнке',
+    child_textarea_title: 'Если не требуется доп. информация о ребёнке, поставте знак прочерк, минус (-)',
+    parent_legend: 'Родитель',
+    parent_name_label: 'Родитель / Опекун / Ответственный плательщик (латиницей)',
+    parent_name_title: 'Имя и фамилия (только на латинице!)',
+    parent_hetu_label: 'Ваш Henkilötunnus',
+    parent_hetu_title: 'Ваш Henkilöstunnus (Например: 123456-457F)',
+    parent_address_label: 'Ваш адрес',
+    parent_postcode_label: 'Ваш почтовый индекс',
+    parent_postcode_title: 'Ваш почтовый индекс должен содержать 5 цифр',
+    parent_city_label: 'Ваш город',
+    parent_phone_label: 'Номер телефон',
+    parent_phone_title: 'Номер может содержать не менее 10 цифр, + и #',
+    parent_email_label: 'Электронная почта',
+    parent_email_title: 'Например: example@example.com',
+    parent_textarea_label: 'Дополнительная информация',
+    accept_rules: 'Я ознакомлен(а) и согласен(а) с правилами поведения в лагере.',
   },
   fi: {
-    seo_camp_title: 'Leirin kyselylomake',
-    seo_club_title: 'Klubi kyselylomake',
-    camp_title: 'Leirin kyselylomake',
-    club_title: 'Klubi kyselylomake',
-    camp_sub_title: 'Hyvät vanhemmat, ilmoittakaa leirin nimi ja täyttäkää lomake! Kirjoittakaa lapsen ja vanhemman tiedot suomeksi!',
-    club_sub_title: 'Hyvät vanhemmat, ilmoittakaa kerhon nimi ja täyttäkää lomake! Kirjoittakaa lapsen ja vanhemman tiedot suomeksi!',
     important: 'Pakolliset täytettävät kentät',
-    camp_select_all: "Valitse leiri",
-    club_select_all: "Valitse kerho",
-    legend_child: 'Lapsi',
-    legend_parent: 'Vanhempi',
+    child_legend: 'Lapsi',
+    child_name_label: 'Lapsun nimi',
+    child_name_title: 'Nimi ja sukunimi',
+    child_date_label: 'Syntymäpäivä',
+    child_textarea_label: 'Lisätietoa lapsusta',
+    child_textarea_title: 'Jos ei tarvitsa lisätietoa, anna tyhjä merkki, miinus (-)',
+    parent_legend: 'Vanhempi',
+    parent_name_label: 'Vanhempi / Huoltaja / Vastuullinen maksaja',
+    parent_name_title: 'Nimi ja sukunimi',
+    parent_hetu_label: 'Henkilöstunnus',
+    parent_hetu_title: 'Henkilöstunnus (esim. 123456-457F)',
+    parent_address_label: 'Osoite',
+    parent_postcode_label: 'Postinumero',
+    parent_postcode_title: 'Postinumero voi sisältää 5 numeroa',
+    parent_city_label: 'Kaupunki',
+    parent_phone_label: 'Puhelinnumero',
+    parent_phone_title: 'Puhelinnumero voi sisältää 10 numeroa, + ja #',
+    parent_email_label: 'Sähköposti',
+    parent_email_title: 'Esimerkikä: example@example.com',
+    parent_textarea_label: 'Lisätietoa',
+    accept_rules: 'Olen lukenut ja hyvästytynyt lomakkeen sallimiseksi.'
+  },
+}
+
+export const locale_camp_blank = {
+  ru: {
+    seo_title: 'Анкета для лагеря',
+    title: 'Анкета для лагеря',
+    sub_title: 'Уважаемые родители, укажите, пожалуйста, название лагеря и заполните анкету! Данные ребенка и родителя пишите на финском языке!',
+    select_all: "Выберите лагерь",
+  },
+  fi: {
+    seo_title: 'Leirin kyselylomake',
+    title: 'Leirin kyselylomake',
+    sub_title: 'Hyvät vanhemmat, ilmoittakaa leirin nimi ja täyttäkää lomake! Kirjoittakaa lapsen ja vanhemman tiedot suomeksi!',
+    select_all: "Valitse leiri",
+  },
+};
+export const locale_camp_blank_select = {
+  ru: {
+    label: 'Название лагеря',
+    name: 'Лагерь',
+    select_all: "Выберите лагерь",
+  },
+  fi: {
+    label: 'Leirin nimi',
+    name: 'Лагерь', // То, что будет видно в анкете в письме
+    select_all: "Valitse leiri",
+  },
+};
+
+
+export const locale_club_blank = {
+  ru: {
+    seo_title: 'Анкета для кружка',
+    title: 'Анкета для кружка',
+    sub_title: 'Уважаемые родители, укажите, пожалуйста, название кружка и заполните анкету! Данные ребенка и родителя пишите на финском языке!',
+  },
+  fi: {
+    seo_title: 'Klubi kyselylomake',
+    title: 'Klubi kyselylomake',
+    sub_title: 'Hyvät vanhemmat, ilmoittakaa kerhon nimi ja täyttäkää lomake! Kirjoittakaa lapsen ja vanhemman tiedot suomeksi!',
+  },
+};
+
+export const locale_club_blank_select = {
+  ru: {
+    label: 'Название кружка',
+    name: 'Кружок',
+    select_all: "Выберите кружок",
+  },
+  fi: {
+    label: 'Kerhon nimi',
+    name: 'Кружок', // То, что будет видно в анкете в письме
+    select_all: "Valitse kerho",
   },
 };

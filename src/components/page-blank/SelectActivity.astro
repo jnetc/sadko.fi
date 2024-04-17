@@ -1,0 +1,81 @@
+---
+// import { locale_blanks } from '@Locales/blanks';
+// const lang = Astro.params.locale as 'ru' | 'fi';
+
+interface Props {
+  data: {
+    label: string;
+    name: string;
+    select_all: string;
+  };
+}
+const { data } = Astro.props;
+const camps = ['Лагерь в Болгарии', 'Лагерь в Испании'];
+---
+
+<script>
+  const select = document.querySelector<HTMLSelectElement>('.blank-select__select');
+  // const blank = document.querySelectorAll<HTMLDivElement>('.blank__item');
+
+  select?.addEventListener('change', (ev: Event) => {
+    const value = (ev.target as HTMLSelectElement).value;
+    console.log(value);
+
+    // blank.forEach(i => {
+    //   if (value === 'all') {
+    //     return (i.style.display = 'flex');
+    //   }
+    //   if (i.dataset.id === value) {
+    //     return (i.style.display = 'flex');
+    //   }
+
+    //   i.style.display = 'none';
+    // });
+  });
+</script>
+<div class="blank-select">
+  <label class="required" for="selection">{data.label}</label>
+  <svg class="blank-select__icon" aria-hidden="true">
+    <use xlink:href="/svg/ui_icons.svg#arrow_drop_down"></use>
+  </svg>
+  <select class="blank-select__select" id="selection" name={data.name} required>
+    <option value="">{data.select_all}</option>
+    {camps.map(i => <option value={i}>{i}</option>)}
+  </select>
+</div>
+
+<style>
+  .blank-select {
+    display: grid;
+    position: relative;
+    row-gap: var(--gap-8);
+  }
+
+  .blank-select__icon {
+    width: 1.5rem;
+    aspect-ratio: 1;
+    position: absolute;
+    inset-block: 2.4rem;
+    right: 1rem;
+    fill: var(--violet);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .blank-select__select {
+    appearance: none;
+    min-width: max-content;
+    padding-block: var(--gap-16);
+    padding-inline: var(--gap-16) var(--gap-40);
+    border: 1.5px solid var(--violet-light);
+    border-radius: var(--border-corner-8);
+    outline-color: var(--violet);
+    font-family: 'Comfortaa', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: clamp(var(--font-16), 2vw, var(--font-18));
+    cursor: pointer;
+  }
+  .shedule-select:focus-visible {
+    border-color: var(--violet);
+  }
+</style>

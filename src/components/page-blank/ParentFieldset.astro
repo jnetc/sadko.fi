@@ -1,0 +1,76 @@
+---
+import { locale_blank } from '@Locales/blanks';
+
+const lang = Astro.params.locale as 'ru' | 'fi';
+---
+
+<fieldset class="form__parent">
+  <legend>{locale_blank[lang].parent_legend}</legend>
+  <div class="form__input">
+    <label class="required" for="parent-name">{locale_blank[lang].parent_name_label}</label>
+    <input
+      type="text"
+      id="parent-name"
+      name="Имя родителя / Опекуна"
+      required
+      pattern="[a-zA-ZäåöÄÅÖ \\-]{2,}"
+      title={locale_blank[lang].parent_name_title}
+    />
+  </div>
+  <div class="form__input">
+    <label class="required" for="parent-hetu">{locale_blank[lang].parent_hetu_label}</label>
+    <input
+      type="text"
+      id="parent-hetu"
+      name="Henkilätunnus"
+      required
+      pattern="[0-9]{6}[\\-A]{1}[0-9A-Z]{4}"
+      title={locale_blank[lang].parent_hetu_title}
+    />
+  </div>
+  <div class="form__input">
+    <label class="required" for="parent-address">{locale_blank[lang].parent_address_label}</label>
+    <input type="text" id="parent-address" name="Адрес" required />
+  </div>
+  <div class="form__input">
+    <label class="required" for="parent-index">{locale_blank[lang].parent_postcode_label}</label>
+    <input
+      type="text"
+      id="parent-index"
+      name="Индекс"
+      required
+      pattern="[0-9]{5}"
+      title={locale_blank[lang].parent_postcode_title}
+    />
+  </div>
+  <div class="form__input">
+    <label class="required" for="parent-city">{locale_blank[lang].parent_city_label}</label>
+    <input type="text" id="parent-city" name="Город" required />
+  </div>
+  <div class="form__input">
+    <label class="required" for="parent-phone">{locale_blank[lang].parent_phone_label}</label>
+    <input
+      type="tel"
+      id="parent-phone"
+      name="Номер телефона"
+      required
+      pattern="[0-9+#]{10,}"
+      title={locale_blank[lang].parent_phone_title}
+    />
+  </div>
+  <div class="form__input">
+    <label class="required" for="parent-email">{locale_blank[lang].parent_email_label}</label>
+    <input
+      type="email"
+      id="parent-email"
+      name="Эл. почта"
+      required
+      pattern="[a-zA-Z0-9.+_\\-]+@[a-z]{2,}\.[a-z]{2,}"
+      title={locale_blank[lang].parent_email_title}
+    />
+  </div>
+  <div class="form__input">
+    <label for="parent-info">{locale_blank[lang].parent_textarea_label}</label>
+    <textarea id="parent-info" name="Доп. информация" rows="5"></textarea>
+  </div>
+</fieldset>

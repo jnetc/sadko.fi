@@ -1,0 +1,35 @@
+---
+import { locale_blank } from '@Locales/blanks';
+
+const lang = Astro.params.locale as 'ru' | 'fi';
+---
+
+<fieldset class="form__child">
+  <legend>{locale_blank[lang].child_legend}</legend>
+  <div class="form__input">
+    <label class="required" for="child-name">{locale_blank[lang].child_name_label}</label>
+    <input
+      type="text"
+      id="child-name"
+      name="Имя ребёнка"
+      required
+      pattern="[a-zA-ZäåöÄÅÖ \\-]{2,}"
+      title={locale_blank[lang].child_name_title}
+    />
+  </div>
+  <div class="form__input">
+    <label class="required" for="child-date">{locale_blank[lang].child_date_label}</label>
+    <input type="date" id="child-date" name="Дата рождения" required />
+  </div>
+  <div class="form__input">
+    <label class="required" for="child-info">{locale_blank[lang].child_textarea_label}</label>
+    <textarea
+      id="child-info"
+      name="Дополнительная информация о ребёнке"
+      placeholder="Если ребенок имеет инвалидность или какие-то пробелы со здоровьем. Либо поставте знак прочерк, минус (-)"
+      rows="5"
+      minlength="1"
+      title={locale_blank[lang].child_textarea_title}
+      required></textarea>
+  </div>
+</fieldset>

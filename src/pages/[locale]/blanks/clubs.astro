@@ -1,0 +1,90 @@
+---
+// Global Styles
+import '@Styles/articles_page.css';
+import '@Styles/blanks.css';
+// Layouts
+import Layout from '@Layouts/Layout.astro';
+import BackwardButton from '@Components/ui-elements/BackwardButton.astro';
+import SubmitButton from '@Components/page-blank/SubmitButton.astro';
+import AcceptRules from '@Components/page-blank/AcceptRules.astro';
+import ParentFieldset from '@Components/page-blank/ParentFieldset.astro';
+import ChildFieldset from '@Components/page-blank/ChildFieldset.astro';
+import SelectActivity from '@Components/page-blank/SelectActivity.astro';
+// Locale
+import { locale_blank, locale_club_blank, locale_club_blank_select } from '@Locales/blanks';
+
+const lang = Astro.params.locale as 'ru' | 'fi';
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>{locale_club_blank[lang].seo_title}</title>
+  <meta name="robots" content="noindex nofollow" />
+</head>
+
+<Layout>
+  <main class="grid separator blank">
+    <BackwardButton isOneColumn />
+    <div class="page-header column-sized">
+      <h1 class="header__heading">{locale_club_blank[lang].seo_title}</h1>
+      <div class="page-header__description markdown font-20">{locale_club_blank[lang].sub_title}</div>
+      <p class="header__important">{locale_blank[lang].important}</p>
+    </div>
+    <form class="page__form" action="https://formsubmit.co/55167306a18590508af530c1102776a5" method="post">
+      <!--  "Thank You" page -->
+      <input type="hidden" name="_next" value=`https://sadkofi.netlify.app/${lang}/blanks/success` />
+      <!-- multiple email addresses -->
+      <input type="hidden" name="_cc" value="zero570@gmail.com" />
+      <!-- honeypot -->
+      <input type="hidden" name="_honey" style="display:none" tabindex="-1" />
+      <!-- reCAPTCHA -->
+      <input type="hidden" name="_captcha" value="false" />
+      <!-- Email Template -->
+      <input type="hidden" name="_template" value="table" />
+      <SelectActivity data={locale_club_blank_select[lang]} />
+      <ChildFieldset />
+      <ParentFieldset />
+      <AcceptRules />
+      <SubmitButton />
+    </form>
+  </main>
+</Layout>
+
+<style>
+  .page__form {
+    grid-column: 2 / -2;
+    width: 100%;
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    gap: var(--gap-32);
+    padding: var(--gap-32);
+    background-color: var(--white);
+    border-radius: var(--border-corner-32);
+    box-shadow:
+      0 25px 20px var(--opacity-3),
+      0 15px 10px var(--opacity-3);
+  }
+  .header__important {
+    position: relative;
+    max-width: fit-content;
+    font-size: var(--font-16);
+    margin-inline: auto;
+  }
+
+  .header__important::before {
+    content: '*';
+    position: absolute;
+    inset-block: 0;
+    left: -0.5rem;
+    color: var(--red);
+  }
+  @media (max-width: 559px) {
+    .page__form {
+      padding: var(--gap-32) var(--gap-16);
+      border-radius: var(--border-corner-24);
+    }
+  }
+</style>

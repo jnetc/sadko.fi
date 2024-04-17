@@ -10,8 +10,8 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
 <Layout>
   <main class="grid">
     <img src="/svg/page_404.svg" alt="page not found" />
-    <h1>{locale_404[lang].h1}</h1>
-    <p>{locale_404[lang].p}</p>
+    <h1>{locale_404[lang].not_found_h1}</h1>
+    <p>{locale_404[lang].not_found_p}</p>
     <a href=`/${lang}` class="btn btn-secondary btn-404 revers arrow-icon">
       {locale_404[lang].btn}
       <span class="btn__icon" aria-hidden="true">

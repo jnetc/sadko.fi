@@ -1,0 +1,21 @@
+---
+import { locale_blank } from '@Locales/blanks';
+
+const lang = Astro.params.locale as 'ru' | 'fi';
+---
+
+<div class="form__policy">
+  <input type="checkbox" id="policy" required />
+  <p>
+    {locale_blank[lang].accept_rules}
+    <a class="href" href=`/${lang}/rules-and-payments/rules-of-camp`>Правила лагеря</a>
+  </p>
+</div>
+
+<style>
+  .form__policy {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--gap-16);
+  }
+</style>
