@@ -1,5 +1,5 @@
 ---
-import { main_locale } from '@Locales/main_locale';
+import { locale_buttons } from '@Locales/buttons';
 
 interface Props {
   isOneColumn?: true;
@@ -9,13 +9,13 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
 const { isOneColumn } = Astro.props;
 ---
 
-<div class=`slug-back ${isOneColumn && 'one-column'}`>
+<div class=`slug-back ${isOneColumn ? 'one-column' : ''}`>
   <button type="button" class="href arrow-icon" onclick="history.back()">
     <span aria-hidden="true">
       <svg class="fill-violet" data-xlink="arrow_backward">
         <use xlink:href="/svg/ui_icons.svg#arrow_backward"></use>
       </svg>
     </span>
-    {main_locale[lang].button_back}
+    {locale_buttons[lang].button_back}
   </button>
 </div>

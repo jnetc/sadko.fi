@@ -71,8 +71,25 @@ textarea {
 
 a,
 p,
-em {
+em,
+input,
+textarea {
   font-size: clamp(var(--font-16), 3vw, var(--font-18));
+}
+
+input,
+textarea {
+  color: var(--black);
+}
+
+input:focus-visible,
+textarea:focus-visible {
+  outline: 1.5px solid  var(--violet-light);
+  outline-offset: .25rem;
+}
+
+textarea::placeholder {
+  color: var(--grey-100);
 }
 
 p,

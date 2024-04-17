@@ -1,0 +1,28 @@
+export const locale_blanks = {
+  ru: {
+    seo_camp_title: 'Анкета для лагеря',
+    seo_club_title: 'Анкета для кружка',
+    camp_title: 'Анкета для лагеря',
+    club_title: 'Анкета для кружка',
+    camp_sub_title: 'Уважаемые родители, укажите, пожалуйста, название лагеря и заполните анкету! Данные ребенка и родителя пишите на финском языке!',
+    club_sub_title: 'Уважаемые родители, укажите, пожалуйста, название кружка и заполните анкету! Данные ребенка и родителя пишите на финском языке!',
+    important: 'Обязательные поля для заполнения',
+    camp_select_all: "Выберите лагерь",
+    club_select_all: "Выберите кружок",
+    legend_child: 'Ребенок',
+    legend_parent: 'Родитель',
+  },
+  fi: {
+    seo_camp_title: 'Leirin kyselylomake',
+    seo_club_title: 'Klubi kyselylomake',
+    camp_title: 'Leirin kyselylomake',
+    club_title: 'Klubi kyselylomake',
+    camp_sub_title: 'Hyvät vanhemmat, ilmoittakaa leirin nimi ja täyttäkää lomake! Kirjoittakaa lapsen ja vanhemman tiedot suomeksi!',
+    club_sub_title: 'Hyvät vanhemmat, ilmoittakaa kerhon nimi ja täyttäkää lomake! Kirjoittakaa lapsen ja vanhemman tiedot suomeksi!',
+    important: 'Pakolliset täytettävät kentät',
+    camp_select_all: "Valitse leiri",
+    club_select_all: "Valitse kerho",
+    legend_child: 'Lapsi',
+    legend_parent: 'Vanhempi',
+  },
+};

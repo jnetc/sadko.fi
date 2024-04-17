@@ -2,7 +2,7 @@
 // Helpers
 import { toMarkdown } from '@Lib/prismiccms';
 // Locale
-import { main_locale } from '@Locales/main_locale';
+import { locale_buttons } from '@Locales/buttons';
 // Types
 import type { IFeedback } from '@Types';
 
@@ -36,15 +36,10 @@ const shapeNumber = (index % 12) + 1;
   }
 
   feedbacks.forEach(feedback => {
-    // const txt = feedback.querySelector<HTMLElement>('.feedback__text')!.scrollHeight;
     const btn = feedback.querySelector<HTMLButtonElement>('.feedback__btn')!;
     if (!btn) {
       return;
     }
-    // if (txt <= 9 * 16 + 16) {
-    //   btn.remove();
-    //   return;
-    // }
 
     btn.addEventListener('mousedown', openSubMenu);
   });
@@ -61,8 +56,8 @@ const shapeNumber = (index % 12) + 1;
   {
     md.length > 300 ? (
       <button class="btn btn-secondary arrow-icon feedback__btn">
-        <p class="btn__more">{main_locale[lang].button_more}</p>
-        <p class="btn__hide">{main_locale[lang].button_hide}</p>
+        <p class="btn__more">{locale_buttons[lang].button_more}</p>
+        <p class="btn__hide">{locale_buttons[lang].button_hide}</p>
         <span class="btn__icon" aria-hidden="true">
           <svg>
             <use xlink:href="/svg/ui_icons.svg#arrow_backward" data-xlink="arrow_backward" />

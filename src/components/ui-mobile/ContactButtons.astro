@@ -1,7 +1,7 @@
 ---
 import ContactButton from './ContactButton.astro';
 // Locale
-import { main_locale } from '@Locales/main_locale';
+import { locale_buttons } from '@Locales/buttons';
 // Types
 import type { ICommonData } from '@Types';
 interface Props {
@@ -24,8 +24,8 @@ const { data } = Astro.props;
 
 <section class="contact">
   <button type="button" class="contact__btn-action">
-    <p>{main_locale[lang].contact_button_show}</p>
-    <p>{main_locale[lang].contact_button_hide}</p>
+    <p>{locale_buttons[lang].contact_button_show}</p>
+    <p>{locale_buttons[lang].contact_button_hide}</p>
   </button>
   <div class="contact__btns">
     {data.phone ? <ContactButton link={data.phone} icon="phone" prefix="tel" /> : null}

@@ -1,15 +1,16 @@
 ---
 // Locale
-import { main_locale } from '@Locales/main_locale';
+import { locale_main } from '@Locales/main';
+import { locale_404 } from '@Locales/404';
 
 const lang = Astro.currentLocale as 'ru' | 'fi';
 ---
 
 <section class="page__empty">
   <img src="/svg/page_empty.svg" alt="page empty" />
-  <p>{main_locale[lang].activities_not_found_p}</p>
+  <p>{locale_main[lang].activities_not_found_p}</p>
   <a href={`/${lang}`} class="btn btn-secondary page__empty-btn revers arrow-icon">
-    {main_locale[lang].page_not_found_btn}
+    {locale_404[lang].btn}
     <span class="btn__icon" aria-hidden="true">
       <svg>
         <use xlink:href="/svg/ui_icons.svg#arrow_outward" data-xlink="arrow_outward"></use>

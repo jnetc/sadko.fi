@@ -1,5 +1,5 @@
 ---
-import { main_locale } from '@Locales/main_locale';
+import { locale_main } from '@Locales/main';
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
 interface Props {
@@ -9,7 +9,7 @@ const { md } = Astro.props;
 ---
 
 <section class="activity__description">
-  <h2 class="description__h2">{main_locale[lang].description}</h2>
+  <h2 class="description__h2">{locale_main[lang].description}</h2>
   <div class="markdown colums-markdown">
     <Fragment set:html={md} />
   </div>

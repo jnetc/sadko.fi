@@ -1,5 +1,5 @@
 ---
-import { main_locale } from '@Locales/main_locale';
+import { locale_main } from '@Locales/main';
 // Components
 import ActivitySlugBlankBtn from '@Components/activity-slugs/ActivitySlugBlankBtn.astro';
 import ActivitySlugCircleBtn from '@Components/activity-slugs/ActivitySlugCircleBtn.astro';
@@ -19,40 +19,40 @@ const { data, publish } = Astro.props;
 
 <section class="activity__details">
   <time datetime={publish.split('T')[0]}>
-    {main_locale[lang].publish}
+    {locale_main[lang].publish}
     {publishDate(publish, lang)}
   </time>
   <h1 class="activity__title">{data.title}</h1>
   <p class="details__text">
-    {main_locale[lang].teacher}
+    {locale_main[lang].teacher}
     <strong>{data.teacher}</strong>
   </p>
   <p class="details__text">
-    {main_locale[lang].date}
+    {locale_main[lang].date}
     <strong>{data.date}</strong>
   </p>
   <p class="details__text">
-    {main_locale[lang].time}
+    {locale_main[lang].time}
     <strong>{data.time}</strong>
   </p>
   <p class="details__text">
-    {main_locale[lang].age}
+    {locale_main[lang].age}
     <strong>{data.age}</strong>
   </p>
   <p class="details__text">
-    {main_locale[lang].price}
+    {locale_main[lang].price}
     <strong>{data.price}</strong>
   </p>
   <address class="details__text">
-    {main_locale[lang].address}
+    {locale_main[lang].address}
     <strong>{data.address}</strong>
   </address>
   <p class="details__text">
-    {main_locale[lang].phone}
+    {locale_main[lang].phone}
     <strong>{data.phone}</strong>
   </p>
   <p class="details__text">
-    {main_locale[lang].email}
+    {locale_main[lang].email}
     <strong>{data.email}</strong>
   </p>
   <div class="details__btns">

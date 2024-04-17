@@ -2,7 +2,7 @@
 // Helpers
 import publishDate from '@Helpers/publishDate';
 // Locale
-import { main_locale } from '@Locales/main_locale';
+import { locale_main } from '@Locales/main';
 // Types
 import type { TitleDescriptionType } from '@Types';
 
@@ -18,7 +18,7 @@ const { content, publish } = Astro.props;
 
 <div class="article__content">
   <time datetime={publish.split('T')[0]} class="article__publish">
-    {main_locale[lang].publish}
+    {locale_main[lang].publish}
     {publishDate(publish, lang)}
   </time>
   <h2 class="article__title">{content.title}</h2>

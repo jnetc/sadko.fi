@@ -3,7 +3,7 @@ import TeacherArticleLink from './TeacherArticleLink.astro';
 // Helpers
 import { toMarkdown } from '@Lib/prismiccms';
 // Locale
-import { main_locale } from '@Locales/main_locale';
+import { locale_buttons } from '@Locales/buttons';
 // Types
 import type { ITeacher } from '@Types';
 
@@ -60,8 +60,8 @@ const md = await toMarkdown(text);
   {
     md.length > 300 ? (
       <button class="btn btn-secondary arrow-icon teacher__btn">
-        <p class="btn__more">{main_locale[lang].button_more}</p>
-        <p class="btn__hide">{main_locale[lang].button_hide}</p>
+        <p class="btn__more">{locale_buttons[lang].button_more}</p>
+        <p class="btn__hide">{locale_buttons[lang].button_hide}</p>
         <span class="btn__icon" aria-hidden="true">
           <svg>
             <use xlink:href="/svg/ui_icons.svg#arrow_backward" data-xlink="arrow_backward" />

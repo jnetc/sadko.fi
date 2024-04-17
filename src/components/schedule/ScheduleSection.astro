@@ -2,7 +2,7 @@
 // Components
 import Day from './Day.astro';
 // Locale
-import { main_locale } from '@Locales/main_locale';
+import { locale_schedule } from '@Locales/schedule';
 
 import type { ISchedule } from '@Types';
 interface Props {
@@ -20,13 +20,13 @@ const { id, data } = Astro.props;
     <h2>{data.name}</h2>
     <a href={data.href.url} target="_blank">{data.address}</a>
   </header>
-  {data.monday.length > 0 ? <Day day={data.monday} name={main_locale[lang].schedule_monday} /> : null}
-  {data.tuesday.length > 0 ? <Day day={data.tuesday} name={main_locale[lang].schedule_tuesday} /> : null}
-  {data.wednesday.length > 0 ? <Day day={data.wednesday} name={main_locale[lang].schedule_wednesday} /> : null}
-  {data.thursday.length > 0 ? <Day day={data.thursday} name={main_locale[lang].schedule_thursday} /> : null}
-  {data.friday.length > 0 ? <Day day={data.friday} name={main_locale[lang].schedule_friday} /> : null}
-  {data.saturday.length > 0 ? <Day day={data.saturday} name={main_locale[lang].schedule_saturday} /> : null}
-  {data.sunday.length > 0 ? <Day day={data.sunday} name={main_locale[lang].schedule_sunday} /> : null}
+  {data.monday.length > 0 ? <Day day={data.monday} name={locale_schedule[lang].monday} /> : null}
+  {data.tuesday.length > 0 ? <Day day={data.tuesday} name={locale_schedule[lang].tuesday} /> : null}
+  {data.wednesday.length > 0 ? <Day day={data.wednesday} name={locale_schedule[lang].wednesday} /> : null}
+  {data.thursday.length > 0 ? <Day day={data.thursday} name={locale_schedule[lang].thursday} /> : null}
+  {data.friday.length > 0 ? <Day day={data.friday} name={locale_schedule[lang].friday} /> : null}
+  {data.saturday.length > 0 ? <Day day={data.saturday} name={locale_schedule[lang].saturday} /> : null}
+  {data.sunday.length > 0 ? <Day day={data.sunday} name={locale_schedule[lang].sunday} /> : null}
 </article>
 
 <style>
