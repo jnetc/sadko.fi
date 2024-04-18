@@ -45,7 +45,7 @@ export type TypeUIActivityIcons =
   | "feedbacks";
 
 
-export type TypePage = "page_masters" | "page_camps" | "page_festivals" | "page_concerts" | "page_projects" | "page_parents" | "page_clubs" | "page_courses" | "page_travels" | "page_celebrations" | "page_concerts" | "page_usefuls" | "page_articles" | "page_feedbacks" | "page_teachers" | "page_schedule" | "page_blanks" | "page_about" | "page_membership" | "page_gallery" | "page_rules-and-payments";
+export type TypePage = "page_masters" | "page_camps" | "page_festivals" | "page_concerts" | "page_projects" | "page_parents" | "page_clubs" | "page_courses" | "page_travels" | "page_celebrations" | "page_concerts" | "page_usefuls" | "page_articles" | "page_feedbacks" | "page_teachers" | "page_schedule" | "page_blanks" | "page_about" | "page_membership" | "page_gallery" | "page_rules-and-payments" | "page_blank-camp" | "page_blank-club";
 
 
 export type Pages =
@@ -272,8 +272,16 @@ export interface IGalleryPage extends SEOType, TitleWithSubTitleType {
   folder: Array<{href: HrefType, name: string}>
 }
 
-export interface IBlanksPage extends SEOType, TitleWithSubTitleType {
+export interface IAllBlankPage extends SEOType, TitleWithSubTitleType {
   blank: Array<{href: HrefType, name: string}>
+}
+
+export interface IBlankSelect  {
+  option: { data: { title: string, date: string, time: string } }
+}
+export interface IBlankPage extends SEOType, TitleWithSubTitleType {
+  important: string;
+  select: Array<IBlankSelect>
 }
 
 

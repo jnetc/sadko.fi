@@ -1,50 +1,65 @@
 ---
-// import { locale_blanks } from '@Locales/blanks';
-// const lang = Astro.params.locale as 'ru' | 'fi';
-
+import type { IBlankSelect } from '@Types';
 interface Props {
-  data: {
-    label: string;
-    name: string;
-    select_all: string;
-  };
+  data: { label: string; name: string; select_all: string };
+  options: IBlankSelect[];
 }
-const { data } = Astro.props;
-const camps = ['Лагерь в Болгарии', 'Лагерь в Испании'];
+const { data, options } = Astro.props;
 ---
 
 <script>
   const select = document.querySelector<HTMLSelectElement>('.blank-select__select');
-  // const blank = document.querySelectorAll<HTMLDivElement>('.blank__item');
+  const selected = document.querySelector<HTMLDivElement>('.selected-data')!;
+  const items = document.querySelectorAll<HTMLParagraphElement>('.selected-data__item')!;
 
   select?.addEventListener('change', (ev: Event) => {
-    const value = (ev.target as HTMLSelectElement).value;
-    console.log(value);
+    const el = ev.target as HTMLSelectElement;
+    if (!el.value) {
+      console.log('no value');
+      selected.classList.remove('show');
+      items.forEach(i => (i.textContent = ''));
+      return;
+    }
 
-    // blank.forEach(i => {
-    //   if (value === 'all') {
-    //     return (i.style.display = 'flex');
-    //   }
-    //   if (i.dataset.id === value) {
-    //     return (i.style.display = 'flex');
-    //   }
-
-    //   i.style.display = 'none';
-    // });
+    selected.classList.add('show');
+    items.forEach((i, id) => {
+      if (id === 0) i.textContent = el.options[el.selectedIndex].dataset.date!;
+      if (id === 1) i.textContent = el.options[el.selectedIndex].dataset.time!;
+    });
   });
 </script>
-<div class="blank-select">
-  <label class="required" for="selection">{data.label}</label>
-  <svg class="blank-select__icon" aria-hidden="true">
-    <use xlink:href="/svg/ui_icons.svg#arrow_drop_down"></use>
-  </svg>
-  <select class="blank-select__select" id="selection" name={data.name} required>
-    <option value="">{data.select_all}</option>
-    {camps.map(i => <option value={i}>{i}</option>)}
-  </select>
-</div>
+
+<section class="select">
+  <div class="blank-select">
+    <label class="required" for="selection">{data.label}</label>
+    <svg class="blank-select__icon" aria-hidden="true">
+      <use xlink:href="/svg/ui_icons.svg#arrow_drop_down"></use>
+    </svg>
+    <select class="blank-select__select" id="selection" name={data.name} required>
+      <option value="">{data.select_all}</option>
+      {
+        options.map(i => {
+          return (
+            <option value={i.option.data.title} data-date={i.option.data.date} data-time={i.option.data.time}>
+              {i.option.data.title}
+            </option>
+          );
+        })
+      }
+    </select>
+  </div>
+  <div class="selected-data" aria-hidden="true">
+    <p class="selected-data__item"></p>
+    <p class="selected-data__item"></p>
+  </div>
+</section>
 
 <style>
+  .select {
+    display: grid;
+    row-gap: var(--gap-16);
+  }
+
   .blank-select {
     display: grid;
     position: relative;
@@ -64,7 +79,7 @@ const camps = ['Лагерь в Болгарии', 'Лагерь в Испани
 
   .blank-select__select {
     appearance: none;
-    min-width: max-content;
+    min-width: 100%;
     padding-block: var(--gap-16);
     padding-inline: var(--gap-16) var(--gap-40);
     border: 1.5px solid var(--violet-light);
@@ -74,8 +89,19 @@ const camps = ['Лагерь в Болгарии', 'Лагерь в Испани
     -webkit-font-smoothing: antialiased;
     font-size: clamp(var(--font-16), 2vw, var(--font-18));
     cursor: pointer;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   .shedule-select:focus-visible {
     border-color: var(--violet);
+  }
+
+  .selected-data {
+    display: grid;
+    row-gap: var(--gap-4);
+    padding-inline-start: var(--gap-18);
+  }
+  .selected-data__item {
+    font-size: var(--font-16);
   }
 </style>

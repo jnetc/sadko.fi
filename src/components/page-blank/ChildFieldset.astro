@@ -26,7 +26,7 @@ const lang = Astro.params.locale as 'ru' | 'fi';
     <textarea
       id="child-info"
       name="Дополнительная информация о ребёнке"
-      placeholder="Если ребенок имеет инвалидность или какие-то пробелы со здоровьем. Либо поставте знак прочерк, минус (-)"
+      placeholder={locale_blank[lang].child_textarea_title}
       rows="5"
       minlength="1"
       title={locale_blank[lang].child_textarea_title}

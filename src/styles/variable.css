@@ -12,7 +12,8 @@
   --grey-50: #DDDDDD;
   --grey-25: #f8f8f8;
   --white: #ffffff;
-  --red: #be3d6e;
+  --error: #be3d6e;
+  --success: #67d74b;
 
   --opacity-3: hsl(253 75% 61% / .03);
   --opacity-5: hsl(253 75% 61% / .05);

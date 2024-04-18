@@ -13,7 +13,7 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
     <h1>{locale_404[lang].not_found_h1}</h1>
     <p>{locale_404[lang].not_found_p}</p>
     <a href=`/${lang}` class="btn btn-secondary btn-404 revers arrow-icon">
-      {locale_404[lang].btn}
+      {locale_404[lang].not_found_btn}
       <span class="btn__icon" aria-hidden="true">
         <svg>
           <use xlink:href="/svg/ui_icons.svg#arrow_outward" data-xlink="arrow_outward"></use>
@@ -46,8 +46,8 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
 
   h1 {
     grid-row: 3;
-    font-size: clamp(var(--font-32), 7vw, var(--font-48));
-    color: var(--black);
+    font-size: clamp(var(--font-28), 7vw, var(--font-36))
+    color: var(--violet);
   }
 
   p {

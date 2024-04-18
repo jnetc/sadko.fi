@@ -2,6 +2,8 @@
 // Global Styles
 import '@Styles/articles_page.css';
 import '@Styles/blanks.css';
+// Query
+import { campsBlankQuery } from '@Queries/page_blanks';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
 import BackwardButton from '@Components/ui-elements/BackwardButton.astro';
@@ -11,15 +13,25 @@ import ParentFieldset from '@Components/page-blank/ParentFieldset.astro';
 import ChildFieldset from '@Components/page-blank/ChildFieldset.astro';
 import SelectActivity from '@Components/page-blank/SelectActivity.astro';
 // Locale
-import { locale_blank, locale_camp_blank, locale_camp_blank_select } from '@Locales/blanks';
+import { locale_camp_blank_select } from '@Locales/blanks';
+// Libs
+import { single, toMarkdown } from '@Lib/prismiccms';
+// Type
+import type { IBlankPage } from '@Types';
 
 const lang = Astro.params.locale as 'ru' | 'fi';
+
+const response = await single(campsBlankQuery, 'page_blank-camp', lang, ['camp.title', 'camp.date', 'camp.time']);
+
+const data = response.data as IBlankPage;
+const md = await toMarkdown(data.sub_title);
 ---
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
-  <title>{locale_camp_blank[lang].seo_title}</title>
+  <title>{data.seo_title}</title>
+  <meta name="description" content={data.seo_description} />
   <meta name="robots" content="noindex nofollow" />
 </head>
 
@@ -27,9 +39,11 @@ const lang = Astro.params.locale as 'ru' | 'fi';
   <main class="grid separator blank">
     <BackwardButton isOneColumn />
     <div class="page-header column-sized">
-      <h1 class="header__heading">{locale_camp_blank[lang].seo_title}</h1>
-      <div class="page-header__description markdown font-20">{locale_camp_blank[lang].sub_title}</div>
-      <p class="header__important">{locale_blank[lang].important}</p>
+      <h1 class="header__heading">{data.seo_title}</h1>
+      <div class="page-header__description markdown font-20">
+        <Fragment set:html={md} />
+      </div>
+      <p class="header__important">{data.important}</p>
     </div>
     <form class="page__form" action="https://formsubmit.co/55167306a18590508af530c1102776a5" method="post">
       <!--  "Thank You" page -->
@@ -37,12 +51,12 @@ const lang = Astro.params.locale as 'ru' | 'fi';
       <!-- multiple email addresses -->
       <input type="hidden" name="_cc" value="zero570@gmail.com" />
       <!-- honeypot -->
-      <input type="hidden" name="_honey" style="display:none" tabindex="-1" />
+      <input type="hidden" name="_honey" style="display:none !important" tabindex="-1" />
       <!-- reCAPTCHA -->
       <input type="hidden" name="_captcha" value="false" />
       <!-- Email Template -->
       <input type="hidden" name="_template" value="table" />
-      <SelectActivity data={locale_camp_blank_select[lang]} />
+      <SelectActivity data={locale_camp_blank_select[lang]} options={data.select} />
       <ChildFieldset />
       <ParentFieldset />
       <AcceptRules />
@@ -50,41 +64,3 @@ const lang = Astro.params.locale as 'ru' | 'fi';
     </form>
   </main>
 </Layout>
-
-<style>
-  .page__form {
-    grid-column: 2 / -2;
-    width: 100%;
-    max-width: 640px;
-    display: flex;
-    flex-direction: column;
-    justify-self: center;
-    gap: var(--gap-32);
-    padding: var(--gap-32);
-    background-color: var(--white);
-    border-radius: var(--border-corner-32);
-    box-shadow:
-      0 25px 20px var(--opacity-3),
-      0 15px 10px var(--opacity-3);
-  }
-  .header__important {
-    position: relative;
-    max-width: fit-content;
-    font-size: var(--font-16);
-    margin-inline: auto;
-  }
-
-  .header__important::before {
-    content: '*';
-    position: absolute;
-    inset-block: 0;
-    left: -0.5rem;
-    color: var(--red);
-  }
-  @media (max-width: 559px) {
-    .page__form {
-      padding: var(--gap-32) var(--gap-16);
-      border-radius: var(--border-corner-24);
-    }
-  }
-</style>

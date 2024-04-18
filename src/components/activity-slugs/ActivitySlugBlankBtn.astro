@@ -6,7 +6,6 @@ interface Props {
 }
 const blank = Astro.url.pathname.split('/')[2];
 const { lang } = Astro.props;
-console.log(blank);
 ---
 
 <a href={`/${lang}/blanks${['clubs', 'camps'].includes(blank) ? `/${blank}` : ''}`} class="btn btn-primary arrow-icon">

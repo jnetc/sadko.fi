@@ -1,12 +1,11 @@
 export const locale_blank = {
   ru: {
-    important: 'Обязательные поля для заполнения',
     child_legend: 'Ребенок',
     child_name_label: 'Имя ребенка',
     child_name_title: 'Имя и фамилия (только на латинице!)',
     child_date_label: 'Дата рождения',
     child_textarea_label: 'Дополнительная информация о ребёнке',
-    child_textarea_title: 'Если не требуется доп. информация о ребёнке, поставте знак прочерк, минус (-)',
+    child_textarea_title: 'Заполните поле, если ребенок имеет инвалидность или какие-то пробелы со здоровьем. Либо поставте знак прочерк, минус (-), что ребенок здоров.',
     parent_legend: 'Родитель',
     parent_name_label: 'Родитель / Опекун / Ответственный плательщик (латиницей)',
     parent_name_title: 'Имя и фамилия (только на латинице!)',
@@ -24,7 +23,6 @@ export const locale_blank = {
     accept_rules: 'Я ознакомлен(а) и согласен(а) с правилами поведения в лагере.',
   },
   fi: {
-    important: 'Pakolliset täytettävät kentät',
     child_legend: 'Lapsi',
     child_name_label: 'Lapsun nimi',
     child_name_title: 'Nimi ja sukunimi',
@@ -49,20 +47,6 @@ export const locale_blank = {
   },
 }
 
-export const locale_camp_blank = {
-  ru: {
-    seo_title: 'Анкета для лагеря',
-    title: 'Анкета для лагеря',
-    sub_title: 'Уважаемые родители, укажите, пожалуйста, название лагеря и заполните анкету! Данные ребенка и родителя пишите на финском языке!',
-    select_all: "Выберите лагерь",
-  },
-  fi: {
-    seo_title: 'Leirin kyselylomake',
-    title: 'Leirin kyselylomake',
-    sub_title: 'Hyvät vanhemmat, ilmoittakaa leirin nimi ja täyttäkää lomake! Kirjoittakaa lapsen ja vanhemman tiedot suomeksi!',
-    select_all: "Valitse leiri",
-  },
-};
 export const locale_camp_blank_select = {
   ru: {
     label: 'Название лагеря',
@@ -73,20 +57,6 @@ export const locale_camp_blank_select = {
     label: 'Leirin nimi',
     name: 'Лагерь', // То, что будет видно в анкете в письме
     select_all: "Valitse leiri",
-  },
-};
-
-
-export const locale_club_blank = {
-  ru: {
-    seo_title: 'Анкета для кружка',
-    title: 'Анкета для кружка',
-    sub_title: 'Уважаемые родители, укажите, пожалуйста, название кружка и заполните анкету! Данные ребенка и родителя пишите на финском языке!',
-  },
-  fi: {
-    seo_title: 'Klubi kyselylomake',
-    title: 'Klubi kyselylomake',
-    sub_title: 'Hyvät vanhemmat, ilmoittakaa kerhon nimi ja täyttäkää lomake! Kirjoittakaa lapsen ja vanhemman tiedot suomeksi!',
   },
 };
 

@@ -3,6 +3,7 @@
 import '@Styles/articles_page.css';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
+import SuccessIllustration from '@Components/ui-elements/SuccessIllustration.astro';
 // Locale
 import { locale_404 } from '@Locales/404';
 
@@ -18,16 +19,18 @@ const lang = Astro.params.locale as 'ru' | 'fi';
 
 <Layout>
   <main class="grid separator blank">
-    <img src="/svg/page_404.svg" alt="page not found" />
+    <!-- <img src="/svg/success.svg" alt="email subbmitted successfully" /> -->
+    <SuccessIllustration />
     <h1>{locale_404[lang].success_h1}</h1>
-    <a href=`/${lang}` class="btn btn-secondary btn-404 revers arrow-icon">
-      {locale_404[lang].btn}
+    <p>{locale_404[lang].success_p}</p>
+    <button class="btn btn-secondary btn-404 revers arrow-icon" onclick="history.back()">
+      {locale_404[lang].success_btn}
       <span class="btn__icon" aria-hidden="true">
         <svg>
           <use xlink:href="/svg/ui_icons.svg#arrow_outward" data-xlink="arrow_outward"></use>
         </svg>
       </span>
-    </a>
+    </button>
   </main>
 </Layout>
 
@@ -38,24 +41,19 @@ const lang = Astro.params.locale as 'ru' | 'fi';
     gap: var(--gap-16);
   }
 
-  .btn-404,
-  img,
   h1,
-  p {
+  p,
+  .btn-404 {
     grid-column: 2 / -2;
     text-align: center;
     justify-self: center;
   }
 
-  img {
-    grid-row: 2;
-    min-height: 160px;
-  }
-
   h1 {
     grid-row: 3;
-    font-size: clamp(var(--font-32), 7vw, var(--font-48));
-    color: var(--black);
+    padding-block-start: var(--gap-36);
+    font-size: clamp(var(--font-28), 7vw, var(--font-36));
+    color: var(--violet);
   }
 
   p {

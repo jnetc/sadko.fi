@@ -7,14 +7,14 @@ import query from '@Queries/page_blanks';
 import Layout from '@Layouts/Layout.astro';
 import BlankItem from '@Components/ui-elements/BlankItem.astro';
 // Types
-import type { IBlanksPage } from '@Types';
+import type { IAllBlankPage } from '@Types';
 
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
 import { single, toMarkdown } from '@Lib/prismiccms';
 const response = await single(query, 'page_blanks', lang);
 
-const data = response.data as IBlanksPage;
+const data = response.data as IAllBlankPage;
 const md = await toMarkdown(data.sub_title);
 ---
 
@@ -53,6 +53,7 @@ const md = await toMarkdown(data.sub_title);
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: var(--gap-24);
   }
+
   @media screen and (max-width: 559px) {
     .blanks {
       justify-self: stretch;
