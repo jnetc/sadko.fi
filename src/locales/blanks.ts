@@ -22,6 +22,8 @@ export const locale_blank = {
     parent_email_title: 'Например: example@example.com',
     parent_textarea_label: 'Дополнительная информация',
     accept_rules: 'Я ознакомлен(а) и согласен(а) с правилами и условиями проведения мероприятия.',
+    notification: 'Отправляем вашу форму, подождите.',
+    warning: 'Возникли технические неполадки, пожалуйста, повторите попытку.',
   },
   fi: {
     activity_legend: 'Toiminta',
@@ -45,7 +47,9 @@ export const locale_blank = {
     parent_email_label: 'Sähköposti',
     parent_email_title: 'Esimerkikä: example@example.com',
     parent_textarea_label: 'Lisätietoa',
-    accept_rules: 'Olen lukenut tapahtuman ehdot ja hyväksyn ne.'
+    accept_rules: 'Olen lukenut tapahtuman ehdot ja hyväksyn ne.',
+    notification: 'Lähetämme lomakettasi, odota.',
+    warning: 'Teknisiä ongelmia on ilmennyt, yritä uudelleen.',
   },
 } as const
 

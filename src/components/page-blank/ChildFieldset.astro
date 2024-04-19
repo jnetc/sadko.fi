@@ -11,6 +11,7 @@ const lang = Astro.params.locale as 'ru' | 'fi';
     <input
       type="text"
       id="child-name"
+      class="form__input-active"
       name="Имя ребёнка"
       placeholder="Julia Ivanova"
       pattern="[a-zA-ZäåöÄÅÖ \\-]{2,}"
@@ -23,6 +24,7 @@ const lang = Astro.params.locale as 'ru' | 'fi';
     <input
       type="text"
       id="child-date"
+      class="form__input-active"
       name="Дата рождения"
       placeholder="01.01.2000"
       pattern="[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{4}"
@@ -34,6 +36,7 @@ const lang = Astro.params.locale as 'ru' | 'fi';
     <label class="required" for="child-info">{locale_blank[lang].child_textarea_label}</label>
     <textarea
       id="child-info"
+      class="form__input-active"
       name="Дополнительная информация о ребёнке"
       placeholder={locale_blank[lang].child_textarea_title}
       rows="5"

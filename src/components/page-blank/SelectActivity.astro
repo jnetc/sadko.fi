@@ -15,7 +15,7 @@ const { data, options } = Astro.props;
 
 <script>
   const select = document.querySelector<HTMLSelectElement>('.blank-select__select');
-  const items = document.querySelectorAll<HTMLInputElement>('.form__input-activity')!;
+  const items = document.querySelectorAll<HTMLInputElement>('.input-activity')!;
 
   select?.addEventListener('change', (ev: Event) => {
     const el = ev.target as HTMLSelectElement;
@@ -53,11 +53,23 @@ const { data, options } = Astro.props;
   </div>
   <div class="form__input">
     <label class="required" for="activity-date">{locale_main[lang].date}</label>
-    <input type="text" id="activity-date" class="form__input-activity" name="Дата / День недели" required />
+    <input
+      type="text"
+      id="activity-date"
+      class="form__input-active input-activity"
+      name="Дата / День недели"
+      required
+    />
   </div>
   <div class="form__input">
     <label class="required" for="activity-time">{locale_main[lang].time}</label>
-    <input type="text" id="activity-time" class="form__input-activity" name="Время / Длительность" required />
+    <input
+      type="text"
+      id="activity-time"
+      class="form__input-active input-activity"
+      name="Время / Длительность"
+      required
+    />
   </div>
 </fieldset>
 

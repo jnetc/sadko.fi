@@ -11,6 +11,7 @@ const lang = Astro.params.locale as 'ru' | 'fi';
     <input
       type="text"
       id="parent-name"
+      class="form__input-active"
       name="Имя родителя / Опекуна"
       placeholder="Alexander Ivanov"
       required
@@ -23,6 +24,7 @@ const lang = Astro.params.locale as 'ru' | 'fi';
     <input
       type="text"
       id="parent-hetu"
+      class="form__input-active"
       name="Henkilätunnus"
       placeholder="120556-457F"
       pattern="[0-9]{6}[\\-A]{1}[0-9A-Z]{4}"
@@ -32,13 +34,21 @@ const lang = Astro.params.locale as 'ru' | 'fi';
   </div>
   <div class="form__input">
     <label class="required" for="parent-address">{locale_blank[lang].parent_address_label}</label>
-    <input type="text" id="parent-address" name="Адрес" placeholder="Vaasankatu 12 B 45" required />
+    <input
+      type="text"
+      id="parent-address"
+      class="form__input-active"
+      name="Адрес"
+      placeholder="Vaasankatu 12 B 45"
+      required
+    />
   </div>
   <div class="form__input">
     <label class="required" for="parent-index">{locale_blank[lang].parent_postcode_label}</label>
     <input
       type="text"
       id="parent-index"
+      class="form__input-active"
       name="Индекс"
       placeholder="00120"
       pattern="[0-9]{5}"
@@ -49,13 +59,22 @@ const lang = Astro.params.locale as 'ru' | 'fi';
   </div>
   <div class="form__input">
     <label class="required" for="parent-city">{locale_blank[lang].parent_city_label}</label>
-    <input type="text" id="parent-city" name="Город" placeholder="Helsinki" required />
+    <input
+      type="text"
+      id="parent-city"
+      class="form__input-active"
+      name="Город"
+      placeholder="Helsinki"
+      pattern="[a-zA-ZäåöÄÅÖ]{3,}"
+      required
+    />
   </div>
   <div class="form__input">
     <label class="required" for="parent-phone">{locale_blank[lang].parent_phone_label}</label>
     <input
       type="tel"
       id="parent-phone"
+      class="form__input-active"
       name="Номер телефона"
       placeholder="+358501234567"
       pattern="[0-9+#]{10,13}"
@@ -68,6 +87,7 @@ const lang = Astro.params.locale as 'ru' | 'fi';
     <input
       type="email"
       id="parent-email"
+      class="form__input-active"
       name="email"
       placeholder="example@example.com"
       pattern="[a-zA-Z0-9.+_\\-]+@[a-z]{2,}\.[a-z]{2,}"

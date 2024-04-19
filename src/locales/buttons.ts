@@ -6,6 +6,8 @@ export const locale_buttons = {
     button_hide: 'Свернуть',
     contact_button_show: 'Связаться с нами',
     contact_button_hide: 'Свернуть меня',
+    button_submit: 'Отправить',
+    button_sending: 'Отправляем',
   },
   fi: {
     button_back: 'Takaisin',
@@ -14,5 +16,7 @@ export const locale_buttons = {
     button_hide: 'Piilota',
     contact_button_show: 'Ota yhteytä',
     contact_button_hide: 'Sulje minut',
+    button_submit: 'Lähetä',
+    button_sending: 'Lähetetään',
   },
 } as const;

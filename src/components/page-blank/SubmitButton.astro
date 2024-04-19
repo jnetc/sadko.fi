@@ -1,19 +1,115 @@
 ---
+import { locale_buttons } from '@Locales/buttons';
+import { locale_blank } from '@Locales/blanks';
 
+const lang = Astro.params.locale as 'ru' | 'fi';
 ---
 
-<button type="submit" class="btn btn-primary arrow-icon btn-submit">
-  Отправить
-  <span class="btn__icon" aria-hidden="true">
-    <svg>
-      <use xlink:href="/svg/ui_icons.svg#arrow_outward" data-xlink="arrow_outward"></use>
-    </svg>
-  </span>
-</button>
+<script>
+  const button = document.querySelector<HTMLButtonElement>('.btn-submit')!;
+  const policy = document.getElementById('policy') as HTMLInputElement;
+  const warning = document.querySelector<HTMLParagraphElement>('.form__warning');
+  const inputs = [...document.querySelectorAll<HTMLInputElement>('.form__input-active')];
+
+  function openSubMenu() {
+    const check = inputs.every(i => (i.value ? true : false));
+
+    warning?.classList.remove('show');
+
+    if (!policy.checked || !check) {
+      return;
+    }
+
+    button.closest('.form__submit')?.classList.add('pending');
+    const timer = setTimeout(() => {
+      warning?.classList.add('show');
+      button.closest('.form__submit')?.classList.remove('pending');
+      clearTimeout(timer);
+    }, 90000);
+  }
+  button?.addEventListener('click', openSubMenu);
+</script>
+
+<div class="form__submit">
+  <p class="form__notification">{locale_blank[lang].notification}</p>
+  <p class="form__warning">{locale_blank[lang].warning}</p>
+  <button type="submit" class="btn btn-primary arrow-icon btn-submit">
+    <span class="btn__text">{locale_buttons[lang].button_submit}</span>
+    <div class="btn__loader" role="status">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <span class="btn__icon" aria-hidden="true">
+      <svg>
+        <use xlink:href="/svg/ui_icons.svg#arrow_outward" data-xlink="arrow_outward"></use>
+      </svg>
+    </span>
+  </button>
+</div>
 
 <style>
+  .form__notification,
+  .form__warning {
+    display: none;
+    font-size: var(--font-14);
+    text-align: center;
+  }
+
+  .form__warning.show {
+    display: block;
+    color: var(--error);
+  }
+
+  .form__submit.pending .form__notification {
+    display: block;
+  }
+
   .btn-submit {
     margin-inline: auto;
     margin-block: var(--gap-16) var(--gap-32);
+  }
+  .form__submit.pending .btn-submit {
+    padding-inline: initial;
+  }
+  .form__submit.pending .btn__icon,
+  .form__submit.pending .btn__text {
+    display: none;
+  }
+  .form__submit.pending .btn__loader {
+    display: flex;
+  }
+
+  .btn__loader {
+    gap: var(--gap-8);
+  }
+  .btn__loader * {
+    width: 8px;
+    height: 8px;
+    background-color: var(--white);
+    border-radius: 50%;
+    animation: anim 1s linear infinite;
+  }
+
+  .btn__loader span:nth-child(1) {
+  }
+  .btn__loader span:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .btn__loader span:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  .btn__loader span:nth-child(4) {
+    animation-delay: 0.6s;
+  }
+  .btn__loader span:nth-child(5) {
+    animation-delay: 0.8s;
+  }
+
+  @keyframes anim {
+    25% {
+      translate: 0 -0.5rem;
+    }
+    75% {
+      translate: 0 0.5rem;
+    }
   }
 </style>

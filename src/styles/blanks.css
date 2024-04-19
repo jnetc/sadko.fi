@@ -15,6 +15,10 @@
     0 15px 10px var(--opacity-3);
 }
 
+.page__form :has(input:invalid) button{
+  outline: 3px solid var(--red);
+}
+
 .header__important {
   position: relative;
   max-width: fit-content;
