@@ -6,6 +6,7 @@
   flex-direction: column;
   justify-self: center;
   gap: var(--gap-32);
+  position: relative;
   padding: var(--gap-32);
   background-color: var(--white);
   border-radius: var(--border-corner-32);
@@ -108,6 +109,40 @@ label.required::after {
 
 .form__input :where(input, textarea):focus:invalid {
   border-color: var(--error);
+}
+
+/* UI SHAPES */
+.page__form > svg {
+  position: absolute;
+  stroke-width: 24;
+  height: 370px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.page__form > svg:nth-of-type(1) {
+  top: -5rem;
+  right: -25%;
+  stroke: var(--green);
+}
+
+.page__form > svg:nth-of-type(2) {
+  top: 50%;
+  left: -25%;
+  translate: 0 -50%;
+  stroke: var(--pink);
+}
+
+.page__form > svg:nth-of-type(3) {
+  bottom: 0;
+  right: -25%;
+  stroke: var(--violet-light);
+}
+
+@media screen and (max-width: 959px) {
+  .page__form > svg {
+    display: none;
+  }
 }
 
 @media (max-width: 559px) {

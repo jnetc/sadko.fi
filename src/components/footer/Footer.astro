@@ -18,10 +18,10 @@ const { data } = Astro.props;
     <Address data={data} />
     <Navigation />
     <svg class="footer__shape1 stroke-pink">
-      <use xlink:href="/svg/shapes.svg#page_stroke_02"></use>
+      <use xlink:href="/svg/ui_shapes.svg#page_stroke_02"></use>
     </svg>
     <svg class="footer__shape2 stroke-violet">
-      <use xlink:href="/svg/shapes.svg#page_stroke_01"></use>
+      <use xlink:href="/svg/ui_shapes.svg#page_stroke_01"></use>
     </svg>
   </div>
   <p class="copyright">Copyright © {new Date().getFullYear()} Sadko ry</p>
@@ -87,7 +87,7 @@ const { data } = Astro.props;
     }
   }
 
-  @media (max-width: 960px) {
+  @media (max-width: 959px) {
     .footer {
       border-radius: var(--border-corner-16) var(--border-corner-16) 0 0;
     }

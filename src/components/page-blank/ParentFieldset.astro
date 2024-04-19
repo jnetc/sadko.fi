@@ -12,6 +12,7 @@ const lang = Astro.params.locale as 'ru' | 'fi';
       type="text"
       id="parent-name"
       name="Имя родителя / Опекуна"
+      placeholder="Alexander Ivanov"
       required
       pattern="[a-zA-ZäåöÄÅÖ \\-]{2,}"
       title={locale_blank[lang].parent_name_title}
@@ -23,6 +24,7 @@ const lang = Astro.params.locale as 'ru' | 'fi';
       type="text"
       id="parent-hetu"
       name="Henkilätunnus"
+      placeholder="120556-457F"
       required
       pattern="[0-9]{6}[\\-A]{1}[0-9A-Z]{4}"
       title={locale_blank[lang].parent_hetu_title}
@@ -30,7 +32,7 @@ const lang = Astro.params.locale as 'ru' | 'fi';
   </div>
   <div class="form__input">
     <label class="required" for="parent-address">{locale_blank[lang].parent_address_label}</label>
-    <input type="text" id="parent-address" name="Адрес" required />
+    <input type="text" id="parent-address" name="Адрес" placeholder="Vaasankatu 12 B 45" required />
   </div>
   <div class="form__input">
     <label class="required" for="parent-index">{locale_blank[lang].parent_postcode_label}</label>
@@ -38,6 +40,7 @@ const lang = Astro.params.locale as 'ru' | 'fi';
       type="text"
       id="parent-index"
       name="Индекс"
+      placeholder="00120"
       required
       pattern="[0-9]{5}"
       title={locale_blank[lang].parent_postcode_title}
@@ -45,7 +48,7 @@ const lang = Astro.params.locale as 'ru' | 'fi';
   </div>
   <div class="form__input">
     <label class="required" for="parent-city">{locale_blank[lang].parent_city_label}</label>
-    <input type="text" id="parent-city" name="Город" required />
+    <input type="text" id="parent-city" name="Город" placeholder="Helsinki" required />
   </div>
   <div class="form__input">
     <label class="required" for="parent-phone">{locale_blank[lang].parent_phone_label}</label>
@@ -53,6 +56,7 @@ const lang = Astro.params.locale as 'ru' | 'fi';
       type="tel"
       id="parent-phone"
       name="Номер телефона"
+      placeholder="0501234567"
       required
       pattern="[0-9+#]{10,}"
       title={locale_blank[lang].parent_phone_title}
@@ -63,7 +67,8 @@ const lang = Astro.params.locale as 'ru' | 'fi';
     <input
       type="email"
       id="parent-email"
-      name="Эл. почта"
+      name="email"
+      placeholder="example@example.com"
       required
       pattern="[a-zA-Z0-9.+_\\-]+@[a-z]{2,}\.[a-z]{2,}"
       title={locale_blank[lang].parent_email_title}
@@ -71,6 +76,6 @@ const lang = Astro.params.locale as 'ru' | 'fi';
   </div>
   <div class="form__input">
     <label for="parent-info">{locale_blank[lang].parent_textarea_label}</label>
-    <textarea id="parent-info" name="Доп. информация" rows="5"></textarea>
+    <textarea id="parent-info" name="Дополнительная информация" rows="5"></textarea>
   </div>
 </fieldset>

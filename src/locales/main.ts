@@ -31,4 +31,4 @@ export const locale_main = {
     carousel_teachers: 'Näytä kaikki',
     carousel_feedbacks: 'Kaikki arvaukset',
   },
-};
+} as const;

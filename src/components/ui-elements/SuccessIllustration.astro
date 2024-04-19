@@ -67,44 +67,46 @@
 </svg>
 <style>
   svg {
+    grid-row: 2;
+    max-height: 380px;
     grid-column: 2 / -2;
     text-align: center;
     justify-self: center;
   }
 
-  svg {
-    grid-row: 2;
-    max-height: 380px;
-  }
-
   .circle {
     stroke-dashoffset: 245;
     stroke-dasharray: 245;
-    animation: circle 0.7s ease-in-out forwards;
+    opacity: 0;
+    animation: circle 0.5s cubic-bezier(0.7, -0.1, 0.67, 1) forwards;
   }
+
   .bold-path {
     stroke-dashoffset: 180;
     stroke-dasharray: 180;
-    animation: bold 0.5s ease-in-out forwards;
-    animation-delay: 0.7s;
+    animation: bold 0.9s ease-in-out forwards;
   }
+
   .thin-path {
     stroke-dashoffset: 180;
     stroke-dasharray: 180;
-    animation: thin 0.5s ease-in-out forwards;
-    animation-delay: 0.75s;
+    animation: thin 0.3s cubic-bezier(0.49, 0, 1, 0.4) forwards;
+    animation-delay: 0.4s;
   }
 
   @keyframes circle {
     100% {
       stroke-dashoffset: 490;
+      opacity: 1;
     }
   }
+
   @keyframes bold {
     100% {
       stroke-dashoffset: 100;
     }
   }
+
   @keyframes thin {
     100% {
       stroke-dashoffset: 100;

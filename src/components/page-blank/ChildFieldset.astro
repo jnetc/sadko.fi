@@ -12,6 +12,7 @@ const lang = Astro.params.locale as 'ru' | 'fi';
       type="text"
       id="child-name"
       name="Имя ребёнка"
+      placeholder="Julia Ivanova"
       required
       pattern="[a-zA-ZäåöÄÅÖ \\-]{2,}"
       title={locale_blank[lang].child_name_title}

@@ -19,4 +19,4 @@ export const locale_schedule = {
     saturday: 'Lauantai',
     sunday: 'Sunnuntai',
   },
-};
+} as const;

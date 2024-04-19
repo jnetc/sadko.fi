@@ -13,7 +13,7 @@ import ParentFieldset from '@Components/page-blank/ParentFieldset.astro';
 import ChildFieldset from '@Components/page-blank/ChildFieldset.astro';
 import SelectActivity from '@Components/page-blank/SelectActivity.astro';
 // Locale
-import { locale_camp_blank_select } from '@Locales/blanks';
+import { locale_camp_blank } from '@Locales/blanks';
 // Libs
 import { single, toMarkdown } from '@Lib/prismiccms';
 // Type
@@ -25,6 +25,8 @@ const response = await single(campsBlankQuery, 'page_blank-camp', lang, ['camp.t
 
 const data = response.data as IBlankPage;
 const md = await toMarkdown(data.sub_title);
+
+const { rule_href, ...select } = locale_camp_blank[lang];
 ---
 
 <head>
@@ -56,11 +58,22 @@ const md = await toMarkdown(data.sub_title);
       <input type="hidden" name="_captcha" value="false" />
       <!-- Email Template -->
       <input type="hidden" name="_template" value="table" />
-      <SelectActivity data={locale_camp_blank_select[lang]} options={data.select} />
+
+      <SelectActivity data={select} options={data.select} />
       <ChildFieldset />
       <ParentFieldset />
-      <AcceptRules />
+      <AcceptRules hrefRule="camp" hrefName={rule_href} />
       <SubmitButton />
+
+      <svg>
+        <use xlink:href="/svg/ui_shapes.svg#page_stroke_02"></use>
+      </svg>
+      <svg>
+        <use xlink:href="/svg/ui_shapes.svg#page_stroke_01"></use>
+      </svg>
+      <svg>
+        <use xlink:href="/svg/ui_shapes.svg#page_stroke_02"></use>
+      </svg>
     </form>
   </main>
 </Layout>

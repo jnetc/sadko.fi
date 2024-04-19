@@ -17,7 +17,7 @@ const shapeNumber = (index % 12) + 1;
 <li class="card">
   <a class="card__href" href=`/${lang}/feedbacks/#${data.slug.url}`>
     <svg class=`card__shape fill-${data.color}` aria-hidden="true">
-      <use xlink:href=`/svg/shapes.svg#shape${shapeNumber}`></use>
+      <use xlink:href=`/svg/ui_shapes.svg#shape${shapeNumber}`></use>
     </svg>
     <h3>{data.name}</h3>
     <p>{prismicH.asText(data.text)}</p>

@@ -1,14 +1,21 @@
 ---
 import { locale_blank } from '@Locales/blanks';
 
+interface Props {
+  hrefName: string;
+  hrefRule: 'camp' | 'club';
+}
+
 const lang = Astro.params.locale as 'ru' | 'fi';
+
+const { hrefRule, hrefName } = Astro.props;
 ---
 
 <div class="form__policy">
   <input type="checkbox" id="policy" required />
   <p>
     {locale_blank[lang].accept_rules}
-    <a class="href" href=`/${lang}/rules-and-payments/rules-of-camp`>Правила лагеря</a>
+    <a class="href" href=`/${lang}/rules-and-payments/rules-of-${hrefRule}`>{hrefName}</a>
   </p>
 </div>
 

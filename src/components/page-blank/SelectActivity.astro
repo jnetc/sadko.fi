@@ -1,35 +1,38 @@
 ---
+import { locale_main } from '@Locales/main';
+import { locale_blank } from '@Locales/blanks';
+// Type
 import type { IBlankSelect } from '@Types';
 interface Props {
   data: { label: string; name: string; select_all: string };
   options: IBlankSelect[];
 }
+
+const lang = Astro.params.locale as 'ru' | 'fi';
+
 const { data, options } = Astro.props;
 ---
 
 <script>
   const select = document.querySelector<HTMLSelectElement>('.blank-select__select');
-  const selected = document.querySelector<HTMLDivElement>('.selected-data')!;
-  const items = document.querySelectorAll<HTMLParagraphElement>('.selected-data__item')!;
+  const items = document.querySelectorAll<HTMLInputElement>('.form__input-activity')!;
 
   select?.addEventListener('change', (ev: Event) => {
     const el = ev.target as HTMLSelectElement;
     if (!el.value) {
-      console.log('no value');
-      selected.classList.remove('show');
-      items.forEach(i => (i.textContent = ''));
+      items.forEach(i => (i.value = ''));
       return;
     }
 
-    selected.classList.add('show');
     items.forEach((i, id) => {
-      if (id === 0) i.textContent = el.options[el.selectedIndex].dataset.date!;
-      if (id === 1) i.textContent = el.options[el.selectedIndex].dataset.time!;
+      if (id === 0) i.value = el.options[el.selectedIndex].dataset.date!;
+      if (id === 1) i.value = el.options[el.selectedIndex].dataset.time!;
     });
   });
 </script>
 
-<section class="select">
+<fieldset class="select">
+  <legend>{locale_blank[lang].activity_legend}</legend>
   <div class="blank-select">
     <label class="required" for="selection">{data.label}</label>
     <svg class="blank-select__icon" aria-hidden="true">
@@ -48,16 +51,20 @@ const { data, options } = Astro.props;
       }
     </select>
   </div>
-  <div class="selected-data" aria-hidden="true">
-    <p class="selected-data__item"></p>
-    <p class="selected-data__item"></p>
+  <div class="form__input">
+    <label class="required" for="activity-date">{locale_main[lang].date}</label>
+    <input type="text" id="activity-date" class="form__input-activity" name="Дата / День недели" required />
   </div>
-</section>
+  <div class="form__input">
+    <label class="required" for="activity-time">{locale_main[lang].time}</label>
+    <input type="text" id="activity-time" class="form__input-activity" name="Время / Длительность" required />
+  </div>
+</fieldset>
 
 <style>
   .select {
     display: grid;
-    row-gap: var(--gap-16);
+    row-gap: var(--gap-24);
   }
 
   .blank-select {
@@ -96,11 +103,6 @@ const { data, options } = Astro.props;
     border-color: var(--violet);
   }
 
-  .selected-data {
-    display: grid;
-    row-gap: var(--gap-4);
-    padding-inline-start: var(--gap-18);
-  }
   .selected-data__item {
     font-size: var(--font-16);
   }

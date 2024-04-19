@@ -15,4 +15,4 @@ export const locale_buttons = {
     contact_button_show: 'Ota yhteytä',
     contact_button_hide: 'Sulje minut',
   },
-};
+} as const;
