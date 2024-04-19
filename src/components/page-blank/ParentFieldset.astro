@@ -25,9 +25,10 @@ const lang = Astro.params.locale as 'ru' | 'fi';
       id="parent-hetu"
       name="Henkilätunnus"
       placeholder="120556-457F"
-      required
       pattern="[0-9]{6}[\\-A]{1}[0-9A-Z]{4}"
       title={locale_blank[lang].parent_hetu_title}
+      inputmode="numeric"
+      required
     />
   </div>
   <div class="form__input">
@@ -41,9 +42,10 @@ const lang = Astro.params.locale as 'ru' | 'fi';
       id="parent-index"
       name="Индекс"
       placeholder="00120"
-      required
       pattern="[0-9]{5}"
       title={locale_blank[lang].parent_postcode_title}
+      inputmode="numeric"
+      required
     />
   </div>
   <div class="form__input">
@@ -56,10 +58,10 @@ const lang = Astro.params.locale as 'ru' | 'fi';
       type="tel"
       id="parent-phone"
       name="Номер телефона"
-      placeholder="0501234567"
-      required
-      pattern="[0-9+#]{10,}"
+      placeholder="+358501234567"
+      pattern="[0-9+#]{10,13}"
       title={locale_blank[lang].parent_phone_title}
+      required
     />
   </div>
   <div class="form__input">
@@ -69,9 +71,9 @@ const lang = Astro.params.locale as 'ru' | 'fi';
       id="parent-email"
       name="email"
       placeholder="example@example.com"
-      required
       pattern="[a-zA-Z0-9.+_\\-]+@[a-z]{2,}\.[a-z]{2,}"
       title={locale_blank[lang].parent_email_title}
+      required
     />
   </div>
   <div class="form__input">

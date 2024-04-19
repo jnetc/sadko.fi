@@ -13,14 +13,22 @@ const lang = Astro.params.locale as 'ru' | 'fi';
       id="child-name"
       name="Имя ребёнка"
       placeholder="Julia Ivanova"
-      required
       pattern="[a-zA-ZäåöÄÅÖ \\-]{2,}"
       title={locale_blank[lang].child_name_title}
+      required
     />
   </div>
   <div class="form__input">
     <label class="required" for="child-date">{locale_blank[lang].child_date_label}</label>
-    <input type="date" id="child-date" name="Дата рождения" required />
+    <input
+      type="text"
+      id="child-date"
+      name="Дата рождения"
+      placeholder="01.01.2000"
+      pattern="[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{4}"
+      inputmode="numeric"
+      required
+    />
   </div>
   <div class="form__input">
     <label class="required" for="child-info">{locale_blank[lang].child_textarea_label}</label>
