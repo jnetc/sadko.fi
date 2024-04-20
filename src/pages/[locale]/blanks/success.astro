@@ -22,14 +22,14 @@ const lang = Astro.params.locale as 'ru' | 'fi';
     <SuccessIllustration />
     <h1>{locale_404[lang].success_h1}</h1>
     <p>{locale_404[lang].success_p}</p>
-    <button class="btn btn-secondary btn-404 revers arrow-icon" onclick="history.back()">
+    <a href={`/${lang}/blanks`} class="btn btn-secondary btn-404 revers arrow-icon">
       {locale_404[lang].success_btn}
       <span class="btn__icon" aria-hidden="true">
         <svg>
           <use xlink:href="/svg/ui_icons.svg#arrow_outward" data-xlink="arrow_outward"></use>
         </svg>
       </span>
-    </button>
+    </a>
   </main>
 </Layout>
 

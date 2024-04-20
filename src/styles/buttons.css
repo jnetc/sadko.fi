@@ -8,7 +8,7 @@
   font-weight: bold;
   white-space: nowrap;
 }
-.btn:has(span) {
+.btn-primary:has(span) {
   color: var(--grey-25) !important;
 }
 
