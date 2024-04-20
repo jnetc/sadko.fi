@@ -14,7 +14,9 @@ export default defineConfig({
     host: true
   },
   output: 'server',
-  adapter: netlify(),
+  adapter: netlify({
+    cacheOnDemandPages: true
+  }),
   build: {
     inlineStylesheets: `always`
   },

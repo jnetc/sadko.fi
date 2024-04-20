@@ -9,7 +9,7 @@ interface Props {
 const { link, color, link_name } = Astro.props;
 ---
 
-<a class={`teacher__link bg-${color}`} href={link.url} rel="noopener noreferrer" role="listitem">
+<a class={`teacher__link bg-${color}`} href={link.url} rel="noopener noreferrer">
   {link_name}
 </a>
 

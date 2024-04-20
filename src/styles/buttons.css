@@ -17,7 +17,7 @@
   min-width: 200px;
   justify-content: center;
   padding-block: var(--gap-12);
-  padding-inline: var(--gap-32) var(--gap-16);
+  padding-inline: var(--gap-24) var(--gap-16);
   border: 1px solid transparent;
   font-size: var(--font-20);
 }
