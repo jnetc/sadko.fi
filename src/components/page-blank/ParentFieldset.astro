@@ -14,9 +14,9 @@ const lang = Astro.params.locale as 'ru' | 'fi';
       class="form__input-active"
       name="Имя родителя / Опекуна"
       placeholder="Alexander Ivanov"
-      required
       pattern="[a-zA-ZäåöÄÅÖ \\-]{2,}"
       title={locale_blank[lang].parent_name_title}
+      required
     />
   </div>
   <div class="form__input">

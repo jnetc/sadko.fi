@@ -55,7 +55,7 @@
   opacity: 0;
   transition: all .3s ease-in-out;
 }
-.btn-ternary:hover p{
+.btn-ternary:hover p {
   opacity: 1;
 }
 
@@ -119,6 +119,21 @@
   transform-origin: center bottom;
 }
 
+button[disabled] {
+  background-color: var(--violet-light);
+  color: var(--grey-25);
+  box-shadow:
+    0 25px 20px transparent,
+    0 15px 10px transparent;
+  pointer-events: none;
+}
+
+button[disabled] .btn__icon [data-xlink="arrow_outward"] {
+  animation: none !important;
+}
+button[disabled] .btn__icon svg {
+  fill: var(--violet-light);
+}
 /* For slug on the top of the page */
 .slug-back {
   grid-column: 2 / -2;

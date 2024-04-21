@@ -14,18 +14,24 @@ const lang = Astro.params.locale as 'ru' | 'fi';
   function openSubMenu() {
     const check = inputs.every(i => (i.value ? true : false));
 
+    // Reset styles and ene button
     warning?.classList.remove('show');
 
+    // Chack all required fields and checkbox
     if (!policy.checked || !check) {
       return;
     }
 
+    // Show waining animation
     button.closest('.form__submit')?.classList.add('pending');
+    button.disabled = true;
+    // Disable all waining animation
     const timer = setTimeout(() => {
       warning?.classList.add('show');
       button.closest('.form__submit')?.classList.remove('pending');
+      button.disabled = false;
       clearTimeout(timer);
-    }, 90000);
+    }, 60000);
   }
   button?.addEventListener('click', openSubMenu);
 </script>
@@ -84,7 +90,7 @@ const lang = Astro.params.locale as 'ru' | 'fi';
   .btn__loader * {
     width: 8px;
     height: 8px;
-    background-color: var(--white);
+    background-color: var(--violet);
     border-radius: 50%;
     animation: anim 1s linear infinite;
   }
