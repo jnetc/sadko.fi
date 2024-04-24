@@ -42,15 +42,17 @@ const md = await toMarkdown(data.text);
   });
 </script>
 
-<Layout>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{data.seo_title}</title>
-    <meta name="description" content={data.seo_description} />
-    <link rel="canonical" href={`https://sadko.fi/${lang}/schedule`} hreflang={lang} />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>{data.seo_title}</title>
+  <meta name="description" content={data.seo_description} />
+  <link rel="canonical" href={`https://sadko.fi/${lang}/schedule`} hreflang={lang} />
+  <link rel="alternate" href="https://sadko.fi/ru/schedule" hreflang="ru" />
+  <link rel="alternate" href="https://sadko.fi/fi/schedule" hreflang="fi" />
+</head>
 
+<Layout>
   <main class="grid separator schedule-page">
     <div class="page-header column-sized">
       <h1 class="header__heading">{data.title}</h1>

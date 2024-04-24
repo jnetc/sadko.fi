@@ -24,6 +24,8 @@ const subTitle = await toMarkdown(data.sub_title);
   <title>{data.seo_title}</title>
   <meta name="description" content={data.seo_description} />
   <link rel="canonical" href=`https://sadko.fi/${lang}/about` hreflang={lang} />
+  <link rel="alternate" href="https://sadko.fi/ru/about" hreflang="ru" />
+  <link rel="alternate" href="https://sadko.fi/fi/about" hreflang="fi" />
 </head>
 
 <Layout>

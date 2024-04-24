@@ -6,6 +6,13 @@ import { locale_404 } from '@Locales/404';
 
 const lang = Astro.currentLocale as 'ru' | 'fi';
 ---
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>{locale_404[lang].not_found_h1}</title>
+  <meta name="googlebot" content="noindex nofollow" />
+  <meta name="robots" content="noindex nofollow" />
+</head>
 
 <Layout>
   <main class="grid">

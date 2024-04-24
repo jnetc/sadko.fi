@@ -18,15 +18,17 @@ const data = response.data as IAllBlankPage;
 const md = await toMarkdown(data.sub_title);
 ---
 
-<Layout>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{data.seo_title}</title>
-    <meta name="description" content={data.seo_description} />
-    <link rel="canonical" href=`https://sadko.fi/${lang}/blanks` hreflang={lang} />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>{data.seo_title}</title>
+  <meta name="description" content={data.seo_description} />
+  <link rel="canonical" href=`https://sadko.fi/${lang}/blanks` hreflang={lang} />
+  <link rel="alternate" href="https://sadko.fi/ru/blanks" hreflang="ru" />
+  <link rel="alternate" href="https://sadko.fi/fi/blanks" hreflang="fi" />
+</head>
 
+<Layout>
   <main class="grid separator">
     <div class="page-header column-sized">
       <h1 class="header__heading">{data.title}</h1>
