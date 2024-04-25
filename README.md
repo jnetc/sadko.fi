@@ -1,4 +1,4 @@
-# [![Netlify Status](https://api.netlify.com/api/v1/badges/1060bc4b-0b47-4861-95bb-3c42752b2300/deploy-status)](https://app.netlify.com/sites/sadkofi/deploys) Netlify deploy status 
+# [![Netlify Status](https://api.netlify.com/api/v1/badges/752ab0e3-e69f-4190-ab7c-db781feb5f4e/deploy-status)](https://app.netlify.com/sites/sadkofi/deploys) Netlify deploy status 
 
 # Astro Starter Kit: Minimal
 
