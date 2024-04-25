@@ -132,11 +132,6 @@ const { heading, text, icon, index, slug } = Astro.props;
     stroke: var(--white);
   }
 
-  h3,
-  p {
-    color: var(--black);
-  }
-
   .card:nth-of-type(5n - 1) :is(h3, p),
   .card:nth-of-type(5n) :is(h3, p) {
     color: var(--white);
@@ -153,5 +148,6 @@ const { heading, text, icon, index, slug } = Astro.props;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     overflow: hidden;
+    color: var(--black);
   }
 </style>

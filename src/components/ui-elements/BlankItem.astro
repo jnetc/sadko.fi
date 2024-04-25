@@ -9,7 +9,7 @@ const { href, name } = Astro.props;
 ---
 
 <li>
-  <a href={href.url} target={href.target} class="blank" title={href.url} aria-label={href.url}>
+  <a href={href.url} target={href.target} class="blank" title={name} aria-label={name}>
     <svg class="blank__front" aria-hidden="true">
       <use xlink:href="/svg/ui_shapes.svg#form-front"></use>
     </svg>

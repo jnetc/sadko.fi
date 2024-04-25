@@ -34,10 +34,6 @@
   text-align: center;
 }
 
-.header__heading,
-.header__sub-heading {
-  color: var(--black);
-}
 .header__heading {
   font-size: clamp(var(--font-36), 6vw, var(--font-48));
 }

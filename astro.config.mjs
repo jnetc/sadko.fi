@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-import sitemap from '@astrojs/sitemap';
+// import sitemap from '@astrojs/sitemap';
 import netlify from '@astrojs/netlify';
 
 // Что предотвратить ошибку с развертыванием через netlify CLI deploy
@@ -32,6 +32,6 @@ export default defineConfig({
     }
   },
   devToolbar: {enabled: false},
-  integrations: [sitemap()]
+  integrations: []
 
 });
