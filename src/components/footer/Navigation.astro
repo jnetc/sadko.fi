@@ -24,7 +24,7 @@ const { about, activities, signup, schedule, articles } = headerLinks[lang];
         </li>
         {submenu.columns.map(i => (
           <li class="footer__column-item">
-            <a href={`${lang}/${i.slug}`}>{i.hrefName[lang]}</a>
+            <a href={`/${lang}/${i.slug}`}>{i.hrefName[lang]}</a>
           </li>
         ))}
       </ul>
@@ -37,7 +37,7 @@ const { about, activities, signup, schedule, articles } = headerLinks[lang];
           <p class="footer__column-title">{extraLocale[lang].important}</p>
         </li>
         <li class="footer__column-item">
-          <a href={`${lang}/${signup.submenu[1].columns[0].slug}`}>{signup.submenu[1].columns[0].hrefName[lang]}</a>
+          <a href={`/${lang}/${signup.submenu[1].columns[0].slug}`}>{signup.submenu[1].columns[0].hrefName[lang]}</a>
         </li>
         <li class="footer__column-item">
           <a href={`/${lang}/articles`}>{articles}</a>
@@ -56,11 +56,11 @@ const { about, activities, signup, schedule, articles } = headerLinks[lang];
         </li>
         {about.submenu[0].columns.map(i => (
           <li class="footer__column-item">
-            <a href={`${lang}/${i.slug}`}>{i.hrefName[lang]}</a>
+            <a href={`/${lang}/${i.slug}`}>{i.hrefName[lang]}</a>
           </li>
         ))}
         <li class="footer__column-item">
-          <a href={`${lang}/${about.submenu[1].columns[0].slug}`}>{about.submenu[1].columns[0].hrefName[lang]}</a>
+          <a href={`/${lang}/${about.submenu[1].columns[0].slug}`}>{about.submenu[1].columns[0].hrefName[lang]}</a>
         </li>
       </ul>
     )
