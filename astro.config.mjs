@@ -77,13 +77,13 @@ export default defineConfig({
       'https://sadko.fi/ru/membership',
       'https://sadko.fi/fi/membership',
     ],
-    i18n: {
-      defaultLocale: 'ru',
-      locales: {
-        ru: 'ru',
-        fi: 'fi',
-      },
-    }
+    // i18n: {
+    //   defaultLocale: 'ru',
+    //   locales: {
+    //     ru: 'ru',
+    //     fi: 'fi',
+    //   },
+    // }
   }),],
 
 });
