@@ -10,7 +10,7 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
 const { icon, hrefDesc, hrefName, iconBorder, slug } = Astro.props.link;
 ---
 
-<a href=`/${lang}/${slug}` class="subnav__link" data-astro-reload>
+<a href=`/${lang}/${slug}/` class="subnav__link" data-astro-reload>
   <div class="subnav__link-content" aria-hidden="true">
     <svg class="icon">
       <use xlink:href=`/svg/ui_icons.svg#${icon}`></use>

@@ -8,11 +8,6 @@ export default `{
      		sub_title
         text
         secondary_button
-        secondary_href {
-          ...on _ExternalLink {
-            url
-          }
-        }
       }
     }
   }

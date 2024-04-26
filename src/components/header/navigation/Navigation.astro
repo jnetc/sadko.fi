@@ -76,13 +76,13 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
       <SubMenu subMenu={headerLinks[lang].signup.submenu} index={2} />
     </li>
     <li class="nav__link">
-      <a href={`/${lang}/schedule`} data-astro-reload class="nav__link-name"
+      <a href={`/${lang}/schedule/`} data-astro-reload class="nav__link-name"
         >{headerLinks[lang].schedule}
         <span class="nav__link-icon"></span>
       </a>
     </li>
     <li class="nav__link">
-      <a href={`/${lang}/articles`} data-astro-reload class="nav__link-name">{headerLinks[lang].articles} </a>
+      <a href={`/${lang}/articles/`} data-astro-reload class="nav__link-name">{headerLinks[lang].articles} </a>
     </li>
     <li class="nav__link">
       <button type="button" class="nav__link-name" aria-haspopup="menu" aria-expanded="false" data-expanded="false"

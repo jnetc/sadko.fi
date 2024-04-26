@@ -7,7 +7,7 @@ interface Props {
 }
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
-const { title, description, href = '', image = '/favicon.svg' } = Astro.props;
+const { title, description, href = '/', image = '/favicon.svg' } = Astro.props;
 ---
 
 <head>

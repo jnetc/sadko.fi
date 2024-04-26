@@ -257,8 +257,9 @@ export interface IRulesAndPayments extends SEOType, TitleDescriptionType, SlugTy
   text: RichTextField
 }
 
-export interface IMembershipPage extends SEOType, TitleWithSubTitleType, SecondaryButtonType {
+export interface IMembershipPage extends SEOType, TitleWithSubTitleType {
   text: RichTextField
+  secondary_button:string
 }
 
 export interface ISchedulePage extends SEOType {

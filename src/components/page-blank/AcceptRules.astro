@@ -15,7 +15,7 @@ const { hrefRule, hrefName } = Astro.props;
   <input type="checkbox" id="policy" aria-label={locale_blank[lang].accept_rules} required />
   <p>
     {locale_blank[lang].accept_rules}
-    <a class="href" href=`/${lang}/rules-and-payments/rules-of-${hrefRule}`>{hrefName}</a>
+    <a class="href" href=`/${lang}/rules-and-payments/rules-of-${hrefRule}/`>{hrefName}</a>
   </p>
 </div>
 

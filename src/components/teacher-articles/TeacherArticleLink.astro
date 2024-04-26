@@ -6,12 +6,15 @@ interface Props {
   color: string;
   link_name: string;
 }
-const { link, color, link_name } = Astro.props;
+const { color, link_name } = Astro.props;
 ---
 
-<a class={`teacher__link bg-${color}`} href={link.url} rel="noopener noreferrer">
+<span class={`teacher__link bg-${color}`}>
   {link_name}
-</a>
+</span>
+<!-- <a class={`teacher__link bg-${color}`} href={link.url} rel="noopener noreferrer">
+  {link_name}
+</a> -->
 
 <style>
   .teacher__link {

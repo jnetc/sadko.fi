@@ -11,7 +11,7 @@ const { href, name } = Astro.props;
 ---
 
 <li>
-  <a href=`${url}/${href.url}` class="rules" title={name} aria-label={name}>
+  <a href=`${url}${href.url}/` class="rules" title={name} aria-label={name}>
     <svg class="rules__front" aria-hidden="true">
       <use xlink:href="/svg/ui_shapes.svg#rules-front"></use>
     </svg>

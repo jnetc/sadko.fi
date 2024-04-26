@@ -53,7 +53,7 @@ const data = page.data as IActivity;
 const md = await toMarkdown(data.text);
 ---
 
-<Head title={data.title} description={data.description} href=`/festivals/${data.slug.url}` />
+<Head title={data.title} description={data.description} href=`/festivals/${data.slug.url}/` />
 
 <Layout>
   <main class="grid page">

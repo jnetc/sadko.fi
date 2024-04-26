@@ -19,7 +19,7 @@ const md = await toMarkdown(data.text);
 const subTitle = await toMarkdown(data.sub_title);
 ---
 
-<Head title={data.seo_title} description={data.seo_description} href="/membership" />
+<Head title={data.seo_title} description={data.seo_description} href="/membership/" />
 
 <Layout>
   <main class="grid about">
@@ -36,7 +36,7 @@ const subTitle = await toMarkdown(data.sub_title);
     <div class="page__content markdown">
       <Fragment set:html={md} />
     </div>
-    <a href=`${data.secondary_href.url}` class="btn btn-secondary arrow-icon btn-membership">
+    <a href=`/${lang}/blanks/` class="btn btn-secondary arrow-icon btn-membership">
       {data.secondary_button}
       <span class="btn__icon" aria-hidden="true">
         <svg>

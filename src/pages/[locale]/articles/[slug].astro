@@ -55,7 +55,7 @@ const data = page.data as IArticle;
 const md = await toMarkdown(data.text);
 ---
 
-<Head title={data.title} description={data.description} href=`/articles/${data.slug.url}` />
+<Head title={data.title} description={data.description} href=`/articles/${data.slug.url}/` />
 
 <Layout>
   <main class="grid page">

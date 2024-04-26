@@ -8,7 +8,10 @@ const blank = Astro.url.pathname.split('/')[2];
 const { lang } = Astro.props;
 ---
 
-<a href={`/${lang}/blanks${['clubs', 'camps'].includes(blank) ? `/${blank}` : ''}`} class="btn btn-primary arrow-icon">
+<a
+  href={`/${lang}/blanks${['clubs', 'camps'].includes(blank) ? `/${blank}/` : '/'}`}
+  class="btn btn-primary arrow-icon"
+>
   {locale_buttons[lang].button_blank}
   <span class="btn__icon" aria-hidden="true">
     <svg>

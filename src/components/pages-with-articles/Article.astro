@@ -3,7 +3,7 @@ import ArticleContent from './ArticleContent.astro';
 // Types
 import type { IArticle, IActivity } from '@Types';
 
-const path = Astro.url.pathname.split('/')[2];
+const path = Astro.url.pathname;
 
 interface Props {
   article: IArticle | IActivity;
@@ -14,7 +14,7 @@ const { article, date } = Astro.props;
 ---
 
 <section class="section__item">
-  <a class="section__href" href={`${path}/${article.slug.url}`} aria-label={`${path}/${article.slug.url}`}>
+  <a class="section__href" href={`${path}/${article.slug.url}/`} aria-label={`${path}/${article.slug.url}`}>
     <article class="section__article arrow-icon">
       <img
         class="section__image"
