@@ -7,10 +7,12 @@ interface Props {
 const url = Astro.url.pathname;
 
 const { href, name } = Astro.props;
+
+const initialHref = href.target ? href.url : `${url}${href.url}/`;
 ---
 
 <li>
-  <a href=`${url}${href.url}/` target={href.target} class="blank" title={name} aria-label={name}>
+  <a href={initialHref} target={href.target} class="blank" title={name} aria-label={name}>
     <svg class="blank__front" aria-hidden="true">
       <use xlink:href="/svg/ui_shapes.svg#form-front"></use>
     </svg>

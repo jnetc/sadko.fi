@@ -18,7 +18,7 @@ const { primary } = Astro.props.data;
     {primary.text}
   </p>
   <div class="hero__action-btns">
-    <a href=`${lang}/schedule/` class="btn btn-primary arrow-icon">
+    <a href=`/${lang}/${primary.primary_href.url}/` class="btn btn-primary arrow-icon">
       {primary.primary_button}
       <span class="btn__icon" aria-hidden="true">
         <svg>
