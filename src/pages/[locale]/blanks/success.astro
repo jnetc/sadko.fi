@@ -12,8 +12,9 @@ const lang = Astro.params.locale as 'ru' | 'fi';
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
-  <title>Ваша форма была отправлена</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{locale_404[lang].success_h1}</title>
+  <meta name="description" content={locale_404[lang].success_p} />
   <meta name="googlebot" content="noindex nofollow" />
   <meta name="robots" content="noindex nofollow" />
 </head>

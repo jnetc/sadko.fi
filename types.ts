@@ -222,7 +222,7 @@ export interface HomeBodyFeedbacks {
 
 export interface IPage extends SEOType, TitleWithSubTitleType { }
 
-export interface IActivity extends SEOType, TitleDescriptionType, SlugType {
+export interface IActivity extends TitleDescriptionType, SlugType {
   image: ImageType;
   teacher: string;
   date: string;
@@ -239,9 +239,8 @@ export interface IActivity extends SEOType, TitleDescriptionType, SlugType {
   publication_date: string;
 }
 
-export interface IArticle extends SEOType, TitleDescriptionType, SlugType {
+export interface IArticle extends  TitleDescriptionType, SlugType {
   image: ImageType;
-  // description: string;
   author: string;
   text: RichTextField
   publication_date: string;

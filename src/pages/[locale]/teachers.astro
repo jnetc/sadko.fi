@@ -5,6 +5,7 @@ import '@Styles/articles_page.css';
 import pageQuery, { repeatableQuery } from '@Queries/page_teachers';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
+import Head from '@Layouts/Head.astro';
 import TeacherArticle from '@Components/teacher-articles/TeacherArticle.astro';
 // Libs
 import { single, repeatable, toMarkdown } from '@Lib/prismiccms';
@@ -22,15 +23,7 @@ const teachers = teachersResponse;
 const md = await toMarkdown(data.sub_title);
 ---
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
-  <title>{data.seo_title}</title>
-  <meta name="description" content={data.seo_description} />
-  <link rel="canonical" href={`https://sadko.fi/${lang}/teachers`} hreflang={lang} />
-  <link rel="alternate" href="https://sadko.fi/ru/teachers" hreflang="ru" />
-  <link rel="alternate" href="https://sadko.fi/fi/teachers" hreflang="fi" />
-</head>
+<Head title={data.seo_title} description={data.seo_description} href="/teachers" />
 
 <Layout>
   <main class="grid teachers separator">

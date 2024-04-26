@@ -5,6 +5,7 @@ import query from '@Queries/index.ts';
 import type { IIndex } from '@Types';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
+import Head from '@Layouts/Head.astro';
 import SectionHero from '@Components/page-home/section-hero/SectionHero.astro';
 import SectionActivities from '@Components/page-home/section-activities/SectionActivities.astro';
 import SectionWelcome from '@Components/page-home/section-welcome/SectionWelcome.astro';
@@ -27,30 +28,7 @@ const response = await single(query, 'home', lang);
 const data = response.data as IIndex;
 ---
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
-  <title>{data.seo_title}</title>
-  <meta name="description" content={data.seo_description} />
-  <link rel="canonical" href={`https://sadko.fi/${lang}`} hreflang={lang} />
-  <link rel="alternate" href="https://sadko.fi/ru" hreflang="ru" />
-  <link rel="alternate" href="https://sadko.fi/fi" hreflang="fi" />
-
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="sadko" />
-  <meta property="og:url" content={`https://sadko.fi/${lang}`} />
-  <meta property="og:image" content="/favicon.svg" />
-  <meta property="og:title" content={data.seo_title} />
-  <meta property="og:description" content={data.seo_description} />
-  <meta property="og:locale:alternate" content="ru" />
-  <meta property="og:locale:alternate" content="fi" />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:url" content={`https://sadko.fi/${lang}`} />
-  <meta name="twitter:title" content={data.seo_title} />
-  <meta name="twitter:description" content={data.seo_description} />
-  <meta name="twitter:image" content="/favicon.svg" />
-</head>
+<Head title={data.seo_title} description={data.seo_description} />
 
 <Layout>
   <main>

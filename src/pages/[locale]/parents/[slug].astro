@@ -8,6 +8,7 @@ import { repeatableQuery } from '@Queries/page_parents';
 import type { IActivity } from '@Types';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
+import Head from '@Layouts/Head.astro';
 // Components
 import ActivitySlugDescription from '@Components/activity-slugs/ActivitySlugDescription.astro';
 import ActivitiSlugDetails from '@Components/activity-slugs/ActivitySlugDetails.astro';
@@ -52,13 +53,7 @@ const data = page.data as IActivity;
 const md = await toMarkdown(data.text);
 ---
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
-  <title>{data.seo_title}</title>
-  <meta name="description" content={data.seo_description} />
-  <link rel="canonical" href={`https://sadko.fi/${lang}/parents/${data.slug.url}`} hreflang={lang} />
-</head>
+<Head title={data.title} description={data.description} href=`/parents/${data.slug.url}` />
 
 <Layout>
   <main class="grid page">

@@ -1,0 +1,42 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href?: string;
+  image?: string;
+}
+const lang = Astro.currentLocale as 'ru' | 'fi';
+
+const { title, description, href = '', image = '/favicon.svg' } = Astro.props;
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={`https://sadko.fi/${lang}${href}`} hreflang={lang} />
+  <link rel="alternate" href=`https://sadko.fi/ru${href}` hreflang="ru" />
+  <link rel="alternate" href=`https://sadko.fi/fi${href}` hreflang="fi" />
+
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={image} />
+  <meta property="og:url" content={`https://sadko.fi/${lang}${href}`} />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="" />
+  <meta property="og:locale" content=`${lang}` />
+
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={image} />
+  <meta name="twitter:url" content={`https://sadko.fi/${lang}${href}`} />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+  <!-- <meta
+      name="google-site-verification"
+      content="H0uSTqaKvyYCig_6IA0D_Le4q6K8__tuSDHhYWX6htM"
+    /> -->
+  <meta name="generator" content={Astro.generator} />
+</head>

@@ -8,6 +8,7 @@ import { repeatableQuery } from '@Queries/page_rules-and-payments';
 import type { IRulesAndPayments } from '@Types';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
+import Head from '@Layouts/Head.astro';
 import BackwardButton from '@Components/ui-elements/BackwardButton.astro';
 // Libs
 import { staticPath, repeatable, toMarkdown } from '@Lib/prismiccms';
@@ -49,15 +50,7 @@ const data = page.data as IRulesAndPayments;
 const md = await toMarkdown(data.text);
 ---
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
-  <title>{data.seo_title}</title>
-  <meta name="description" content={data.seo_description} />
-  <link rel="canonical" href={`https://sadko.fi/${lang}/rules-and-payments/${data.slug.url}`} hreflang={lang} />
-  <link rel="alternate" href=`https://sadko.fi/ru/rules-and-payments/${data.slug.url}` hreflang="ru" />
-  <link rel="alternate" href=`https://sadko.fi/fi/rules-and-payments/${data.slug.url}` hreflang="fi" />
-</head>
+<Head title={data.seo_title} description={data.seo_description} href=`/rules-and-payments/${data.slug.url}` />
 
 <Layout>
   <main class="grid">

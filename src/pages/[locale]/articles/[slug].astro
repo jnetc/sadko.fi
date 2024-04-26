@@ -9,6 +9,7 @@ import { repeatableQuery } from '@Queries/page_articles';
 import type { IArticle } from '@Types';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
+import Head from '@Layouts/Head.astro';
 import BackwardButton from '@Components/ui-elements/BackwardButton.astro';
 // Helpers
 import publishDate from '@Helpers/publishDate';
@@ -54,13 +55,7 @@ const data = page.data as IArticle;
 const md = await toMarkdown(data.text);
 ---
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
-  <title>{data.seo_title}</title>
-  <meta name="description" content={data.seo_description} />
-  <link rel="canonical" href={`https://sadko.fi/${lang}/articles/${data.slug.url}`} hreflang={lang} />
-</head>
+<Head title={data.title} description={data.description} href=`/articles/${data.slug.url}` />
 
 <Layout>
   <main class="grid page">

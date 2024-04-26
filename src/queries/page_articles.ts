@@ -15,8 +15,6 @@ export const repeatableQuery = `{
   allArticles {
     edges {
       node {
-        seo_title
-        seo_description
         slug {
           ...on _ExternalLink {
             url

@@ -7,6 +7,7 @@ import pageQuery, { repeatableQuery } from '@Queries/page_masters';
 import type { IActivity, IPage } from '@Types';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
+import Head from '@Layouts/Head.astro';
 import Article from '@Components/pages-with-articles/Article.astro';
 import PageEmpty from '@Components/page-empty/PageEmpty.astro';
 // Libs
@@ -26,15 +27,7 @@ const data = response.data as IPage;
 const md = await toMarkdown(data.sub_title);
 ---
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
-  <title>{data.seo_title}</title>
-  <meta name="description" content={data.seo_description} />
-  <link rel="canonical" href={`https://sadko.fi/${lang}/masters`} hreflang={lang} />
-  <link rel="alternate" href="https://sadko.fi/ru/masters" hreflang="ru" />
-  <link rel="alternate" href="https://sadko.fi/fi/masters" hreflang="fi" />
-</head>
+<Head title={data.seo_title} description={data.seo_description} href="/masters" />
 
 <Layout>
   <main class="grid separator">

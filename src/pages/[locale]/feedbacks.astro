@@ -5,6 +5,7 @@ import '@Styles/articles_page.css';
 import pageQuery, { repeatableQuery } from '@Queries/page_feedbacks';
 // Layouts
 import Layout from '@Layouts/Layout.astro';
+import Head from '@Layouts/Head.astro';
 import FeedbackArticle from '@Components/feedback-articles/FeedbackArticle.astro';
 // Libs
 import { single, repeatable, toMarkdown } from '@Lib/prismiccms';
@@ -20,15 +21,7 @@ const data = response.data as IPage;
 const md = await toMarkdown(data.sub_title);
 ---
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
-  <title>{data.seo_title}</title>
-  <meta name="description" content={data.seo_description} />
-  <link rel="canonical" href=`https://sadko.fi/${lang}/feedbacks` hreflang={lang} />
-  <link rel="alternate" href="https://sadko.fi/ru/feedbacks" hreflang="ru" />
-  <link rel="alternate" href="https://sadko.fi/fi/feedbacks" hreflang="fi" />
-</head>
+<Head title={data.seo_title} description={data.seo_description} href="/feedbacks" />
 
 <Layout>
   <main class="grid feedbacks separator">
