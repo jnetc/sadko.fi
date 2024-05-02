@@ -14,8 +14,16 @@ import type { IFormData } from "@Types";
   // Create object with key and value from every input to store
   export function createFormObject(array: HTMLInputElement[], activity: "Кружок" | "Лагерь") {
     const store = Object.create(null);
+    // Assign new key for activity
     Object.assign(store, { activity: activity });
-    array.forEach(i => Object.assign(store, { [i.name]: i.value }));
+
+    array.forEach(i => {
+
+      // If the input is empty, store it as a dash
+      if (i.value === '') return Object.assign(store, { [i.name]: '-' });
+
+      Object.assign(store, { [i.name]: i.value })
+    });
 
     return store;
   }

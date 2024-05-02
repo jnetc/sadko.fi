@@ -42,6 +42,7 @@ const { rule_href, ...select } = locale_club_blank[lang];
   const warning = form.querySelector<HTMLParagraphElement>('.warning')!;
   const submit = form.querySelector<HTMLDivElement>('.submit')!;
   const button = form.querySelector<HTMLButtonElement>('.btn-submit')!;
+  // const
 
   // Handle form submit
   async function openSubMenu(event: Event) {
@@ -50,7 +51,9 @@ const { rule_href, ...select } = locale_club_blank[lang];
     // Check SPAMBOT
     if (honeypod.value) return;
 
-    const check = inputs.every(i => (i.value ? true : false));
+    // remove last field from required
+    const check = inputs.slice(0, -1).every(i => (i.value ? true : false));
+
     // Remove waining attention
     warning.classList.remove('show');
 
