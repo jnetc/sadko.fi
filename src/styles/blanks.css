@@ -1,4 +1,4 @@
-.page__form {
+.form {
   grid-column: 2 / -2;
   width: 100%;
   max-width: 640px;
@@ -15,7 +15,7 @@
     0 15px 10px var(--opacity-3);
 }
 
-.page__form :has(input:invalid) button{
+.form :has(input:invalid) button{
   outline: 3px solid var(--red);
 }
 
@@ -117,7 +117,7 @@ input:checked::after {
 }
 
 /* UI SHAPES */
-.page__form > svg {
+.form > svg {
   position: absolute;
   stroke-width: 24;
   height: 370px;
@@ -125,33 +125,33 @@ input:checked::after {
   z-index: -1;
 }
 
-.page__form > svg:nth-of-type(1) {
+.form > svg:nth-of-type(1) {
   top: -5rem;
   right: -25%;
   stroke: var(--green);
 }
 
-.page__form > svg:nth-of-type(2) {
+.form > svg:nth-of-type(2) {
   top: 50%;
   left: -25%;
   translate: 0 -50%;
   stroke: var(--pink);
 }
 
-.page__form > svg:nth-of-type(3) {
+.form > svg:nth-of-type(3) {
   bottom: 0;
   right: -25%;
   stroke: var(--violet-light);
 }
 
 @media screen and (max-width: 959px) {
-  .page__form > svg {
+  .form > svg {
     display: none;
   }
 }
 
 @media (max-width: 559px) {
-  .page__form {
+  .form {
     padding: var(--gap-32) var(--gap-16);
     border-radius: var(--border-corner-24);
   }

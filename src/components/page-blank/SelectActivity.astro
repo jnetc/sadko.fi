@@ -38,7 +38,7 @@ const { data, options } = Astro.props;
     <svg class="blank-select__icon" aria-hidden="true">
       <use xlink:href="/svg/ui_icons.svg#arrow_drop_down"></use>
     </svg>
-    <select class="blank-select__select" id="selection" name={data.name} required>
+    <select class="blank-select__select" id="selection" name="title" data-input required>
       <option value="">{data.select_all}</option>
       {
         options.map(i => {
@@ -57,7 +57,8 @@ const { data, options } = Astro.props;
       type="text"
       id="activity-date"
       class="form__input-active input-activity"
-      name="Дата / День недели"
+      name="DateOrDayweek"
+      data-input
       required
     />
   </div>
@@ -67,7 +68,8 @@ const { data, options } = Astro.props;
       type="text"
       id="activity-time"
       class="form__input-active input-activity"
-      name="Время / Длительность"
+      name="TimeOrDuration"
+      data-input
       required
     />
   </div>

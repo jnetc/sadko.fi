@@ -324,3 +324,22 @@ export interface ISchedule  {
   saturday: Array<DayType>
   sunday: Array<DayType>
 }
+
+
+export interface IFormData {
+    activity: "Кружок" | "Лагерь";
+    title: string;
+    DateOrDayweek: string;
+    TimeOrDuration: string;
+    childDate: string;
+    childName: string;
+    childInfo: string;
+    name: string;
+    henkilotunnus: string;
+    address: string;
+    postcode: string;
+    city: string;
+    phone: string;
+    email: string;
+    message: string;
+  }

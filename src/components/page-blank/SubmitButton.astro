@@ -5,40 +5,9 @@ import { locale_blank } from '@Locales/blanks';
 const lang = Astro.params.locale as 'ru' | 'fi';
 ---
 
-<script>
-  const button = document.querySelector<HTMLButtonElement>('.btn-submit')!;
-  const policy = document.getElementById('policy') as HTMLInputElement;
-  const warning = document.querySelector<HTMLParagraphElement>('.form__warning');
-  const inputs = [...document.querySelectorAll<HTMLInputElement>('.form__input-active')];
-
-  function openSubMenu() {
-    const check = inputs.every(i => (i.value ? true : false));
-
-    // Reset styles and ene button
-    warning?.classList.remove('show');
-
-    // Chack all required fields and checkbox
-    if (!policy.checked || !check) {
-      return;
-    }
-
-    // Show waining animation
-    button.closest('.form__submit')?.classList.add('pending');
-    button.disabled = true;
-    // Disable all waining animation
-    const timer = setTimeout(() => {
-      warning?.classList.add('show');
-      button.closest('.form__submit')?.classList.remove('pending');
-      button.disabled = false;
-      clearTimeout(timer);
-    }, 60000);
-  }
-  button?.addEventListener('click', openSubMenu);
-</script>
-
-<div class="form__submit">
-  <p class="form__notification">{locale_blank[lang].notification}</p>
-  <p class="form__warning">{locale_blank[lang].warning}</p>
+<div class="submit">
+  <p class="notification">{locale_blank[lang].notification}</p>
+  <p class="warning">{locale_blank[lang].warning}</p>
   <button type="submit" class="btn btn-primary arrow-icon btn-submit">
     <span class="btn__text">{locale_buttons[lang].button_submit}</span>
     <div class="btn__loader" role="status">
@@ -53,19 +22,19 @@ const lang = Astro.params.locale as 'ru' | 'fi';
 </div>
 
 <style>
-  .form__notification,
-  .form__warning {
+  .notification,
+  .warning {
     display: none;
     font-size: var(--font-14);
     text-align: center;
   }
 
-  .form__warning.show {
+  .warning.show {
     display: block;
     color: var(--error);
   }
 
-  .form__submit.pending .form__notification {
+  .submit.pending .notification {
     display: block;
   }
 
@@ -73,14 +42,14 @@ const lang = Astro.params.locale as 'ru' | 'fi';
     margin-inline: auto;
     margin-block: var(--gap-16) var(--gap-32);
   }
-  .form__submit.pending .btn-submit {
+  .submit.pending .btn-submit {
     padding-inline: initial;
   }
-  .form__submit.pending .btn__icon,
-  .form__submit.pending .btn__text {
+  .submit.pending .btn__icon,
+  .submit.pending .btn__text {
     display: none;
   }
-  .form__submit.pending .btn__loader {
+  .submit.pending .btn__loader {
     display: flex;
   }
 

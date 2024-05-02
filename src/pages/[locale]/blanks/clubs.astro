@@ -29,6 +29,68 @@ const md = await toMarkdown(data.sub_title);
 const { rule_href, ...select } = locale_club_blank[lang];
 ---
 
+<script>
+  // Helpers
+  import { sendmail, createFormObject } from '@Helpers/emailFunctions';
+
+  const form = document.querySelector<HTMLButtonElement>('.form')!;
+  const inputs = [...document.querySelectorAll<HTMLInputElement>('[data-input]')];
+  const policy = document.getElementById('policy') as HTMLInputElement;
+  // ANTISPAM
+  const honeypod = document.querySelector('[name="_honey"]') as HTMLInputElement;
+  // Form elements
+  const warning = form.querySelector<HTMLParagraphElement>('.warning')!;
+  const submit = form.querySelector<HTMLDivElement>('.submit')!;
+  const button = form.querySelector<HTMLButtonElement>('.btn-submit')!;
+
+  // Handle form submit
+  async function openSubMenu(event: Event) {
+    event.preventDefault();
+
+    // Check SPAMBOT
+    if (honeypod.value) return;
+
+    const check = inputs.every(i => (i.value ? true : false));
+    // Remove waining attention
+    warning.classList.remove('show');
+
+    // Check all required fields and checkbox
+    if (!policy.checked || !check) {
+      return;
+    }
+
+    // Show waining animation
+    submit.classList.add('pending');
+    button.disabled = true;
+
+    const data = createFormObject(inputs, 'Кружок');
+
+    // Get result from API
+    const response = await sendmail(data);
+    const result = (await response.json()) as { status: number };
+
+    // Disable waining animation
+    submit.classList.remove('pending');
+    button.disabled = false;
+
+    // Redirect to success page and reset form fields
+    if (result.status === 200) {
+      inputs.forEach(i => (i.value = ''));
+      policy.checked = false;
+      // Redirect
+      window.location.href = `/${document.documentElement.lang}/blanks/success`;
+      return;
+    }
+
+    // Show message if we have an error
+    if (result.status === 400) {
+      warning.classList.add('show');
+    }
+  }
+
+  form?.addEventListener('submit', openSubMenu);
+</script>
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -48,17 +110,9 @@ const { rule_href, ...select } = locale_club_blank[lang];
       </div>
       <p class="header__important">{data.important}</p>
     </div>
-    <form class="page__form" action="https://formsubmit.co/sadko.klubi.hel@gmail.com" method="post">
-      <!--  "Thank You" page -->
-      <input type="hidden" name="_next" value=`https://sadkofi.netlify.app/${lang}/blanks/success/` />
-      <!-- multiple email addresses -->
-      <input type="hidden" name="_cc" value="sadko@sadko.fi" />
+    <form class="form" method="POST">
       <!-- honeypot -->
-      <input type="hidden" name="_honey" style="display:none !important" tabindex="-1" />
-      <!-- reCAPTCHA -->
-      <input type="hidden" name="_captcha" value="false" />
-      <!-- Email Template -->
-      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_honey" style="display:none !important" tabindex="-1" value="" />
 
       <SelectActivity data={select} options={data.select} />
       <ChildFieldset />

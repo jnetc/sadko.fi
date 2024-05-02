@@ -12,11 +12,13 @@ const lang = Astro.params.locale as 'ru' | 'fi';
       type="text"
       id="child-name"
       class="form__input-active"
-      name="Имя ребёнка"
+      name="childName"
+      data-input
       placeholder="Julia Ivanova"
       pattern="[a-zA-ZäåöÄÅÖ \\-]{2,}"
       title={locale_blank[lang].child_name_title}
       required
+      value="Julia Ivanova"
     />
   </div>
   <div class="form__input">
@@ -25,11 +27,13 @@ const lang = Astro.params.locale as 'ru' | 'fi';
       type="text"
       id="child-date"
       class="form__input-active"
-      name="Дата рождения"
+      name="childDate"
+      data-input
       placeholder="01.01.2000"
       pattern="[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{4}"
       inputmode="numeric"
       required
+      value="01.01.2000"
     />
   </div>
   <div class="form__input">
@@ -37,11 +41,16 @@ const lang = Astro.params.locale as 'ru' | 'fi';
     <textarea
       id="child-info"
       class="form__input-active"
-      name="Дополнительная информация о ребёнке"
+      name="childInfo"
+      data-input
       placeholder={locale_blank[lang].child_textarea_title}
       rows="5"
       minlength="1"
       title={locale_blank[lang].child_textarea_title}
-      required></textarea>
+      required
+      >In this webinar, there will be discussion about the benefits of Finnish/Swedish language skills in the Finnish
+      labour market and you can get to know the online materials available on Kielibuusti website that help you achieve
+      your language learning goals.</textarea
+    >
   </div>
 </fieldset>
