@@ -27,7 +27,7 @@ export const POST: APIRoute = async ({ request }) => {
     from: `Sadko.fi <${req.email}>`,
     replyTo: req.email,
     to: user,
-    cc: import.meta.env.SECOND_EMAIL,
+    cc: `${import.meta.env.FIRST_EMAIL},${import.meta.env.SECOND_EMAIL}`,
     subject: `${req.name} - ${req.title}`,
     html: htmlTemplate(req),
   }
