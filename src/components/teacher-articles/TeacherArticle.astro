@@ -51,7 +51,7 @@ const md = await toMarkdown(text);
   />
   <h2 class="teacher__name">{name}</h2>
   <h3 class="teacher__label">{description}</h3>
-  <div class="teacher__links" role="list">
+  <div class="teacher__links">
     {links.map(link => <TeacherArticleLink link={link.link} color={color} link_name={link.link_name} />)}
   </div>
   <div class="markdown teacher__text">

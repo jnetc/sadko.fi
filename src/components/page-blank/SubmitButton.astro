@@ -10,7 +10,7 @@ const lang = Astro.params.locale as 'ru' | 'fi';
   <p class="warning">{locale_blank[lang].warning}</p>
   <button type="submit" class="btn btn-primary arrow-icon btn-submit">
     <span class="btn__text">{locale_buttons[lang].button_submit}</span>
-    <div class="btn__loader" role="status">
+    <div class="btn__loader">
       <span></span><span></span><span></span><span></span><span></span>
     </div>
     <span class="btn__icon" aria-hidden="true">

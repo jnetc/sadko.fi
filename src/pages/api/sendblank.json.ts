@@ -11,7 +11,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   const req: IFormData = await request.json()
 
-  // SMTP Server Settings
+ // SMTP Server Settings
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     host: "smtp.gmail.com",

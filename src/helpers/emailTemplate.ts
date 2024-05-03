@@ -84,6 +84,10 @@ export function htmlTemplate(req: IFormData) {
             <th scope="row" style="padding: 12px">Доп. информация</th>
             <td style="padding: 12px 12px 12px 0">${req.message}</td>
           </tr>
+          <tr>
+            <th scope="row" style="padding: 12px">Правила Садко</th>
+            <td style="padding: 12px 12px 12px 0">Я ознакомлен(а) и согласен(а) с правилами и условиями проведения мероприятия.</td>
+          </tr>
         </tbody>
       </table>
     </div>
