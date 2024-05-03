@@ -10,7 +10,6 @@ const pass = import.meta.env.GMAIL_PASS
 export const POST: APIRoute = async ({ request }) => {
 
   const req: IFormData = await request.json()
-  console.log('request', req)
 
   // SMTP Server Settings
   const transporter = nodemailer.createTransport({

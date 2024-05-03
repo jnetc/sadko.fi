@@ -38,8 +38,10 @@ const { primary, items } = Astro.props.data;
     const root = list.closest('.faq__details')!;
     // Scroll to top of parent element
     const timer = setTimeout(() => {
+      // CSS: With "scroll-margin-top" we can do gap between top and element
       root.scrollIntoView({
         behavior: 'smooth',
+        block: 'start',
       });
       clearTimeout(timer);
     }, 300);
