@@ -1,24 +1,17 @@
 ---
-import type { HrefType } from '@Types';
-
 interface Props {
-  link: HrefType;
+  chip: string;
   color: string;
-  link_name: string;
 }
-const { color, link_name } = Astro.props;
+const { color, chip } = Astro.props;
 ---
 
 <span class={`teacher__link bg-${color}`}>
-  {link_name}
+  {chip}
 </span>
-<!-- <a class={`teacher__link bg-${color}`} href={link.url} rel="noopener noreferrer">
-  {link_name}
-</a> -->
 
 <style>
   .teacher__link {
-    /* max-width: 280px; */
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -30,13 +23,10 @@ const { color, link_name } = Astro.props;
     font-size: var(--font-12);
     font-weight: bold;
     transition: all 0.3s ease-in-out;
+    user-select: none;
   }
   .teacher__link.bg-black,
   .teacher__link.bg-violet {
     color: var(--white);
-  }
-  .teacher__link:hover {
-    background-color: var(--violet-light);
-    color: var(--black);
   }
 </style>

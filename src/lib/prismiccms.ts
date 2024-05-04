@@ -11,8 +11,7 @@ import type {Pages, TypeLanguages} from "@Types";
 const repositoryName = import.meta.env.PRISMIC_REPOSITORY_NAME;
 const accessToken = import.meta.env.PRISMIC_ACCESS_TOKEN;
 
-
-export async function single(query: string, page: Pages, lang: TypeLanguages,fetchLinks?: string | string[] ) {
+export async function single(query: string, page: Pages, lang: TypeLanguages, fetchLinks?: string | string[] ) {
 
   const client = prismic.createClient(repositoryName, {
     accessToken,

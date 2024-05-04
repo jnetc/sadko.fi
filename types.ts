@@ -293,7 +293,7 @@ export interface ITeacher {
   color: string
   name: string
   text: RichTextField
-  links: Array<{link_name: string, link: HrefType}>
+  chips: Array<{club: string}>
 }
 
 export interface IFeedback {

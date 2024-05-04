@@ -25,13 +25,8 @@ export const repeatableQuery = `{
           }
         }
         text
-        links {
-          link_name
-          link {
-            ... on _ExternalLink {
-              url
-            }
-          }
+        chips {
+          club
         }
       }
     }
