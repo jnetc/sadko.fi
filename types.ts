@@ -327,7 +327,7 @@ export interface ISchedule  {
 
 
 export interface IFormData {
-    activity: "Кружок" | "Лагерь";
+    activity: "club" | "camp";
     title: string;
     DateOrDayweek: string;
     TimeOrDuration: string;

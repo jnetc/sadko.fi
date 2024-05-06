@@ -43,6 +43,7 @@ const lang = Astro.params.locale as 'ru' | 'fi';
       name="address"
       data-input
       placeholder="Vaasankatu 12 B 45"
+      pattern="[a-zA-ZäåöÄÅÖ0-9]{3,}"
       required
     />
   </div>

@@ -1,5 +1,4 @@
 ---
-import { locale_main } from '@Locales/main';
 import { locale_blank } from '@Locales/blanks';
 // Type
 import type { IBlankSelect } from '@Types';
@@ -52,7 +51,7 @@ const { data, options } = Astro.props;
     </select>
   </div>
   <div class="form__input">
-    <label class="required" for="activity-date">{locale_main[lang].date}</label>
+    <label class="required" for="activity-date">{locale_blank[lang].date}</label>
     <input
       type="text"
       id="activity-date"
@@ -63,7 +62,7 @@ const { data, options } = Astro.props;
     />
   </div>
   <div class="form__input">
-    <label class="required" for="activity-time">{locale_main[lang].time}</label>
+    <label class="required" for="activity-time">{locale_blank[lang].time}</label>
     <input
       type="text"
       id="activity-time"

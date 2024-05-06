@@ -12,7 +12,7 @@ import type { IFormData } from "@Types";
   }
 
   // Create object with key and value from every input to store
-  export function createFormObject(array: HTMLInputElement[], activity: "Кружок" | "Лагерь") {
+  export function createFormObject(array: HTMLInputElement[], activity: "club" | "camp") {
     const store = Object.create(null);
     // Assign new key for activity
     Object.assign(store, { activity: activity });
