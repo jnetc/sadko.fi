@@ -14,19 +14,17 @@ const { article, date } = Astro.props;
 ---
 
 <section class="section__item">
-  <a class="section__href" href={`${path}${article.slug.url}/`} aria-label={article.slug.url}>
-    <div class="section__article arrow-icon">
-      <div class="section__image-wrapper">
-        <img
-          class="section__image"
-          src={article.image.url}
-          alt={article.image.alt}
-          height={article.image.dimensions.height}
-          width={article.image.dimensions.width}
-        />
-      </div>
-      <ArticleContent content={article} publish={date} />
+  <a class="section__article arrow-icon" href={`${path}${article.slug.url}/`} aria-label={article.slug.url}>
+    <div class="section__image-wrapper">
+      <img
+        class="section__image"
+        src={article.image.url}
+        alt={article.image.alt}
+        height={article.image.dimensions.height}
+        width={article.image.dimensions.width}
+      />
     </div>
+    <ArticleContent content={article} publish={date} />
   </a>
   <svg class="section__svg">
     <use xlink:href="/svg/ui_shapes.svg#page_stroke_02"></use>
@@ -40,10 +38,8 @@ const { article, date } = Astro.props;
     grid-template-columns: repeat(12, minmax(0, 6rem));
     column-gap: var(--gap-32);
   }
-  .section__href {
-    grid-column: 1 / -5;
-  }
-  .section__item:nth-of-type(even) .section__href {
+
+  .section__item:nth-of-type(even) .section__article {
     grid-column: 5 / -1;
   }
   .section__item:nth-of-type(even) .section__svg {
@@ -80,6 +76,7 @@ const { article, date } = Astro.props;
   }
 
   .section__article {
+    grid-column: 1 / -5;
     display: flex;
     flex-wrap: wrap;
     border-radius: var(--border-corner-32);
@@ -88,6 +85,7 @@ const { article, date } = Astro.props;
       0 15px 10px var(--opacity-3);
     transition: all 0.3s ease-in-out;
   }
+
   .section__item .section__article:hover {
     border-color: var(--violet);
   }
@@ -119,7 +117,7 @@ const { article, date } = Astro.props;
       column-gap: 0;
     }
 
-    .section__href {
+    .section__article {
       grid-column: 1 / -1;
     }
 
