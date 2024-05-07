@@ -2,13 +2,13 @@ import type { IFormData } from '@Types';
 
 export function htmlTemplate(req: IFormData) {
   const activity = req.activity ===  'club' ? 'Кружок | Kerho' : 'Лагерь | Leiri'
-  const text = req.activity === 'club' ? 'Hyvät huoltajat , valitse kerho ja täytä sopimus! Täytä kaikki tiedot SUOMEKSI! /Уважаемые родители, выберите, пожалуйста, кружок и заполните договор! Пожалуйста, все данные заполнять на ФИНСКОМ языке!' : 'Hyvät huoltajat, valitse leiri ja täytä sopimus! Täytä kaikki tiedot SUOMEKSI! / Уважаемые родители, выберите, пожалуйста, лагерь и заполните договор! Пожалуйста, все данные заполняйте на ФИНСКОМ языке!'
-  const text2 = req.activity === 'club' ? 'Обратите внимание! Если кружок для взрослого, вы заполняете свои данные вместо ребенка / Huomio! Jos kerho on aikuisille, täytä tietosi lapsen sijaan.' : null
+  const text = req.activity === 'club' ? 'Hyvät huoltajat , valitse kerho ja täytä sopimus! Täytä kaikki tiedot SUOMEKSI! | Уважаемые родители, выберите, пожалуйста, кружок и заполните договор! Пожалуйста, все данные заполнять на ФИНСКОМ языке!' : 'Hyvät huoltajat, valitse leiri ja täytä sopimus! Täytä kaikki tiedot SUOMEKSI! | Уважаемые родители, выберите, пожалуйста, лагерь и заполните договор! Пожалуйста, все данные заполняйте на ФИНСКОМ языке!'
+  const text2 = req.activity === 'club' ? 'Обратите внимание! Если кружок для взрослого, вы заполняете свои данные вместо ребенка | Huomio! Jos kerho on aikuisille, täytä tietosi lapsen sijaan.' : null
 
   return `
   <div style="max-width: 600px; margin: 0 auto; border-radius: 24px; padding: 36px 0; border: 1px solid #ece5ff; font-family: sans-serif">
     <h1 style="text-align: center; margin: 0 0 36px 0; font-size: 28px">Договор | Sopimus</h1>
-    <p style="text-align: center; padding: 12px; font-size: 16px">Helsingin Monipuolinen Toimintakeskus Sadko ry / Центр развития и творчества "Садко" Хельсинки.</p>
+    <p style="text-align: center; padding: 12px; font-size: 16px">Helsingin Monipuolinen Toimintakeskus Sadko ry | Центр развития и творчества "Садко" Хельсинки.</p>
     <p style="text-align: center; padding: 12px; font-size: 16px">${text}</p>
     <p style="text-align: center; padding: 12px; font-size: 16px; display: ${text2 ? 'block' : 'none'}">${text2}</p>
     <div style="width: 100%;  margin: 32px auto 0">
@@ -34,7 +34,7 @@ export function htmlTemplate(req: IFormData) {
     </div>
     <div style="text-align: left; margin: 36px auto">
       <div style="padding: 12px; border-radius: 16px 16px 0 0; background-color: #feef79">
-        <h2 style="font-size: 18px; text-align: center; margin: 0">Lapsi / Ребенок</h2>
+        <h2 style="font-size: 18px; text-align: center; margin: 0">Ребенок | Lapsi</h2>
       </div>
       <table style="width: 100%; border-collapse: collapse; margin-bottom: 36px; text-align: left">
         <tbody>
@@ -43,11 +43,11 @@ export function htmlTemplate(req: IFormData) {
             <td style="padding: 12px 12px 12px 0; border-bottom: 1px solid #ece5ff">${req.childName}</td>
           </tr>
           <tr style="background-color: #fcfbff">
-            <th scope="row" style="padding: 12px; border-bottom: 1px solid #ece5ff">Дата рождения</th>
+            <th scope="row" style="padding: 12px; border-bottom: 1px solid #ece5ff">Дата рождения | Syntymäpäivä</th>
             <td style="padding: 12px 12px 12px 0; border-bottom: 1px solid #ece5ff">${req.childDate}</td>
           </tr>
           <tr>
-            <th scope="row" style="padding: 12px">Доп. информация о ребенке</th>
+            <th scope="row" style="padding: 12px">Доп. информация | Lisätiedot</th>
             <td style="padding: 12px 12px 12px 0">${req.childInfo}</td>
           </tr>
         </tbody>
@@ -88,12 +88,12 @@ export function htmlTemplate(req: IFormData) {
             <td style="padding: 12px 12px 12px 0; border-bottom: 1px solid #ece5ff">${req.email}</td>
           </tr>
           <tr>
-            <th scope="row" style="padding: 12px">Доп. информация</th>
+            <th scope="row" style="padding: 12px">Доп. информация | Lisätiedot</th>
             <td style="padding: 12px 12px 12px 0">${req.message}</td>
           </tr>
           <tr>
-            <th scope="row" style="padding: 12px">Правила Садко</th>
-            <td style="padding: 12px 12px 12px 0">Я ознакомлен(а) и согласен(а) с правилами и условиями проведения мероприятия.</td>
+            <th scope="row" style="padding: 12px">Правила | Toimintasäännöt</th>
+            <td style="padding: 12px 12px 12px 0">Я ознакомлен(а) и согласен(а) с правилами | Olen lukenut ja hyväksynyt toimintasäännöt</td>
           </tr>
         </tbody>
       </table>
