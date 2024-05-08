@@ -12,7 +12,7 @@ export function htmlTemplate(req: IFormData) {
     <p style="text-align: center; padding: 12px; font-size: 16px">${text}</p>
     <p style="text-align: center; padding: 12px; font-size: 16px; display: ${text2 ? 'block' : 'none'}">${text2}</p>
     <div style="width: 100%;  margin: 32px auto 0">
-      <div style="padding: 12px; border-radius: 16px 16px 0 0; background-color: #704fe6; color: #fff">
+      <div style="padding: 12px; border-radius: 16px 16px 0 0; background-color: #dec8fe">
         <h2 style="font-size: 18px; text-align: center; margin: 0">${activity}</h2>
       </div>
       <table style="width: 100%; border-collapse: collapse; margin-bottom: 36px; text-align: left">

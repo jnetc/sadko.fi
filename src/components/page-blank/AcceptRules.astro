@@ -17,7 +17,7 @@ const text = locale_blank[lang].accept_rules.split('|');
   <p>
     {text[0]}
     <a class="href" href=`/${lang}/rules-and-payments/rules-of-${hrefRule}/`>{hrefName}</a>
-    {lang === 'ru' ? `/ ${text[1]}` : null}
+    {lang === 'ru' ? `| ${text[1]}` : null}
     {
       lang === 'ru' ? (
         <a class="href" href={`/fi/rules-and-payments/rules-of-${hrefRule}/`}>

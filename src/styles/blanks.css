@@ -35,10 +35,13 @@
 }
 
 fieldset legend {
-  padding-inline: var(--gap-12);
+  padding: var(--gap-12);
   color: var(--black);
   font-size: var(--font-20);
   font-weight: bold;
+  background-color: transparent;
+  border-radius: var(--border-corner-6);
+  transition: all .3s ease-in-out;
 }
 
 fieldset {
@@ -47,7 +50,20 @@ fieldset {
   border-radius: var(--border-corner-8);
   border: 1px solid var(--grey-100);
   padding-inline: var(--gap-16);
-  padding-block: var(--gap-16) var(--gap-36);
+  padding-block: var(--gap-16) var(--gap-24);
+  transition: all .3s ease-in-out;
+}
+fieldset:hover {
+  border-color:  var(--violet);
+}
+fieldset:nth-of-type(1):hover legend {
+  background-color: var(--violet-light);
+}
+fieldset:nth-of-type(2):hover legend {
+  background-color: var(--yellow);
+}
+fieldset:nth-of-type(3):hover legend {
+  background-color: var(--green);
 }
 
 fieldset textarea {
