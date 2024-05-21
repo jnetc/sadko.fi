@@ -63,7 +63,7 @@ const md = await toMarkdown(data.text);
         <use xlink:href="/svg/ui_icons.svg#arrow_drop_down"></use>
       </svg>
       <select class="schedule-select__select" aria-label={locale_schedule[lang].select_all}>
-        <option value="">{locale_schedule[lang].select_all}</option>
+        <option value="all">{locale_schedule[lang].select_all}</option>
         {
           schedule.map(i => {
             const data = i.data as ISchedule;
