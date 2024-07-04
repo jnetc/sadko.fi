@@ -11,21 +11,21 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.7.0",
-    "@astrojs/netlify": "^5.2.1",
-    "@astrojs/sitemap": "^3.1.4",
-    "@prismicio/client": "^7.5.0",
+    "@astrojs/netlify": "^5.3.5",
+    "@astrojs/sitemap": "^3.1.6",
+    "@prismicio/client": "^7.6.0",
     "@prismicio/helpers": "^2.3.9",
     "@prismicio/richtext": "^2.1.5",
-    "astro": "^4.8.6",
-    "marked": "^12.0.2",
-    "nodemailer": "^6.9.13",
+    "astro": "^4.11.5",
+    "marked": "^13.0.2",
+    "nodemailer": "^6.9.14",
     "sharp": "^0.33.4",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.3"
   },
   "devDependencies": {
-    "@prismicio/types": "^0.2.8",
+    "@prismicio/types": "^0.2.9",
     "@types/nodemailer": "^6.4.15",
-    "prettier": "^3.2.5",
-    "prettier-plugin-astro": "^0.13.0"
+    "prettier": "^3.3.2",
+    "prettier-plugin-astro": "^0.14.0"
   }
 }

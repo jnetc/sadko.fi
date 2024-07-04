@@ -32,6 +32,11 @@ export default `{
             url
           }
         }
+        tiktok {
+          ...on _ExternalLink {
+            url
+          }
+        }
       }
     }
   }

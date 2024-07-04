@@ -160,6 +160,7 @@ export type SecondaryButtonType = {
 /* SLICES */
 export type SliceType = "hero" | "activities" | "welcome" | "offer" | "gallery" | "teachers" | "faq" | "feedbacks"
 
+/* Footer */
 export interface ICommonData {
   notification: string;
   description: string;
@@ -171,6 +172,7 @@ export interface ICommonData {
   facebook: HrefType;
   instagram: HrefType;
   telegram: HrefType;
+  tiktok: HrefType;
 }
 
 export interface IIndex extends SEOType {
