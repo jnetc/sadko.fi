@@ -3,120 +3,122 @@ import { locale_blank } from '@Locales/blanks';
 // Type
 import type { IBlankSelect } from '@Types';
 interface Props {
-  data: { label: string; name: string; select_all: string };
-  options: IBlankSelect[];
+	data: { label: string; name: string; select_all: string };
+	options: IBlankSelect[];
 }
 
 const lang = Astro.params.locale as 'ru' | 'fi';
 
 const { data, options } = Astro.props;
+
+console.log(options, data);
 ---
 
 <script>
-  const select = document.querySelector<HTMLSelectElement>('.blank-select__select');
-  const items = document.querySelectorAll<HTMLInputElement>('.input-activity')!;
+	const select = document.querySelector<HTMLSelectElement>('.blank-select__select');
+	const items = document.querySelectorAll<HTMLInputElement>('.input-activity')!;
 
-  select?.addEventListener('change', (ev: Event) => {
-    const el = ev.target as HTMLSelectElement;
-    if (!el.value) {
-      items.forEach(i => (i.value = ''));
-      return;
-    }
+	select?.addEventListener('change', (ev: Event) => {
+		const el = ev.target as HTMLSelectElement;
+		if (!el.value) {
+			items.forEach(i => (i.value = ''));
+			return;
+		}
 
-    items.forEach((i, id) => {
-      if (id === 0) i.value = el.options[el.selectedIndex].dataset.date!;
-      if (id === 1) i.value = el.options[el.selectedIndex].dataset.time!;
-    });
-  });
+		items.forEach((i, id) => {
+			if (id === 0) i.value = el.options[el.selectedIndex].dataset.date!;
+			if (id === 1) i.value = el.options[el.selectedIndex].dataset.time!;
+		});
+	});
 </script>
 
-<fieldset class="select">
-  <legend>{locale_blank[lang].activity_legend}</legend>
-  <div class="blank-select">
-    <label class="required" for="selection">{data.label}</label>
-    <svg class="blank-select__icon" aria-hidden="true">
-      <use xlink:href="/svg/ui_icons.svg#arrow_drop_down"></use>
-    </svg>
-    <select class="blank-select__select" id="selection" name="title" data-input required>
-      <option value="">{data.select_all}</option>
-      {
-        options.map(i => {
-          return (
-            <option value={i.option.data.title} data-date={i.option.data.date} data-time={i.option.data.time}>
-              {i.option.data.title}
-            </option>
-          );
-        })
-      }
-    </select>
-  </div>
-  <div class="form__input">
-    <label class="required" for="activity-date">{locale_blank[lang].date}</label>
-    <input
-      type="text"
-      id="activity-date"
-      class="form__input-active input-activity"
-      name="DateOrDayweek"
-      data-input
-      required
-    />
-  </div>
-  <div class="form__input">
-    <label class="required" for="activity-time">{locale_blank[lang].time}</label>
-    <input
-      type="text"
-      id="activity-time"
-      class="form__input-active input-activity"
-      name="TimeOrDuration"
-      data-input
-      required
-    />
-  </div>
+<fieldset class='select'>
+	<legend>{locale_blank[lang].activity_legend}</legend>
+	<div class='blank-select'>
+		<label class='required' for='selection'>{data.label}</label>
+		<svg class='blank-select__icon' aria-hidden='true'>
+			<use xlink:href='/svg/ui_icons.svg#arrow_drop_down'></use>
+		</svg>
+		<select class='blank-select__select' id='selection' name='title' data-input required>
+			<option value=''>{data.select_all}</option>
+			{
+				options.map(i => {
+					return (
+						<option value={i.option.data.title} data-date={i.option.data.date} data-time={i.option.data.time}>
+							{i.option.data.title}
+						</option>
+					);
+				})
+			}
+		</select>
+	</div>
+	<div class='form__input'>
+		<label class='required' for='activity-date'>{locale_blank[lang].date}</label>
+		<input
+			type='text'
+			id='activity-date'
+			class='form__input-active input-activity'
+			name='DateOrDayweek'
+			data-input
+			required
+		/>
+	</div>
+	<div class='form__input'>
+		<label class='required' for='activity-time'>{locale_blank[lang].time}</label>
+		<input
+			type='text'
+			id='activity-time'
+			class='form__input-active input-activity'
+			name='TimeOrDuration'
+			data-input
+			required
+		/>
+	</div>
 </fieldset>
 
 <style>
-  .select {
-    display: grid;
-    row-gap: var(--gap-24);
-  }
+	.select {
+		display: grid;
+		row-gap: var(--gap-24);
+	}
 
-  .blank-select {
-    display: grid;
-    position: relative;
-    row-gap: var(--gap-8);
-  }
+	.blank-select {
+		display: grid;
+		position: relative;
+		row-gap: var(--gap-8);
+	}
 
-  .blank-select__icon {
-    width: 1.5rem;
-    aspect-ratio: 1;
-    position: absolute;
-    inset-block: 2.4rem;
-    right: 1rem;
-    fill: var(--violet);
-    pointer-events: none;
-    user-select: none;
-  }
+	.blank-select__icon {
+		width: 1.5rem;
+		aspect-ratio: 1;
+		position: absolute;
+		inset-block: 2.4rem;
+		right: 1rem;
+		fill: var(--violet);
+		pointer-events: none;
+		user-select: none;
+	}
 
-  .blank-select__select {
-    appearance: none;
-    min-width: 100%;
-    padding-block: var(--gap-16);
-    padding-inline: var(--gap-16) var(--gap-40);
-    border: 1.5px solid var(--violet-light);
-    border-radius: var(--border-corner-8);
-    outline-color: var(--violet);
-    font-family: 'Comfortaa', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    font-size: clamp(var(--font-16), 2vw, var(--font-18));
-    cursor: pointer;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-  .shedule-select:focus-visible {
-    border-color: var(--violet);
-  }
+	.blank-select__select {
+		appearance: none;
+		min-width: 100%;
+		padding-block: var(--gap-16);
+		padding-inline: var(--gap-16) var(--gap-40);
+		border: 1.5px solid var(--violet-light);
+		border-radius: var(--border-corner-8);
+		outline-color: var(--violet);
+		font-family: 'Comfortaa', sans-serif;
+		-webkit-font-smoothing: antialiased;
+		font-size: clamp(var(--font-16), 2vw, var(--font-18));
+		cursor: pointer;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	.shedule-select:focus-visible {
+		border-color: var(--violet);
+	}
 
-  .selected-data__item {
-    font-size: var(--font-16);
-  }
+	.selected-data__item {
+		font-size: var(--font-16);
+	}
 </style>

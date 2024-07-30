@@ -1,9 +1,9 @@
 ---
-import { locale_blank } from '@Locales/blanks';
+import { locale_blank, locale_camp_blank, locale_club_blank } from '@Locales/blanks';
 
 interface Props {
-  hrefName: string;
-  hrefRule: 'camp' | 'club';
+	hrefName: string;
+	hrefRule: 'camp' | 'club';
 }
 
 const lang = Astro.params.locale as 'ru' | 'fi';
@@ -12,26 +12,30 @@ const { hrefRule, hrefName } = Astro.props;
 const text = locale_blank[lang].accept_rules.split('|');
 ---
 
-<div class="form__policy">
-  <input type="checkbox" id="policy" aria-label={locale_blank[lang].accept_rules} required />
-  <p>
-    {text[0]}
-    <a class="href" href=`/${lang}/rules-and-payments/rules-of-${hrefRule}/`>{hrefName}</a>
-    {lang === 'ru' ? `| ${text[1]}` : null}
-    {
-      lang === 'ru' ? (
-        <a class="href" href={`/fi/rules-and-payments/rules-of-${hrefRule}/`}>
-          leirin toimintasäännöt
-        </a>
-      ) : null
-    }
-  </p>
+<div class='form__policy'>
+	<input type='checkbox' id='policy' aria-label={locale_blank[lang].accept_rules} required />
+	<p>
+		{text[0]}
+		<a class='href' href=`/${lang}/rules-and-payments/rules-of-${hrefRule}/`>{hrefName}</a>
+		{lang === 'ru' ? `| ${text[1]}` : null}
+		{
+			lang === 'ru' ? (
+				<a class='href' href={`/fi/rules-and-payments/rules-of-${hrefRule}/`}>
+					{hrefRule === 'camp' ? locale_camp_blank['fi'].rule_href : locale_club_blank['fi'].rule_href}
+				</a>
+			) : null
+		}
+	</p>
 </div>
 
 <style>
-  .form__policy {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--gap-16);
-  }
+	.form__policy {
+		display: flex;
+		align-items: flex-start;
+		gap: var(--gap-16);
+	}
+
+	[type='checkbox'] {
+		flex: 1 0 auto;
+	}
 </style>
