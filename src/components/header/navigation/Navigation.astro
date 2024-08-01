@@ -8,201 +8,201 @@ const lang = Astro.currentLocale as 'ru' | 'fi';
 ---
 
 <script>
-  const links = [...document.querySelectorAll<HTMLLIElement>('.nav__link')];
-  const buttons = [...document.querySelectorAll<HTMLButtonElement>('[aria-haspopup="menu"]')];
+	const links = [...document.querySelectorAll<HTMLLIElement>('.nav__link')];
+	const buttons = [...document.querySelectorAll<HTMLButtonElement>('[aria-haspopup="menu"]')];
 
-  function resetToDefault() {
-    links.some(li => {
-      if (!li.firstElementChild) return;
-      li.firstElementChild.setAttribute('data-expanded', 'false');
-      li.firstElementChild.setAttribute('aria-expanded', 'false');
-    });
-  }
+	function resetToDefault() {
+		links.some(li => {
+			if (!li.firstElementChild) return;
+			li.firstElementChild.setAttribute('data-expanded', 'false');
+			li.firstElementChild.setAttribute('aria-expanded', 'false');
+		});
+	}
 
-  function handleOutsideClick() {
-    function bodyElementHandler(event: MouseEvent) {
-      const el = event.target as HTMLElement;
+	function handleOutsideClick() {
+		function bodyElementHandler(event: MouseEvent) {
+			const el = event.target as HTMLElement;
 
-      if (!el.closest('.nav__link')) {
-        resetToDefault();
-      }
-    }
+			if (!el.closest('.nav__link')) {
+				resetToDefault();
+			}
+		}
 
-    document.addEventListener('mousedown', bodyElementHandler, { once: true });
-  }
+		document.addEventListener('mousedown', bodyElementHandler, { once: true });
+	}
 
-  function switchStateHandler(ev: MouseEvent) {
-    const currTarget = ev.currentTarget as HTMLButtonElement;
+	function switchStateHandler(ev: MouseEvent) {
+		const currTarget = ev.currentTarget as HTMLButtonElement;
 
-    if (currTarget.dataset.expanded === 'false') {
-      resetToDefault();
+		if (currTarget.dataset.expanded === 'false') {
+			resetToDefault();
 
-      currTarget.setAttribute('data-expanded', 'true');
-      currTarget.setAttribute('aria-expanded', 'true');
-      return;
-    }
+			currTarget.setAttribute('data-expanded', 'true');
+			currTarget.setAttribute('aria-expanded', 'true');
+			return;
+		}
 
-    currTarget.setAttribute('data-expanded', 'false');
-    currTarget.setAttribute('aria-expanded', 'false');
-  }
+		currTarget.setAttribute('data-expanded', 'false');
+		currTarget.setAttribute('aria-expanded', 'false');
+	}
 
-  buttons.forEach(btn => {
-    btn.addEventListener('mousedown', switchStateHandler);
-  });
+	buttons.forEach(btn => {
+		btn.addEventListener('mousedown', switchStateHandler);
+	});
 
-  links.forEach(link => {
-    link.addEventListener('click', handleOutsideClick);
-  });
+	links.forEach(link => {
+		link.addEventListener('click', handleOutsideClick);
+	});
 </script>
 
-<nav class="header__nav">
-  <ul class="nav__links">
-    <li class="nav__link">
-      <button type="button" class="nav__link-name" aria-haspopup="menu" aria-expanded="false" data-expanded="false"
-        >{headerLinks[lang].activities.name}
-        <svg class="icon">
-          <use xlink:href=`/svg/ui_icons.svg#arrow`></use>
-        </svg>
-      </button>
-      <SubMenu subMenu={headerLinks[lang].activities.submenu} index={1} />
-    </li>
-    <li class="nav__link">
-      <button type="button" class="nav__link-name" aria-haspopup="menu" aria-expanded="false" data-expanded="false"
-        >{headerLinks[lang].signup.name}
-        <svg class="icon">
-          <use xlink:href=`/svg/ui_icons.svg#arrow`></use>
-        </svg>
-      </button>
-      <SubMenu subMenu={headerLinks[lang].signup.submenu} index={2} />
-    </li>
-    <li class="nav__link">
-      <a href={`/${lang}/schedule/`} data-astro-reload class="nav__link-name"
-        >{headerLinks[lang].schedule}
-        <span class="nav__link-icon"></span>
-      </a>
-    </li>
-    <li class="nav__link">
-      <a href={`/${lang}/articles/`} data-astro-reload class="nav__link-name">{headerLinks[lang].articles} </a>
-    </li>
-    <li class="nav__link">
-      <button type="button" class="nav__link-name" aria-haspopup="menu" aria-expanded="false" data-expanded="false"
-        >{headerLinks[lang].about.name}
-        <svg class="icon">
-          <use xlink:href=`/svg/ui_icons.svg#arrow`></use>
-        </svg>
-      </button>
-      <SubMenu subMenu={headerLinks[lang].about.submenu} index={3} />
-    </li>
-  </ul>
+<nav class='header__nav'>
+	<ul class='nav__links'>
+		<li class='nav__link'>
+			<button type='button' class='nav__link-name' aria-haspopup='menu' aria-expanded='false' data-expanded='false'
+				>{headerLinks[lang].activities.name}
+				<svg class='icon'>
+					<use xlink:href=`/svg/ui_icons.svg#arrow`></use>
+				</svg>
+			</button>
+			<SubMenu subMenu={headerLinks[lang].activities.submenu} index={1} />
+		</li>
+		<li class='nav__link'>
+			<button type='button' class='nav__link-name' aria-haspopup='menu' aria-expanded='false' data-expanded='false'
+				>{headerLinks[lang].signup.name}
+				<svg class='icon'>
+					<use xlink:href=`/svg/ui_icons.svg#arrow`></use>
+				</svg>
+			</button>
+			<SubMenu subMenu={headerLinks[lang].signup.submenu} index={2} />
+		</li>
+		<li class='nav__link'>
+			<a href={`/${lang}/schedule/`} data-astro-reload class='nav__link-name'
+				>{headerLinks[lang].schedule}
+				<span class='nav__link-icon'></span>
+			</a>
+		</li>
+		<li class='nav__link'>
+			<a href={`/${lang}/articles/`} data-astro-reload class='nav__link-name'>{headerLinks[lang].articles} </a>
+		</li>
+		<li class='nav__link'>
+			<button type='button' class='nav__link-name' aria-haspopup='menu' aria-expanded='false' data-expanded='false'
+				>{headerLinks[lang].about.name}
+				<svg class='icon'>
+					<use xlink:href=`/svg/ui_icons.svg#arrow`></use>
+				</svg>
+			</button>
+			<SubMenu subMenu={headerLinks[lang].about.submenu} index={3} />
+		</li>
+	</ul>
 </nav>
 
 <style>
-  .header__nav {
-    grid-row: 1;
-    grid-column: 3 / 10 span;
-    justify-self: center;
-    align-self: center;
-    height: 100%;
-    display: flex;
-    gap: var(--gap-36);
-    margin-inline: auto;
-  }
-  .header__nav.open-menu {
-    display: flex;
-  }
+	.header__nav {
+		grid-row: 1;
+		grid-column: 3 / 10 span;
+		justify-self: center;
+		align-self: center;
+		height: 100%;
+		display: flex;
+		gap: var(--gap-36);
+		margin-inline: auto;
+	}
+	.header__nav.open-menu {
+		display: flex;
+	}
 
-  .nav__links {
-    display: flex;
-    gap: var(--gap-36);
-    font-size: var(--font-18);
-  }
+	.nav__links {
+		display: flex;
+		gap: var(--gap-36);
+		font-size: var(--font-18);
+	}
 
-  button[data-expanded='true'] ~ :global(.subnav) {
-    opacity: 1;
-    translate: 0 0;
-    pointer-events: all;
-    transition: all 0.3s ease-in-out;
-  }
+	button[data-expanded='true'] ~ :global(.subnav) {
+		opacity: 1;
+		translate: 0 0;
+		pointer-events: all;
+		transition: all 0.3s ease-in-out;
+	}
 
-  button[data-expanded='true'] .icon {
-    rotate: z 180deg;
-    fill: var(--violet);
-  }
-  button[data-expanded='true'] {
-    color: var(--violet);
-  }
+	button[data-expanded='true'] .icon {
+		rotate: z 180deg;
+		fill: var(--violet);
+	}
+	button[data-expanded='true'] {
+		color: var(--violet);
+	}
 
-  .nav__link-name {
-    display: flex;
-    align-items: center;
-    column-gap: var(--gap-6);
-    padding-block: var(--gap-12);
-    position: relative;
-    font-size: var(--font-18);
-    color: var(--black);
-  }
+	.nav__link-name {
+		display: flex;
+		align-items: center;
+		column-gap: var(--gap-6);
+		padding-block: var(--gap-12);
+		position: relative;
+		font-size: var(--font-18);
+		color: var(--black);
+	}
 
-  .nav__link-name:hover,
-  .nav__link-name:focus-visible {
-    color: var(--violet);
-  }
-  .nav__link-name .icon {
-    width: var(--size-18);
-    aspect-ratio: 1;
-    fill: var(--black);
-    transition: all 0.3s ease-in-out;
-    rotate: z 0;
-  }
+	.nav__link-name:hover,
+	.nav__link-name:focus-visible {
+		color: var(--violet);
+	}
+	.nav__link-name .icon {
+		width: var(--size-18);
+		aspect-ratio: 1;
+		fill: var(--black);
+		transition: all 0.3s ease-in-out;
+		rotate: z 0;
+	}
 
-  .nav__link-name:hover::after {
-    translate: 0 0rem;
-  }
+	.nav__link-name:hover::after {
+		translate: 0 0rem;
+	}
 
-  @media screen and (max-width: 1199px) {
-    .header__nav {
-      grid-column: 2 / -2;
-      min-width: 100vw;
-      display: none;
-      position: fixed;
-      /* calc button size + top / botton paddings */
-      top: calc(var(--gap-18) * 2 + var(--size-36) + 14px);
-      padding-block-end: calc(var(--gap-18) * 2 + var(--size-36) + 14px);
-      background-color: var(--white);
-      overflow: hidden;
-    }
-    .nav__links {
-      width: 100vw;
-      flex-direction: column;
-      gap: var(--gap-8);
-      overflow: scroll;
-    }
-    .nav__link {
-      display: grid;
-      grid-template-rows: auto 0fr;
-      padding-inline: var(--gap-16);
-      padding-block: var(--gap-18);
-    }
+	@media screen and (max-width: 1199px) {
+		.header__nav {
+			grid-column: 2 / -2;
+			min-width: 100vw;
+			display: none;
+			position: fixed;
+			/* calc button size + top / botton paddings */
+			top: calc(var(--gap-18) * 2 + var(--size-36) + 14px);
+			padding-block-end: calc(var(--gap-18) * 2 + var(--size-36) + 14px);
+			background-color: var(--white);
+			overflow: hidden;
+		}
+		.nav__links {
+			width: 100vw;
+			flex-direction: column;
+			gap: var(--gap-8);
+			overflow: scroll;
+		}
+		.nav__link {
+			display: grid;
+			grid-template-rows: auto 0fr;
+			padding-inline: var(--gap-16);
+			padding-block: var(--gap-18);
+		}
 
-    .nav__link:nth-of-type(odd) {
-      background-color: var(--opacity-3);
-    }
+		.nav__link:nth-of-type(odd) {
+			background-color: var(--opacity-3);
+		}
 
-    .nav__link:has(button[data-expanded='true']) {
-      grid-template-rows: auto 1fr;
-    }
+		.nav__link:has(button[data-expanded='true']) {
+			grid-template-rows: auto 1fr;
+		}
 
-    button[data-expanded='true'] ~ :global(.subnav) {
-      opacity: 1;
-      padding-block-end: var(--gap-18);
-      pointer-events: all;
-      transition: all 0.3s ease-in-out;
-    }
-    .nav__link-name {
-      display: flex;
-      justify-content: center;
-      column-gap: var(--gap-6);
-      padding-block: var(--gap-12);
-      position: relative;
-    }
-  }
+		button[data-expanded='true'] ~ :global(.subnav) {
+			opacity: 1;
+			padding-block-end: var(--gap-18);
+			pointer-events: all;
+			transition: all 0.3s ease-in-out;
+		}
+		.nav__link-name {
+			display: flex;
+			justify-content: center;
+			column-gap: var(--gap-6);
+			padding-block: var(--gap-12);
+			position: relative;
+		}
+	}
 </style>
