@@ -15,7 +15,7 @@
     0 15px 10px var(--opacity-3);
 }
 
-.form :has(input:invalid) button{
+.form :has(input:invalid) button {
   outline: 3px solid var(--red);
 }
 
@@ -27,7 +27,7 @@
 }
 
 .header__important::before {
-  content: '*';
+  content: "*";
   position: absolute;
   inset-block: 0;
   left: -0.5rem;
@@ -41,7 +41,7 @@ fieldset legend {
   font-weight: bold;
   background-color: transparent;
   border-radius: var(--border-corner-6);
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 fieldset {
@@ -51,10 +51,10 @@ fieldset {
   border: 1px solid var(--grey-100);
   padding-inline: var(--gap-16);
   padding-block: var(--gap-16) var(--gap-24);
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 fieldset:hover {
-  border-color:  var(--violet);
+  border-color: var(--violet);
 }
 fieldset:nth-of-type(1):hover legend {
   background-color: var(--violet-light);
@@ -78,7 +78,7 @@ label {
 }
 
 label.required::after {
-  content: '*';
+  content: "*";
   position: absolute;
   inset-block: 0;
   right: -0.5rem;
@@ -107,10 +107,10 @@ label.required::after {
 }
 
 /* CHECKBOX */
-input[type='checkbox'] {
+input[type="checkbox"] {
   appearance: none;
-  width: 28px;
-  height: 28px;
+  min-width: 28px;
+  min-height: 28px;
   aspect-ratio: 1;
   display: grid;
   place-content: center;
@@ -119,8 +119,8 @@ input[type='checkbox'] {
   position: relative;
 }
 
-input[type='checkbox']::after {
-  content: '';
+input[type="checkbox"]::after {
+  content: "";
   position: absolute;
   inset: 0.275rem;
   transform: scale(0);
@@ -171,9 +171,5 @@ input:checked::after {
   .form {
     padding: var(--gap-32) var(--gap-16);
     border-radius: var(--border-corner-24);
-  }
-
-  input[type='checkbox'] {
-    width: var(--size-48);
   }
 }

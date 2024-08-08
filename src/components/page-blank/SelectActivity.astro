@@ -9,10 +9,10 @@ interface Props {
 
 const lang = Astro.params.locale as 'ru' | 'fi';
 
-const { data, options } = Astro.props;
+const { data } = Astro.props;
 ---
 
-<script>
+<!-- <script>
 	const select = document.querySelector<HTMLSelectElement>('.blank-select__select');
 	const items = document.querySelectorAll<HTMLInputElement>('.input-activity')!;
 
@@ -28,11 +28,14 @@ const { data, options } = Astro.props;
 			if (id === 1) i.value = el.options[el.selectedIndex].dataset.time!;
 		});
 	});
-</script>
-
+</script> -->
 <fieldset class='select'>
 	<legend>{locale_blank[lang].activity_legend}</legend>
-	<div class='blank-select'>
+	<div class='form__input'>
+		<label class='required' for='selection'>{data.label}</label>
+		<input type='text' id='selection' class='form__input-active input-activity' name='title' data-input required />
+	</div>
+	<!-- <div class='blank-select'>
 		<label class='required' for='selection'>{data.label}</label>
 		<svg class='blank-select__icon' aria-hidden='true'>
 			<use xlink:href='/svg/ui_icons.svg#arrow_drop_down'></use>
@@ -49,7 +52,7 @@ const { data, options } = Astro.props;
 				})
 			}
 		</select>
-	</div>
+	</div> -->
 	<div class='form__input'>
 		<label class='required' for='activity-date'>{locale_blank[lang].date}</label>
 		<input

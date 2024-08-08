@@ -21,7 +21,8 @@ import type { IBlankPage } from '@Types';
 
 const lang = Astro.params.locale as 'ru' | 'fi';
 
-const response = await single(clubsBlankQuery, 'page_blank-club', lang, ['club.title', 'club.date', 'club.time']);
+const response = await single(clubsBlankQuery, 'page_blank-club', lang);
+// const response = await single(clubsBlankQuery, 'page_blank-club', lang, ['club.title', 'club.date', 'club.time']);
 
 const data = response.data as IBlankPage;
 const md = await toMarkdown(data.sub_title);
