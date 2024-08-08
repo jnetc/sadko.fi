@@ -9,6 +9,13 @@
 /* * * * * * {
   outline: 1px solid red;
 } */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
 
 @media (prefers-reduced-motion: no-preference) {
   :has(:target) {
@@ -30,7 +37,7 @@ body {
   display: flex;
   flex-direction: column;
   color: var(--black);
-  font-family: 'Comfortaa', sans-serif;
+  font-family: "Comfortaa", sans-serif;
   -webkit-font-smoothing: antialiased; /* for MacOs */
 }
 
@@ -87,8 +94,8 @@ textarea {
 
 input:focus-visible,
 textarea:focus-visible {
-  outline: 1.5px solid  var(--violet-light);
-  outline-offset: .25rem;
+  outline: 1.5px solid var(--violet-light);
+  outline-offset: 0.25rem;
 }
 
 ::placeholder {
@@ -134,9 +141,9 @@ button {
   background-color: transparent;
   border: none;
   cursor: pointer;
-  font-family: 'Comfortaa', sans-serif;
+  font-family: "Comfortaa", sans-serif;
   -webkit-font-smoothing: antialiased;
-      /* for MacOs */
+  /* for MacOs */
 }
 
 main {
@@ -167,7 +174,7 @@ main {
   font-weight: bold;
   text-decoration: underline transparent;
   text-underline-offset: 5px;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .href:hover {
   text-decoration: underline var(--violet);
