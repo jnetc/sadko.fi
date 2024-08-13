@@ -1,5 +1,5 @@
 export default `{
-  allPage_usefulss {
+  allPage_eventss {
      edges {
       node {
         seo_title
@@ -9,10 +9,10 @@ export default `{
       }
     }
   }
-}`
+}`;
 
 export const repeatableQuery = `{
-  allUsefuls {
+  allEvents {
     edges {
       node {
         slug {
@@ -48,4 +48,4 @@ export const repeatableQuery = `{
       }
     }
   }
-}`
+}`;

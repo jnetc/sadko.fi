@@ -6,13 +6,17 @@ import { marked } from "marked";
 // Types
 import type { RichTextField } from "@prismicio/client";
 
-import type {Pages, TypeLanguages} from "@Types";
+import type { Pages, TypeLanguages } from "@Types";
 
 const repositoryName = import.meta.env.PRISMIC_REPOSITORY_NAME;
 const accessToken = import.meta.env.PRISMIC_ACCESS_TOKEN;
 
-export async function single(query: string, page: Pages, lang: TypeLanguages, fetchLinks?: string | string[] ) {
-
+export async function single(
+  query: string,
+  page: Pages,
+  lang: TypeLanguages,
+  fetchLinks?: string | string[],
+) {
   const client = prismic.createClient(repositoryName, {
     accessToken,
     // fetchOptions: { cache: "force-cache" },
@@ -21,14 +25,18 @@ export async function single(query: string, page: Pages, lang: TypeLanguages, fe
 
   const response = await client.getSingle(page, {
     graphQuery: query,
-    fetchLinks: fetchLinks ? fetchLinks : undefined
+    fetchLinks: fetchLinks ? fetchLinks : undefined,
   });
 
   return response;
 }
 
-export async function repeatable(query: string, page: Pages, lang?: TypeLanguages, filters?: {path: string, value: string | number | boolean}) {
-
+export async function repeatable(
+  query: string,
+  page: Pages,
+  lang?: TypeLanguages,
+  filters?: { path: string; value: string | number | boolean },
+) {
   const client = prismic.createClient(repositoryName, {
     accessToken,
     // fetchOptions: { cache: "force-cache" },
@@ -37,18 +45,19 @@ export async function repeatable(query: string, page: Pages, lang?: TypeLanguage
 
   const response = await client.getAllByType(page, {
     graphQuery: query,
-    filters: filters === undefined ? filters : [prismic.filter.at(filters.path, filters.value)],
-    orderings: [{ field: "document.last_publication_date", direction: "desc" } ],
+    filters:
+      filters === undefined
+        ? filters
+        : [prismic.filter.at(filters.path, filters.value)],
+    orderings: [{ field: "document.last_publication_date", direction: "desc" }],
   });
 
   return response;
 }
 
-export async function staticPath( query: string, page: Pages) {
-
+export async function staticPath(query: string, page: Pages) {
   const client = prismic.createClient(repositoryName, {
     accessToken,
-
   });
 
   const response = await client.getAllByType(page, {
@@ -60,6 +69,7 @@ export async function staticPath( query: string, page: Pages) {
 
 ///////////////// MARKDOWN SERIALIZER ////////////////
 // Used to convert links into URLs.
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 const linkResolver = (doc: any) => `/${doc.uid}`;
 
 // An object mapping rich text block types to Markdown.
@@ -95,5 +105,5 @@ const markdownSerializer = prismicR.wrapMapSerializer({
 export async function toMarkdown(array: RichTextField) {
   const markdown = prismicR.serialize(array, markdownSerializer).join("");
   const md = await marked.parse(markdown);
-  return md.replaceAll('<br/>', '')
+  return md.replaceAll("<br/>", "");
 }

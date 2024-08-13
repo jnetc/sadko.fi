@@ -3,7 +3,7 @@ export const prerender = true;
 // Global Styles
 import '@Styles/articles_slug.css';
 // Query
-import { repeatableQuery } from '@Queries/page_usefuls';
+import { repeatableQuery } from '@Queries/page_events';
 // Types
 import type { IActivity } from '@Types';
 // Layouts
@@ -19,7 +19,7 @@ import { staticPath, repeatable, toMarkdown } from '@Lib/prismiccms';
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
 export async function getStaticPaths() {
-  const response = await staticPath(repeatableQuery, 'useful');
+  const response = await staticPath(repeatableQuery, 'event');
 
   return response.flatMap(i => {
     const data = i.data as IActivity;
@@ -36,7 +36,7 @@ export async function getStaticPaths() {
   });
 }
 
-const response = await repeatable(repeatableQuery, 'useful', lang);
+const response = await repeatable(repeatableQuery, 'event', lang);
 
 const { slug } = Astro.props;
 
@@ -53,13 +53,13 @@ const data = page.data as IActivity;
 const md = await toMarkdown(data.text);
 ---
 
-<Head title={data.title} description={data.description} href=`/useful/${data.slug.url}/` />
+<Head title={data.title} description={data.description} href=`/event/${data.slug.url}/` />
 
 <Layout>
-  <main class="grid page">
+  <main class='grid page'>
     <BackwardButton />
     <img
-      class="page__image page__image-details"
+      class='page__image page__image-details'
       src={data.image.url}
       alt={data.image.alt}
       height={data.image.dimensions.height}

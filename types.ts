@@ -1,9 +1,9 @@
 import type { RichTextField } from "@prismicio/client";
 
-export type TypeLanguages = 'fi' | 'ru';
+export type TypeLanguages = "fi" | "ru";
 
 export type TypeUIIcons =
-  "email"
+  | "email"
   | "phone"
   | "facebook"
   | "instagram"
@@ -24,7 +24,7 @@ export type TypeUIIcons =
   | "menu";
 
 export type TypeUIActivityIcons =
-  "clubs"
+  | "clubs"
   | "camps"
   | "masters"
   | "courses"
@@ -33,7 +33,7 @@ export type TypeUIActivityIcons =
   | "concerts"
   | "travels"
   | "projects"
-  | "useful"
+  | "events"
   | "parents"
   | "rules-and-payments"
   | "blanks"
@@ -44,12 +44,33 @@ export type TypeUIActivityIcons =
   | "info"
   | "feedbacks";
 
-
-export type TypePage = "page_masters" | "page_camps" | "page_festivals" | "page_concerts" | "page_projects" | "page_parents" | "page_clubs" | "page_courses" | "page_travels" | "page_celebrations" | "page_concerts" | "page_usefuls" | "page_articles" | "page_feedbacks" | "page_teachers" | "page_schedule" | "page_blanks" | "page_about" | "page_membership" | "page_gallery" | "page_rules-and-payments" | "page_blank-camp" | "page_blank-club";
-
+export type TypePage =
+  | "page_masters"
+  | "page_camps"
+  | "page_festivals"
+  | "page_concerts"
+  | "page_projects"
+  | "page_parents"
+  | "page_clubs"
+  | "page_courses"
+  | "page_travels"
+  | "page_celebrations"
+  | "page_concerts"
+  | "page_events"
+  | "page_articles"
+  | "page_feedbacks"
+  | "page_teachers"
+  | "page_schedule"
+  | "page_blanks"
+  | "page_about"
+  | "page_membership"
+  | "page_gallery"
+  | "page_rules-and-payments"
+  | "page_blank-camp"
+  | "page_blank-club";
 
 export type Pages =
-  "home"
+  | "home"
   | TypePage
   | "articles"
   | "schedule"
@@ -65,14 +86,14 @@ export type Pages =
   | "concert"
   | "travel"
   | "project"
-  | "useful"
+  | "event"
   | "parent"
   | "feedback"
   | "rules-and-payment"
   | "common_data";
 
 export type TypeUICardShapes =
-  "shape01"
+  | "shape01"
   | "shape02"
   | "shape03"
   | "shape04"
@@ -84,13 +105,13 @@ export type TypeUICardShapes =
   | "shape10"
   | "shape11"
   | "shape12"
-  | "shape13"
+  | "shape13";
 
 export type TypeUIPageShapes =
-  "page_stroke_01"
+  | "page_stroke_01"
   | "page_stroke_02"
   | "page_arrow_shot"
-  | "page_arrow_long"
+  | "page_arrow_long";
 
 interface LangRouteName {
   ru: string;
@@ -105,60 +126,67 @@ export interface ISubMenu {
   hrefDesc: LangRouteName;
 }
 
-
 // COMMON TYPES
 export type SEOType = {
   seo_title: string;
   seo_description: string;
-}
+};
 export type HeadingTextType = {
   heading: string;
   text: string;
-}
+};
 
 export type TitleDescriptionType = {
   title: string;
   description: string;
-}
+};
 export type TitleWithSubTitleType = {
   title: string;
   sub_title: RichTextField;
-}
+};
 
 export type HrefType = {
   url: string;
-  target: "" | "_blank"
-}
+  target: "" | "_blank";
+};
 
 export type SlugType = {
-  slug: HrefType
-}
+  slug: HrefType;
+};
 
 export type LabelType = {
   label: string;
-}
+};
 
 export type ImageType = {
   dimensions: {
     width: number;
     height: number;
-  }
+  };
   alt: string;
   url: string;
-}
+};
 
 export type PrimaryButtonType = {
   primary_button: string;
   primary_href: HrefType;
-}
+};
 
 export type SecondaryButtonType = {
   secondary_button: string;
   secondary_href: HrefType;
-}
+};
 
 /* SLICES */
-export type SliceType = "hero" | "activities" | "welcome" | "offer" | "gallery" | "teachers" | "faq" | "feedbacks"
+export type SliceType =
+  | "hero"
+  | "activities"
+  | "welcome"
+  | "offer"
+  | "gallery"
+  | "teachers"
+  | "faq"
+  | "feedbacks";
 
 /* Footer */
 export interface ICommonData {
@@ -176,53 +204,65 @@ export interface ICommonData {
 }
 
 export interface IIndex extends SEOType {
-  body: Array<HomeBodyHero | HomeBodyActivities | HomeBodyWelcome | HomeBodyOffer | HomeBodyGallery | HomeBodyTeachers | HomeBodyFaq | HomeBodyFeedbacks>;
+  body: Array<
+    | HomeBodyHero
+    | HomeBodyActivities
+    | HomeBodyWelcome
+    | HomeBodyOffer
+    | HomeBodyGallery
+    | HomeBodyTeachers
+    | HomeBodyFaq
+    | HomeBodyFeedbacks
+  >;
 }
 
 export interface HomeBodyHero {
-  slice_type: 'hero';
-  primary: PrimaryButtonType & SecondaryButtonType & HeadingTextType & LabelType;
+  slice_type: "hero";
+  primary: PrimaryButtonType &
+    SecondaryButtonType &
+    HeadingTextType &
+    LabelType;
 }
 
 export interface HomeBodyActivities {
-  slice_type: 'activities';
+  slice_type: "activities";
   primary: HeadingTextType;
-  items: Array<HeadingTextType & SlugType & {icon: TypeUIIcons}>;
+  items: Array<HeadingTextType & SlugType & { icon: TypeUIIcons }>;
 }
 
 export interface HomeBodyWelcome {
-  slice_type:  'welcome';
-  primary: SecondaryButtonType & {heading: string; text: RichTextField};
-  items: Array<{text: string;  amount: number}>;
+  slice_type: "welcome";
+  primary: SecondaryButtonType & { heading: string; text: RichTextField };
+  items: Array<{ text: string; amount: number }>;
 }
 
 export interface HomeBodyOffer {
-  slice_type: 'offer';
+  slice_type: "offer";
   primary: PrimaryButtonType & HeadingTextType;
 }
 
 export interface HomeBodyGallery {
-  slice_type: 'gallery';
-  primary: SecondaryButtonType & {image_pc: ImageType; image_mob: ImageType};
+  slice_type: "gallery";
+  primary: SecondaryButtonType & { image_pc: ImageType; image_mob: ImageType };
 }
 
 export interface HomeBodyTeachers {
-  slice_type:  'teachers';
+  slice_type: "teachers";
   primary: HeadingTextType;
 }
 
 export interface HomeBodyFaq {
-  slice_type: 'faq';
+  slice_type: "faq";
   primary: HeadingTextType;
-  items: Array<{question: string;  answer: RichTextField}>;
+  items: Array<{ question: string; answer: RichTextField }>;
 }
 
 export interface HomeBodyFeedbacks {
-  slice_type: 'feedbacks';
+  slice_type: "feedbacks";
   primary: HeadingTextType;
 }
 
-export interface IPage extends SEOType, TitleWithSubTitleType { }
+export interface IPage extends SEOType, TitleWithSubTitleType {}
 
 export interface IActivity extends TitleDescriptionType, SlugType {
   image: ImageType;
@@ -234,75 +274,77 @@ export interface IActivity extends TitleDescriptionType, SlugType {
   address: string;
   phone: string;
   email: string;
-  has_blank:boolean
+  has_blank: boolean;
   facebook: HrefType;
   instagram: HrefType;
-  text: RichTextField
+  text: RichTextField;
   publication_date: string;
 }
 
-export interface IArticle extends  TitleDescriptionType, SlugType {
+export interface IArticle extends TitleDescriptionType, SlugType {
   image: ImageType;
   author: string;
-  text: RichTextField
+  text: RichTextField;
   publication_date: string;
 }
 
 export interface IAboutPage extends SEOType, TitleWithSubTitleType {
-  text: RichTextField
+  text: RichTextField;
 }
 
 export interface IRulesAndPaymentsPage extends SEOType, TitleWithSubTitleType {
-  rules: Array<{href: HrefType, name: string}>
+  rules: Array<{ href: HrefType; name: string }>;
 }
-export interface IRulesAndPayments extends SEOType, TitleDescriptionType, SlugType {
-  text: RichTextField
+export interface IRulesAndPayments
+  extends SEOType,
+    TitleDescriptionType,
+    SlugType {
+  text: RichTextField;
 }
 
 export interface IMembershipPage extends SEOType, TitleWithSubTitleType {
-  text: RichTextField
-  secondary_button:string
+  text: RichTextField;
+  secondary_button: string;
 }
 
 export interface ISchedulePage extends SEOType {
   title: string;
   subtitle: string;
-  text: RichTextField
+  text: RichTextField;
 }
 
 export interface IGalleryPage extends SEOType, TitleWithSubTitleType {
-  folder: Array<{href: HrefType, name: string}>
+  folder: Array<{ href: HrefType; name: string }>;
 }
 
 export interface IAllBlankPage extends SEOType, TitleWithSubTitleType {
-  blank: Array<{href: HrefType, name: string}>
+  blank: Array<{ href: HrefType; name: string }>;
 }
 
-export interface IBlankSelect  {
-  option: { data: { title: string, date: string, time: string } }
+export interface IBlankSelect {
+  option: { data: { title: string; date: string; time: string } };
 }
 export interface IBlankPage extends SEOType, TitleWithSubTitleType {
   important: string;
-  select: Array<IBlankSelect>
+  select: Array<IBlankSelect>;
 }
 
-
 export interface ITeacher {
-  carousel_visible: boolean
-  slug: HrefType
-  image: ImageType
-  description: string
-  color: string
-  name: string
-  text: RichTextField
-  chips: Array<{club: string}>
+  carousel_visible: boolean;
+  slug: HrefType;
+  image: ImageType;
+  description: string;
+  color: string;
+  name: string;
+  text: RichTextField;
+  chips: Array<{ club: string }>;
 }
 
 export interface IFeedback {
-  slug: HrefType
-  color: string
-  name: string
-  text: RichTextField
+  slug: HrefType;
+  color: string;
+  name: string;
+  text: RichTextField;
 }
 
 export type DayType = {
@@ -312,36 +354,35 @@ export type DayType = {
   age: string;
   price: string;
   label: string;
-}
+};
 
-export interface ISchedule  {
-  name: string
+export interface ISchedule {
+  name: string;
   address: string;
-  href: HrefType
-  monday: Array<DayType>
-  tuesday: Array<DayType>
-  wednesday: Array<DayType>
-  thursday: Array<DayType>
-  friday: Array<DayType>
-  saturday: Array<DayType>
-  sunday: Array<DayType>
+  href: HrefType;
+  monday: Array<DayType>;
+  tuesday: Array<DayType>;
+  wednesday: Array<DayType>;
+  thursday: Array<DayType>;
+  friday: Array<DayType>;
+  saturday: Array<DayType>;
+  sunday: Array<DayType>;
 }
-
 
 export interface IFormData {
-    activity: "club" | "camp";
-    title: string;
-    DateOrDayweek: string;
-    TimeOrDuration: string;
-    childDate: string;
-    childName: string;
-    childInfo: string;
-    name: string;
-    henkilotunnus: string;
-    address: string;
-    postcode: string;
-    city: string;
-    phone: string;
-    email: string;
-    message: string;
-  }
+  activity: "club" | "camp";
+  title: string;
+  DateOrDayweek: string;
+  TimeOrDuration: string;
+  childDate: string;
+  childName: string;
+  childInfo: string;
+  name: string;
+  henkilotunnus: string;
+  address: string;
+  postcode: string;
+  city: string;
+  phone: string;
+  email: string;
+  message: string;
+}

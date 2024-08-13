@@ -7,12 +7,12 @@ const classes: Array<ISubMenu> = [
     slug: "clubs",
     hrefName: {
       ru: "Кружки",
-      fi: "Kerhot"
+      fi: "Kerhot",
     },
     hrefDesc: {
       ru: "27 различных кружков",
-      fi: "27 erilaista ympyrää"
-    }
+      fi: "27 erilaista ympyrää",
+    },
   },
   {
     iconBorder: "cookie",
@@ -20,12 +20,12 @@ const classes: Array<ISubMenu> = [
     slug: "camps",
     hrefName: {
       ru: "Лагеря",
-      fi: "Leirit"
+      fi: "Leirit",
     },
     hrefDesc: {
       ru: "Походы и отдых на природе",
-      fi: "Vaellus ja ulkoilu"
-    }
+      fi: "Vaellus ja ulkoilu",
+    },
   },
   {
     iconBorder: "cookie",
@@ -33,12 +33,12 @@ const classes: Array<ISubMenu> = [
     slug: "masters",
     hrefName: {
       ru: "Мастер класс",
-      fi: "Mestariluokka"
+      fi: "Mestariluokka",
     },
     hrefDesc: {
       ru: "Перенимаем опыт мастеров",
-      fi: "Otamme käyttöön mestareiden kokemuksen"
-    }
+      fi: "Otamme käyttöön mestareiden kokemuksen",
+    },
   },
   {
     iconBorder: "cookie",
@@ -46,12 +46,12 @@ const classes: Array<ISubMenu> = [
     slug: "courses",
     hrefName: {
       ru: "Курсы",
-      fi: "Kurssit"
+      fi: "Kurssit",
     },
     hrefDesc: {
       ru: "Для разных возрастов",
-      fi: "Eri ikäisille"
-    }
+      fi: "Eri ikäisille",
+    },
   },
 ];
 
@@ -62,12 +62,12 @@ const events: Array<ISubMenu> = [
     slug: "festivals",
     hrefName: {
       ru: "Фестивали",
-      fi: "Festivaalit"
+      fi: "Festivaalit",
     },
     hrefDesc: {
       ru: "Проводим ежегодно",
-      fi: "Teemme sen joka vuosi"
-    }
+      fi: "Teemme sen joka vuosi",
+    },
   },
   {
     iconBorder: "cookie",
@@ -75,11 +75,11 @@ const events: Array<ISubMenu> = [
     slug: "celebrations",
     hrefName: {
       ru: "Праздники",
-      fi: "Juhlat"
+      fi: "Juhlat",
     },
     hrefDesc: {
       ru: "А так же утренники",
-      fi: "Ja myös matinees"
+      fi: "Ja myös matinees",
     },
   },
   {
@@ -88,11 +88,11 @@ const events: Array<ISubMenu> = [
     slug: "concerts",
     hrefName: {
       ru: "Концерты",
-      fi: "Konsertit"
+      fi: "Konsertit",
     },
     hrefDesc: {
       ru: "Посещаем и сами ставим",
-      fi: "Käymme ja asennamme itse"
+      fi: "Käymme ja asennamme itse",
     },
   },
   {
@@ -101,11 +101,11 @@ const events: Array<ISubMenu> = [
     slug: "travels",
     hrefName: {
       ru: "Поездки",
-      fi: "Matkat"
+      fi: "Matkat",
     },
     hrefDesc: {
       ru: "Путешествуем вместе",
-      fi: "Matkustetaan yhdessä"
+      fi: "Matkustetaan yhdessä",
     },
   },
 ];
@@ -117,24 +117,24 @@ const others: Array<ISubMenu> = [
     slug: "projects",
     hrefName: {
       ru: "Проекты",
-      fi: "Projektit"
+      fi: "Projektit",
     },
     hrefDesc: {
       ru: "Текущие и будущие",
-      fi: "Nykyisyys ja tulevaisuus"
+      fi: "Nykyisyys ja tulevaisuus",
     },
   },
   {
     iconBorder: "cookie",
-    icon: "useful",
-    slug: "useful",
+    icon: "events",
+    slug: "events",
     hrefName: {
-      ru: "Полезное",
-      fi: "Hyödyllinen"
+      ru: "Мероприятия",
+      fi: "Tapahtumia",
     },
     hrefDesc: {
-      ru: "Советы и лайфхаки",
-      fi: "Vinkkejä ja pelastusvinkkejä"
+      ru: "Всего по немногу",
+      fi: "Vähän kaikkea",
     },
   },
   {
@@ -143,12 +143,12 @@ const others: Array<ISubMenu> = [
     slug: "parents",
     hrefName: {
       ru: "Для взрослых",
-      fi: "Aikuisille"
+      fi: "Aikuisille",
     },
     hrefDesc: {
       ru: "Тут только 18+",
-      fi: "Täällä vain 18+"
-    }
+      fi: "Täällä vain 18+",
+    },
   },
   // {
   //   iconBorder: "cookie",
@@ -211,12 +211,12 @@ const blanks: Array<ISubMenu> = [
     slug: "blanks",
     hrefName: {
       ru: "Анкеты",
-      fi: "Lomakeet"
+      fi: "Lomakeet",
     },
     hrefDesc: {
       ru: "Формы для записи",
-      fi: "Ilmoittamis- ja lomakkeet"
-    }
+      fi: "Ilmoittamis- ja lomakkeet",
+    },
   },
 ];
 
@@ -227,12 +227,12 @@ const rules_and_payments: Array<ISubMenu> = [
     slug: "rules-and-payments",
     hrefName: {
       ru: "Оплата",
-      fi: "Maksu"
+      fi: "Maksu",
     },
     hrefDesc: {
       ru: "Правила записи и платы",
-      fi: "Ilmoittautumis- ja maksusäännöt"
-    }
+      fi: "Ilmoittautumis- ja maksusäännöt",
+    },
   },
 ];
 
@@ -243,11 +243,11 @@ const aboutus: Array<ISubMenu> = [
     slug: "about",
     hrefName: {
       ru: "Клуб",
-      fi: "Klubi"
+      fi: "Klubi",
     },
     hrefDesc: {
       ru: "Кто мы есть",
-      fi: "Keitä olemme"
+      fi: "Keitä olemme",
     },
   },
   {
@@ -256,12 +256,12 @@ const aboutus: Array<ISubMenu> = [
     slug: "teachers",
     hrefName: {
       ru: "Преподаватели",
-      fi: "Opettajat"
+      fi: "Opettajat",
     },
     hrefDesc: {
       ru: "Опыт и биография",
-      fi: "Kokemus ja elämäkerta"
-    }
+      fi: "Kokemus ja elämäkerta",
+    },
   },
   {
     iconBorder: "cookie",
@@ -269,12 +269,12 @@ const aboutus: Array<ISubMenu> = [
     slug: "membership",
     hrefName: {
       ru: "Членство",
-      fi: "Jäsenyys"
+      fi: "Jäsenyys",
     },
     hrefDesc: {
       ru: "Права и обязанности",
-      fi: "Oikeudet ja velvollisuudet"
-    }
+      fi: "Oikeudet ja velvollisuudet",
+    },
   },
   {
     iconBorder: "cookie",
@@ -282,12 +282,12 @@ const aboutus: Array<ISubMenu> = [
     slug: "feedbacks",
     hrefName: {
       ru: "Отзывы",
-      fi: "Suosittelut"
+      fi: "Suosittelut",
     },
     hrefDesc: {
       ru: "Что о нас говорят",
-      fi: "Mitä meistä sanotaan"
-    }
+      fi: "Mitä meistä sanotaan",
+    },
   },
 ];
 
@@ -298,7 +298,7 @@ const gallery: Array<ISubMenu> = [
     slug: "gallery",
     hrefName: {
       ru: "Галерея",
-      fi: "gallery"
+      fi: "gallery",
     },
     hrefDesc: {
       ru: "История в картинках",
@@ -310,7 +310,7 @@ const gallery: Array<ISubMenu> = [
 export const headerLinks = {
   ru: {
     activities: {
-      name: 'Активности',
+      name: "Активности",
       submenu: [
         { columnName: "Занятия", columns: classes },
         { columnName: "События", columns: events },
@@ -318,16 +318,16 @@ export const headerLinks = {
       ],
     },
     signup: {
-      name: 'Записаться',
+      name: "Записаться",
       submenu: [
         { columnName: "Анкеты", columns: blanks },
         { columnName: "Оплата", columns: rules_and_payments },
       ],
     },
-    schedule: 'Расписание',
-    articles: 'Статьи',
+    schedule: "Расписание",
+    articles: "Статьи",
     about: {
-      name: 'О Sadko',
+      name: "О Sadko",
       submenu: [
         { columnName: "О нас", columns: aboutus },
         { columnName: "Фотогалерея", columns: gallery },
@@ -336,7 +336,7 @@ export const headerLinks = {
   },
   fi: {
     activities: {
-      name: 'Toiminnot',
+      name: "Toiminnot",
       submenu: [
         { columnName: "Toiminnot", columns: classes },
         { columnName: "Tapahtumat", columns: events },
@@ -344,16 +344,16 @@ export const headerLinks = {
       ],
     },
     signup: {
-      name: 'Ilmoittautua',
+      name: "Ilmoittautua",
       submenu: [
         { columnName: "Lomakeet", columns: blanks },
         { columnName: "Maksu", columns: rules_and_payments },
       ],
     },
-    schedule: 'Aikataulu',
-    articles: 'Artikkelit',
+    schedule: "Aikataulu",
+    articles: "Artikkelit",
     about: {
-      name: 'Sadko:sta',
+      name: "Sadko:sta",
       submenu: [
         { columnName: "Meistä", columns: aboutus },
         { columnName: "Kuvagallery", columns: gallery },

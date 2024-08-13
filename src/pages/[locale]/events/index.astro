@@ -2,7 +2,7 @@
 // Global Styles
 import '@Styles/articles_page.css';
 // Query
-import pageQuery, { repeatableQuery } from '@Queries/page_usefuls';
+import pageQuery, { repeatableQuery } from '@Queries/page_events';
 // Types
 import type { IActivity, IPage } from '@Types';
 // Layouts
@@ -15,22 +15,22 @@ import { single, repeatable, toMarkdown } from '@Lib/prismiccms';
 
 const lang = Astro.currentLocale as 'ru' | 'fi';
 
-const response = await single(pageQuery, 'page_usefuls', lang);
-const articles = await repeatable(repeatableQuery, 'useful', lang);
+const response = await single(pageQuery, 'page_events', lang);
+const articles = await repeatable(repeatableQuery, 'event', lang);
 
 const data = response.data as IPage;
 const md = await toMarkdown(data.sub_title);
 ---
 
-<Head title={data.seo_title} description={data.seo_description} href="/useful/" />
+<Head title={data.seo_title} description={data.seo_description} href='/event/' />
 
 <Layout>
-  <main class="grid separator">
-    <div class="page-header">
-      <h1 class="header__heading">{data.title}</h1>
+  <main class='grid separator'>
+    <div class='page-header'>
+      <h1 class='header__heading'>{data.title}</h1>
       {
         data.sub_title ? (
-          <div class="page-header__description markdown font-20">
+          <div class='page-header__description markdown font-20'>
             <Fragment set:html={md} />
           </div>
         ) : null
