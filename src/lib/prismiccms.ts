@@ -1,5 +1,7 @@
 // Manual for Prismic richtext - v2
 // https://prismic.io/docs/technical-reference/prismicio-richtext
+// GraphQL endpoint
+// https://sadko.prismic.io/graphql?access_token=PRISMIC_ACCESS_TOKEN
 import * as prismic from "@prismicio/client";
 import * as prismicR from "@prismicio/richtext";
 import { marked } from "marked";

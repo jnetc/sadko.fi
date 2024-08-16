@@ -129,12 +129,12 @@ const others: Array<ISubMenu> = [
     icon: "events",
     slug: "events",
     hrefName: {
-      ru: "Мероприятия",
-      fi: "Tapahtumia",
+      ru: "Текущие мероприятия",
+      fi: "Ajankohtaiset tapahtumat",
     },
     hrefDesc: {
-      ru: "Всего по немногу",
-      fi: "Vähän kaikkea",
+      ru: "Актуально сейчас",
+      fi: "Nyt ajankohtainen",
     },
   },
   {
