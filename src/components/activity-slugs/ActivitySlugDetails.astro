@@ -2,6 +2,7 @@
 import { locale_main } from '@Locales/main';
 // Components
 import ActivitySlugBlankBtn from '@Components/activity-slugs/ActivitySlugBlankBtn.astro';
+import ActivitySlugScheduleBtn from '@Components/activity-slugs/ActivitySlugScheduleBtn.astro';
 import ActivitySlugCircleBtn from '@Components/activity-slugs/ActivitySlugCircleBtn.astro';
 // Helpers
 import publishDate from '@Helpers/publishDate';
@@ -18,48 +19,49 @@ interface Props {
 const { data, publish } = Astro.props;
 ---
 
-<section class="activity__details">
+<section class='activity__details'>
   <time datetime={publish.split('T')[0]}>
     {locale_main[lang].publish}
     {publishDate(publish, lang)}
   </time>
-  <h1 class="activity__title">{data.title}</h1>
-  <p class="details__text">
+  <h1 class='activity__title'>{data.title}</h1>
+  <p class='details__text'>
     {locale_main[lang].teacher}
     <strong>{data.teacher}</strong>
   </p>
-  <p class="details__text">
+  <p class='details__text'>
     {locale_main[lang].date}
     <strong>{data.date}</strong>
   </p>
-  <p class="details__text">
+  <p class='details__text'>
     {locale_main[lang].time}
     <strong>{data.time}</strong>
   </p>
-  <p class="details__text">
+  <p class='details__text'>
     {locale_main[lang].age}
     <strong>{data.age}</strong>
   </p>
-  <p class="details__text">
+  <p class='details__text'>
     {locale_main[lang].price}
     <strong>{data.price}</strong>
   </p>
-  <address class="details__text">
+  <address class='details__text'>
     {locale_main[lang].address}
     <strong>{data.address}</strong>
   </address>
-  <p class="details__text">
+  <p class='details__text'>
     {locale_main[lang].phone}
     <strong>{data.phone}</strong>
   </p>
-  <p class="details__text">
+  <p class='details__text'>
     {locale_main[lang].email}
     <strong>{data.email}</strong>
   </p>
-  <div class="details__btns">
+  <div class='details__btns'>
     {data.has_blank ? <ActivitySlugBlankBtn lang={lang} /> : null}
-    {data.facebook.url ? <ActivitySlugCircleBtn data={data.facebook} icon="facebook" /> : null}
-    {data.instagram.url ? <ActivitySlugCircleBtn data={data.instagram} icon="instagram" /> : null}
+    {data.schedule ? <ActivitySlugScheduleBtn lang={lang} href={data.schedule} /> : null}
+    {data.facebook.url ? <ActivitySlugCircleBtn data={data.facebook} icon='facebook' /> : null}
+    {data.instagram.url ? <ActivitySlugCircleBtn data={data.instagram} icon='instagram' /> : null}
   </div>
 </section>
 

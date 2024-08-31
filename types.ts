@@ -277,6 +277,7 @@ export interface IActivity extends TitleDescriptionType, SlugType {
   has_blank: boolean;
   facebook: HrefType;
   instagram: HrefType;
+  schedule?: HrefType;
   text: RichTextField;
   publication_date: string;
 }

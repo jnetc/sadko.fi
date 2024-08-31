@@ -9,7 +9,7 @@ export default `{
       }
     }
   }
-}`
+}`;
 
 export const repeatableQuery = `{
   allClubs {
@@ -44,8 +44,14 @@ export const repeatableQuery = `{
             target
           }
         }
+        schedule {
+          ... on _ExternalLink {
+            url
+            target
+          }
+        }
         text
       }
     }
   }
-}`
+}`;

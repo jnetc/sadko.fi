@@ -1,17 +1,17 @@
 ---
 import { locale_buttons } from '@Locales/buttons';
+import type { HrefType } from '@Types';
 
 interface Props {
   lang: 'ru' | 'fi';
+  href: HrefType;
 }
-const blank = Astro.url.pathname.split('/')[2];
-const { lang } = Astro.props;
+
+const { lang, href } = Astro.props;
 ---
 
-<a
-  href={`/${lang}/blanks${['clubs', 'camps'].includes(blank) ? `/${blank}/` : '/'}`}
-  class='btn btn-primary arrow-icon'>
-  {locale_buttons[lang].button_blank}
+<a href={href.url} target={href.target} class='btn btn-secondary arrow-icon'>
+  {locale_buttons[lang].button_schedule}
   <span class='btn__icon' aria-hidden='true'>
     <svg>
       <use xlink:href='/svg/ui_icons.svg#arrow_outward' data-xlink='arrow_outward'></use>
