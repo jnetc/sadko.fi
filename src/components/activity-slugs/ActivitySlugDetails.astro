@@ -59,7 +59,7 @@ const { data, publish } = Astro.props;
   </p>
   <div class='details__btns'>
     {data.has_blank ? <ActivitySlugBlankBtn lang={lang} /> : null}
-    {data.schedule ? <ActivitySlugScheduleBtn lang={lang} href={data.schedule} /> : null}
+    {data.schedule?.url ? <ActivitySlugScheduleBtn lang={lang} href={data.schedule} /> : null}
     {data.facebook.url ? <ActivitySlugCircleBtn data={data.facebook} icon='facebook' /> : null}
     {data.instagram.url ? <ActivitySlugCircleBtn data={data.instagram} icon='instagram' /> : null}
   </div>
